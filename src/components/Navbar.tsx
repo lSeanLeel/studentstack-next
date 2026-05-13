@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { Menu, X, Users, MailOpen } from "lucide-react";
+import { Menu, X, Users, MailOpen, HelpCircle } from "lucide-react";
 import { jakartaSans } from "@/app/fonts";
 import { BrandWordmark } from "./BrandWordmark";
 import { useOnboarding } from "./onboarding-context";
@@ -12,6 +12,7 @@ export function Navbar() {
   const navItems = [
     { label: "The email", href: "#weekly-email", icon: MailOpen },
     { label: "Team", href: "#mentors", icon: Users },
+    { label: "FAQ", href: "#faq", icon: HelpCircle },
   ];
 
   const closeMenu = () => setIsMenuOpen(false);
@@ -67,7 +68,7 @@ export function Navbar() {
 
         {isMenuOpen && (
           <div className={`mt-3 rounded-2xl border border-slate-200 bg-white p-3 shadow-[0_16px_34px_-20px_rgba(15,23,42,0.35)] md:hidden ${jakartaSans.className}`}>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-3 gap-2">
               {navItems.map((item) => {
                 const Icon = item.icon;
                 return (

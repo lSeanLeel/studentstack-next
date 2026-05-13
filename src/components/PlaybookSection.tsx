@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "motion/react";
-import { MailPlus, Table2, Mail, MessageCircle } from "lucide-react";
+import { MailPlus, Table2, Mail, MessageCircle, FileSpreadsheet, ArrowRight, Lock } from "lucide-react";
 import { jakartaSans, fredokaHeadline } from "@/app/fonts";
 import { useOnboarding } from "@/components/onboarding-context";
 
@@ -19,7 +19,7 @@ export function PlaybookSection() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_65%_45%_at_80%_20%,rgba(167,139,250,0.08),transparent)]" />
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_10%_60%,rgba(14,165,233,0.1),transparent)]" />
 
-      <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto w-full max-w-4xl px-4 sm:px-6 lg:max-w-5xl lg:px-8 xl:max-w-6xl">
         <div className="flex flex-col gap-6 sm:gap-8">
           {/* 1. Toolkit (link-first) */}
           <motion.article
@@ -37,9 +37,10 @@ export function PlaybookSection() {
               One link. Always up to date.
             </h3>
             <p className={`relative mt-3 max-w-2xl text-base font-medium leading-relaxed text-slate-600 ${jakartaSans.className}`}>
-              We keep a single page with the latest AI tools our team actually uses. The email doesn&apos;t dump a new list
-              every Sunday, so you tap <strong className="text-slate-800">the same link</strong> and see what we added or
-              changed.
+              As college students who understand AI technology best, we share the most important tools used for{" "}
+              <strong className="text-slate-800">studying</strong>,{" "}
+              <strong className="text-slate-800">organization</strong>,{" "}
+              <strong className="text-slate-800">writing</strong>, and other student use-cases!
             </p>
             <motion.button
               type="button"
@@ -71,7 +72,7 @@ export function PlaybookSection() {
                 <span className="h-2.5 w-2.5 rounded-full bg-white/50" />
               </div>
               <span className={`text-[11px] font-bold text-white ${jakartaSans.className}`}>
-                Opportunity board (Google Sheet)
+                Opportunities for High Schoolers!
               </span>
             </div>
             <div className="bg-gradient-to-b from-slate-50/90 to-white p-5 sm:p-7">
@@ -88,21 +89,40 @@ export function PlaybookSection() {
                       The &quot;Super&quot; Spreadsheet
                     </h3>
                     <p className={`mt-3 text-sm font-medium leading-relaxed text-slate-600 ${jakartaSans.className}`}>
-                      Summer programs, research opportunities with college professors, and competition deadlines. Each week the
-                      email links to <strong className="text-slate-800">the same Sheet</strong>. We tidy rows and add what&apos;s
-                      new.
+                      As students who were once applying to college, we&apos;re committed to sharing resources for high
+                      schoolers in summer programs, exclusive research opportunities, competition/scholarship deadlines, + more.
                     </p>
                   </div>
                 </div>
-                <div
-                  className={`mt-5 flex flex-wrap items-center gap-2 rounded-xl border border-emerald-100 bg-emerald-50/50 px-3 py-2.5 text-xs font-semibold text-slate-600 ${jakartaSans.className}`}
-                  role="presentation"
+                <motion.button
+                  type="button"
+                  onClick={() => openOnboarding()}
+                  aria-label="Join free to open the opportunities spreadsheet"
+                  className={`group mt-5 flex w-full items-center justify-between gap-3 rounded-2xl border-2 border-emerald-200/90 bg-white px-4 py-3.5 text-left shadow-[0_8px_24px_-16px_rgba(16,185,129,0.5)] outline-none ring-emerald-400 transition hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-emerald-50/70 hover:shadow-[0_14px_32px_-18px_rgba(16,185,129,0.55)] focus-visible:ring-2 sm:px-5 ${jakartaSans.className}`}
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
                 >
-                  <span className="rounded-lg bg-white px-2 py-1 font-mono text-[10px] font-bold text-emerald-800 shadow-sm ring-1 ring-emerald-100">
-                    sheets.google.com
+                  <span className="flex min-w-0 items-center gap-3">
+                    <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
+                      <FileSpreadsheet className="h-5 w-5" aria-hidden />
+                      <span className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-white shadow ring-1 ring-emerald-200">
+                        <Lock className="h-2.5 w-2.5 text-emerald-700" aria-hidden />
+                      </span>
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block truncate text-[15px] font-bold text-slate-900">
+                        Open the opportunities sheet
+                      </span>
+                      <span className="block truncate text-[11px] font-semibold text-slate-500">
+                        Free — unlocks after you join the weekly email
+                      </span>
+                    </span>
                   </span>
-                  <span className="font-mono text-slate-400">/ … / edit</span>
-                </div>
+                  <span className="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-emerald-600 px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.12em] text-white shadow-sm transition group-hover:bg-emerald-700">
+                    Open
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                  </span>
+                </motion.button>
               </div>
             </div>
           </motion.article>

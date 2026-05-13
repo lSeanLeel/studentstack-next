@@ -38,8 +38,9 @@ const FAQ_ITEMS: FaqItem[] = [
           Our team
         </a>{" "}
         of top-performing college students keeps our AI resources updated, shapes what goes out each week, and answers
-        when you email us. If something needs a specific background—research, coding, writing, pre-med—we hand it to
-        whoever on the team actually has that depth so you get a grounded reply, not a generic script.
+        when you email us. If something needs a specific background (Pre-Med, Coding, Physics, Music), we try to hand
+        it to whoever on the team actually has the relevant experience and depth to provide their valuable
+        &ldquo;student&rdquo; perspective.
       </>
     ),
   },
@@ -120,12 +121,12 @@ export function FaqSection() {
   return (
     <section
       id="faq"
-      className="relative overflow-hidden border-t border-sky-100/80 bg-gradient-to-b from-violet-50/30 via-white to-sky-50/25 px-4 py-20 sm:px-6 sm:py-28"
+      className="relative overflow-hidden border-t border-sky-100/80 bg-gradient-to-b from-violet-50/30 via-white to-sky-50/25 px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
       aria-labelledby="faq-heading"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_45%_at_50%_0%,rgba(14,165,233,0.07),transparent)]" />
 
-      <div className="relative mx-auto max-w-3xl">
+      <div className="relative mx-auto w-full max-w-3xl lg:max-w-4xl xl:max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -138,16 +139,13 @@ export function FaqSection() {
           </p>
           <h2
             id="faq-heading"
-            className={`mt-3 text-3xl font-semibold tracking-[-0.03em] text-slate-900 sm:text-4xl lg:text-[2.75rem] ${fredokaHeadline.className}`}
+            className={`mt-2.5 text-[1.65rem] font-semibold tracking-[-0.03em] text-slate-900 sm:text-3xl lg:text-[2.15rem] ${fredokaHeadline.className}`}
           >
             Questions parents ask us
           </h2>
-          <p className={`mx-auto mt-4 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}>
-            Straight answers—no jargon wall. Tap a question to expand.
-          </p>
         </motion.div>
 
-        <div className="mt-12 flex flex-col gap-3 sm:gap-4">
+        <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:gap-4">
           {FAQ_ITEMS.map((item, index) => (
             <FaqAccordionItem
               key={item.q}

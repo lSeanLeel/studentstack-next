@@ -12,12 +12,12 @@ export function WhatsInsideSection() {
   return (
     <section
       id="whats-inside"
-      className="relative overflow-hidden border-t border-sky-100/80 bg-white px-4 py-20 sm:px-6 sm:py-28"
+      className="relative overflow-hidden border-t border-sky-100/80 bg-white px-4 py-20 sm:px-6 sm:py-28 lg:px-8"
       aria-labelledby="whats-inside-heading"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(14,165,233,0.08),transparent)]" />
 
-      <div className="relative mx-auto max-w-3xl text-center">
+      <div className="relative mx-auto w-full max-w-3xl text-center lg:max-w-4xl">
         <div
           className={`inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 ${jakartaSans.className}`}
         >
