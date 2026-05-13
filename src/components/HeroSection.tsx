@@ -83,8 +83,8 @@ export function HeroSection() {
   return (
     <section className="relative isolate min-h-[100dvh] min-h-screen w-full max-w-none overflow-x-hidden bg-gradient-to-b from-white via-sky-50/40 to-violet-50/50 px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-28">
       <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-6rem)] w-full max-w-[80rem] flex-col justify-center sm:min-h-[calc(100dvh-7rem)]">
-        <div className="flex w-full min-w-0 flex-col items-stretch text-center">
-          <div className="relative mb-14 max-w-6xl lg:mb-16">
+        <div className="flex w-full min-w-0 flex-col items-center text-center">
+          <div className="relative mx-auto mb-14 w-full max-w-6xl lg:mb-16">
             <motion.p
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
