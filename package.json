@@ -1,11 +1,38 @@
 {
-  "name": "studentstack-workspace",
+  "name": "studentstack",
+  "version": "0.1.0",
   "private": true,
-  "description": "Run npm from the zip root: dev/build/start/brand-kit forward into studentthisisfinal-main/.",
   "scripts": {
-    "dev": "npm run dev --prefix studentthisisfinal-main",
-    "build": "npm run build --prefix studentthisisfinal-main",
-    "start": "npm run start --prefix studentthisisfinal-main",
-    "brand-kit": "npm run brand-kit --prefix studentthisisfinal-main"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "echo \"Lint is not configured for this migration yet.\"",
+    "brand-kit": "node scripts/build-brand-kit.mjs"
+  },
+  "dependencies": {
+    "@react-email/components": "^1.0.12",
+    "@react-email/render": "^2.0.8",
+    "@supabase/supabase-js": "^2.104.1",
+    "lucide-react": "^0.294.0",
+    "motion": "^12.38.0",
+    "next": "^15.3.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.75.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@fontsource/fredoka": "^5.2.5",
+    "@resvg/resvg-js": "^2.6.2",
+    "@types/node": "^22.15.17",
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^9.39.3",
+    "eslint-config-next": "^15.3.2",
+    "playwright": "^1.49.1",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.8.3"
   }
 }
