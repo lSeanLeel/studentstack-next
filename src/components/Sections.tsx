@@ -36,7 +36,7 @@ export function TestimonialSection() {
                 className={`relative z-10 max-w-2xl text-2xl font-medium leading-[1.3] tracking-tight text-slate-100 sm:text-4xl ${jakartaSans.className}`}
               >
                 <span className="text-white font-serif text-3xl sm:text-5xl mr-1">&ldquo;</span>
-                I founded StudentStack because I saw the disparity between students who use AI for school and those who don&apos;t. As college students, we&apos;re native to AI and we hear/use new tech every day, using this information to help build StudentStack, and bridge this gap.
+                I founded StudentStack because I saw the disparity between students who use AI for school and those who don&apos;t. As college students, we&apos;re native to AI and we learn about new tech every day, using this information to help build StudentStack, and bridge this gap.
                 <span className="text-white font-serif text-3xl sm:text-5xl ml-1">&rdquo;</span>
               </p>
             </div>
@@ -119,7 +119,7 @@ export function FinalCTA({ scrollToSignup }: { scrollToSignup: () => void }) {
                 onClick={scrollToSignup} 
                 className="w-full sm:w-auto px-16 bg-sky-500 text-white hover:bg-sky-400 shadow-2xl shadow-sky-500/20 rounded-2xl h-20 font-bold uppercase tracking-widest text-sm transition-all hover:-translate-y-1"
               >
-                  Join free <ArrowRight className="ml-3 h-5 w-5 text-white" />
+                  Sign up <ArrowRight className="ml-3 h-5 w-5 text-white" />
               </Button>
               
               <div className="flex items-center gap-4 px-8 py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md h-20">

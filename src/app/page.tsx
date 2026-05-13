@@ -1,54 +1,61 @@
 "use client";
 
-import React, { Suspense, lazy, useCallback, useState } from "react";
-import { Navbar } from "../components/Navbar";
-import { IntroAnimation } from "../components/IntroAnimation";
-import { HeroSection } from "../components/HeroSection";
-import { OnboardingProvider } from "../components/onboarding-context";
-const StudentShowcase = lazy(() =>
-  import("../components/StudentShowcase").then((mod) => ({ default: mod.StudentShowcase }))
-);
-const PlaybookSection = lazy(() =>
-  import("../components/PlaybookSection").then((mod) => ({ default: mod.PlaybookSection }))
-);
-const loadSections = () => import("../components/Sections");
+import React, { useCallback, useState } from "react";
+import dynamic from "next/dynamic";
+import { Navbar } from "@/components/Navbar";
+import { IntroAnimation } from "@/components/IntroAnimation";
+import { HeroSection } from "@/components/HeroSection";
+import { OnboardingProvider } from "@/components/onboarding-context";
 
-const TestimonialSection = lazy(() =>
-  loadSections().then((mod) => ({ default: mod.TestimonialSection }))
+const sectionLoading = () => <div className="h-96" aria-hidden />;
+
+const PlaybookSection = dynamic(
+  () => import("@/components/PlaybookSection").then((m) => ({ default: m.PlaybookSection })),
+  { loading: sectionLoading }
 );
-const FaqSection = lazy(() =>
-  import("../components/FaqSection").then((mod) => ({ default: mod.FaqSection }))
+
+const TestimonialSection = dynamic(
+  () => import("@/components/Sections").then((m) => ({ default: m.TestimonialSection })),
+  { loading: sectionLoading }
 );
-const Footer = lazy(() => loadSections().then((mod) => ({ default: mod.Footer })));
+
+const StudentShowcase = dynamic(
+  () => import("@/components/StudentShowcase").then((m) => ({ default: m.StudentShowcase })),
+  { loading: sectionLoading }
+);
+
+const FaqSection = dynamic(
+  () => import("@/components/FaqSection").then((m) => ({ default: m.FaqSection })),
+  { loading: sectionLoading }
+);
+
+const Footer = dynamic(
+  () => import("@/components/Sections").then((m) => ({ default: m.Footer })),
+  { loading: sectionLoading }
+);
 
 export default function LandingPage() {
   const [showIntro, setShowIntro] = useState(true);
+  const [introSession, setIntroSession] = useState(0);
   const handleIntroComplete = useCallback(() => setShowIntro(false), []);
+  const replayIntro = useCallback(() => {
+    setIntroSession((n) => n + 1);
+    setShowIntro(true);
+        window.scrollTo(0, 0);
+  }, []);
 
   return (
     <OnboardingProvider>
       <main className="min-h-screen bg-white selection:bg-sky-100 selection:text-sky-900">
-        {showIntro && <IntroAnimation onComplete={handleIntroComplete} />}
-        <Navbar />
+        {showIntro && <IntroAnimation key={introSession} onComplete={handleIntroComplete} />}
+        <Navbar onHomeLogoClick={replayIntro} />
         <HeroSection />
 
-        <Suspense fallback={<div className="h-96" />}>
-          <PlaybookSection />
-        </Suspense>
-        <Suspense fallback={<div className="h-96" />}>
-          <TestimonialSection />
-        </Suspense>
-        <Suspense fallback={<div className="h-96" />}>
-          <StudentShowcase />
-        </Suspense>
-
-        <Suspense fallback={<div className="h-96" />}>
-          <FaqSection />
-        </Suspense>
-
-        <Suspense fallback={<div className="h-96" />}>
-          <Footer />
-        </Suspense>
+        <PlaybookSection />
+        <TestimonialSection />
+        <FaqSection />
+        <StudentShowcase />
+        <Footer />
       </main>
     </OnboardingProvider>
   );

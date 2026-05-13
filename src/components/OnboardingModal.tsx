@@ -123,12 +123,18 @@ export function OnboardingModal({ open, onClose }: Props) {
   return (
     <AnimatePresence>
       {open ? (
-        <>
+        <motion.div
+          role="presentation"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[1200] flex items-center justify-center overflow-y-auto overflow-x-hidden p-4 sm:p-6"
+        >
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[1200] bg-slate-900/50"
+            className="absolute inset-0 bg-slate-900/50"
             aria-hidden
             onClick={() => !blocking && onClose()}
           />
@@ -141,7 +147,8 @@ export function OnboardingModal({ open, onClose }: Props) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ type: "spring", stiffness: 380, damping: 28 }}
-            className={`fixed left-1/2 top-1/2 z-[1201] w-[min(100vw-1.5rem,420px)] max-h-[min(100dvh-2rem,90vh)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_30px_90px_-22px_rgba(15,23,42,0.35)] sm:p-7 ${jakartaSans.className}`}
+            onClick={(e) => e.stopPropagation()}
+            className={`relative z-[1201] my-auto w-full max-w-[min(100%,420px)] max-h-[min(100dvh-2rem,90vh)] shrink-0 overflow-y-auto overscroll-contain rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_30px_90px_-22px_rgba(15,23,42,0.35)] sm:p-7 ${jakartaSans.className}`}
           >
             <button
               type="button"
@@ -158,7 +165,7 @@ export function OnboardingModal({ open, onClose }: Props) {
                 <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600">
                   <CheckCircle2 className="h-6 w-6" aria-hidden />
                 </div>
-                <h2 id="onboarding-title" className="text-lg font-black text-slate-900">
+                <h2 id="onboarding-success-title" className="text-lg font-black text-slate-900">
                   You&apos;re on the list
                 </h2>
                 <p className="mt-2 text-sm font-medium text-slate-600">Watch the parent inbox for the next Sunday email.</p>
@@ -173,7 +180,7 @@ export function OnboardingModal({ open, onClose }: Props) {
             ) : (
               <div className="relative pt-1">
                 <h2 id="onboarding-title" className="pr-10 text-xl font-black text-slate-900">
-                  Join the free weekly email
+                  Join to receive our free, weekly email
                 </h2>
 
                 <form id={formId} onSubmit={(e) => void handleSubmit(e)} className="mt-5 space-y-4">
@@ -288,17 +295,17 @@ export function OnboardingModal({ open, onClose }: Props) {
                     {loading ? (
                       <>
                         <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
-                        Joining…
+                        Signing up…
                       </>
                     ) : (
-                      "Join free"
+                      "Sign up"
                     )}
                   </button>
                 </form>
               </div>
             )}
           </motion.div>
-        </>
+        </motion.div>
       ) : null}
     </AnimatePresence>
   );

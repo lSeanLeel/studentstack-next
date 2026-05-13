@@ -12,20 +12,20 @@ export function StudentShowcase() {
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
 
   return (
-    <section id="mentors" className="overflow-hidden bg-slate-50 py-28 sm:py-32">
+    <section id="mentors" className="overflow-hidden bg-slate-50 py-16 sm:py-28 lg:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-16 flex flex-col justify-between gap-8 md:mb-20 md:flex-row md:items-end">
+        <div className="mb-10 flex flex-col justify-between gap-5 sm:mb-16 sm:gap-8 md:mb-20 md:flex-row md:items-end">
           <div>
             <p className={`text-[11px] font-medium leading-snug tracking-wide text-slate-500 sm:text-xs ${jakartaSans.className}`}>
               The <span className="font-bold text-sky-600">Student</span>s behind StudentStack
             </p>
             <h2
-              className={`mt-2 text-5xl font-semibold leading-[0.95] tracking-[-0.03em] text-slate-900 sm:text-6xl lg:text-7xl ${fredokaHeadline.className}`}
+              className={`mt-2 text-4xl font-semibold leading-[0.95] tracking-[-0.03em] text-slate-900 sm:text-6xl lg:text-7xl ${fredokaHeadline.className}`}
             >
               Meet the <span className="text-sky-500">team</span>
             </h2>
           </div>
-          <p className={`max-w-md text-lg font-medium leading-relaxed text-slate-500 ${jakartaSans.className}`}>
+          <p className={`max-w-md text-base font-medium leading-relaxed text-slate-500 sm:text-lg ${jakartaSans.className}`}>
             Sharing how we use AI for everyday organization, school, research + more!
           </p>
         </div>

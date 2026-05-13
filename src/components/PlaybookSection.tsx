@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "motion/react";
-import { MailPlus, Table2, Mail, MessageCircle, FileSpreadsheet, ArrowRight, Lock } from "lucide-react";
+import { MailPlus, Table2, Mail, MessageCircle, FileSpreadsheet, ArrowRight } from "lucide-react";
 import { jakartaSans, fredokaHeadline } from "@/app/fonts";
 import { useOnboarding } from "@/components/onboarding-context";
 
@@ -52,7 +52,7 @@ export function PlaybookSection() {
             >
               <MailPlus className="h-4 w-4 shrink-0 text-sky-600" aria-hidden />
               <span className="text-sm font-bold text-sky-800">
-                Join free: we&apos;ll email you the link each week
+                Sign up: we&apos;ll email you the link each week
               </span>
             </motion.button>
           </motion.article>
@@ -97,25 +97,17 @@ export function PlaybookSection() {
                 <motion.button
                   type="button"
                   onClick={() => openOnboarding()}
-                  aria-label="Join free to open the opportunities spreadsheet"
+                  aria-label="Join today to access the opportunities spreadsheet"
                   className={`group mt-5 flex w-full items-center justify-between gap-3 rounded-2xl border-2 border-emerald-200/90 bg-white px-4 py-3.5 text-left shadow-[0_8px_24px_-16px_rgba(16,185,129,0.5)] outline-none ring-emerald-400 transition hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-emerald-50/70 hover:shadow-[0_14px_32px_-18px_rgba(16,185,129,0.55)] focus-visible:ring-2 sm:px-5 ${jakartaSans.className}`}
                   animate={{ y: [0, -3, 0] }}
                   transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
                 >
                   <span className="flex min-w-0 items-center gap-3">
-                    <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
                       <FileSpreadsheet className="h-5 w-5" aria-hidden />
-                      <span className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-white shadow ring-1 ring-emerald-200">
-                        <Lock className="h-2.5 w-2.5 text-emerald-700" aria-hidden />
-                      </span>
                     </span>
-                    <span className="min-w-0">
-                      <span className="block truncate text-[15px] font-bold text-slate-900">
-                        Open the opportunities sheet
-                      </span>
-                      <span className="block truncate text-[11px] font-semibold text-slate-500">
-                        Free — unlocks after you join the weekly email
-                      </span>
+                    <span className="text-lg font-bold text-slate-900 sm:text-xl">
+                      Join Today!
                     </span>
                   </span>
                   <span className="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-emerald-600 px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.12em] text-white shadow-sm transition group-hover:bg-emerald-700">
