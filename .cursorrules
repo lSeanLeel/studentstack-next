@@ -1,0 +1,18 @@
+# StudentStack — Cursor Rules (strict)
+
+## Brand & UI/UX
+- Visual language: extreme modern roundness (large border radii), bubbly rounded sans-serif typography, soft and vibrant pastels, thick drop shadows, playful bouncy hover animations (reference: Duolingo, Kalshi energy).
+- Interactions: prefer `motion` / CSS transitions with subtle scale and shadow on hover; avoid flat static panels without feedback.
+
+## Icons
+- Never use generic placeholder icons, emoji-as-icons for UI chrome, or “AI JSON” / stock robot icons.
+- Use **Lucide React** (or other curated SVG icon libraries) or intentional **CSS shapes** only.
+
+## Product & Content Boundaries
+- **StudentStack is a 100% free weekly AI education newsletter** for parents of high schoolers.
+- Do **not** implement or reference: paid tiers, “StudentStack Elite,” subscription pricing, checkout flows, or “24/7” / concierge paid peer support.
+- The “college student team” presentation is a **branding layer**; keep “Meet the Team” style mockups for optics, but do not add paid upsells in code or copy.
+
+## Engineering defaults
+- App code and `package.json` live in `studentthisisfinal-main/` (Vite + React + Express + Tailwind).
+- Do not introduce unrelated frameworks or large refactors unless explicitly requested.

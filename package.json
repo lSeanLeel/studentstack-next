@@ -1,0 +1,11 @@
+{
+  "name": "studentstack-workspace",
+  "private": true,
+  "description": "Run npm from the zip root: dev/build/start/brand-kit forward into studentthisisfinal-main/.",
+  "scripts": {
+    "dev": "npm run dev --prefix studentthisisfinal-main",
+    "build": "npm run build --prefix studentthisisfinal-main",
+    "start": "npm run start --prefix studentthisisfinal-main",
+    "brand-kit": "npm run brand-kit --prefix studentthisisfinal-main"
+  }
+}
