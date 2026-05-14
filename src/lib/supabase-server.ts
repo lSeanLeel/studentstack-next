@@ -1,4 +1,5 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import { hydrateProjectEnv } from "./project-env";
 
 /** Strip BOM / CRLF and quotes — Windows `.env` often leaves `\r` on values. */
 export function stripEnvValue(raw: string | undefined): string {
@@ -39,6 +40,7 @@ function serviceRoleKeyFromEnv(): string {
 
 /** True when real project credentials are set (not .env.example placeholders). */
 export function isSupabaseConfigured(): boolean {
+  hydrateProjectEnv();
   const url = supabaseUrlFromEnv();
   const key = serviceRoleKeyFromEnv();
   if (!url || !key) return false;

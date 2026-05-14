@@ -1,18 +1,9 @@
-import { loadEnvConfig } from "@next/env";
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { envFileHints } from "@/lib/project-env";
 import { getSupabaseServerClient, isSupabaseConfigured, stripEnvValue } from "@/lib/supabase-server";
 
 export const runtime = "nodejs";
-
-/** Re-merge .env* into process.env (Next sets __NEXT_PROCESSED_ENV early; without forceReload, dotenv merge is skipped). */
-function reloadLocalEnv(): void {
-  try {
-    loadEnvConfig(process.cwd(), process.env.NODE_ENV === "development", undefined, true);
-  } catch {
-    /* ignore outside Next / missing files */
-  }
-}
 
 const topFocusEnum = z.enum([
   "Boosting GPA",
@@ -82,8 +73,6 @@ async function subscribeBeehiiv(email: string): Promise<{ ok: true } | { ok: fal
 }
 
 export async function POST(req: Request) {
-  reloadLocalEnv();
-
   let json: unknown;
   try {
     json = await req.json();
@@ -106,13 +95,31 @@ export async function POST(req: Request) {
   }
 
   if (!isSupabaseConfigured()) {
-    return NextResponse.json(
-      {
-        error:
-          "Signups are not connected yet. In .env.local set NEXT_PUBLIC_SUPABASE_URL (or SUPABASE_URL) and a server secret: SUPABASE_SERVICE_ROLE_KEY (legacy JWT eyJ…) or SUPABASE_SECRET_KEY (new sb_secret_… from Project Settings → API). Restart npm run dev. Email help@studentstack.info if this persists.",
-      },
-      { status: 503 }
+    const url = stripEnvValue(
+      process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.PUBLIC_SUPABASE_URL
     );
+    const key = stripEnvValue(
+      process.env.SUPABASE_SERVICE_ROLE_KEY ||
+        process.env.SUPABASE_SECRET_KEY ||
+        process.env.SUPABASE_SERVICE_KEY
+    );
+    const body: Record<string, unknown> = {
+      error:
+        "Signups are not connected yet. Put NEXT_PUBLIC_SUPABASE_URL (or SUPABASE_URL) and SUPABASE_SERVICE_ROLE_KEY in .env.local at the project root (same folder as package.json), then restart npm run dev. If a variable already exists in .env as empty, .env.local must override it — this app reloads env files on each request to fix that.",
+    };
+    if (process.env.NODE_ENV === "development") {
+      const hints = envFileHints();
+      body._dev = {
+        hasUrl: Boolean(url),
+        hasKey: Boolean(key),
+        keyLength: key.length,
+        cwd: hints.cwd,
+        initCwd: hints.initCwd,
+        foundDotEnvLocal: hints.dotEnvLocal,
+        foundDotEnv: hints.dotEnv,
+      };
+    }
+    return NextResponse.json(body, { status: 503 });
   }
 
   const supabase = getSupabaseServerClient();
