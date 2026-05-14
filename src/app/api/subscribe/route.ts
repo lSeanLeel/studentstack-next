@@ -33,10 +33,13 @@ async function subscribeBeehiiv(email: string): Promise<{ ok: true } | { ok: fal
   const apiKey = beehiivApiKey();
   const publicationId = beehiivPublicationId();
   if (!apiKey || !publicationId) {
-    return { ok: false, message: "Newsletter service is not configured." };
+    return { ok: false, message: "Newsletter service is not configured (missing BEEHIIV_API_KEY or BEEHIIV_PUBLICATION_ID)." };
   }
 
   const url = `https://api.beehiiv.com/v2/publications/${publicationId}/subscriptions`;
+  const body = { email: email.toLowerCase(), tier: "free" as const, reactivate_existing: true };
+
+  console.log("[subscribe] Beehiiv: POST", url.replace(publicationId, "[publicationId]"), { email: body.email });
 
   try {
     const res = await fetch(url, {
@@ -46,11 +49,13 @@ async function subscribeBeehiiv(email: string): Promise<{ ok: true } | { ok: fal
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: email.toLowerCase(),
+        email: body.email,
         tier: "free",
         reactivate_existing: true,
       }),
     });
+
+    console.log("[subscribe] Beehiiv: response status", res.status, { email: body.email });
 
     if (res.ok) {
       return { ok: true };
@@ -60,10 +65,14 @@ async function subscribeBeehiiv(email: string): Promise<{ ok: true } | { ok: fal
     const detail =
       typeof errJson?.message === "string"
         ? errJson.message
-        : `Beehiiv returned ${res.status}. Please try again later.`;
+        : typeof errJson?.errors !== "undefined"
+          ? JSON.stringify(errJson.errors)
+          : `Beehiiv HTTP ${res.status}`;
     return { ok: false, message: detail };
-  } catch {
-    return { ok: false, message: "Could not reach the newsletter service. Try again in a moment." };
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.log("[subscribe] Beehiiv: fetch threw", msg, { email });
+    return { ok: false, message: msg || "Beehiiv request failed." };
   }
 }
 
@@ -94,39 +103,83 @@ export async function POST(req: Request) {
   const supabaseUrl = stripEnvValue(process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL);
   const serviceRoleKey = stripEnvValue(process.env.SUPABASE_SERVICE_ROLE_KEY);
 
+  console.log("[subscribe] Supabase env", {
+    supabaseHost: (() => {
+      try {
+        return supabaseUrl ? new URL(supabaseUrl).hostname : "(empty)";
+      } catch {
+        return "(invalid URL)";
+      }
+    })(),
+    serviceRoleKeyLength: serviceRoleKey.length,
+  });
+
   const supabase = createClient(supabaseUrl, serviceRoleKey, {
     auth: { persistSession: false, autoRefreshToken: false },
   });
 
+  // SQL columns (snake_case) — map from validated request body
+  const insertRow = {
+    student_name: studentName,
+    student_email: studentNorm,
+    parent_email: parentNorm,
+    grade: studentGrade,
+    top_focus: topFocus,
+  };
+
+  console.log("[subscribe] Supabase insert: before", { row: insertRow });
+
   const { data: inserted, error: insertError } = await supabase
     .from("signups")
-    .insert({
-      student_name: studentName,
-      student_email: studentNorm,
-      parent_email: parentNorm,
-      grade: studentGrade,
-      top_focus: topFocus,
-    })
+    .insert(insertRow)
     .select("id")
     .single();
 
+  console.log("[subscribe] Supabase insert: after", {
+    id: inserted?.id ?? null,
+    error: insertError
+      ? {
+          message: insertError.message,
+          code: insertError.code,
+          details: insertError.details,
+          hint: insertError.hint,
+        }
+      : null,
+  });
+
   if (insertError) {
-    const code = (insertError as { code?: string }).code;
+    const code = insertError.code;
     if (code === "23505") {
-      return NextResponse.json({ error: "This student email is already signed up." }, { status: 409 });
+      return NextResponse.json({ error: "This student email is already signed up.", code }, { status: 409 });
     }
     if (/relation|does not exist|schema cache/i.test(insertError.message ?? "")) {
       return NextResponse.json(
-        { error: "Signup storage is not ready yet. Ask the team to run the latest database migration." },
+        {
+          error: insertError.message,
+          code,
+          details: insertError.details,
+          hint: insertError.hint,
+        },
         { status: 503 }
       );
     }
-    return NextResponse.json({ error: "We could not save your signup. Please try again." }, { status: 500 });
+    return NextResponse.json(
+      {
+        error: insertError.message,
+        code,
+        details: insertError.details,
+        hint: insertError.hint,
+      },
+      { status: 500 }
+    );
   }
 
   const rowId = inserted?.id as string | undefined;
 
+  console.log("[subscribe] Beehiiv student: before", { email: studentNorm });
   const studentBee = await subscribeBeehiiv(studentNorm);
+  console.log("[subscribe] Beehiiv student: after", { ok: studentBee.ok, message: "ok" in studentBee && !studentBee.ok ? studentBee.message : undefined });
+
   if (!studentBee.ok) {
     if (rowId) {
       await supabase.from("signups").delete().eq("id", rowId);
@@ -134,7 +187,10 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: studentBee.message }, { status: 502 });
   }
 
+  console.log("[subscribe] Beehiiv parent: before", { email: parentNorm });
   const parentBee = await subscribeBeehiiv(parentNorm);
+  console.log("[subscribe] Beehiiv parent: after", { ok: parentBee.ok, message: "ok" in parentBee && !parentBee.ok ? parentBee.message : undefined });
+
   if (!parentBee.ok) {
     console.warn("[subscribe] Beehiiv parent subscribe failed:", parentBee.message);
   }

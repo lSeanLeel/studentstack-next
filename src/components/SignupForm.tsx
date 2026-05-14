@@ -18,6 +18,21 @@ interface SignupFormData {
   topFocus: (typeof TOP_FOCUS_OPTIONS)[number] | "";
 }
 
+function messageFromSubscribeResponse(json: unknown, status: number): string {
+  if (!json || typeof json !== "object") {
+    return `Request failed (HTTP ${status}).`;
+  }
+  const o = json as Record<string, unknown>;
+  const parts: string[] = [];
+  for (const key of ["error", "message", "details", "hint", "code"] as const) {
+    const v = o[key];
+    if (typeof v === "string" && v.trim()) parts.push(v.trim());
+  }
+  const dedup = [...new Set(parts)];
+  if (dedup.length) return dedup.join(" · ");
+  return `Request failed (HTTP ${status}).`;
+}
+
 export function SignupForm({
   compact = false,
   variant = "default",
@@ -70,14 +85,24 @@ export function SignupForm({
           topFocus: data.topFocus,
         }),
       });
-      const json = (await res.json().catch(() => ({}))) as { error?: string; hint?: string };
+      const raw = await res.text();
+      let json: unknown = {};
+      if (raw) {
+        try {
+          json = JSON.parse(raw) as unknown;
+        } catch {
+          json = { error: raw };
+        }
+      }
       if (!res.ok) {
-        setSubmitError(json.error || json.hint || "Something went wrong. Try again in a moment.");
+        const msg = messageFromSubscribeResponse(json, res.status);
+        setSubmitError(msg);
         return;
       }
       setIsSubmitted(true);
-    } catch {
-      setSubmitError("Network error. Check your connection and try again.");
+    } catch (e) {
+      const net = e instanceof Error ? e.message : "Unknown error";
+      setSubmitError(`Network error: ${net}`);
     } finally {
       setBusy(false);
     }
