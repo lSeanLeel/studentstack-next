@@ -1,7 +1,8 @@
+import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { envFileHints } from "@/lib/project-env";
-import { getSupabaseServerClient, isSupabaseConfigured, stripEnvValue } from "@/lib/supabase-server";
+import { hydrateProjectEnv } from "@/lib/project-env";
+import { stripEnvValue } from "@/lib/supabase-server";
 
 export const runtime = "nodejs";
 
@@ -28,19 +29,13 @@ function beehiivPublicationId(): string {
   return stripEnvValue(process.env.BEEHIIV_PUBLICATION_ID);
 }
 
-function beehiivConfigured(): boolean {
-  const key = beehiivApiKey();
-  const pub = beehiivPublicationId();
-  return Boolean(key && pub && key.length > 10);
-}
-
 async function subscribeBeehiiv(email: string): Promise<{ ok: true } | { ok: false; message: string }> {
-  if (!beehiivConfigured()) {
+  const apiKey = beehiivApiKey();
+  const publicationId = beehiivPublicationId();
+  if (!apiKey || !publicationId) {
     return { ok: false, message: "Newsletter service is not configured." };
   }
 
-  const apiKey = beehiivApiKey();
-  const publicationId = beehiivPublicationId();
   const url = `https://api.beehiiv.com/v2/publications/${publicationId}/subscriptions`;
 
   try {
@@ -73,6 +68,8 @@ async function subscribeBeehiiv(email: string): Promise<{ ok: true } | { ok: fal
 }
 
 export async function POST(req: Request) {
+  hydrateProjectEnv();
+
   let json: unknown;
   try {
     json = await req.json();
@@ -94,36 +91,13 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Parent email must differ from the student email." }, { status: 400 });
   }
 
-  if (!isSupabaseConfigured()) {
-    const url = stripEnvValue(
-      process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.PUBLIC_SUPABASE_URL
-    );
-    const key = stripEnvValue(
-      process.env.SUPABASE_SERVICE_ROLE_KEY ||
-        process.env.SUPABASE_SECRET_KEY ||
-        process.env.SUPABASE_SERVICE_KEY
-    );
-    const body: Record<string, unknown> = {
-      error:
-        "Signups are not connected yet. Put NEXT_PUBLIC_SUPABASE_URL (or SUPABASE_URL) and SUPABASE_SERVICE_ROLE_KEY in .env.local at the project root (same folder as package.json), then restart npm run dev. If a variable already exists in .env as empty, .env.local must override it — this app reloads env files on each request to fix that.",
-    };
-    if (process.env.NODE_ENV === "development") {
-      const hints = envFileHints();
-      body._dev = {
-        hasUrl: Boolean(url),
-        hasKey: Boolean(key),
-        keyLength: key.length,
-        cwd: hints.cwd,
-        initCwd: hints.initCwd,
-        discoveredRoots: hints.discoveredRoots,
-        foundDotEnvLocal: hints.dotEnvLocal,
-        foundDotEnv: hints.dotEnv,
-      };
-    }
-    return NextResponse.json(body, { status: 503 });
-  }
+  const supabaseUrl = stripEnvValue(process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL);
+  const serviceRoleKey = stripEnvValue(process.env.SUPABASE_SERVICE_ROLE_KEY);
 
-  const supabase = getSupabaseServerClient();
+  const supabase = createClient(supabaseUrl, serviceRoleKey, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
+
   const { data: inserted, error: insertError } = await supabase
     .from("signups")
     .insert({
