@@ -13,7 +13,7 @@ const TOP_FOCUS_OPTIONS = [
 interface SignupFormData {
   studentName: string;
   studentEmail: string;
-  parentEmail: string;
+  parentEmail?: string;
   studentGrade: string;
   topFocus: (typeof TOP_FOCUS_OPTIONS)[number] | "";
 }
@@ -65,7 +65,7 @@ export function SignupForm({
         body: JSON.stringify({
           studentName: data.studentName,
           studentEmail: data.studentEmail || "",
-          parentEmail: data.parentEmail?.trim() ?? "",
+          parentEmail: (data.parentEmail ?? "").trim(),
           studentGrade: data.studentGrade || "",
           topFocus: data.topFocus,
         }),
@@ -88,12 +88,7 @@ export function SignupForm({
         return;
       }
 
-      const okData = (await res.json()) as { ok?: boolean };
-      if (okData.ok) {
-        setIsSubmitted(true);
-      } else {
-        setSubmitError("Unexpected response from server.");
-      }
+      setIsSubmitted(true);
     } catch (e) {
       const net = e instanceof Error ? e.message : "Unknown error";
       setSubmitError(`Network error: ${net}`);
@@ -204,16 +199,16 @@ export function SignupForm({
             <div className="relative">
               <input
                 {...register("parentEmail", {
-                  required: "Parent email is required",
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: "Invalid email address",
+                  validate: (v) => {
+                    const t = (v ?? "").trim();
+                    if (!t) return true;
+                    return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(t) || "Invalid email address";
                   },
                 })}
                 type="email"
                 inputMode="email"
                 autoComplete="email"
-                placeholder="Parent Email *"
+                placeholder="Parent Email (optional)"
                 className={`h-14 w-full rounded-2xl border-2 bg-slate-50 px-6 text-sm font-bold text-slate-900 outline-none transition-all placeholder:text-slate-400 focus:bg-white ${
                   errors.parentEmail ? "border-red-100" : "border-transparent focus:border-sky-500/20"
                 }`}
