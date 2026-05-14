@@ -1,15 +1,30 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-function normalizeSupabaseUrl(raw: string | undefined): string {
+/** Strip BOM / CRLF and quotes — Windows `.env` often leaves `\r` on values. */
+export function stripEnvValue(raw: string | undefined): string {
   if (!raw) return "";
-  let url = raw.trim().replace(/^["']|["']$/g, "");
+  return raw
+    .replace(/^\uFEFF/, "")
+    .replace(/\r/g, "")
+    .trim()
+    .replace(/^["']|["']$/g, "");
+}
+
+function normalizeSupabaseUrl(raw: string | undefined): string {
+  let url = stripEnvValue(raw);
   while (url.endsWith("/")) url = url.slice(0, -1);
   return url;
 }
 
 function normalizeKey(raw: string | undefined): string {
-  if (!raw) return "";
-  return raw.trim().replace(/^["']|["']$/g, "");
+  return stripEnvValue(raw);
+}
+
+/** Supabase service-role keys are JWTs and normally start with `eyJ`. */
+function looksLikeSupabaseServiceRoleKey(key: string): boolean {
+  if (key.length < 50) return false;
+  if (/^your[_\s-]*service[_\s-]*role/i.test(key.replace(/\s/g, ""))) return false;
+  return key.startsWith("eyJ");
 }
 
 function supabaseUrlFromEnv(): string {
@@ -22,7 +37,7 @@ export function isSupabaseConfigured(): boolean {
   const key = normalizeKey(process.env.SUPABASE_SERVICE_ROLE_KEY);
   if (!url || !key) return false;
   if (url.includes("YOUR_PROJECT_REF") || url.includes("your-project")) return false;
-  if (key === "your_service_role_key" || key.length < 20) return false;
+  if (!looksLikeSupabaseServiceRoleKey(key)) return false;
   try {
     const parsed = new URL(url);
     return parsed.protocol === "https:" && Boolean(parsed.hostname);

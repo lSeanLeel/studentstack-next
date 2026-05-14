@@ -69,7 +69,7 @@ export function OnboardingModal({ open, onClose }: Props) {
 
             <div className="relative pt-1">
               <h2 id="onboarding-title" className="pr-10 text-center text-xl font-black text-slate-900">
-                Join to receive our free, weekly email
+                Sign Up
               </h2>
               <div className="mt-5">
                 <SignupForm integrated showDescription={false} variant="default" onBusyChange={setFormBusy} />

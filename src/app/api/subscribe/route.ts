@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { getSupabaseServerClient, isSupabaseConfigured } from "@/lib/supabase-server";
+import { getSupabaseServerClient, isSupabaseConfigured, stripEnvValue } from "@/lib/supabase-server";
+
+export const runtime = "nodejs";
 
 const topFocusEnum = z.enum([
   "Boosting GPA",
@@ -12,14 +14,22 @@ const topFocusEnum = z.enum([
 const bodySchema = z.object({
   studentName: z.string().trim().min(1, "Student name is required."),
   studentEmail: z.string().trim().email("Enter a valid student email."),
-  parentEmail: z.string().trim().optional(),
+  parentEmail: z.string().trim().min(1, "Parent email is required.").email("Enter a valid parent email."),
   studentGrade: z.string().trim().min(1, "Grade is required."),
   topFocus: topFocusEnum,
 });
 
+function beehiivApiKey(): string {
+  return stripEnvValue(process.env.BEEHIIV_API_KEY);
+}
+
+function beehiivPublicationId(): string {
+  return stripEnvValue(process.env.BEEHIIV_PUBLICATION_ID);
+}
+
 function beehiivConfigured(): boolean {
-  const key = process.env.BEEHIIV_API_KEY?.trim();
-  const pub = process.env.BEEHIIV_PUBLICATION_ID?.trim();
+  const key = beehiivApiKey();
+  const pub = beehiivPublicationId();
   return Boolean(key && pub && key.length > 10);
 }
 
@@ -28,8 +38,8 @@ async function subscribeBeehiiv(email: string): Promise<{ ok: true } | { ok: fal
     return { ok: false, message: "Newsletter service is not configured." };
   }
 
-  const apiKey = process.env.BEEHIIV_API_KEY!.trim();
-  const publicationId = process.env.BEEHIIV_PUBLICATION_ID!.trim();
+  const apiKey = beehiivApiKey();
+  const publicationId = beehiivPublicationId();
   const url = `https://api.beehiiv.com/v2/publications/${publicationId}/subscriptions`;
 
   try {
@@ -77,16 +87,18 @@ export async function POST(req: Request) {
 
   const { studentName, studentEmail, parentEmail, studentGrade, topFocus } = parsed.data;
   const studentNorm = studentEmail.toLowerCase();
-  const parentRaw = parentEmail?.trim() ?? "";
-  const parentNorm = parentRaw ? parentRaw.toLowerCase() : null;
+  const parentNorm = parentEmail.trim().toLowerCase();
 
-  if (parentNorm && parentNorm === studentNorm) {
+  if (parentNorm === studentNorm) {
     return NextResponse.json({ error: "Parent email must differ from the student email." }, { status: 400 });
   }
 
   if (!isSupabaseConfigured()) {
     return NextResponse.json(
-      { error: "Signups are not connected yet. Please try again later or email help@studentstack.info." },
+      {
+        error:
+          "Signups are not connected yet. Add NEXT_PUBLIC_SUPABASE_URL (or SUPABASE_URL) and SUPABASE_SERVICE_ROLE_KEY to .env.local, restart `npm run dev`, then try again. Email help@studentstack.info if this persists.",
+      },
       { status: 503 }
     );
   }
@@ -128,11 +140,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: studentBee.message }, { status: 502 });
   }
 
-  if (parentNorm) {
-    const parentBee = await subscribeBeehiiv(parentNorm);
-    if (!parentBee.ok) {
-      console.warn("[subscribe] Beehiiv parent subscribe failed:", parentBee.message);
-    }
+  const parentBee = await subscribeBeehiiv(parentNorm);
+  if (!parentBee.ok) {
+    console.warn("[subscribe] Beehiiv parent subscribe failed:", parentBee.message);
   }
 
   return NextResponse.json({ ok: true }, { status: 200 });
