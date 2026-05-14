@@ -27,6 +27,71 @@ function mergeParsedIntoProcessEnv(parsed: dotenv.DotenvParseOutput): void {
   }
 }
 
+const NEXT_CONFIG_NAMES = ["next.config.mjs", "next.config.js", "next.config.cjs", "next.config.ts", "next.config.mts"] as const;
+
+/**
+ * Directory that contains this Next app (next.config* + package.json).
+ * When the API route is bundled under `.next/server`, `import.meta.url` still walks up to this folder.
+ */
+export function resolveNextAppRoot(): string {
+  const startDirs: string[] = [];
+  try {
+    startDirs.push(path.dirname(fileURLToPath(import.meta.url)));
+  } catch {
+    /* import.meta.url unavailable */
+  }
+  startDirs.push(process.cwd());
+  if (process.env.INIT_CWD) startDirs.push(process.env.INIT_CWD);
+
+  for (const start of startDirs) {
+    let cur = path.resolve(start);
+    for (let i = 0; i < 48; i++) {
+      const hasPkg = fs.existsSync(path.join(cur, "package.json"));
+      const hasNext = NEXT_CONFIG_NAMES.some((n) => fs.existsSync(path.join(cur, n)));
+      if (hasPkg && hasNext) return cur;
+      const parent = path.dirname(cur);
+      if (parent === cur) break;
+      cur = parent;
+    }
+  }
+  return process.cwd();
+}
+
+/**
+ * Re-apply selected keys from this app's `.env` then `.env.local` (local wins).
+ * Next's `loadEnvConfig` skips keys already present on `process.env` even when they are empty strings
+ * (e.g. inherited from the shell), which makes the service role look "missing" despite a valid `.env.local`.
+ */
+function applyCriticalKeysFromAppEnvLocal(): void {
+  const root = resolveNextAppRoot();
+  const criticalKeys = [
+    "SUPABASE_SERVICE_ROLE_KEY",
+    "SUPABASE_SECRET_KEY",
+    "SUPABASE_SERVICE_KEY",
+    "SUPABASE_URL",
+    "NEXT_PUBLIC_SUPABASE_URL",
+    "BEEHIIV_API_KEY",
+    "BEEHIHV_API_KEY",
+    "BEEHIIV_PUBLICATION_ID",
+  ] as const;
+
+  for (const name of [".env", ".env.local"] as const) {
+    const full = path.join(root, name);
+    if (!fs.existsSync(full)) continue;
+    try {
+      const parsed = dotenv.parse(fs.readFileSync(full, "utf8"));
+      for (const key of criticalKeys) {
+        const raw = parsed[key];
+        if (raw === undefined) continue;
+        const normalized = normalizeEnvFileValue(raw);
+        if (normalized.length > 0) process.env[key] = normalized;
+      }
+    } catch {
+      /* unreadable */
+    }
+  }
+}
+
 /**
  * Find directories that contain package.json (project roots).
  * Cursor / monorepos sometimes run Node with a cwd that is not the repo root; walking from
@@ -67,8 +132,21 @@ export function discoverProjectRoots(): string[] {
  * values replace empty placeholders already on `process.env`.
  */
 export function hydrateProjectEnv(): void {
+  const priorityRoot = resolveNextAppRoot();
+  for (const name of [".env", ".env.local"] as const) {
+    const full = path.join(priorityRoot, name);
+    if (!fs.existsSync(full)) continue;
+    try {
+      const parsed = dotenv.parse(fs.readFileSync(full, "utf8"));
+      mergeParsedIntoProcessEnv(parsed);
+    } catch {
+      /* unreadable or invalid — skip */
+    }
+  }
+
   const roots = discoverProjectRoots();
   for (const base of roots) {
+    if (path.resolve(base) === path.resolve(priorityRoot)) continue;
     for (const name of [".env", ".env.local"] as const) {
       const full = path.join(base, name);
       if (!fs.existsSync(full)) continue;
@@ -80,6 +158,8 @@ export function hydrateProjectEnv(): void {
       }
     }
   }
+
+  applyCriticalKeysFromAppEnvLocal();
 }
 
 export function envFileHints(): {
