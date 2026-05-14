@@ -97,7 +97,7 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         error:
-          "Signups are not connected yet. Add NEXT_PUBLIC_SUPABASE_URL (or SUPABASE_URL) and SUPABASE_SERVICE_ROLE_KEY to .env.local, restart `npm run dev`, then try again. Email help@studentstack.info if this persists.",
+          "Signups are not connected yet. In .env.local set NEXT_PUBLIC_SUPABASE_URL (or SUPABASE_URL) and a server secret: SUPABASE_SERVICE_ROLE_KEY (legacy JWT eyJ…) or SUPABASE_SECRET_KEY (new sb_secret_… from Project Settings → API). Restart npm run dev. Email help@studentstack.info if this persists.",
       },
       { status: 503 }
     );
