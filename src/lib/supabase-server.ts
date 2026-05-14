@@ -21,20 +21,28 @@ function normalizeKey(raw: string | undefined): string {
   return stripEnvValue(raw);
 }
 
+function readNonEmptyEnv(key: string): string | undefined {
+  const raw = process.env[key];
+  if (raw === undefined || raw === null) return undefined;
+  const s = stripEnvValue(raw);
+  return s.length > 0 ? s : undefined;
+}
+
 function supabaseUrlFromEnv(): string {
   return normalizeSupabaseUrl(
-    process.env.SUPABASE_URL ||
-      process.env.NEXT_PUBLIC_SUPABASE_URL ||
-      process.env.PUBLIC_SUPABASE_URL
+    readNonEmptyEnv("SUPABASE_URL") ||
+      readNonEmptyEnv("NEXT_PUBLIC_SUPABASE_URL") ||
+      readNonEmptyEnv("PUBLIC_SUPABASE_URL")
   );
 }
 
 /** Service role or new secret API key (server-only). */
 function serviceRoleKeyFromEnv(): string {
   return normalizeKey(
-    process.env.SUPABASE_SERVICE_ROLE_KEY ||
-      process.env.SUPABASE_SECRET_KEY ||
-      process.env.SUPABASE_SERVICE_KEY
+    readNonEmptyEnv("SUPABASE_SERVICE_ROLE_KEY") ||
+      readNonEmptyEnv("SUPABASE_SECRET_KEY") ||
+      readNonEmptyEnv("SUPABASE_SERVICE_KEY") ||
+      ""
   );
 }
 

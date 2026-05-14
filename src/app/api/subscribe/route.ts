@@ -115,6 +115,7 @@ export async function POST(req: Request) {
         keyLength: key.length,
         cwd: hints.cwd,
         initCwd: hints.initCwd,
+        discoveredRoots: hints.discoveredRoots,
         foundDotEnvLocal: hints.dotEnvLocal,
         foundDotEnv: hints.dotEnv,
       };
