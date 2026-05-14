@@ -18,21 +18,6 @@ interface SignupFormData {
   topFocus: (typeof TOP_FOCUS_OPTIONS)[number] | "";
 }
 
-function messageFromSubscribeResponse(json: unknown, status: number): string {
-  if (!json || typeof json !== "object") {
-    return `Request failed (HTTP ${status}).`;
-  }
-  const o = json as Record<string, unknown>;
-  const parts: string[] = [];
-  for (const key of ["error", "message", "details", "hint", "code"] as const) {
-    const v = o[key];
-    if (typeof v === "string" && v.trim()) parts.push(v.trim());
-  }
-  const dedup = [...new Set(parts)];
-  if (dedup.length) return dedup.join(" · ");
-  return `Request failed (HTTP ${status}).`;
-}
-
 export function SignupForm({
   compact = false,
   variant = "default",
@@ -85,21 +70,30 @@ export function SignupForm({
           topFocus: data.topFocus,
         }),
       });
-      const raw = await res.text();
-      let json: unknown = {};
-      if (raw) {
-        try {
-          json = JSON.parse(raw) as unknown;
-        } catch {
-          json = { error: raw };
-        }
-      }
+
       if (!res.ok) {
-        const msg = messageFromSubscribeResponse(json, res.status);
-        setSubmitError(msg);
+        try {
+          const errData = (await res.json()) as { error?: string; details?: string; hint?: string };
+          const primary =
+            typeof errData.error === "string" && errData.error.trim()
+              ? errData.error.trim()
+              : `HTTP ${res.status}`;
+          const extra = [errData.details, errData.hint]
+            .filter((x): x is string => typeof x === "string" && Boolean(x.trim()))
+            .join(" · ");
+          setSubmitError(extra ? `${primary} · ${extra}` : primary);
+        } catch {
+          setSubmitError(`HTTP ${res.status} — response was not valid JSON.`);
+        }
         return;
       }
-      setIsSubmitted(true);
+
+      const okData = (await res.json()) as { ok?: boolean };
+      if (okData.ok) {
+        setIsSubmitted(true);
+      } else {
+        setSubmitError("Unexpected response from server.");
+      }
     } catch (e) {
       const net = e instanceof Error ? e.message : "Unknown error";
       setSubmitError(`Network error: ${net}`);

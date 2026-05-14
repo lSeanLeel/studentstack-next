@@ -77,82 +77,94 @@ async function subscribeBeehiiv(email: string): Promise<{ ok: true } | { ok: fal
 }
 
 export async function POST(req: Request) {
-  hydrateProjectEnv();
+  console.log("=== API ROUTE HIT ===");
 
-  let json: unknown;
   try {
-    json = await req.json();
-  } catch {
-    return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
-  }
+    hydrateProjectEnv();
 
-  const parsed = bodySchema.safeParse(json);
-  if (!parsed.success) {
-    const msg = parsed.error.issues[0]?.message ?? "Invalid request.";
-    return NextResponse.json({ error: msg }, { status: 400 });
-  }
-
-  const { studentName, studentEmail, parentEmail, studentGrade, topFocus } = parsed.data;
-  const studentNorm = studentEmail.toLowerCase();
-  const parentNorm = parentEmail.trim().toLowerCase();
-
-  if (parentNorm === studentNorm) {
-    return NextResponse.json({ error: "Parent email must differ from the student email." }, { status: 400 });
-  }
-
-  const supabaseUrl = stripEnvValue(process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL);
-  const serviceRoleKey = stripEnvValue(process.env.SUPABASE_SERVICE_ROLE_KEY);
-
-  console.log("[subscribe] Supabase env", {
-    supabaseHost: (() => {
-      try {
-        return supabaseUrl ? new URL(supabaseUrl).hostname : "(empty)";
-      } catch {
-        return "(invalid URL)";
-      }
-    })(),
-    serviceRoleKeyLength: serviceRoleKey.length,
-  });
-
-  const supabase = createClient(supabaseUrl, serviceRoleKey, {
-    auth: { persistSession: false, autoRefreshToken: false },
-  });
-
-  // SQL columns (snake_case) — map from validated request body
-  const insertRow = {
-    student_name: studentName,
-    student_email: studentNorm,
-    parent_email: parentNorm,
-    grade: studentGrade,
-    top_focus: topFocus,
-  };
-
-  console.log("[subscribe] Supabase insert: before", { row: insertRow });
-
-  const { data: inserted, error: insertError } = await supabase
-    .from("signups")
-    .insert(insertRow)
-    .select("id")
-    .single();
-
-  console.log("[subscribe] Supabase insert: after", {
-    id: inserted?.id ?? null,
-    error: insertError
-      ? {
-          message: insertError.message,
-          code: insertError.code,
-          details: insertError.details,
-          hint: insertError.hint,
-        }
-      : null,
-  });
-
-  if (insertError) {
-    const code = insertError.code;
-    if (code === "23505") {
-      return NextResponse.json({ error: "This student email is already signed up.", code }, { status: 409 });
+    let json: unknown;
+    try {
+      json = await req.json();
+    } catch {
+      return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
     }
-    if (/relation|does not exist|schema cache/i.test(insertError.message ?? "")) {
+
+    const parsed = bodySchema.safeParse(json);
+    if (!parsed.success) {
+      const msg = parsed.error.issues[0]?.message ?? "Invalid request.";
+      return NextResponse.json({ error: msg }, { status: 400 });
+    }
+
+    const { studentName, studentEmail, parentEmail, studentGrade, topFocus } = parsed.data;
+    const studentNorm = studentEmail.toLowerCase();
+    const parentNorm = parentEmail.trim().toLowerCase();
+
+    if (parentNorm === studentNorm) {
+      return NextResponse.json({ error: "Parent email must differ from the student email." }, { status: 400 });
+    }
+
+    const supabaseUrl = stripEnvValue(process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL);
+    const serviceRoleKey = stripEnvValue(process.env.SUPABASE_SERVICE_ROLE_KEY);
+
+    console.log("[subscribe] Supabase env", {
+      supabaseHost: (() => {
+        try {
+          return supabaseUrl ? new URL(supabaseUrl).hostname : "(empty)";
+        } catch {
+          return "(invalid URL)";
+        }
+      })(),
+      serviceRoleKeyLength: serviceRoleKey.length,
+    });
+
+    const supabase = createClient(supabaseUrl, serviceRoleKey, {
+      auth: { persistSession: false, autoRefreshToken: false },
+    });
+
+    const insertRow = {
+      student_name: studentName,
+      student_email: studentNorm,
+      parent_email: parentNorm,
+      grade: studentGrade,
+      top_focus: topFocus,
+    };
+
+    console.log("[subscribe] Supabase insert: before", { row: insertRow });
+
+    const { data: inserted, error: insertError } = await supabase
+      .from("signups")
+      .insert(insertRow)
+      .select("id")
+      .single();
+
+    console.log("[subscribe] Supabase insert: after", {
+      id: inserted?.id ?? null,
+      error: insertError
+        ? {
+            message: insertError.message,
+            code: insertError.code,
+            details: insertError.details,
+            hint: insertError.hint,
+          }
+        : null,
+    });
+
+    if (insertError) {
+      const code = insertError.code;
+      if (code === "23505") {
+        return NextResponse.json({ error: "This student email is already signed up.", code }, { status: 409 });
+      }
+      if (/relation|does not exist|schema cache/i.test(insertError.message ?? "")) {
+        return NextResponse.json(
+          {
+            error: insertError.message,
+            code,
+            details: insertError.details,
+            hint: insertError.hint,
+          },
+          { status: 503 }
+        );
+      }
       return NextResponse.json(
         {
           error: insertError.message,
@@ -160,40 +172,51 @@ export async function POST(req: Request) {
           details: insertError.details,
           hint: insertError.hint,
         },
-        { status: 503 }
+        { status: 500 }
       );
     }
+
+    const rowId = inserted?.id as string | undefined;
+
+    console.log("[subscribe] Beehiiv student: before", { email: studentNorm });
+    const studentBee = await subscribeBeehiiv(studentNorm);
+    console.log("[subscribe] Beehiiv student: after", {
+      ok: studentBee.ok,
+      message: "ok" in studentBee && !studentBee.ok ? studentBee.message : undefined,
+    });
+
+    if (!studentBee.ok) {
+      if (rowId) {
+        await supabase.from("signups").delete().eq("id", rowId);
+      }
+      return NextResponse.json({ error: studentBee.message }, { status: 502 });
+    }
+
+    console.log("[subscribe] Beehiiv parent: before", { email: parentNorm });
+    const parentBee = await subscribeBeehiiv(parentNorm);
+    console.log("[subscribe] Beehiiv parent: after", {
+      ok: parentBee.ok,
+      message: "ok" in parentBee && !parentBee.ok ? parentBee.message : undefined,
+    });
+
+    if (!parentBee.ok) {
+      console.warn("[subscribe] Beehiiv parent subscribe failed:", parentBee.message);
+    }
+
+    return NextResponse.json({ ok: true }, { status: 200 });
+  } catch (error: unknown) {
+    console.error("CRITICAL BACKEND ERROR:", error);
+    const message = error instanceof Error ? error.message : "Unknown error";
+    const fullError =
+      error instanceof Error
+        ? { name: error.name, message: error.message, stack: error.stack }
+        : { value: error };
     return NextResponse.json(
       {
-        error: insertError.message,
-        code,
-        details: insertError.details,
-        hint: insertError.hint,
+        error: message || "Unknown error",
+        fullError,
       },
       { status: 500 }
     );
   }
-
-  const rowId = inserted?.id as string | undefined;
-
-  console.log("[subscribe] Beehiiv student: before", { email: studentNorm });
-  const studentBee = await subscribeBeehiiv(studentNorm);
-  console.log("[subscribe] Beehiiv student: after", { ok: studentBee.ok, message: "ok" in studentBee && !studentBee.ok ? studentBee.message : undefined });
-
-  if (!studentBee.ok) {
-    if (rowId) {
-      await supabase.from("signups").delete().eq("id", rowId);
-    }
-    return NextResponse.json({ error: studentBee.message }, { status: 502 });
-  }
-
-  console.log("[subscribe] Beehiiv parent: before", { email: parentNorm });
-  const parentBee = await subscribeBeehiiv(parentNorm);
-  console.log("[subscribe] Beehiiv parent: after", { ok: parentBee.ok, message: "ok" in parentBee && !parentBee.ok ? parentBee.message : undefined });
-
-  if (!parentBee.ok) {
-    console.warn("[subscribe] Beehiiv parent subscribe failed:", parentBee.message);
-  }
-
-  return NextResponse.json({ ok: true }, { status: 200 });
 }
