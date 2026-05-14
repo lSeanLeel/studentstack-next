@@ -13,7 +13,7 @@ const TOP_FOCUS_OPTIONS = [
 interface SignupFormData {
   studentName: string;
   studentEmail: string;
-  parentEmail?: string;
+  parentEmail: string;
   studentGrade: string;
   topFocus: (typeof TOP_FOCUS_OPTIONS)[number] | "";
 }
@@ -199,16 +199,16 @@ export function SignupForm({
             <div className="relative">
               <input
                 {...register("parentEmail", {
-                  validate: (v) => {
-                    const t = (v ?? "").trim();
-                    if (!t) return true;
-                    return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(t) || "Invalid email address";
+                  required: "Parent email is required",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Invalid email address",
                   },
                 })}
                 type="email"
                 inputMode="email"
                 autoComplete="email"
-                placeholder="Parent Email (optional)"
+                placeholder="Parent Email *"
                 className={`h-14 w-full rounded-2xl border-2 bg-slate-50 px-6 text-sm font-bold text-slate-900 outline-none transition-all placeholder:text-slate-400 focus:bg-white ${
                   errors.parentEmail ? "border-red-100" : "border-transparent focus:border-sky-500/20"
                 }`}

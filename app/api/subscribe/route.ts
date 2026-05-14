@@ -14,10 +14,7 @@ const topFocusEnum = z.enum([
 const bodySchema = z.object({
   studentName: z.string().trim().min(1, "Student name is required."),
   studentEmail: z.string().trim().email("Enter a valid student email."),
-  parentEmail: z.preprocess(
-    (v) => (typeof v === "string" && v.trim() === "" ? undefined : v),
-    z.string().trim().email("Enter a valid parent email.").optional()
-  ),
+  parentEmail: z.string().trim().min(1, "Parent email is required").email("Enter a valid parent email."),
   studentGrade: z.string().trim().min(1, "Grade is required."),
   topFocus: topFocusEnum,
 });
@@ -32,8 +29,11 @@ export async function POST(req: Request) {
     const beehiivApiKey =
       process.env.BEEHIIV_API_KEY ||
       "usIJBFLlEu61UusG8pCQgig6Z9D5tC78tLTX8tJEm91xUw8EAnfAX54XJqsPxrho";
-    const beehiivPubId =
-      process.env.BEEHIIV_PUBLICATION_ID || "97584e54-1e39-4011-9ae7-8d76ca07ed91";
+    const rawBeehiivPubId =
+      process.env.BEEHIIV_PUBLICATION_ID?.trim() || "pub_97584e54-1e39-4011-9ae7-8d76ca07ed91";
+    const beehiivPubId = rawBeehiivPubId.startsWith("pub_")
+      ? rawBeehiivPubId
+      : `pub_${rawBeehiivPubId}`;
 
     let json: unknown;
     try {
@@ -50,9 +50,9 @@ export async function POST(req: Request) {
 
     const { studentName, studentEmail, parentEmail, studentGrade, topFocus } = parsed.data;
     const studentNorm = studentEmail.toLowerCase();
-    const parentNorm = parentEmail?.trim().toLowerCase() ?? "";
+    const parentNorm = parentEmail.trim().toLowerCase();
 
-    if (parentNorm && parentNorm === studentNorm) {
+    if (parentNorm === studentNorm) {
       return NextResponse.json({ error: "Parent email must differ from the student email." }, { status: 400 });
     }
 
@@ -63,7 +63,7 @@ export async function POST(req: Request) {
     const insertRow = {
       student_name: studentName,
       student_email: studentNorm,
-      parent_email: parentNorm || null,
+      parent_email: parentNorm,
       grade: studentGrade,
       top_focus: topFocus,
     };
@@ -136,11 +136,9 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: studentBee.message }, { status: 502 });
     }
 
-    if (parentNorm) {
-      const parentBee = await beehiivSubscribe(parentNorm);
-      if (!parentBee.ok) {
-        console.warn("[subscribe] Beehiiv parent subscribe failed:", parentBee.message);
-      }
+    const parentBee = await beehiivSubscribe(parentNorm);
+    if (!parentBee.ok) {
+      console.warn("[subscribe] Beehiiv parent subscribe failed:", parentBee.message);
     }
 
     return NextResponse.json({ ok: true }, { status: 200 });
