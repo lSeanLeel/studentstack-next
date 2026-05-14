@@ -1,8 +1,18 @@
+import { loadEnvConfig } from "@next/env";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getSupabaseServerClient, isSupabaseConfigured, stripEnvValue } from "@/lib/supabase-server";
 
 export const runtime = "nodejs";
+
+/** Re-merge .env* into process.env (Next sets __NEXT_PROCESSED_ENV early; without forceReload, dotenv merge is skipped). */
+function reloadLocalEnv(): void {
+  try {
+    loadEnvConfig(process.cwd(), process.env.NODE_ENV === "development", undefined, true);
+  } catch {
+    /* ignore outside Next / missing files */
+  }
+}
 
 const topFocusEnum = z.enum([
   "Boosting GPA",
@@ -20,7 +30,7 @@ const bodySchema = z.object({
 });
 
 function beehiivApiKey(): string {
-  return stripEnvValue(process.env.BEEHIIV_API_KEY);
+  return stripEnvValue(process.env.BEEHIIV_API_KEY) || stripEnvValue(process.env.BEEHIHV_API_KEY);
 }
 
 function beehiivPublicationId(): string {
@@ -72,6 +82,8 @@ async function subscribeBeehiiv(email: string): Promise<{ ok: true } | { ok: fal
 }
 
 export async function POST(req: Request) {
+  reloadLocalEnv();
+
   let json: unknown;
   try {
     json = await req.json();

@@ -20,20 +20,12 @@ function normalizeKey(raw: string | undefined): string {
   return stripEnvValue(raw);
 }
 
-/**
- * Legacy service role: JWT (`eyJ…`). New Supabase projects may use secret keys (`sb_secret_…`).
- * @see https://supabase.com/docs/guides/api/api-keys
- */
-function looksLikeSupabaseServiceRoleKey(key: string): boolean {
-  if (key.length < 20) return false;
-  if (/^your[_\s-]*service[_\s-]*role$/i.test(key.replace(/\s/g, ""))) return false;
-  if (key.startsWith("eyJ") && key.length >= 40) return true;
-  if (key.startsWith("sb_secret_") && key.length >= 28) return true;
-  return false;
-}
-
 function supabaseUrlFromEnv(): string {
-  return normalizeSupabaseUrl(process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL);
+  return normalizeSupabaseUrl(
+    process.env.SUPABASE_URL ||
+      process.env.NEXT_PUBLIC_SUPABASE_URL ||
+      process.env.PUBLIC_SUPABASE_URL
+  );
 }
 
 /** Service role or new secret API key (server-only). */
@@ -51,7 +43,10 @@ export function isSupabaseConfigured(): boolean {
   const key = serviceRoleKeyFromEnv();
   if (!url || !key) return false;
   if (url.includes("YOUR_PROJECT_REF") || url.includes("your-project")) return false;
-  if (!looksLikeSupabaseServiceRoleKey(key)) return false;
+  const compact = key.replace(/\s/g, "");
+  if (compact.length < 20) return false;
+  const lower = compact.toLowerCase();
+  if (lower === "your_service_role_key" || lower === "your_beehiiv_api_key") return false;
   try {
     const parsed = new URL(url);
     return parsed.protocol === "https:" && Boolean(parsed.hostname);
