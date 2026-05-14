@@ -26,3 +26,25 @@ create unique index if not exists subscribers_parent_email_key on public.subscri
 comment on table public.subscribers is 'Parent onboarding captures from landing modal (playbook signup)';
 
 alter table public.subscribers add column if not exists student_email text;
+
+-- Newsletter landing signups (run in Supabase SQL editor after creating the project)
+create table if not exists public.signups (
+  id uuid primary key default gen_random_uuid(),
+  student_name text not null,
+  student_email text not null,
+  parent_email text,
+  grade text not null,
+  top_focus text not null check (
+    top_focus in (
+      'Boosting GPA',
+      'Finding Research/Internships',
+      'Writing',
+      'Applying to College'
+    )
+  ),
+  created_at timestamptz not null default now()
+);
+
+create unique index if not exists signups_student_email_lower_key on public.signups (lower(student_email));
+
+comment on table public.signups is 'Weekly email signup captures from the landing modal';

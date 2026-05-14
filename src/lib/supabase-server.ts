@@ -12,9 +12,13 @@ function normalizeKey(raw: string | undefined): string {
   return raw.trim().replace(/^["']|["']$/g, "");
 }
 
+function supabaseUrlFromEnv(): string {
+  return normalizeSupabaseUrl(process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL);
+}
+
 /** True when real project credentials are set (not .env.example placeholders). */
 export function isSupabaseConfigured(): boolean {
-  const url = normalizeSupabaseUrl(process.env.SUPABASE_URL);
+  const url = supabaseUrlFromEnv();
   const key = normalizeKey(process.env.SUPABASE_SERVICE_ROLE_KEY);
   if (!url || !key) return false;
   if (url.includes("YOUR_PROJECT_REF") || url.includes("your-project")) return false;
@@ -30,11 +34,11 @@ export function isSupabaseConfigured(): boolean {
 export function getSupabaseServerClient(): SupabaseClient {
   if (!isSupabaseConfigured()) {
     throw new Error(
-      "Supabase is not configured. In studentthisisfinal-main/.env.local set SUPABASE_URL (https://xxxx.supabase.co) and SUPABASE_SERVICE_ROLE_KEY from Supabase → Settings → API. Restart npm run dev."
+      "Supabase is not configured. In .env or .env.local set SUPABASE_URL or NEXT_PUBLIC_SUPABASE_URL (https://xxxx.supabase.co) and SUPABASE_SERVICE_ROLE_KEY from Supabase → Settings → API. Restart npm run dev."
     );
   }
 
-  const supabaseUrl = normalizeSupabaseUrl(process.env.SUPABASE_URL);
+  const supabaseUrl = supabaseUrlFromEnv();
   const serviceRoleKey = normalizeKey(process.env.SUPABASE_SERVICE_ROLE_KEY);
 
   return createClient(supabaseUrl, serviceRoleKey, {

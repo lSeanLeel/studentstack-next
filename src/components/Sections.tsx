@@ -176,7 +176,7 @@ export function Footer() {
                   onClick={openOnboarding}
                   className="text-left font-medium text-slate-500 transition-colors hover:text-sky-500"
                 >
-                  Weekly email signup
+                  Sign Up
                 </button>
               </li>
               <li><a href="/admin" className="text-slate-300 hover:text-slate-500 text-[9px] font-black uppercase tracking-widest transition-colors opacity-40 hover:opacity-100">Admin</a></li>

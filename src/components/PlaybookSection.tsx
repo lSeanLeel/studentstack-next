@@ -97,7 +97,7 @@ export function PlaybookSection() {
                 <motion.button
                   type="button"
                   onClick={() => openOnboarding()}
-                  aria-label="Join today to access the opportunities spreadsheet"
+                  aria-label="Sign up to access the opportunities spreadsheet"
                   className={`group mt-5 flex w-full items-center justify-between gap-3 rounded-2xl border-2 border-emerald-200/90 bg-white px-4 py-3.5 text-left shadow-[0_8px_24px_-16px_rgba(16,185,129,0.5)] outline-none ring-emerald-400 transition hover:-translate-y-0.5 hover:border-emerald-300 hover:bg-emerald-50/70 hover:shadow-[0_14px_32px_-18px_rgba(16,185,129,0.55)] focus-visible:ring-2 sm:px-5 ${jakartaSans.className}`}
                   animate={{ y: [0, -3, 0] }}
                   transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
@@ -107,7 +107,7 @@ export function PlaybookSection() {
                       <FileSpreadsheet className="h-5 w-5" aria-hidden />
                     </span>
                     <span className="text-lg font-bold text-slate-900 sm:text-xl">
-                      Join Today!
+                      Sign Up
                     </span>
                   </span>
                   <span className="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-emerald-600 px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.12em] text-white shadow-sm transition group-hover:bg-emerald-700">
