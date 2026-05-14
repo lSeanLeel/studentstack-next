@@ -13,6 +13,7 @@ type Props = {
 
 export function OnboardingModal({ open, onClose }: Props) {
   const [formBusy, setFormBusy] = useState(false);
+  const [signupComplete, setSignupComplete] = useState(false);
   const blocking = formBusy;
 
   useEffect(() => {
@@ -25,7 +26,10 @@ export function OnboardingModal({ open, onClose }: Props) {
   }, [open, onClose, blocking]);
 
   useEffect(() => {
-    if (!open) setFormBusy(false);
+    if (!open) {
+      setFormBusy(false);
+      setSignupComplete(false);
+    }
   }, [open]);
 
   return (
@@ -49,7 +53,7 @@ export function OnboardingModal({ open, onClose }: Props) {
           <motion.div
             role="dialog"
             aria-modal="true"
-            aria-labelledby="onboarding-title"
+            aria-labelledby={signupComplete ? "signup-success-title" : "onboarding-title"}
             initial={{ opacity: 0, y: 24, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
@@ -68,11 +72,19 @@ export function OnboardingModal({ open, onClose }: Props) {
             </button>
 
             <div className="relative pt-1">
-              <h2 id="onboarding-title" className="pr-10 text-center text-xl font-black text-slate-900">
-                Sign Up
-              </h2>
-              <div className="mt-5">
-                <SignupForm integrated showDescription={false} variant="default" onBusyChange={setFormBusy} />
+              {!signupComplete ? (
+                <h2 id="onboarding-title" className="pr-10 text-center text-xl font-black text-slate-900">
+                  Sign Up
+                </h2>
+              ) : null}
+              <div className={signupComplete ? "mt-0" : "mt-5"}>
+                <SignupForm
+                  integrated
+                  showDescription={false}
+                  variant="default"
+                  onBusyChange={setFormBusy}
+                  onSubmittedChange={setSignupComplete}
+                />
               </div>
             </div>
           </motion.div>

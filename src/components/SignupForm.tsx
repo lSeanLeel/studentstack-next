@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { motion } from "motion/react";
-import { CheckCircle2, ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const TOP_FOCUS_OPTIONS = [
   "Boosting GPA",
@@ -25,16 +25,23 @@ export function SignupForm({
   /** Renders without outer card / max-width so a parent shell can wrap the form. */
   integrated = false,
   onBusyChange,
+  onSubmittedChange,
 }: {
   compact?: boolean;
   variant?: "default" | "minimal";
   showDescription?: boolean;
   integrated?: boolean;
   onBusyChange?: (busy: boolean) => void;
+  /** Fires when the user completes signup (success view). Used by modals to adjust chrome (e.g. hide “Sign Up” title). */
+  onSubmittedChange?: (submitted: boolean) => void;
 }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+
+  useEffect(() => {
+    onSubmittedChange?.(isSubmitted);
+  }, [isSubmitted, onSubmittedChange]);
 
   const {
     register,
@@ -109,17 +116,13 @@ export function SignupForm({
             : `relative ${variant === "minimal" ? "bg-transparent" : "bg-white shadow-2xl border border-slate-100"} rounded-[2.5rem] ${compact ? "p-6" : "p-10"} text-center`
         }
       >
-        <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-violet-100 text-violet-600">
-          <Sparkles className="h-8 w-8" aria-hidden />
-        </div>
-        <h3 className="mb-2 text-3xl font-black tracking-tight text-slate-900">Welcome to the club!</h3>
-        <p className="mx-auto mb-2 max-w-sm text-base font-semibold text-slate-600">
-          You&apos;re in — watch your inbox for the next StudentStack Sunday send.
+        <h3 id="signup-success-title" className="mb-3 text-3xl font-black tracking-tight text-slate-900">
+          Welcome
+        </h3>
+        <p className="mx-auto max-w-sm text-base font-semibold leading-relaxed text-slate-600">
+          Please check your inbox for a confirmation email! For new members, it sometimes appears in the promotions/spam
+          folder.
         </p>
-        <div className="mt-6 flex items-center justify-center gap-2 text-[10px] font-black uppercase tracking-widest text-violet-600">
-          <CheckCircle2 className="h-4 w-4" aria-hidden />
-          Free weekly AI tips for students
-        </div>
       </motion.div>
     );
   }
