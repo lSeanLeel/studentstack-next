@@ -103,21 +103,42 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Parent email must differ from the student email." }, { status: 400 });
     }
 
-    const supabaseUrl = stripEnvValue(process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL);
-    const serviceRoleKey = stripEnvValue(process.env.SUPABASE_SERVICE_ROLE_KEY);
+    const SUPABASE_URL_FALLBACK = "https://igpjdaorrbickqjtzjqf.supabase.co";
+
+    const supabaseUrl =
+      stripEnvValue(process.env.NEXT_PUBLIC_SUPABASE_URL) || SUPABASE_URL_FALLBACK;
+    const supabaseServiceKey = stripEnvValue(process.env.SUPABASE_SERVICE_ROLE_KEY);
+
+    if (!supabaseUrl) {
+      console.error(
+        "[subscribe] BLOCKED before createClient: NEXT_PUBLIC_SUPABASE_URL is missing/empty and URL fallback did not apply."
+      );
+      return NextResponse.json(
+        { error: "Missing Supabase URL (NEXT_PUBLIC_SUPABASE_URL)." },
+        { status: 500 }
+      );
+    }
+    if (!supabaseServiceKey) {
+      console.error("[subscribe] BLOCKED before createClient: SUPABASE_SERVICE_ROLE_KEY is missing or empty.");
+      return NextResponse.json(
+        { error: "Missing Supabase service role key (SUPABASE_SERVICE_ROLE_KEY)." },
+        { status: 500 }
+      );
+    }
 
     console.log("[subscribe] Supabase env", {
       supabaseHost: (() => {
         try {
-          return supabaseUrl ? new URL(supabaseUrl).hostname : "(empty)";
+          return new URL(supabaseUrl).hostname;
         } catch {
           return "(invalid URL)";
         }
       })(),
-      serviceRoleKeyLength: serviceRoleKey.length,
+      serviceRoleKeyLength: supabaseServiceKey.length,
+      urlFromEnv: Boolean(stripEnvValue(process.env.NEXT_PUBLIC_SUPABASE_URL)),
     });
 
-    const supabase = createClient(supabaseUrl, serviceRoleKey, {
+    const supabase = createClient(supabaseUrl, supabaseServiceKey, {
       auth: { persistSession: false, autoRefreshToken: false },
     });
 
