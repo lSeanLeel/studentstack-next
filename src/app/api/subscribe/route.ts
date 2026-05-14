@@ -107,7 +107,10 @@ export async function POST(req: Request) {
 
     const supabaseUrl =
       stripEnvValue(process.env.NEXT_PUBLIC_SUPABASE_URL) || SUPABASE_URL_FALLBACK;
-    const supabaseServiceKey = stripEnvValue(process.env.SUPABASE_SERVICE_ROLE_KEY);
+    const supabaseServiceKey =
+      stripEnvValue(process.env.SUPABASE_SERVICE_ROLE_KEY) ||
+      stripEnvValue(process.env.SUPABASE_SECRET_KEY) ||
+      stripEnvValue(process.env.SUPABASE_SERVICE_KEY);
 
     if (!supabaseUrl) {
       console.error(
@@ -119,9 +122,14 @@ export async function POST(req: Request) {
       );
     }
     if (!supabaseServiceKey) {
-      console.error("[subscribe] BLOCKED before createClient: SUPABASE_SERVICE_ROLE_KEY is missing or empty.");
+      console.error(
+        "[subscribe] BLOCKED before createClient: missing server Supabase key. Set SUPABASE_SERVICE_ROLE_KEY (JWT) and/or SUPABASE_SECRET_KEY (sb_secret_…) in .env.local, then restart dev."
+      );
       return NextResponse.json(
-        { error: "Missing Supabase service role key (SUPABASE_SERVICE_ROLE_KEY)." },
+        {
+          error:
+            "Missing Supabase server key. Add SUPABASE_SERVICE_ROLE_KEY (or SUPABASE_SECRET_KEY) to .env.local and restart npm run dev.",
+        },
         { status: 500 }
       );
     }

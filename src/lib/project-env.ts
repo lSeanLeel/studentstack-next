@@ -3,6 +3,30 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import dotenv from "dotenv";
 
+/** Same rules as stripEnvValue in supabase-server (keep this file import-free of that module). */
+function normalizeEnvFileValue(raw: string | undefined): string {
+  if (!raw) return "";
+  return raw
+    .replace(/^\uFEFF/, "")
+    .replace(/\r/g, "")
+    .trim()
+    .replace(/^["']|["']$/g, "");
+}
+
+/**
+ * Apply parsed dotenv entries without letting an empty value wipe a non-empty `process.env`
+ * (multiple discovered roots + override:true was clearing SUPABASE_SERVICE_ROLE_KEY).
+ */
+function mergeParsedIntoProcessEnv(parsed: dotenv.DotenvParseOutput): void {
+  for (const [key, value] of Object.entries(parsed)) {
+    if (value === undefined) continue;
+    const normalized = normalizeEnvFileValue(value);
+    if (normalized.length > 0) {
+      process.env[key] = normalized;
+    }
+  }
+}
+
 /**
  * Find directories that contain package.json (project roots).
  * Cursor / monorepos sometimes run Node with a cwd that is not the repo root; walking from
@@ -48,7 +72,12 @@ export function hydrateProjectEnv(): void {
     for (const name of [".env", ".env.local"] as const) {
       const full = path.join(base, name);
       if (!fs.existsSync(full)) continue;
-      dotenv.config({ path: full, override: true });
+      try {
+        const parsed = dotenv.parse(fs.readFileSync(full, "utf8"));
+        mergeParsedIntoProcessEnv(parsed);
+      } catch {
+        /* unreadable or invalid — skip */
+      }
     }
   }
 }
