@@ -183,19 +183,4 @@ export const students: Student[] = [
     ],
     initials: "DW",
   },
-  {
-    id: 12,
-    name: "Ethan Lin",
-    university: "Yale",
-    classYear: "2027",
-    major: "Mathematics",
-    bio: "I'm a Mathematics major at Yale. I combine my interest in network science with my background as a cellist. I help students who want to excel in competitive mathematics while maintaining a high level of achievement in the arts.",
-    accomplishments: [
-      "Principal Cellist for the Yale Symphony Orchestra",
-      "Researcher at the Yale Institute for Network Science",
-      "AIME Qualifier and National Merit Scholar",
-      "Yale Mathematics Society Member"
-    ],
-    initials: "EL",
-  },
 ];

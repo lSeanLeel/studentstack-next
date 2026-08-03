@@ -165,20 +165,5 @@ export const MENTORS: Mentor[] = [
     ],
     initials: "DW",
     status: 'online'
-  },
-  {
-    id: 12,
-    name: "Ethan Lin",
-    university: "Yale",
-    classYear: "'27",
-    major: "Mathematics",
-    bio: "I find beauty in the abstract. Whether I'm playing the cello or exploring the complexities of network science, I'm always looking for patterns.",
-    accomplishments: [
-      "Principal Cellist for the Yale Symphony Orchestra",
-      "Researcher at the Yale Institute for Network Science",
-      "AIME Qualifier and National Merit Scholar"
-    ],
-    initials: "EL",
-    status: 'offline'
   }
 ];
