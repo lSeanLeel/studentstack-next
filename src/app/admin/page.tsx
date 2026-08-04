@@ -1,281 +1,331 @@
+"use client";
+
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import { Lock, ShieldX, Download, ExternalLink } from "lucide-react";
-import { AdminPlaybookDraft } from "@/components/admin-playbook-draft";
-import { AdminWeeklyEmailComposer } from "@/components/admin-weekly-email-composer";
-import { clearAdminCookie, constantTimeEqual, isAdminAuthorized, setAdminCookie } from "@/lib/admin-auth";
-import { getSupabaseServerClient, isSupabaseConfigured } from "@/lib/supabase-server";
+import { motion } from "motion/react";
+import {
+  AlertCircle,
+  CheckCircle2,
+  Loader2,
+  Lock,
+  LogOut,
+  Newspaper,
+  Send,
+  Sparkles,
+} from "lucide-react";
+import { extractSubtitleFromMarkdown, extractTitleFromMarkdown } from "@/lib/markdown-to-html";
 
-type WaitlistRow = {
-  id: string;
-  email: string;
-  grade_level: string;
-  zip_code: string;
-  created_at: string;
+type StatusKind = "idle" | "loading" | "success" | "error";
+
+type StatusAlert = {
+  kind: StatusKind;
+  message: string;
 };
 
-type SubscriberRow = {
-  id: string;
-  parent_email: string;
-  student_email: string | null;
-  student_grade: string;
-  friction_point: string;
-  created_at: string;
-};
+export default function AdminPortalPage() {
+  const [authorized, setAuthorized] = useState<boolean | null>(null);
+  const [password, setPassword] = useState("");
+  const [loginError, setLoginError] = useState("");
 
-async function loginAdmin(formData: FormData) {
-  "use server";
-  const submitted = String(formData.get("password") ?? "");
-  const expected = process.env.ADMIN_PASSWORD ?? "";
+  const [seedText, setSeedText] = useState("");
+  const [title, setTitle] = useState("");
+  const [subtitle, setSubtitle] = useState("");
+  const [markdown, setMarkdown] = useState("");
 
-  if (!expected || !constantTimeEqual(submitted, expected)) {
-    redirect("/admin?error=1");
+  const [generateStatus, setGenerateStatus] = useState<StatusAlert>({ kind: "idle", message: "" });
+  const [pushStatus, setPushStatus] = useState<StatusAlert>({ kind: "idle", message: "" });
+
+  const checkAuth = useCallback(async () => {
+    try {
+      const res = await fetch("/api/admin/auth");
+      const data = (await res.json()) as { authorized?: boolean };
+      setAuthorized(Boolean(data.authorized));
+    } catch {
+      setAuthorized(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    void checkAuth();
+  }, [checkAuth]);
+
+  async function handleLogin(event: React.FormEvent) {
+    event.preventDefault();
+    setLoginError("");
+    try {
+      const res = await fetch("/api/admin/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password }),
+      });
+      const data = (await res.json()) as { error?: string };
+      if (!res.ok) {
+        setLoginError(data.error ?? "Invalid password.");
+        return;
+      }
+      setAuthorized(true);
+      setPassword("");
+    } catch {
+      setLoginError("Could not reach auth service.");
+    }
   }
 
-  await setAdminCookie(submitted);
-  redirect("/admin");
-}
-
-async function logoutAdmin() {
-  "use server";
-  await clearAdminCookie();
-  redirect("/admin");
-}
-
-async function getWaitlistRows(): Promise<WaitlistRow[]> {
-  if (!isSupabaseConfigured()) return [];
-  try {
-    const timeout = AbortSignal.timeout(3500);
-    const supabase = getSupabaseServerClient();
-    const { data, error } = await supabase
-      .from("waitlist_users")
-      .select("id,email,grade_level,zip_code,created_at")
-      .abortSignal(timeout)
-      .order("created_at", { ascending: false });
-
-    if (error) return [];
-    return (data ?? []) as WaitlistRow[];
-  } catch {
-    return [];
+  async function handleLogout() {
+    await fetch("/api/admin/auth", { method: "DELETE" }).catch(() => undefined);
+    setAuthorized(false);
+    setGenerateStatus({ kind: "idle", message: "" });
+    setPushStatus({ kind: "idle", message: "" });
   }
-}
 
-async function getSubscriberRows(): Promise<SubscriberRow[]> {
-  if (!isSupabaseConfigured()) return [];
-  try {
-    const timeout = AbortSignal.timeout(3500);
-    const supabase = getSupabaseServerClient();
-    const { data, error } = await supabase
-      .from("subscribers")
-      .select("id,parent_email,student_email,student_grade,friction_point,created_at")
-      .abortSignal(timeout)
-      .order("created_at", { ascending: false });
-
-    if (error) return [];
-    return (data ?? []) as SubscriberRow[];
-  } catch {
-    return [];
+  async function handleGenerate() {
+    setGenerateStatus({ kind: "loading", message: "Claude is drafting your issue…" });
+    try {
+      const res = await fetch("/api/admin/generate-newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ seedText: seedText.trim() }),
+      });
+      const data = (await res.json()) as { markdown?: string; error?: string; success?: boolean };
+      if (!res.ok) {
+        setGenerateStatus({ kind: "error", message: data.error ?? "Generation failed." });
+        return;
+      }
+      const nextMarkdown = data.markdown ?? "";
+      setMarkdown(nextMarkdown);
+      setTitle(extractTitleFromMarkdown(nextMarkdown));
+      setSubtitle(extractSubtitleFromMarkdown(nextMarkdown));
+      setGenerateStatus({ kind: "success", message: "Draft generated — edit the Parent Note below before pushing." });
+    } catch {
+      setGenerateStatus({ kind: "error", message: "Network error while generating." });
+    }
   }
-}
 
-export default async function AdminPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ error?: string }>;
-}) {
-  const params = await searchParams;
-  const authorized = await isAdminAuthorized();
+  async function handlePush() {
+    setPushStatus({ kind: "loading", message: "Creating Beehiiv draft…" });
+    try {
+      const res = await fetch("/api/admin/push-to-beehiiv", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: title.trim(),
+          subtitle: subtitle.trim(),
+          markdownContent: markdown,
+        }),
+      });
+      const data = (await res.json()) as { postId?: string; error?: string; success?: boolean };
+      if (!res.ok) {
+        setPushStatus({ kind: "error", message: data.error ?? "Beehiiv push failed." });
+        return;
+      }
+      setPushStatus({
+        kind: "success",
+        message: `Draft saved in Beehiiv (post id: ${data.postId}). Open app.beehiiv.com to review.`,
+      });
+    } catch {
+      setPushStatus({ kind: "error", message: "Network error while pushing to Beehiiv." });
+    }
+  }
 
-  if (!authorized) {
+  if (authorized === null) {
     return (
-      <main className="flex min-h-screen items-center justify-center px-4 py-10">
-        <section className="card-pop w-full max-w-md p-8">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-rose-100 px-4 py-2 text-xs font-black uppercase tracking-widest text-rose-700">
-            <ShieldX className="h-4 w-4" />
-            401 Access Denied
-          </div>
-          <h1 className="text-3xl font-black text-slate-900">Admin Access</h1>
-          <p className="mt-3 text-sm font-semibold text-slate-600">
-            Enter your `ADMIN_PASSWORD` to unlock the dashboard.
-          </p>
-          <form action={loginAdmin} className="mt-6 space-y-4">
-            <input
-              name="password"
-              type="password"
-              required
-              className="w-full rounded-2xl border-2 border-slate-200 bg-white px-4 py-3 font-semibold outline-none focus:border-slate-300"
-              placeholder="Admin password"
-            />
-            {params.error ? (
-              <p className="rounded-xl bg-rose-100 px-3 py-2 text-xs font-bold text-rose-700">
-                Invalid password or missing `ADMIN_PASSWORD`.
-              </p>
-            ) : null}
-            <button
-              type="submit"
-              className="button-bubble inline-flex w-full items-center justify-center gap-2 bg-slate-900 px-6 py-3 text-sm uppercase tracking-widest text-white shadow-[0_8px_0_0_#0f172a]"
-            >
-              <Lock className="h-4 w-4" />
-              Unlock Dashboard
-            </button>
-          </form>
-          <Link
-            href="/"
-            className="mt-5 block text-center text-xs font-black uppercase tracking-widest text-slate-500"
-          >
-            Back to site
-          </Link>
-        </section>
+      <main className="flex min-h-screen items-center justify-center bg-slate-950 px-4">
+        <Loader2 className="h-8 w-8 animate-spin text-sky-400" aria-label="Loading" />
       </main>
     );
   }
 
-  const [rows, subscribers] = await Promise.all([getWaitlistRows(), getSubscriberRows()]);
-
-  return (
-    <main className="min-h-screen px-4 py-10 sm:px-8">
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-7">
-        {!isSupabaseConfigured() ? (
-          <div className="rounded-3xl border-2 border-amber-200 bg-amber-50 px-5 py-4 text-sm font-semibold text-amber-950">
-            <strong className="font-black">Database not connected.</strong> Add real{" "}
-            <code className="rounded bg-white/80 px-1">SUPABASE_URL</code> and{" "}
-            <code className="rounded bg-white/80 px-1">SUPABASE_SERVICE_ROLE_KEY</code> to{" "}
-            <code className="rounded bg-white/80 px-1">studentthisisfinal-main/.env.local</code> (not the placeholders in
-            .env.example), then restart <code className="rounded bg-white/80 px-1">npm run dev</code>. See OPS_MANUAL.md.
+  if (!authorized) {
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-slate-950 px-4 py-12">
+        <motion.section
+          initial={{ opacity: 0, y: 16, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          className="w-full max-w-md rounded-[2rem] border border-slate-800 bg-slate-900/90 p-8 shadow-[0_24px_60px_-20px_rgba(14,165,233,0.35)]"
+        >
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-sky-500/15 px-4 py-2 text-xs font-black uppercase tracking-widest text-sky-300">
+            <Lock className="h-4 w-4" />
+            Operator Portal
           </div>
-        ) : null}
-        <header className="card-pop flex flex-wrap items-center justify-between gap-3 p-6">
-          <div>
-            <h1 className="text-3xl font-black text-slate-900">StudentStack Admin</h1>
-            <p className="text-sm font-semibold text-slate-600">
-              Weekly email studio (manual, branded) · waitlist & subscribers · optional AI helpers
-            </p>
-          </div>
-          <form action={logoutAdmin}>
+          <h1 className="text-3xl font-black text-white">StudentStack Admin</h1>
+          <p className="mt-3 text-sm font-medium text-slate-400">
+            Enter the operator password to open the newsletter studio.
+          </p>
+          <form onSubmit={handleLogin} className="mt-6 space-y-4">
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              placeholder="Admin password"
+              className="w-full rounded-2xl border-2 border-slate-700 bg-slate-950 px-4 py-3 font-semibold text-white outline-none transition focus:border-sky-500"
+            />
+            {loginError ? (
+              <StatusBanner kind="error" message={loginError} />
+            ) : null}
             <button
               type="submit"
-              className="button-bubble rounded-full bg-slate-900 px-5 py-2 text-xs font-black uppercase tracking-widest text-white shadow-[0_6px_0_0_#0f172a]"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-sky-500 px-6 py-3 text-sm font-black uppercase tracking-widest text-white shadow-[0_8px_0_0_#0369a1] transition hover:-translate-y-0.5 hover:bg-sky-400 active:translate-y-0.5"
             >
-              Log out
+              <Lock className="h-4 w-4" />
+              Unlock
             </button>
           </form>
-        </header>
+          <Link href="/" className="mt-5 block text-center text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-slate-300">
+            Back to site
+          </Link>
+        </motion.section>
+      </main>
+    );
+  }
 
-        <AdminWeeklyEmailComposer />
-
-        <section className="card-pop p-6">
-          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-            <h2 className="text-xl font-black text-slate-900">Waitlist CRM</h2>
-            <a
-              href="/api/admin/waitlist-csv"
-              className="button-bubble inline-flex items-center gap-2 bg-cyan-500 px-5 py-2 text-xs font-black uppercase tracking-widest text-white shadow-[0_6px_0_0_#0891b2]"
-            >
-              <Download className="h-4 w-4" />
-              Download CSV
-            </a>
-          </div>
-
-          <div className="overflow-x-auto rounded-3xl border border-slate-100 bg-white">
-            <table className="w-full text-left text-sm">
-              <thead className="bg-slate-50 text-[11px] uppercase tracking-widest text-slate-500">
-                <tr>
-                  <th className="px-4 py-3">Created</th>
-                  <th className="px-4 py-3">Email</th>
-                  <th className="px-4 py-3">Grade</th>
-                  <th className="px-4 py-3">Zip</th>
-                </tr>
-              </thead>
-              <tbody>
-                {rows.map((row) => (
-                  <tr key={row.id} className="border-t border-slate-100 font-semibold text-slate-700">
-                    <td className="whitespace-nowrap px-4 py-3 text-xs">
-                      {new Date(row.created_at).toLocaleString()}
-                    </td>
-                    <td className="px-4 py-3">{row.email}</td>
-                    <td className="px-4 py-3">{row.grade_level}</td>
-                    <td className="px-4 py-3">{row.zip_code}</td>
-                  </tr>
-                ))}
-                {!rows.length ? (
-                  <tr>
-                    <td colSpan={4} className="px-4 py-10 text-center font-semibold text-slate-400">
-                      No waitlist users yet.
-                    </td>
-                  </tr>
-                ) : null}
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <section className="card-pop p-6">
-          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-            <h2 className="text-xl font-black text-slate-900">Newsletter subscribers</h2>
-            <p className="text-xs font-bold uppercase tracking-widest text-slate-400">
-              From landing onboarding modal
+  return (
+    <main className="min-h-screen bg-slate-950 px-4 py-10 sm:px-8">
+      <div className="mx-auto flex w-full max-w-5xl flex-col gap-6">
+        <header className="flex flex-wrap items-center justify-between gap-4 rounded-[2rem] border border-slate-800 bg-slate-900/80 p-6 shadow-[0_20px_50px_-30px_rgba(0,0,0,0.8)]">
+          <div>
+            <p className="text-[10px] font-black uppercase tracking-[0.22em] text-sky-400">Newsletter studio</p>
+            <h1 className="mt-1 text-3xl font-black text-white">Operator Portal</h1>
+            <p className="mt-2 text-sm font-medium text-slate-400">
+              Generate with Claude · edit the Parent Note · push a Beehiiv draft
             </p>
           </div>
-          <div className="overflow-x-auto rounded-3xl border border-slate-100 bg-white">
-            <table className="w-full text-left text-sm">
-              <thead className="bg-slate-50 text-[11px] uppercase tracking-widest text-slate-500">
-                <tr>
-                  <th className="px-4 py-3">Created</th>
-                  <th className="px-4 py-3">Parent email</th>
-                  <th className="px-4 py-3">Student email</th>
-                  <th className="px-4 py-3">Grade</th>
-                  <th className="px-4 py-3">Goal</th>
-                </tr>
-              </thead>
-              <tbody>
-                {subscribers.map((row) => (
-                  <tr key={row.id} className="border-t border-slate-100 font-semibold text-slate-700">
-                    <td className="whitespace-nowrap px-4 py-3 text-xs">
-                      {new Date(row.created_at).toLocaleString()}
-                    </td>
-                    <td className="px-4 py-3">{row.parent_email}</td>
-                    <td className="px-4 py-3 text-xs">{row.student_email ?? "—"}</td>
-                    <td className="px-4 py-3">{row.student_grade}</td>
-                    <td className="max-w-[220px] px-4 py-3 text-xs leading-snug">{row.friction_point}</td>
-                  </tr>
-                ))}
-                {!subscribers.length ? (
-                  <tr>
-                    <td colSpan={5} className="px-4 py-10 text-center font-semibold text-slate-400">
-                      No subscribers yet. Run <code className="rounded bg-slate-100 px-1">supabase/schema.sql</code> and
-                      submit the onboarding modal once.
-                    </td>
-                  </tr>
-                ) : null}
-              </tbody>
-            </table>
+          <button
+            type="button"
+            onClick={() => void handleLogout()}
+            className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-950 px-5 py-2.5 text-xs font-black uppercase tracking-widest text-slate-300 transition hover:border-slate-500 hover:text-white"
+          >
+            <LogOut className="h-4 w-4" />
+            Log out
+          </button>
+        </header>
+
+        <section className="rounded-[2rem] border border-slate-800 bg-slate-900/70 p-6">
+          <div className="mb-4 flex items-center gap-2">
+            <Sparkles className="h-5 w-5 text-violet-400" />
+            <h2 className="text-xl font-black text-white">1. Seed research</h2>
           </div>
+          <textarea
+            value={seedText}
+            onChange={(e) => setSeedText(e.target.value)}
+            rows={5}
+            placeholder="Paste today’s links, headlines, tool announcements, or research notes…"
+            className="w-full rounded-2xl border-2 border-slate-700 bg-slate-950 px-4 py-3 text-sm font-medium text-slate-100 outline-none transition focus:border-violet-500"
+          />
+          <button
+            type="button"
+            onClick={() => void handleGenerate()}
+            disabled={!seedText.trim() || generateStatus.kind === "loading"}
+            className="mt-4 inline-flex items-center gap-2 rounded-2xl bg-violet-500 px-6 py-3 text-sm font-black uppercase tracking-widest text-white shadow-[0_8px_0_0_#6d28d9] transition hover:-translate-y-0.5 hover:bg-violet-400 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {generateStatus.kind === "loading" ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <Newspaper className="h-4 w-4" />
+            )}
+            Generate Daily Issue
+          </button>
+          {generateStatus.kind !== "idle" ? (
+            <div className="mt-4">
+              <StatusBanner kind={generateStatus.kind} message={generateStatus.message} />
+            </div>
+          ) : null}
         </section>
 
-        <AdminPlaybookDraft />
-
-        <section className="card-pop p-6">
-          <h2 className="text-xl font-black text-slate-900">Operations Hub</h2>
-          <div className="mt-4 flex flex-wrap gap-3">
-            <OpsLink href="https://mail.google.com" label="Gmail Desk" />
-            <OpsLink href="https://app.beehiiv.com" label="Beehiiv" />
-            <OpsLink href="https://dashboard.stripe.com" label="Stripe" />
+        <section className="rounded-[2rem] border border-slate-800 bg-slate-900/70 p-6">
+          <div className="mb-4 flex items-center gap-2">
+            <Send className="h-5 w-5 text-sky-400" />
+            <h2 className="text-xl font-black text-white">2. Review &amp; push</h2>
           </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            <label className="block">
+              <span className="mb-2 block text-xs font-black uppercase tracking-widest text-slate-400">Title</span>
+              <input
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="w-full rounded-2xl border-2 border-slate-700 bg-slate-950 px-4 py-3 text-sm font-semibold text-white outline-none focus:border-sky-500"
+                placeholder="Newsletter title"
+              />
+            </label>
+            <label className="block">
+              <span className="mb-2 block text-xs font-black uppercase tracking-widest text-slate-400">Subtitle</span>
+              <input
+                value={subtitle}
+                onChange={(e) => setSubtitle(e.target.value)}
+                className="w-full rounded-2xl border-2 border-slate-700 bg-slate-950 px-4 py-3 text-sm font-semibold text-white outline-none focus:border-sky-500"
+                placeholder="Optional subtitle"
+              />
+            </label>
+          </div>
+
+          <label className="mt-4 block">
+            <span className="mb-2 block text-xs font-black uppercase tracking-widest text-slate-400">
+              Markdown preview (edit Parent Note)
+            </span>
+            <textarea
+              value={markdown}
+              onChange={(e) => setMarkdown(e.target.value)}
+              rows={18}
+              placeholder="Generated markdown will appear here…"
+              className="w-full rounded-2xl border-2 border-slate-700 bg-slate-950 px-4 py-3 font-mono text-sm leading-relaxed text-slate-100 outline-none focus:border-sky-500"
+            />
+          </label>
+
+          <button
+            type="button"
+            onClick={() => void handlePush()}
+            disabled={!title.trim() || !markdown.trim() || pushStatus.kind === "loading"}
+            className="mt-4 inline-flex items-center gap-2 rounded-2xl bg-sky-500 px-6 py-3 text-sm font-black uppercase tracking-widest text-white shadow-[0_8px_0_0_#0369a1] transition hover:-translate-y-0.5 hover:bg-sky-400 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {pushStatus.kind === "loading" ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <Send className="h-4 w-4" />
+            )}
+            Push Draft to Beehiiv
+          </button>
+          {pushStatus.kind !== "idle" ? (
+            <div className="mt-4">
+              <StatusBanner kind={pushStatus.kind} message={pushStatus.message} />
+            </div>
+          ) : null}
         </section>
+
+        <p className="text-center text-xs text-slate-600">
+          Drafts land in Beehiiv as <code className="rounded bg-slate-900 px-1 text-slate-400">status: draft</code> — publish from the Beehiiv dashboard.
+        </p>
       </div>
     </main>
   );
 }
 
-function OpsLink({ href, label }: { href: string; label: string }) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      className="button-bubble inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-xs font-black uppercase tracking-widest text-slate-700 shadow-[0_6px_0_0_#e2e8f0]"
-    >
-      {label}
-      <ExternalLink className="h-4 w-4" />
-    </a>
-  );
+function StatusBanner({ kind, message }: { kind: StatusKind; message: string }) {
+  if (kind === "loading") {
+    return (
+      <div className="flex items-start gap-3 rounded-2xl border border-sky-500/30 bg-sky-500/10 px-4 py-3 text-sm font-semibold text-sky-200">
+        <Loader2 className="mt-0.5 h-4 w-4 shrink-0 animate-spin" />
+        <span>{message}</span>
+      </div>
+    );
+  }
+
+  if (kind === "success") {
+    return (
+      <div className="flex items-start gap-3 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm font-semibold text-emerald-200">
+        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" />
+        <span>{message}</span>
+      </div>
+    );
+  }
+
+  if (kind === "error") {
+    return (
+      <div className="flex items-start gap-3 rounded-2xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm font-semibold text-rose-200">
+        <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+        <span>{message}</span>
+      </div>
+    );
+  }
+
+  return null;
 }
