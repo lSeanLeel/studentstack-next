@@ -1,17 +1,23 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { clearAdminCookie, constantTimeEqual, getAdminPassword, isAdminAuthorized, setAdminCookie } from "@/lib/admin-auth";
+import { getEnvStatus, loadServerEnv } from "@/lib/server-env";
 
 const loginSchema = z.object({
   password: z.string().min(1),
 });
 
 export async function GET() {
+  loadServerEnv();
   const authorized = await isAdminAuthorized();
-  return NextResponse.json({ authorized });
+  return NextResponse.json({
+    authorized,
+    env: authorized ? getEnvStatus() : undefined,
+  });
 }
 
 export async function POST(request: Request) {
+  loadServerEnv();
   const body = await request.json().catch(() => null);
   const parsed = loginSchema.safeParse(body);
   if (!parsed.success) {

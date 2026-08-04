@@ -2,6 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { isAdminAuthorized } from "@/lib/admin-auth";
+import { getAnthropicApiKey, loadServerEnv } from "@/lib/server-env";
 
 const requestSchema = z.object({
   seedText: z.string().min(3, "seedText is required."),
@@ -19,7 +20,21 @@ Generate structured Markdown for a weekly newsletter issue. Include these sectio
 
 Tone: clear, trustworthy, energetic but not hypey. Write for busy parents. Use bullet lists where helpful. Return Markdown only — no preamble or code fences.`;
 
+function formatAnthropicError(error: unknown): string {
+  if (error instanceof Anthropic.APIError) {
+    const body = error.error as { error?: { message?: string }; message?: string } | undefined;
+    const detail = body?.error?.message ?? body?.message ?? error.message;
+    if (detail.includes("credit balance")) {
+      return "Anthropic API key is set, but the account has no credits. Add billing at console.anthropic.com → Plans & Billing.";
+    }
+    return detail;
+  }
+  return error instanceof Error ? error.message : "Anthropic request failed.";
+}
+
 export async function POST(request: Request) {
+  loadServerEnv();
+
   const authorized = await isAdminAuthorized();
   if (!authorized) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -31,9 +46,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: parsed.error.issues[0]?.message ?? "Invalid request." }, { status: 400 });
   }
 
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = getAnthropicApiKey();
   if (!apiKey) {
-    return NextResponse.json({ error: "Missing ANTHROPIC_API_KEY." }, { status: 500 });
+    return NextResponse.json(
+      {
+        error:
+          "Missing ANTHROPIC_API_KEY. Add it to .env.local in the project root (same folder as package.json), then restart npm run dev. On Vercel, set it under Project Settings → Environment Variables.",
+      },
+      { status: 500 }
+    );
   }
 
   try {
@@ -62,7 +83,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true, markdown });
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Anthropic request failed.";
-    return NextResponse.json({ error: message }, { status: 502 });
+    return NextResponse.json({ error: formatAnthropicError(error) }, { status: 502 });
   }
 }

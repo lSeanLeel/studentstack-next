@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { isAdminAuthorized } from "@/lib/admin-auth";
-import { getBeehiivApiKey, getBeehiivPublicationId } from "@/lib/beehiiv-env";
+import { getBeehiivApiKey, getBeehiivPublicationId, loadServerEnv } from "@/lib/server-env";
 import { markdownToHtml } from "@/lib/markdown-to-html";
 
 const requestSchema = z.object({
@@ -11,6 +11,8 @@ const requestSchema = z.object({
 });
 
 export async function POST(request: Request) {
+  loadServerEnv();
+
   const authorized = await isAdminAuthorized();
   if (!authorized) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

@@ -22,8 +22,18 @@ type StatusAlert = {
   message: string;
 };
 
+type EnvStatus = {
+  cwd: string;
+  envLocalExists: boolean;
+  anthropicApiKey: boolean;
+  beehiivApiKey: boolean;
+  beehiivPublicationId: boolean;
+  adminPassword: boolean;
+};
+
 export default function AdminPortalPage() {
   const [authorized, setAuthorized] = useState<boolean | null>(null);
+  const [envStatus, setEnvStatus] = useState<EnvStatus | null>(null);
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
 
@@ -38,10 +48,12 @@ export default function AdminPortalPage() {
   const checkAuth = useCallback(async () => {
     try {
       const res = await fetch("/api/admin/auth");
-      const data = (await res.json()) as { authorized?: boolean };
+      const data = (await res.json()) as { authorized?: boolean; env?: EnvStatus };
       setAuthorized(Boolean(data.authorized));
+      setEnvStatus(data.env ?? null);
     } catch {
       setAuthorized(false);
+      setEnvStatus(null);
     }
   }, []);
 
@@ -65,6 +77,7 @@ export default function AdminPortalPage() {
       }
       setAuthorized(true);
       setPassword("");
+      await checkAuth();
     } catch {
       setLoginError("Could not reach auth service.");
     }
@@ -198,6 +211,15 @@ export default function AdminPortalPage() {
             Log out
           </button>
         </header>
+
+        {envStatus && !envStatus.anthropicApiKey ? (
+          <div className="rounded-[1.5rem] border border-amber-500/40 bg-amber-500/10 px-5 py-4 text-sm font-semibold text-amber-100">
+            <strong className="font-black text-amber-50">ANTHROPIC_API_KEY not loaded.</strong>{" "}
+            {envStatus.envLocalExists
+              ? "`.env.local` exists but the key is missing or empty — add ANTHROPIC_API_KEY and restart `npm run dev`."
+              : "Create `.env.local` in the project root (same folder as `package.json`), add your keys, then restart `npm run dev`. On Vercel, set env vars in Project Settings → Environment Variables."}
+          </div>
+        ) : null}
 
         <section className="rounded-[2rem] border border-slate-800 bg-slate-900/70 p-6">
           <div className="mb-4 flex items-center gap-2">
