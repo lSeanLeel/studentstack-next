@@ -1,5 +1,6 @@
 import crypto from "crypto";
 import { cookies } from "next/headers";
+import { getAdminPassword as readAdminPassword } from "@/lib/server-env";
 
 const ADMIN_COOKIE = "ss_admin_pw";
 
@@ -11,7 +12,7 @@ export function constantTimeEqual(input: string, expected: string) {
 }
 
 export function getAdminPassword() {
-  return process.env.ADMIN_PASSWORD ?? "Sean1234!";
+  return readAdminPassword();
 }
 
 export async function isAdminAuthorized() {
