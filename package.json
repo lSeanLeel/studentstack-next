@@ -10,6 +10,7 @@
     "brand-kit": "node scripts/build-brand-kit.mjs"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.115.0",
     "@react-email/components": "^1.0.12",
     "@react-email/render": "^2.0.8",
     "@supabase/supabase-js": "^2.104.1",

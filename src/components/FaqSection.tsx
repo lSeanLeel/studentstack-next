@@ -45,12 +45,12 @@ const FAQ_ITEMS: FaqItem[] = [
     ),
   },
   {
-    q: "How often will I hear from you?",
+    q: "How often will we reach out?",
     a: "Once a week on Sunday. No spam, ever.",
   },
   {
     q: "How do I unsubscribe?",
-    a: "Every email includes an unsubscribe link. One click and you are off the list.",
+    a: "Every email includes an unsubscribe link. One click and you are off the list — no reply needed.",
   },
 ];
 

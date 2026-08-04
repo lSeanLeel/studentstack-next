@@ -36,7 +36,7 @@ export function TestimonialSection() {
                 className={`relative z-10 max-w-2xl text-2xl font-medium leading-[1.3] tracking-tight text-slate-100 sm:text-4xl ${jakartaSans.className}`}
               >
                 <span className="text-white font-serif text-3xl sm:text-5xl mr-1">&ldquo;</span>
-                I founded StudentStack because I saw the disparity between students who use AI for school and those who don&apos;t. As college students, we&apos;re native to AI and we learn about new tech every day, using this information to help build StudentStack, and bridge this gap.
+                We at StudentStack built this community because we saw the disparity between students who use AI for school and those who don&apos;t. As college students, we&apos;re native to AI and we learn about new tech every day — our team uses that signal to help families bridge the gap.
                 <span className="text-white font-serif text-3xl sm:text-5xl ml-1">&rdquo;</span>
               </p>
             </div>
@@ -179,7 +179,11 @@ export function Footer() {
                   Sign Up
                 </button>
               </li>
-              <li><a href="/admin" className="text-slate-300 hover:text-slate-500 text-[9px] font-black uppercase tracking-widest transition-colors opacity-40 hover:opacity-100">Admin</a></li>
+              <li>
+                <Link href="/admin" className="text-slate-500 text-xs transition-colors hover:text-slate-700">
+                  Operator Portal
+                </Link>
+              </li>
             </ul>
           </div>
           <div>
