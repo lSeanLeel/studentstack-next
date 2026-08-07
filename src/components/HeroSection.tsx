@@ -8,16 +8,16 @@ import { useOnboarding } from "@/components/onboarding-context";
 
 /** Order alternates cool (blue) and warm (orange / crimson) so similar reds never sit back-to-back. */
 const featuredColleges = [
-  { name: "UCLA", color: "#2774AE" },
-  { name: "Princeton", color: "#E77500" },
-  { name: "Columbia", color: "#003DA5" },
-  { name: "Stanford", color: "#8C1515" },
-  { name: "Caltech", color: "#FF6C0C" },
-  { name: "Berkeley", color: "#003262" },
-  { name: "Harvard", color: "#A51C30" },
-  { name: "Yale", color: "#00356B" },
-  { name: "MIT", color: "#A31F34" },
-];
+  { name: "UCLA", color: "#2774AE", logo: "/colleges/ucla.png" },
+  { name: "Princeton", color: "#E77500", logo: "/colleges/princeton.png" },
+  { name: "Columbia", color: "#003DA5", logo: "/colleges/columbia.png" },
+  { name: "Stanford", color: "#8C1515", logo: "/colleges/stanford.png" },
+  { name: "Caltech", color: "#FF6C0C", logo: "/colleges/caltech.png" },
+  { name: "Berkeley", color: "#003262", logo: "/colleges/berkeley.png" },
+  { name: "Harvard", color: "#A51C30", logo: "/colleges/harvard.png" },
+  { name: "Yale", color: "#00356B", logo: "/colleges/yale.png" },
+  { name: "MIT", color: "#A31F34", logo: "/colleges/mit.png" },
+] as const;
 
 function CyclingColleges() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -30,32 +30,47 @@ function CyclingColleges() {
   }, []);
 
   const current = featuredColleges[currentIndex];
-  // Reserve width for the longest label so names never collide with “students”.
-  const widthReserve = "Princeton";
 
   return (
-    <span className="relative mx-[0.12em] inline-flex h-[1.15em] min-w-[8.5ch] items-baseline justify-center align-baseline sm:min-w-[9ch]">
+    <span className="relative mx-[0.12em] inline-flex h-[1.4em] min-w-[13ch] items-center justify-center align-middle sm:min-w-[14ch]">
       <AnimatePresence mode="wait">
         <motion.span
           key={current.name}
           initial={{ opacity: 0, y: 18, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: [0.92, 1.06, 1] }}
+          animate={{ opacity: 1, y: 0, scale: [0.92, 1.05, 1] }}
           exit={{ opacity: 0, y: -14, scale: 1.02 }}
           transition={{ duration: 0.55, ease: [0.2, 0.8, 0.2, 1] }}
-          className="absolute inset-x-0 top-0 text-center whitespace-nowrap"
+          className="absolute inset-x-0 top-1/2 flex -translate-y-1/2 items-center justify-center gap-[0.3em] whitespace-nowrap"
           style={{ color: current.color }}
         >
-          {current.name}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={current.logo}
+            alt=""
+            width={64}
+            height={48}
+            className="h-[1.05em] w-auto max-w-[1.85em] shrink-0 object-contain"
+            draggable={false}
+          />
+          <span className="leading-none">{current.name}</span>
         </motion.span>
       </AnimatePresence>
-      <span className="invisible whitespace-nowrap" aria-hidden>
-        {widthReserve}
+      <span className="invisible inline-flex items-center gap-[0.3em] whitespace-nowrap" aria-hidden>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/colleges/princeton.png"
+          alt=""
+          width={64}
+          height={48}
+          className="h-[1.05em] w-auto max-w-[1.85em] shrink-0 object-contain"
+        />
+        <span>Princeton</span>
       </span>
     </span>
   );
 }
 
-/** Full-bleed product plane: oversized weekly-email mock as atmosphere, not a floating card. */
+/** Full-bleed product plane: oversized email mock as atmosphere, not a floating card. */
 function HeroEmailPlane() {
   return (
     <div
@@ -78,7 +93,7 @@ function HeroEmailPlane() {
               <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
               <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
               <span className={`ml-3 text-[11px] font-bold uppercase tracking-[0.18em] text-sky-700 ${jakartaSans.className}`}>
-                Sunday · StudentStack Weekly
+                StudentStack Daily
               </span>
             </div>
             <div className="space-y-4">
@@ -142,7 +157,7 @@ export function HeroSection() {
           transition={{ delay: 0.35, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           className={`${fredokaHeadline.className} mt-6 max-w-4xl text-[clamp(1.35rem,3.2vw+0.55rem,2.35rem)] font-semibold leading-[1.25] tracking-[-0.03em] text-slate-800 sm:mt-8`}
         >
-          <span className="inline-flex flex-wrap items-baseline justify-center gap-x-[0.2em]">
+          <span className="inline-flex flex-wrap items-center justify-center gap-x-[0.2em]">
             <span>Learn AI from</span>
             <CyclingColleges />
             <span>students</span>
@@ -153,9 +168,10 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.55, duration: 0.55 }}
-          className={`${jakartaSans.className} mx-auto mt-5 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:mt-6 sm:text-lg`}
+          className={`${jakartaSans.className} mx-auto mt-5 max-w-2xl text-base font-medium leading-relaxed text-slate-600 sm:mt-6 sm:text-lg`}
         >
-          A free weekly email for parents of high schoolers — AI tools, study workflows, and honest takes from the college students who actually use them.
+          A free, daily newsletter for parents of high schoolers! Sharing how we, real students, use AI to stay ahead of
+          school!
         </motion.p>
 
         <motion.div
@@ -178,7 +194,7 @@ export function HeroSection() {
           <motion.a
             href="#weekly-email"
             whileHover={{ y: -2 }}
-            className={`${jakartaSans.className} inline-flex w-full items-center justify-center rounded-[1.35rem] border-2 border-sky-200 bg-white/80 px-7 py-4 text-sm font-bold text-sky-800 backdrop-blur-sm transition-colors hover:border-sky-300 hover:bg-sky-50 sm:w-auto sm:px-8 sm:text-[0.8125rem]`}
+            className={`${jakartaSans.className} inline-flex w-full items-center justify-center rounded-[1.35rem] border-2 border-sky-200 bg-white/90 px-7 py-4 text-sm font-bold text-sky-800 no-underline backdrop-blur-sm transition-colors hover:border-sky-300 hover:bg-sky-50 sm:w-auto sm:px-8 sm:text-[0.8125rem]`}
           >
             See what&apos;s inside
           </motion.a>
