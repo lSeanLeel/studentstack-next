@@ -8,64 +8,112 @@ import { useOnboarding } from "@/components/onboarding-context";
 
 /** Order alternates cool (blue) and warm (orange / crimson) so similar reds never sit back-to-back. */
 const featuredColleges = [
-  { name: "UCLA", color: "#2774AE", logo: "/colleges/ucla.png" },
-  { name: "Princeton", color: "#E77500", logo: "/colleges/princeton.png" },
-  { name: "Columbia", color: "#003DA5", logo: "/colleges/columbia.png" },
-  { name: "Stanford", color: "#8C1515", logo: "/colleges/stanford.png" },
-  { name: "Caltech", color: "#FF6C0C", logo: "/colleges/caltech.png" },
-  { name: "Berkeley", color: "#003262", logo: "/colleges/berkeley.png" },
-  { name: "Harvard", color: "#A51C30", logo: "/colleges/harvard.png" },
-  { name: "Yale", color: "#00356B", logo: "/colleges/yale.png" },
-  { name: "MIT", color: "#A31F34", logo: "/colleges/mit.png" },
+  { name: "UCLA", color: "#2774AE", logo: "/colleges/ucla.png", showName: false },
+  { name: "Princeton", color: "#E77500", logo: "/colleges/princeton.png", showName: true },
+  { name: "Columbia", color: "#003DA5", logo: "/colleges/columbia.png", showName: true },
+  { name: "Stanford", color: "#8C1515", logo: "/colleges/stanford.png", showName: true },
+  { name: "Caltech", color: "#FF6C0C", logo: "/colleges/caltech.png", showName: true },
+  { name: "Berkeley", color: "#003262", logo: "/colleges/berkeley.png", showName: true },
+  { name: "Harvard", color: "#A51C30", logo: "/colleges/harvard.png", showName: true },
+  { name: "Yale", color: "#00356B", logo: "/colleges/yale.png", showName: false },
+  { name: "MIT", color: "#A31F34", logo: "/colleges/mit.png", showName: true },
 ] as const;
+
+function preloadCollegeLogos() {
+  return Promise.all(
+    featuredColleges.map(
+      (college) =>
+        new Promise<void>((resolve) => {
+          const img = new window.Image();
+          img.decoding = "async";
+          img.onload = () => resolve();
+          img.onerror = () => resolve();
+          img.src = college.logo;
+        })
+    )
+  );
+}
 
 function CyclingColleges() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [logosReady, setLogosReady] = useState(false);
 
   useEffect(() => {
+    let cancelled = false;
+    preloadCollegeLogos().then(() => {
+      if (!cancelled) setLogosReady(true);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!logosReady) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % featuredColleges.length);
     }, 4200);
     return () => clearInterval(interval);
-  }, []);
+  }, [logosReady]);
 
   const current = featuredColleges[currentIndex];
 
   return (
-    <span className="relative mx-[0.12em] inline-flex h-[1.4em] min-w-[13ch] items-center justify-center align-middle sm:min-w-[14ch]">
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={current.name}
-          initial={{ opacity: 0, y: 18, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: [0.92, 1.05, 1] }}
-          exit={{ opacity: 0, y: -14, scale: 1.02 }}
-          transition={{ duration: 0.55, ease: [0.2, 0.8, 0.2, 1] }}
-          className="absolute inset-x-0 top-1/2 flex -translate-y-1/2 items-center justify-center gap-[0.3em] whitespace-nowrap"
-          style={{ color: current.color }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={current.logo}
-            alt=""
-            width={64}
-            height={48}
-            className="h-[1.05em] w-auto max-w-[1.85em] shrink-0 object-contain"
-            draggable={false}
-          />
-          <span className="leading-none">{current.name}</span>
-        </motion.span>
-      </AnimatePresence>
-      <span className="invisible inline-flex items-center gap-[0.3em] whitespace-nowrap" aria-hidden>
+    <span
+      className="relative mx-[0.06em] inline-grid min-w-[10.5ch] items-baseline justify-items-center align-baseline sm:min-w-[11.5ch]"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      {/* Hidden preload stack so every logo is decoded before first paint of each rotation */}
+      <span className="pointer-events-none absolute h-0 w-0 overflow-hidden opacity-0" aria-hidden>
+        {featuredColleges.map((college) => (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img key={college.logo} src={college.logo} alt="" width={64} height={48} loading="eager" decoding="async" />
+        ))}
+      </span>
+
+      {/* Width/height sizer keeps the sentence baseline stable */}
+      <span
+        className="invisible col-start-1 row-start-1 inline-flex items-center gap-[0.22em] whitespace-nowrap leading-none"
+        aria-hidden
+      >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/colleges/princeton.png"
           alt=""
           width={64}
           height={48}
-          className="h-[1.05em] w-auto max-w-[1.85em] shrink-0 object-contain"
+          className="h-[0.88em] w-auto max-w-[2.1em] shrink-0 object-contain"
         />
         <span>Princeton</span>
       </span>
+
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.span
+          key={current.name}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: logosReady ? 1 : 0, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          className="col-start-1 row-start-1 inline-flex items-center gap-[0.22em] whitespace-nowrap leading-none"
+          style={{ color: current.color }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={current.logo}
+            alt={current.showName ? "" : current.name}
+            width={64}
+            height={48}
+            className={`w-auto shrink-0 object-contain object-center ${
+              current.showName ? "h-[0.88em] max-w-[1.35em]" : "h-[0.95em] max-w-[2.35em]"
+            }`}
+            draggable={false}
+            loading="eager"
+            decoding="sync"
+          />
+          {current.showName ? <span className="leading-none">{current.name}</span> : null}
+        </motion.span>
+      </AnimatePresence>
     </span>
   );
 }
@@ -155,7 +203,7 @@ export function HeroSection() {
           transition={{ delay: 0.35, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           className={`${fredokaHeadline.className} mt-6 max-w-4xl text-[clamp(1.35rem,3.2vw+0.55rem,2.35rem)] font-semibold leading-[1.25] tracking-[-0.03em] text-slate-800 sm:mt-8`}
         >
-          <span className="inline-flex flex-wrap items-center justify-center gap-x-[0.2em]">
+          <span className="inline-flex flex-wrap items-baseline justify-center gap-x-[0.18em]">
             <span>Learn AI from</span>
             <CyclingColleges />
             <span>students</span>
