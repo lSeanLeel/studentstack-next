@@ -84,17 +84,15 @@ function HeroEmailPlane() {
         initial={{ opacity: 0, y: 48 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 1.05, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-1/2 top-[52%] w-[min(150vw,78rem)] -translate-x-1/2 sm:top-[48%]"
+        className="absolute left-1/2 top-[68%] w-[min(150vw,78rem)] -translate-x-1/2 sm:top-[62%]"
       >
-        <div className="mx-auto origin-top scale-[1.08] rotate-[-1.25deg] sm:scale-100">
+        <div className="mx-auto origin-top scale-[1.08] rotate-[-1.25deg] opacity-80 sm:scale-100">
           <div className="rounded-t-[2.75rem] border border-sky-300/70 bg-white/85 px-6 pb-28 pt-5 shadow-[0_48px_120px_-36px_rgba(14,165,233,0.55)] backdrop-blur-md sm:px-12 sm:pt-8">
             <div className="mb-6 flex items-center gap-2 border-b border-sky-100 pb-4">
               <span className="h-2.5 w-2.5 rounded-full bg-sky-400" />
               <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
               <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
-              <span className={`ml-3 text-[11px] font-bold uppercase tracking-[0.18em] text-sky-700 ${jakartaSans.className}`}>
-                StudentStack Daily
-              </span>
+              <span className="ml-3 h-2.5 w-36 rounded-full bg-sky-200/90" />
             </div>
             <div className="space-y-4">
               <div className="h-4 w-2/5 rounded-full bg-sky-300/80" />
@@ -113,8 +111,8 @@ function HeroEmailPlane() {
         </div>
       </motion.div>
 
-      <div className="absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-t from-[#f8fafc] via-[#f8fafc]/85 to-transparent" />
-      <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#e0f2fe]/90 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-[28%] bg-gradient-to-t from-[#f8fafc] via-[#f8fafc]/80 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-[62%] bg-gradient-to-b from-[#e0f2fe] via-[#f0f9ff]/95 to-transparent" />
     </div>
   );
 }
