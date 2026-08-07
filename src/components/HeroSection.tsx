@@ -30,24 +30,26 @@ function CyclingColleges() {
   }, []);
 
   const current = featuredColleges[currentIndex];
+  // Reserve width for the longest label so names never collide with “students”.
+  const widthReserve = "Princeton";
 
   return (
-    <span className="relative inline-flex h-[1.15em] min-w-[4.5ch] items-baseline justify-center align-baseline sm:min-w-[5.5ch]">
+    <span className="relative mx-[0.12em] inline-flex h-[1.15em] min-w-[8.5ch] items-baseline justify-center align-baseline sm:min-w-[9ch]">
       <AnimatePresence mode="wait">
         <motion.span
           key={current.name}
           initial={{ opacity: 0, y: 18, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: [0.92, 1.08, 1] }}
+          animate={{ opacity: 1, y: 0, scale: [0.92, 1.06, 1] }}
           exit={{ opacity: 0, y: -14, scale: 1.02 }}
           transition={{ duration: 0.55, ease: [0.2, 0.8, 0.2, 1] }}
-          className="absolute inset-x-0 top-0 text-center"
+          className="absolute inset-x-0 top-0 text-center whitespace-nowrap"
           style={{ color: current.color }}
         >
           {current.name}
         </motion.span>
       </AnimatePresence>
-      <span className="invisible" aria-hidden>
-        Stanford
+      <span className="invisible whitespace-nowrap" aria-hidden>
+        {widthReserve}
       </span>
     </span>
   );
@@ -60,44 +62,44 @@ function HeroEmailPlane() {
       className="pointer-events-none absolute inset-0 overflow-hidden"
       aria-hidden
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_50%_-10%,#bae6fd_0%,transparent_55%),radial-gradient(ellipse_60%_50%_at_100%_40%,#a5f3fc_0%,transparent_50%),radial-gradient(ellipse_55%_45%_at_0%_70%,#fde68a_0%,transparent_45%),linear-gradient(180deg,#f0f9ff_0%,#ffffff_48%,#ecfeff_100%)]" />
-      <div className="absolute inset-0 opacity-[0.35] [background-image:radial-gradient(rgba(14,165,233,0.18)_1px,transparent_1px)] [background-size:22px_22px]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_50%_-10%,#7dd3fc_0%,transparent_55%),radial-gradient(ellipse_60%_50%_at_100%_30%,#99f6e4_0%,transparent_50%),radial-gradient(ellipse_55%_45%_at_0%_75%,#fde68a_0%,transparent_48%),linear-gradient(180deg,#e0f2fe_0%,#f8fafc_42%,#ecfeff_100%)]" />
+      <div className="absolute inset-0 opacity-[0.45] [background-image:radial-gradient(rgba(14,165,233,0.22)_1.2px,transparent_1.2px)] [background-size:20px_20px]" />
 
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 48 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.35, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-1/2 top-[42%] w-[min(140vw,72rem)] -translate-x-1/2 sm:top-[38%]"
+        transition={{ delay: 0.3, duration: 1.05, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute left-1/2 top-[52%] w-[min(150vw,78rem)] -translate-x-1/2 sm:top-[48%]"
       >
-        <div className="mx-auto origin-top scale-[1.05] rotate-[-1.5deg] opacity-70 blur-[0.2px] sm:scale-100">
-          <div className="rounded-t-[2.5rem] border border-sky-200/60 bg-white/70 px-6 pb-24 pt-5 shadow-[0_40px_100px_-40px_rgba(14,165,233,0.45)] backdrop-blur-sm sm:px-10 sm:pt-7">
-            <div className="mb-6 flex items-center gap-2 border-b border-sky-100/80 pb-4">
-              <span className="h-2.5 w-2.5 rounded-full bg-sky-300" />
-              <span className="h-2.5 w-2.5 rounded-full bg-amber-300" />
-              <span className="h-2.5 w-2.5 rounded-full bg-emerald-300" />
-              <span className={`ml-3 text-[11px] font-bold uppercase tracking-[0.18em] text-sky-700/80 ${jakartaSans.className}`}>
+        <div className="mx-auto origin-top scale-[1.08] rotate-[-1.25deg] sm:scale-100">
+          <div className="rounded-t-[2.75rem] border border-sky-300/70 bg-white/85 px-6 pb-28 pt-5 shadow-[0_48px_120px_-36px_rgba(14,165,233,0.55)] backdrop-blur-md sm:px-12 sm:pt-8">
+            <div className="mb-6 flex items-center gap-2 border-b border-sky-100 pb-4">
+              <span className="h-2.5 w-2.5 rounded-full bg-sky-400" />
+              <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
+              <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
+              <span className={`ml-3 text-[11px] font-bold uppercase tracking-[0.18em] text-sky-700 ${jakartaSans.className}`}>
                 Sunday · StudentStack Weekly
               </span>
             </div>
             <div className="space-y-4">
-              <div className="h-4 w-2/5 rounded-full bg-sky-200/70" />
-              <div className="h-8 w-4/5 rounded-2xl bg-slate-200/80" />
-              <div className="h-3 w-full rounded-full bg-slate-100" />
-              <div className="h-3 w-[92%] rounded-full bg-slate-100" />
-              <div className="mt-6 grid grid-cols-3 gap-3">
-                <div className="h-28 rounded-[1.5rem] bg-sky-100/90" />
-                <div className="h-28 rounded-[1.5rem] bg-emerald-100/90" />
-                <div className="h-28 rounded-[1.5rem] bg-amber-100/80" />
+              <div className="h-4 w-2/5 rounded-full bg-sky-300/80" />
+              <div className="h-9 w-4/5 rounded-2xl bg-slate-300/70" />
+              <div className="h-3.5 w-full rounded-full bg-slate-200/90" />
+              <div className="h-3.5 w-[92%] rounded-full bg-slate-200/80" />
+              <div className="mt-6 grid grid-cols-3 gap-3 sm:gap-4">
+                <div className="h-32 rounded-[1.5rem] bg-sky-200/90 sm:h-36" />
+                <div className="h-32 rounded-[1.5rem] bg-emerald-200/90 sm:h-36" />
+                <div className="h-32 rounded-[1.5rem] bg-amber-200/85 sm:h-36" />
               </div>
-              <div className="mt-4 h-3 w-3/4 rounded-full bg-slate-100" />
-              <div className="h-3 w-2/3 rounded-full bg-slate-100" />
+              <div className="mt-4 h-3.5 w-3/4 rounded-full bg-slate-200/80" />
+              <div className="h-3.5 w-2/3 rounded-full bg-slate-200/70" />
             </div>
           </div>
         </div>
       </motion.div>
 
-      <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-white via-white/90 to-transparent" />
-      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white/80 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-t from-[#f8fafc] via-[#f8fafc]/85 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#e0f2fe]/90 to-transparent" />
     </div>
   );
 }
@@ -138,9 +140,13 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          className={`${fredokaHeadline.className} mt-6 max-w-4xl text-[clamp(1.35rem,3.2vw+0.55rem,2.35rem)] font-semibold leading-[1.15] tracking-[-0.03em] text-slate-800 sm:mt-8`}
+          className={`${fredokaHeadline.className} mt-6 max-w-4xl text-[clamp(1.35rem,3.2vw+0.55rem,2.35rem)] font-semibold leading-[1.25] tracking-[-0.03em] text-slate-800 sm:mt-8`}
         >
-          Learn AI from <CyclingColleges /> students
+          <span className="inline-flex flex-wrap items-baseline justify-center gap-x-[0.2em]">
+            <span>Learn AI from</span>
+            <CyclingColleges />
+            <span>students</span>
+          </span>
         </motion.p>
 
         <motion.p
