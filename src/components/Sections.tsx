@@ -10,36 +10,43 @@ import { Button } from "./ui/Button";
 import { useOnboarding } from "./onboarding-context";
 export function TestimonialSection() {
   return (
-    <section className="bg-white pt-10 pb-24 sm:pt-12 sm:pb-28">
+    <section className="relative overflow-hidden bg-transparent pt-6 pb-20 sm:pt-8 sm:pb-28">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <p className="mb-8 text-center text-[10px] font-black uppercase tracking-[0.22em] text-sky-600">Testimonial</p>
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative p-12 sm:p-20 rounded-[4rem] bg-slate-900 text-white shadow-2xl overflow-hidden group"
+          transition={{ duration: 0.5 }}
+          className="relative overflow-hidden rounded-[2.75rem] border-2 border-slate-800 bg-slate-900 px-8 py-12 text-white sm:rounded-[3.5rem] sm:px-16 sm:py-16"
         >
-          {/* Decorative elements */}
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-sky-500/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
-          
-          <div className="relative z-10 flex flex-col items-center gap-8">
+          <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-sky-500/15 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-20 -left-16 h-56 w-56 rounded-full bg-emerald-400/10 blur-3xl" />
+
+          <div className="relative z-10 flex flex-col items-center gap-8 text-center">
             <div className="flex flex-col items-center">
-              <div className="mb-4 flex h-24 w-24 items-center justify-center rounded-[1.75rem] border border-white/20 bg-gradient-to-br from-sky-400/25 to-violet-400/25 text-2xl font-black text-white shadow-[0_16px_30px_-18px_rgba(14,165,233,0.6)]">
-                SL
+              <div className="mb-4 h-24 w-24 overflow-hidden rounded-[1.75rem] border-2 border-white/20 shadow-[0_16px_0_0_rgba(0,0,0,0.25)]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/sean-lee.jpg"
+                  alt="Sean Lee"
+                  className="h-full w-full object-cover object-top"
+                />
               </div>
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-sky-200">Sean Lee</p>
-              <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-slate-400">Founder • UCLA &apos;27</p>
-            </div>
-            <div className="flex-grow text-center relative">
-              <p
-                className={`relative z-10 max-w-2xl text-2xl font-medium leading-[1.3] tracking-tight text-slate-100 sm:text-4xl ${jakartaSans.className}`}
-              >
-                <span className="text-white font-serif text-3xl sm:text-5xl mr-1">&ldquo;</span>
-                We at StudentStack built this community because we saw the disparity between students who use AI for school and those who don&apos;t. As college students, we&apos;re native to AI and we learn about new tech every day — our team uses that signal to help families bridge the gap.
-                <span className="text-white font-serif text-3xl sm:text-5xl ml-1">&rdquo;</span>
+              <p className={`text-sm font-black uppercase tracking-[0.22em] text-sky-200 ${jakartaSans.className}`}>
+                Sean Lee
+              </p>
+              <p className={`text-[10px] font-bold uppercase tracking-[0.22em] text-slate-400 ${jakartaSans.className}`}>
+                Founder · UCLA &apos;27
               </p>
             </div>
+            <p
+              className={`max-w-2xl text-xl font-medium leading-[1.35] tracking-tight text-slate-100 sm:text-3xl ${jakartaSans.className}`}
+            >
+              <span className={`${fredokaHeadline.className} mr-1 text-3xl text-sky-300 sm:text-5xl`}>&ldquo;</span>
+              We built StudentStack because we saw the gap between students who use AI for school and those who don&apos;t.
+              College students learn new tools every week — we turn that into a free Sunday email families can actually use.
+              <span className={`${fredokaHeadline.className} ml-1 text-3xl text-sky-300 sm:text-5xl`}>&rdquo;</span>
+            </p>
           </div>
         </motion.div>
       </div>
@@ -97,35 +104,43 @@ export function NewsletterBenefitsSection() {
   );
 }
 
-export function FinalCTA({ scrollToSignup }: { scrollToSignup: () => void }) {
+export function FinalCTA() {
+  const { openOnboarding } = useOnboarding();
+
   return (
-    <section className="py-32 bg-white relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="bg-slate-900 rounded-[4rem] p-12 sm:p-24 text-center shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-          
-          <div className="relative z-10 max-w-3xl mx-auto">
-            <h2 className="text-5xl sm:text-7xl font-bold tracking-tight text-white mb-8 font-display leading-tight">
-              Stay <span className="font-black">ahead</span> of <span className="text-sky-400 font-black">AI</span> for School
+    <section className="relative overflow-hidden bg-transparent py-20 sm:py-28">
+      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div className="relative overflow-hidden rounded-[2.75rem] border-2 border-sky-200 bg-gradient-to-br from-sky-50 via-white to-emerald-50 px-8 py-14 text-center sm:rounded-[3.5rem] sm:px-16 sm:py-20">
+          <div className="pointer-events-none absolute -right-16 top-0 h-56 w-56 rounded-full bg-sky-300/30 blur-3xl" />
+          <div className="pointer-events-none absolute -left-10 bottom-0 h-48 w-48 rounded-full bg-amber-200/40 blur-3xl" />
+
+          <div className="relative z-10 mx-auto max-w-2xl">
+            <h2
+              className={`text-4xl font-semibold leading-[1.05] tracking-[-0.035em] text-slate-900 sm:text-6xl ${fredokaHeadline.className}`}
+            >
+              One Sunday email.{" "}
+              <span className="text-sky-500">Zero fluff.</span>
             </h2>
-            <p className="text-slate-400 text-xl font-medium mb-12 leading-relaxed">
-              Free weekly AI education for parents, college peers, and high schoolers: tools, prompts, and honest student takes.
-              Drop your email once and you&apos;re in.
+            <p className={`mx-auto mt-5 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}>
+              Free AI education for parents of high schoolers — tools, prompts, and honest student takes. Drop your email
+              once and you&apos;re in.
             </p>
-            
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Button 
-                onClick={scrollToSignup} 
-                className="w-full sm:w-auto px-16 bg-sky-500 text-white hover:bg-sky-400 shadow-2xl shadow-sky-500/20 rounded-2xl h-20 font-bold uppercase tracking-widest text-sm transition-all hover:-translate-y-1"
+
+            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
+              <Button
+                onClick={() => openOnboarding()}
+                className="h-16 w-full rounded-2xl bg-slate-900 px-10 text-sm font-black uppercase tracking-[0.16em] text-white shadow-[0_14px_0_0_rgba(15,23,42,0.12)] transition-all hover:-translate-y-1 hover:bg-slate-800 sm:w-auto"
               >
-                  Sign up <ArrowRight className="ml-3 h-5 w-5 text-white" />
+                Sign up free
+                <ArrowRight className="ml-3 h-5 w-5 text-white" />
               </Button>
-              
-              <div className="flex items-center gap-4 px-8 py-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md h-20">
-                <CheckCircle2 className="h-6 w-6 text-emerald-400" />
-                <span className="text-[11px] font-bold text-white uppercase tracking-widest text-left">
-                  No payment<br />Unsubscribe anytime
+
+              <div className="flex h-16 items-center gap-3 rounded-2xl border-2 border-emerald-200 bg-white/80 px-6">
+                <CheckCircle2 className="h-5 w-5 text-emerald-500" />
+                <span className={`text-left text-[11px] font-bold uppercase tracking-[0.14em] text-slate-700 ${jakartaSans.className}`}>
+                  100% free
+                  <br />
+                  Unsubscribe anytime
                 </span>
               </div>
             </div>
@@ -140,7 +155,7 @@ export function Footer() {
   const { openOnboarding } = useOnboarding();
 
   return (
-    <footer className="bg-white border-t border-slate-100 pt-24 pb-12">
+    <footer className="border-t border-slate-100 bg-white/80 pt-24 pb-12 backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
           <div className="col-span-1 md:col-span-2">

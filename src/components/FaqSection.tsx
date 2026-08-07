@@ -121,7 +121,7 @@ export function FaqSection() {
   return (
     <section
       id="faq"
-      className="relative overflow-hidden border-t border-sky-100/80 bg-gradient-to-b from-violet-50/30 via-white to-sky-50/25 px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+      className="relative overflow-hidden border-t border-sky-100/80 bg-transparent px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
       aria-labelledby="faq-heading"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_45%_at_50%_0%,rgba(14,165,233,0.07),transparent)]" />

@@ -8,8 +8,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "StudentStack",
-  description: "StudentStack Elite funnel and operations dashboard",
+  title: "StudentStack — Free weekly AI email for parents",
+  description:
+    "StudentStack is a free weekly AI education newsletter for parents of high schoolers, written by college students.",
 };
 
 export default function RootLayout({

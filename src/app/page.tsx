@@ -29,6 +29,11 @@ const FaqSection = dynamic(
   { loading: sectionLoading }
 );
 
+const FinalCTA = dynamic(
+  () => import("@/components/Sections").then((m) => ({ default: m.FinalCTA })),
+  { loading: sectionLoading }
+);
+
 const Footer = dynamic(
   () => import("@/components/Sections").then((m) => ({ default: m.Footer })),
   { loading: sectionLoading }
@@ -41,20 +46,20 @@ export default function LandingPage() {
   const replayIntro = useCallback(() => {
     setIntroSession((n) => n + 1);
     setShowIntro(true);
-        window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }, []);
 
   return (
     <OnboardingProvider>
-      <main className="min-h-screen bg-white selection:bg-sky-100 selection:text-sky-900">
+      <main className="min-h-screen bg-transparent selection:bg-sky-100 selection:text-sky-900">
         {showIntro && <IntroAnimation key={introSession} onComplete={handleIntroComplete} />}
         <Navbar onHomeLogoClick={replayIntro} />
         <HeroSection />
-
         <PlaybookSection />
         <TestimonialSection />
-        <FaqSection />
         <StudentShowcase />
+        <FaqSection />
+        <FinalCTA />
         <Footer />
       </main>
     </OnboardingProvider>

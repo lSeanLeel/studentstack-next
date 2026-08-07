@@ -18,7 +18,7 @@ export function Navbar({ onHomeLogoClick }: { onHomeLogoClick?: () => void }) {
 
   return (
     <div className="pointer-events-none fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-5">
-      <nav className="pointer-events-auto mx-auto w-full max-w-6xl rounded-[1.75rem] border border-sky-200/70 bg-white/85 px-3 py-2.5 shadow-[0_14px_36px_-20px_rgba(14,165,233,0.5)] backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:shadow-[0_22px_40px_-22px_rgba(14,165,233,0.55)] sm:rounded-[2rem] sm:px-6 sm:py-3 xl:max-w-7xl">
+      <nav className="pointer-events-auto mx-auto w-full max-w-6xl rounded-[1.75rem] border border-sky-200/70 bg-white/90 px-3 py-2.5 shadow-[0_14px_0_0_rgba(14,165,233,0.12)] backdrop-blur-xl transition-all hover:-translate-y-0.5 sm:rounded-[2rem] sm:px-6 sm:py-3 xl:max-w-7xl">
         {/* Top row: logo + (desktop nav) + Sign up — always visible at every breakpoint */}
         <div className="flex items-center justify-between gap-3">
           <Link
