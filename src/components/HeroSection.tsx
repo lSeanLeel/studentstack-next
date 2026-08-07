@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { jakartaSans, fredokaHeadline } from "@/app/fonts";
 import { useOnboarding } from "@/components/onboarding-context";
@@ -60,7 +60,7 @@ function CyclingColleges() {
 
   return (
     <span
-      className="relative mx-[0.06em] inline-grid min-w-[10.5ch] items-baseline justify-items-center align-baseline sm:min-w-[11.5ch]"
+      className="relative mx-[0.04em] inline-flex min-w-[9.5ch] items-center justify-center align-middle sm:min-w-[10.5ch]"
       aria-live="polite"
       aria-atomic="true"
     >
@@ -72,48 +72,35 @@ function CyclingColleges() {
         ))}
       </span>
 
-      {/* Width/height sizer keeps the sentence baseline stable */}
-      <span
-        className="invisible col-start-1 row-start-1 inline-flex items-center gap-[0.22em] whitespace-nowrap leading-none"
-        aria-hidden
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/colleges/princeton.png"
-          alt=""
-          width={64}
-          height={48}
-          className="h-[0.88em] w-auto max-w-[2.1em] shrink-0 object-contain"
-        />
-        <span>Princeton</span>
-      </span>
-
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.span
-          key={current.name}
-          initial={{ opacity: 0, y: 6 }}
-          animate={{ opacity: logosReady ? 1 : 0, y: 0 }}
-          exit={{ opacity: 0, y: -6 }}
-          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="col-start-1 row-start-1 inline-flex items-center gap-[0.22em] whitespace-nowrap leading-none"
-          style={{ color: current.color }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={current.logo}
-            alt={current.showName ? "" : current.name}
-            width={64}
-            height={48}
-            className={`w-auto shrink-0 object-contain object-center ${
-              current.showName ? "h-[0.88em] max-w-[1.35em]" : "h-[0.95em] max-w-[2.35em]"
+      {featuredColleges.map((college, index) => {
+        const active = logosReady && index === currentIndex;
+        return (
+          <span
+            key={college.name}
+            className={`inline-flex items-center justify-center gap-[0.16em] whitespace-nowrap transition-opacity duration-300 ease-out ${
+              active ? "relative opacity-100" : "pointer-events-none absolute opacity-0"
             }`}
-            draggable={false}
-            loading="eager"
-            decoding="sync"
-          />
-          {current.showName ? <span className="leading-none">{current.name}</span> : null}
-        </motion.span>
-      </AnimatePresence>
+            style={{ color: college.color }}
+            aria-hidden={!active}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={college.logo}
+              alt=""
+              width={64}
+              height={48}
+              className={`block w-auto shrink-0 object-contain ${
+                college.showName ? "h-[0.78em]" : "h-[0.72em] max-w-[2.4em]"
+              }`}
+              draggable={false}
+              loading="eager"
+              decoding="sync"
+            />
+            {college.showName ? <span className="leading-none">{college.name}</span> : null}
+          </span>
+        );
+      })}
+      <span className="sr-only">{current.name}</span>
     </span>
   );
 }
@@ -203,10 +190,10 @@ export function HeroSection() {
           transition={{ delay: 0.35, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           className={`${fredokaHeadline.className} mt-6 max-w-4xl text-[clamp(1.35rem,3.2vw+0.55rem,2.35rem)] font-semibold leading-[1.25] tracking-[-0.03em] text-slate-800 sm:mt-8`}
         >
-          <span className="inline-flex flex-wrap items-baseline justify-center gap-x-[0.18em]">
-            <span>Learn AI from</span>
+          <span className="inline-flex flex-wrap items-center justify-center gap-x-[0.16em]">
+            <span className="leading-none">Learn AI from</span>
             <CyclingColleges />
-            <span>students</span>
+            <span className="leading-none">students</span>
           </span>
         </motion.p>
 
