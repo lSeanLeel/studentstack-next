@@ -175,13 +175,13 @@ export function Footer() {
             <h4 className="mb-6 text-sm font-bold uppercase tracking-widest text-slate-900">Explore</h4>
             <ul className="space-y-4 text-sm font-medium text-slate-500">
               <li>
-                <a href="#about" className="transition-colors hover:text-sky-500">
-                  About
+                <a href="#faq" className="transition-colors hover:text-sky-500">
+                  FAQ
                 </a>
               </li>
               <li>
-                <a href="#faq" className="transition-colors hover:text-sky-500">
-                  FAQ
+                <a href="#faq-who-writes" className="transition-colors hover:text-sky-500">
+                  Who writes it
                 </a>
               </li>
               <li>

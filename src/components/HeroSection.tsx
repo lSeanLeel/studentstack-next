@@ -224,14 +224,9 @@ export function HeroSection() {
           transition={{ delay: 0.55, duration: 0.55 }}
           className={`${jakartaSans.className} mx-auto mt-5 max-w-2xl text-base font-medium leading-relaxed text-slate-600 sm:mt-6 sm:text-lg`}
         >
-          A free, daily newsletter for parents of high schoolers! Sharing how{" "}
-          <a
-            href="#faq-who-writes"
-            className="font-black text-sky-700 underline decoration-sky-300 underline-offset-[0.18em] transition-colors hover:text-sky-600 hover:decoration-sky-400"
-          >
-            we
-          </a>
-          ,{" "}
+          A{" "}
+          <span className={`${fredokaHeadline.className} font-semibold text-sky-600`}>free</span>, daily newsletter for
+          parents of high schoolers! Sharing how we,{" "}
           <a
             href="#faq-who-writes"
             className={`${fredokaHeadline.className} font-semibold text-slate-900 underline decoration-amber-300/80 underline-offset-[0.18em] transition-colors hover:text-sky-700 hover:decoration-sky-300`}
@@ -246,24 +241,23 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8 flex w-full max-w-lg flex-col items-center gap-4 sm:mt-10"
+          className="mt-9 flex w-full max-w-md flex-col items-center gap-3.5 sm:mt-11"
         >
           <motion.button
             type="button"
             onClick={() => openOnboarding()}
-            whileHover={{ y: -3, scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className={`${jakartaSans.className} inline-flex w-full items-center justify-center gap-2 rounded-[1.35rem] bg-slate-900 px-8 py-4 text-sm font-black uppercase tracking-[0.12em] text-white shadow-[0_16px_0_0_rgba(15,23,42,0.12)] transition-colors hover:bg-slate-800 sm:w-auto sm:min-w-[20rem] sm:px-10 sm:py-4 sm:text-[0.8125rem]`}
+            whileHover={{ y: -2, scale: 1.015 }}
+            whileTap={{ scale: 0.985 }}
+            className={`${jakartaSans.className} inline-flex w-full items-center justify-center gap-2 rounded-[1.5rem] border border-sky-300/60 bg-gradient-to-b from-sky-500 to-sky-600 px-8 py-4 text-sm font-black uppercase tracking-[0.11em] text-white shadow-[0_14px_0_0_rgba(2,132,199,0.28),0_22px_40px_-18px_rgba(14,165,233,0.55)] transition-colors hover:from-sky-400 hover:to-sky-500 sm:w-auto sm:min-w-[19rem] sm:px-10 sm:text-[0.8125rem]`}
           >
             Get tomorrow&apos;s free email
             <ArrowRight className="h-4 w-4" aria-hidden />
           </motion.button>
           <p
-            className={`${jakartaSans.className} max-w-md text-center text-sm font-semibold leading-snug text-slate-500 sm:text-[0.95rem]`}
+            className={`${jakartaSans.className} rounded-full border border-sky-100/80 bg-white/55 px-4 py-2 text-center text-[13px] font-medium leading-snug text-slate-500 shadow-[0_8px_24px_-18px_rgba(14,165,233,0.35)] backdrop-blur-md sm:text-sm`}
           >
-            Join{" "}
-            <span className="font-black text-sky-600">500+</span> parents helping their high schooler stay ahead with
-            AI
+            Join <span className="font-bold text-sky-700">500+</span> parents helping their high schooler stay ahead
+            with AI
           </p>
         </motion.div>
       </div>

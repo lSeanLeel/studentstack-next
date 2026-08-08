@@ -9,11 +9,6 @@ import { OnboardingProvider } from "@/components/onboarding-context";
 
 const sectionLoading = () => <div className="h-96" aria-hidden />;
 
-const TestimonialSection = dynamic(
-  () => import("@/components/Sections").then((m) => ({ default: m.TestimonialSection })),
-  { loading: sectionLoading }
-);
-
 const FaqSection = dynamic(
   () => import("@/components/FaqSection").then((m) => ({ default: m.FaqSection })),
   { loading: sectionLoading }
@@ -45,7 +40,6 @@ export default function LandingPage() {
         {showIntro && <IntroAnimation key={introSession} onComplete={handleIntroComplete} />}
         <Navbar onHomeLogoClick={replayIntro} />
         <HeroSection />
-        <TestimonialSection />
         <FaqSection />
         <FinalCTA />
         <Footer />

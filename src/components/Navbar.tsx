@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { HelpCircle, MessageCircle } from "lucide-react";
+import { HelpCircle } from "lucide-react";
 import { jakartaSans } from "@/app/fonts";
 import { BrandWordmark } from "./BrandWordmark";
 import { useOnboarding } from "./onboarding-context";
@@ -10,10 +10,7 @@ export function Navbar({ onHomeLogoClick }: { onHomeLogoClick?: () => void }) {
   const pathname = usePathname();
   const { openOnboarding } = useOnboarding();
 
-  const navItems = [
-    { label: "About", href: "#about", icon: MessageCircle },
-    { label: "FAQ", href: "#faq", icon: HelpCircle },
-  ];
+  const navItems = [{ label: "FAQ", href: "#faq", icon: HelpCircle }];
 
   return (
     <div className="pointer-events-none fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-5">
@@ -60,7 +57,7 @@ export function Navbar({ onHomeLogoClick }: { onHomeLogoClick?: () => void }) {
         </div>
 
         {/* Mobile-only second row: nav items, always visible below 768px */}
-        <div className={`mt-2 grid grid-cols-2 gap-1.5 md:hidden ${jakartaSans.className}`}>
+        <div className={`mt-2 grid grid-cols-1 gap-1.5 md:hidden ${jakartaSans.className}`}>
           {navItems.map((item) => {
             const Icon = item.icon;
             return (
