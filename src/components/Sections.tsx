@@ -153,14 +153,13 @@ export function FinalCTA() {
 }
 
 export function Footer() {
-  const { openOnboarding } = useOnboarding();
   const { openContact } = useContact();
 
   return (
     <footer className="border-t border-slate-100 bg-white/80 pt-24 pb-12 backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
-          <div className="col-span-1 md:col-span-2">
+        <div className="mb-20 grid grid-cols-1 gap-12 md:grid-cols-3">
+          <div className="md:col-span-2">
             <Link
               href="/"
               className="inline-flex items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2"
@@ -172,45 +171,6 @@ export function Footer() {
               Free weekly email from university students: AI tools for school, exclusive research opportunities for high
               schoolers, + more!
             </p>
-          </div>
-          <div>
-            <h4 className="mb-6 text-sm font-bold uppercase tracking-widest text-slate-900">Explore</h4>
-            <ul className="space-y-4 text-sm font-medium text-slate-500">
-              <li>
-                <a href="#why-us" className="transition-colors hover:text-sky-500">
-                  Why us
-                </a>
-              </li>
-              <li>
-                <a href="#ai-advantage" className="transition-colors hover:text-sky-500">
-                  The AI Advantage
-                </a>
-              </li>
-              <li>
-                <a href="#faq" className="transition-colors hover:text-sky-500">
-                  FAQ
-                </a>
-              </li>
-              <li>
-                <a href="#faq-who-writes" className="transition-colors hover:text-sky-500">
-                  Who writes it
-                </a>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={openOnboarding}
-                  className="text-left font-medium text-slate-500 transition-colors hover:text-sky-500"
-                >
-                  Sign Up
-                </button>
-              </li>
-              <li>
-                <Link href="/admin" className="text-slate-500 text-xs transition-colors hover:text-slate-700">
-                  Operator Portal
-                </Link>
-              </li>
-            </ul>
           </div>
           <div>
             <h4 className="mb-6 text-sm font-bold uppercase tracking-widest text-slate-900">Legal</h4>

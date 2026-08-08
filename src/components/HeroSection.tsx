@@ -66,7 +66,7 @@ function CollegeHeadline() {
   return (
     <motion.span
       layout
-      className="inline-flex max-w-full flex-wrap items-center justify-center gap-x-[0.18em] gap-y-1"
+      className="inline-flex max-w-full flex-wrap items-center justify-center gap-x-[0.38em] gap-y-1"
       style={{ perspective: 900 }}
       aria-live="polite"
       aria-atomic="true"
