@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { jakartaSans, fredokaHeadline } from "@/app/fonts";
 import { useOnboarding } from "@/components/onboarding-context";
@@ -15,8 +15,7 @@ const featuredColleges = [
   { name: "Caltech", color: "#FF6C0C", logo: "/colleges/caltech.png", showName: true },
   { name: "Berkeley", color: "#003262", logo: "/colleges/berkeley.png", showName: true },
   { name: "Harvard", color: "#A51C30", logo: "/colleges/harvard.png", showName: true },
-  { name: "Yale", color: "#00356B", logo: "/colleges/yale.png", showName: false },
-  { name: "MIT", color: "#A31F34", logo: "/colleges/mit.png", showName: true },
+  { name: "Yale", color: "#00356B", logo: "/colleges/yale.png", showName: true },
 ] as const;
 
 function preloadCollegeLogos() {
@@ -34,7 +33,13 @@ function preloadCollegeLogos() {
   );
 }
 
-function CyclingColleges() {
+const collegeFlipTransition = {
+  duration: 0.55,
+  ease: [0.22, 1, 0.36, 1] as const,
+};
+
+/** Full “Learn AI from ___ students” line — width flexes with each school; college mark flips in. */
+function CollegeHeadline() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [logosReady, setLogosReady] = useState(false);
 
@@ -52,19 +57,20 @@ function CyclingColleges() {
     if (!logosReady) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % featuredColleges.length);
-    }, 4200);
+    }, 3800);
     return () => clearInterval(interval);
   }, [logosReady]);
 
   const current = featuredColleges[currentIndex];
 
   return (
-    <span
-      className="relative mx-[0.04em] inline-flex min-w-[9.5ch] items-center justify-center align-middle sm:min-w-[10.5ch]"
+    <motion.span
+      layout
+      className="inline-flex max-w-full flex-wrap items-center justify-center gap-x-[0.18em] gap-y-1"
+      style={{ perspective: 900 }}
       aria-live="polite"
       aria-atomic="true"
     >
-      {/* Hidden preload stack so every logo is decoded before first paint of each rotation */}
       <span className="pointer-events-none absolute h-0 w-0 overflow-hidden opacity-0" aria-hidden>
         {featuredColleges.map((college) => (
           // eslint-disable-next-line @next/next/no-img-element
@@ -72,36 +78,55 @@ function CyclingColleges() {
         ))}
       </span>
 
-      {featuredColleges.map((college, index) => {
-        const active = logosReady && index === currentIndex;
-        return (
-          <span
-            key={college.name}
-            className={`inline-flex items-center justify-center gap-[0.16em] whitespace-nowrap transition-opacity duration-300 ease-out ${
-              active ? "relative opacity-100" : "pointer-events-none absolute opacity-0"
-            }`}
-            style={{ color: college.color }}
-            aria-hidden={!active}
+      <motion.span layout className="leading-none">
+        Learn AI from
+      </motion.span>
+
+      <span className="relative inline-flex items-center justify-center [transform-style:preserve-3d]">
+        <AnimatePresence mode="popLayout" initial={false}>
+          <motion.span
+            key={current.name}
+            layout
+            initial={{ opacity: 0, rotateY: 78, rotateZ: -4, y: 14, scale: 0.82 }}
+            animate={{
+              opacity: logosReady ? 1 : 0,
+              rotateY: 0,
+              rotateZ: 0,
+              y: 0,
+              scale: [0.82, 1.08, 1],
+            }}
+            exit={{ opacity: 0, rotateY: -78, rotateZ: 4, y: -14, scale: 0.82 }}
+            transition={collegeFlipTransition}
+            className="inline-flex items-center justify-center gap-[0.16em] whitespace-nowrap will-change-transform"
+            style={{ color: current.color, transformOrigin: "center center" }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={college.logo}
+            <motion.img
+              src={current.logo}
               alt=""
               width={64}
               height={48}
               className={`block w-auto shrink-0 object-contain ${
-                college.showName ? "h-[0.78em]" : "h-[0.72em] max-w-[2.4em]"
+                current.showName ? "h-[0.78em]" : "h-[0.84em] max-w-[2.5em]"
               }`}
               draggable={false}
               loading="eager"
               decoding="sync"
+              initial={{ rotate: -12, scale: 0.7 }}
+              animate={{ rotate: [ -12, 8, 0 ], scale: [0.7, 1.12, 1] }}
+              transition={{ duration: 0.55, ease: [0.34, 1.4, 0.64, 1] }}
             />
-            {college.showName ? <span className="leading-none">{college.name}</span> : null}
-          </span>
-        );
-      })}
+            {current.showName ? <span className="leading-none">{current.name}</span> : null}
+          </motion.span>
+        </AnimatePresence>
+      </span>
+
+      <motion.span layout className="leading-none">
+        students
+      </motion.span>
+
       <span className="sr-only">{current.name}</span>
-    </span>
+    </motion.span>
   );
 }
 
@@ -190,11 +215,7 @@ export function HeroSection() {
           transition={{ delay: 0.35, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           className={`${fredokaHeadline.className} mt-6 max-w-4xl text-[clamp(1.35rem,3.2vw+0.55rem,2.35rem)] font-semibold leading-[1.25] tracking-[-0.03em] text-slate-800 sm:mt-8`}
         >
-          <span className="inline-flex flex-wrap items-center justify-center gap-x-[0.16em]">
-            <span className="leading-none">Learn AI from</span>
-            <CyclingColleges />
-            <span className="leading-none">students</span>
-          </span>
+          <CollegeHeadline />
         </motion.p>
 
         <motion.p
