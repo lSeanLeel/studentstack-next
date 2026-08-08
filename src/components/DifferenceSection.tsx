@@ -7,13 +7,13 @@ import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 const beats = [
   {
     num: "01",
-    title: "Built by students still in class",
+    title: "Support from students still in class",
     body: "StudentStack is run by college students — not a distant content team. We write from the same pressure, deadlines, and tools high schoolers are about to face.",
   },
   {
     num: "02",
     title: "What we use, we share",
-    body: "Every week we see classmates pull ahead with AI in lectures, labs, and applications. We turn those habits into a free email parents can actually pass on.",
+    body: "The “best” AI tool for school changes constantly. We share the latest ones we actually use — so parents get what’s working now, not last semester’s hype.",
   },
   {
     num: "03",
@@ -26,13 +26,9 @@ export function DifferenceSection() {
   return (
     <section
       id="why-us"
-      className="relative overflow-hidden border-t border-sky-100/80 bg-transparent px-4 py-16 sm:px-6 sm:py-22 lg:px-8 lg:py-24"
+      className="relative overflow-hidden border-t border-slate-100 bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
       aria-labelledby="why-us-heading"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_0%_0%,rgba(125,211,252,0.2),transparent_55%),radial-gradient(ellipse_55%_45%_at_100%_100%,rgba(253,224,71,0.14),transparent_50%)]" />
-      <div className="pointer-events-none absolute -left-24 top-24 h-56 w-56 rounded-full bg-sky-200/30 blur-3xl" />
-      <div className="pointer-events-none absolute -right-16 bottom-10 h-48 w-48 rounded-full bg-amber-200/35 blur-3xl" />
-
       <div className="relative mx-auto grid w-full max-w-3xl gap-12 lg:max-w-5xl lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-start lg:gap-16 xl:max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
@@ -48,7 +44,7 @@ export function DifferenceSection() {
             A{" "}
             <span className="font-bold text-sky-500">student</span>
             -run org helping high schoolers{" "}
-            <span className="font-semibold text-amber-500">stay ahead with AI</span>
+            <span className="font-semibold text-[#ff6a00]">stay ahead with AI</span>
           </h2>
           <p
             className={`mt-5 max-w-md text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}
@@ -60,7 +56,7 @@ export function DifferenceSection() {
 
         <div className="relative">
           <div
-            className="pointer-events-none absolute bottom-3 left-[1.15rem] top-3 w-px bg-gradient-to-b from-sky-300 via-amber-300 to-emerald-300 sm:left-[1.35rem]"
+            className="pointer-events-none absolute bottom-3 left-[1.15rem] top-3 w-px bg-gradient-to-b from-sky-300 via-orange-300 to-emerald-300 sm:left-[1.35rem]"
             aria-hidden
           />
 

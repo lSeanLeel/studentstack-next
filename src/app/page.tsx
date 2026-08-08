@@ -15,6 +15,11 @@ const DifferenceSection = dynamic(
   { loading: sectionLoading }
 );
 
+const AiAdvantageSection = dynamic(
+  () => import("@/components/AiAdvantageSection").then((m) => ({ default: m.AiAdvantageSection })),
+  { loading: sectionLoading }
+);
+
 const FaqSection = dynamic(
   () => import("@/components/FaqSection").then((m) => ({ default: m.FaqSection })),
   { loading: sectionLoading }
@@ -48,6 +53,7 @@ export default function LandingPage() {
           <Navbar onHomeLogoClick={replayIntro} />
           <HeroSection />
           <DifferenceSection />
+          <AiAdvantageSection />
           <FaqSection />
           <FinalCTA />
           <Footer />

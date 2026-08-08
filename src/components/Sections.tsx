@@ -182,6 +182,11 @@ export function Footer() {
                 </a>
               </li>
               <li>
+                <a href="#ai-advantage" className="transition-colors hover:text-sky-500">
+                  The AI Advantage
+                </a>
+              </li>
+              <li>
                 <a href="#faq" className="transition-colors hover:text-sky-500">
                   FAQ
                 </a>
