@@ -247,7 +247,7 @@ export function HeroSection() {
           <p
             className={`${jakartaSans.className} text-center text-[13px] font-medium leading-snug text-slate-600 [text-shadow:0_1px_0_rgba(255,255,255,0.85)] sm:text-sm`}
           >
-            Join <span className="font-bold text-sky-700">500+</span> parents helping their high schooler stay ahead
+            Join <span className="font-bold text-sky-700">2000+</span> parents helping their high schooler stay ahead
             with AI
           </p>
           <motion.button

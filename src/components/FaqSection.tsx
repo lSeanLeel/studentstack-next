@@ -12,18 +12,27 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "What is StudentStack?",
     a: (
       <>
-        We are a group of college students building a, free online community to share how students are using AI to stay
-        ahead of school. We have grown a community of parents and high schoolers looking to learn from us students who
-        Actually know how to use AI best for school.
+        We are a student-run organization helping high schoolers stay ahead with AI. Most families start with our free
+        daily newsletter. We also build a deeper learning home (practice, credentials, and a private student portal) for
+        those who want to go further.
       </>
     ),
   },
   {
-    q: "Is it really free?",
+    q: "What is in the daily newsletter?",
     a: (
       <>
-        Yes. There are no paid tiers or hidden fees. We are all college students volunteering and working around our
-        schedules to build our community.
+        Each email is short on purpose: a signal on what changed, a toolkit workflow we actually used, and one concrete
+        move for the week. Written by college students still in class.
+      </>
+    ),
+  },
+  {
+    q: "Is the newsletter free?",
+    a: (
+      <>
+        Yes. The daily email is 100% free. Optional deeper learning and membership live in the student portal when a
+        family is ready for more than the newsletter.
       </>
     ),
   },
@@ -32,10 +41,9 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "Who writes it?",
     a: (
       <>
-        Our team of top-performing college students keeps our AI resources updated, shapes what goes out each week, and
-        answers when you email us. If something needs a specific background (Pre-Med, Coding, Physics, Music), we try to
-        hand it to whoever on the team actually has the relevant experience and depth to provide their valuable
-        &ldquo;student&rdquo; perspective.
+        Our team of top-performing college students keeps our AI resources updated, shapes what goes out, and answers
+        when you email us. If something needs a specific background (Pre-Med, Coding, Physics, Music), we try to hand it
+        to whoever on the team actually has the relevant experience.
       </>
     ),
   },

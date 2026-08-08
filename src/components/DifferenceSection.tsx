@@ -29,38 +29,26 @@ export function DifferenceSection() {
       className="relative overflow-hidden border-t border-slate-100 bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
       aria-labelledby="why-us-heading"
     >
-      <div className="relative mx-auto grid w-full max-w-3xl gap-12 lg:max-w-5xl lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-start lg:gap-16 xl:max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
+      <div className="relative mx-auto w-full max-w-3xl lg:max-w-5xl xl:max-w-6xl">
+        <motion.h2
+          id="why-us-heading"
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="lg:sticky lg:top-32"
+          className={`max-w-3xl text-[2rem] font-semibold leading-[1.05] tracking-[-0.04em] text-slate-900 sm:text-5xl lg:text-[3.25rem] ${fredokaHeadline.className}`}
         >
-          <h2
-            id="why-us-heading"
-            className={`text-[1.85rem] font-semibold leading-[1.08] tracking-[-0.035em] text-slate-900 sm:text-4xl lg:text-[2.65rem] ${fredokaHeadline.className}`}
-          >
-            A{" "}
-            <span className="font-bold text-sky-500">student</span>
-            -run org helping high schoolers{" "}
-            <span className="font-semibold text-[#ff6a00]">stay ahead with AI</span>
-          </h2>
-          <p
-            className={`mt-5 max-w-md text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}
-          >
-            Advice for school ages out fast. We&apos;re still living it, so families get what&apos;s working{" "}
-            <em className="not-italic font-semibold text-slate-800">right now</em>, not a recycled tip sheet.
-          </p>
-        </motion.div>
+          Stay ahead with{" "}
+          <span className="text-[#ff6a00]">AI</span>
+        </motion.h2>
 
-        <div className="relative">
+        <div className="relative mt-10 sm:mt-12 lg:mt-14">
           <div
             className="pointer-events-none absolute bottom-3 left-[1.15rem] top-3 w-px bg-gradient-to-b from-sky-300 via-orange-300 to-emerald-300 sm:left-[1.35rem]"
             aria-hidden
           />
 
-          <ol className="relative space-y-0">
+          <ol className="relative max-w-2xl space-y-0">
             {beats.map((beat, index) => (
               <motion.li
                 key={beat.num}

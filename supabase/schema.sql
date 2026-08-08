@@ -61,3 +61,6 @@ create table if not exists public.contact_messages (
 create index if not exists contact_messages_created_at_idx on public.contact_messages (created_at desc);
 
 comment on table public.contact_messages is 'Inbound messages from the landing Contact Us form';
+
+-- Student portal (profiles, courses, enrollments, certificates, Stripe membership):
+-- see supabase/migrations/002_student_portal.sql

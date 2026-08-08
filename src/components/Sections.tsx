@@ -119,12 +119,12 @@ export function FinalCTA() {
             <h2
               className={`text-4xl font-semibold leading-[1.05] tracking-[-0.035em] text-slate-900 sm:text-6xl ${fredokaHeadline.className}`}
             >
-              One Sunday email.{" "}
+              One daily email.{" "}
               <span className="text-sky-500">Zero fluff.</span>
             </h2>
             <p className={`mx-auto mt-5 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}>
-              Free AI education for parents of high schoolers: tools, prompts, and honest student takes. Drop your email
-              once and you&apos;re in.
+              Free AI education for parents of high schoolers: a signal, a toolkit move, and honest student takes. Drop
+              your email once and you&apos;re in.
             </p>
 
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
