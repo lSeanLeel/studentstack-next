@@ -6,8 +6,14 @@ import { Navbar } from "@/components/Navbar";
 import { IntroAnimation } from "@/components/IntroAnimation";
 import { HeroSection } from "@/components/HeroSection";
 import { OnboardingProvider } from "@/components/onboarding-context";
+import { ContactProvider } from "@/components/contact-context";
 
 const sectionLoading = () => <div className="h-96" aria-hidden />;
+
+const DifferenceSection = dynamic(
+  () => import("@/components/DifferenceSection").then((m) => ({ default: m.DifferenceSection })),
+  { loading: sectionLoading }
+);
 
 const FaqSection = dynamic(
   () => import("@/components/FaqSection").then((m) => ({ default: m.FaqSection })),
@@ -36,14 +42,17 @@ export default function LandingPage() {
 
   return (
     <OnboardingProvider>
-      <main className="min-h-screen bg-transparent selection:bg-sky-100 selection:text-sky-900">
-        {showIntro && <IntroAnimation key={introSession} onComplete={handleIntroComplete} />}
-        <Navbar onHomeLogoClick={replayIntro} />
-        <HeroSection />
-        <FaqSection />
-        <FinalCTA />
-        <Footer />
-      </main>
+      <ContactProvider>
+        <main className="min-h-screen bg-transparent selection:bg-sky-100 selection:text-sky-900">
+          {showIntro && <IntroAnimation key={introSession} onComplete={handleIntroComplete} />}
+          <Navbar onHomeLogoClick={replayIntro} />
+          <HeroSection />
+          <DifferenceSection />
+          <FaqSection />
+          <FinalCTA />
+          <Footer />
+        </main>
+      </ContactProvider>
     </OnboardingProvider>
   );
 }

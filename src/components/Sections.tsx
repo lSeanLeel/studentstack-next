@@ -8,6 +8,7 @@ import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { BrandWordmark } from "./BrandWordmark";
 import { Button } from "./ui/Button";
 import { useOnboarding } from "./onboarding-context";
+import { useContact } from "./contact-context";
 export function TestimonialSection() {
   return (
     <section id="about" className="relative overflow-hidden bg-transparent pt-6 pb-20 sm:pt-8 sm:pb-28">
@@ -153,6 +154,7 @@ export function FinalCTA() {
 
 export function Footer() {
   const { openOnboarding } = useOnboarding();
+  const { openContact } = useContact();
 
   return (
     <footer className="border-t border-slate-100 bg-white/80 pt-24 pb-12 backdrop-blur-sm">
@@ -174,6 +176,11 @@ export function Footer() {
           <div>
             <h4 className="mb-6 text-sm font-bold uppercase tracking-widest text-slate-900">Explore</h4>
             <ul className="space-y-4 text-sm font-medium text-slate-500">
+              <li>
+                <a href="#why-us" className="transition-colors hover:text-sky-500">
+                  Why us
+                </a>
+              </li>
               <li>
                 <a href="#faq" className="transition-colors hover:text-sky-500">
                   FAQ
@@ -205,7 +212,15 @@ export function Footer() {
             <ul className="space-y-4 text-sm font-medium text-slate-500">
               <li><a href="/privacy" className="hover:text-sky-500 transition-colors">Privacy Policy</a></li>
               <li><a href="/terms" className="hover:text-sky-700 transition-colors">Terms of Service</a></li>
-              <li><a href="mailto:advising@studentstack.info" className="hover:text-sky-500 transition-colors">Contact Us</a></li>
+              <li>
+                <button
+                  type="button"
+                  onClick={openContact}
+                  className="text-left font-medium text-slate-500 transition-colors hover:text-sky-500"
+                >
+                  Contact Us
+                </button>
+              </li>
             </ul>
           </div>
         </div>
