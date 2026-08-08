@@ -9,18 +9,8 @@ import { OnboardingProvider } from "@/components/onboarding-context";
 
 const sectionLoading = () => <div className="h-96" aria-hidden />;
 
-const PlaybookSection = dynamic(
-  () => import("@/components/PlaybookSection").then((m) => ({ default: m.PlaybookSection })),
-  { loading: sectionLoading }
-);
-
 const TestimonialSection = dynamic(
   () => import("@/components/Sections").then((m) => ({ default: m.TestimonialSection })),
-  { loading: sectionLoading }
-);
-
-const StudentShowcase = dynamic(
-  () => import("@/components/StudentShowcase").then((m) => ({ default: m.StudentShowcase })),
   { loading: sectionLoading }
 );
 
@@ -55,9 +45,7 @@ export default function LandingPage() {
         {showIntro && <IntroAnimation key={introSession} onComplete={handleIntroComplete} />}
         <Navbar onHomeLogoClick={replayIntro} />
         <HeroSection />
-        <PlaybookSection />
         <TestimonialSection />
-        <StudentShowcase />
         <FaqSection />
         <FinalCTA />
         <Footer />

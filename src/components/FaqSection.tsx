@@ -7,17 +7,14 @@ import { jakartaSans, fredokaHeadline } from "@/app/fonts";
 
 type FaqItem = { q: string; a: ReactNode };
 
-const teamLinkClass =
-  "font-semibold text-sky-700 underline decoration-sky-200 underline-offset-[0.18em] transition-colors hover:text-sky-600 hover:decoration-sky-300";
-
 const FAQ_ITEMS: FaqItem[] = [
   {
     q: "What is StudentStack?",
     a: (
       <>
-        We are a group of college students building a free online community to share how students are using AI to stay
-        ahead of school. We have grown a community of parents and high schoolers looking to learn from the students and
-        people who TRULY know how to optimize work using AI.
+        We are a group of college students building a, free online community to share how students are using AI to stay
+        ahead of school. We have grown a community of parents and high schoolers looking to learn from us students who
+        Actually know how to use AI best for school.
       </>
     ),
   },
@@ -34,19 +31,12 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "Who writes it?",
     a: (
       <>
-        <a href="#mentors" className={teamLinkClass}>
-          Our team
-        </a>{" "}
-        of top-performing college students keeps our AI resources updated, shapes what goes out each week, and answers
-        when you email us. If something needs a specific background (Pre-Med, Coding, Physics, Music), we try to hand
-        it to whoever on the team actually has the relevant experience and depth to provide their valuable
+        Our team of top-performing college students keeps our AI resources updated, shapes what goes out each week, and
+        answers when you email us. If something needs a specific background (Pre-Med, Coding, Physics, Music), we try to
+        hand it to whoever on the team actually has the relevant experience and depth to provide their valuable
         &ldquo;student&rdquo; perspective.
       </>
     ),
-  },
-  {
-    q: "How often will we reach out?",
-    a: "Once a week on Sunday. No spam, ever.",
   },
   {
     q: "How do I unsubscribe?",

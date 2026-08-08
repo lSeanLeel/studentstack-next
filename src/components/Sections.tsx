@@ -10,7 +10,7 @@ import { Button } from "./ui/Button";
 import { useOnboarding } from "./onboarding-context";
 export function TestimonialSection() {
   return (
-    <section className="relative overflow-hidden bg-transparent pt-6 pb-20 sm:pt-8 sm:pb-28">
+    <section id="about" className="relative overflow-hidden bg-transparent pt-6 pb-20 sm:pt-8 sm:pb-28">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 18 }}

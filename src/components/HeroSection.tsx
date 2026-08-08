@@ -246,11 +246,11 @@ export function HeroSection() {
             <ArrowRight className="h-4 w-4" aria-hidden />
           </motion.button>
           <motion.a
-            href="#weekly-email"
+            href="#faq"
             whileHover={{ y: -2 }}
             className={`${jakartaSans.className} inline-flex w-full items-center justify-center rounded-[1.35rem] border-2 border-sky-200 bg-white/90 px-7 py-4 text-sm font-bold text-sky-800 no-underline backdrop-blur-sm transition-colors hover:border-sky-300 hover:bg-sky-50 sm:w-auto sm:px-8 sm:text-[0.8125rem]`}
           >
-            See what&apos;s inside
+            Read the FAQ
           </motion.a>
         </motion.div>
       </div>
