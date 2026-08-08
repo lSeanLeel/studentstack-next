@@ -131,7 +131,7 @@ export function FinalCTA() {
                 onClick={() => openOnboarding()}
                 className="h-16 w-full rounded-2xl bg-slate-900 px-10 text-sm font-black uppercase tracking-[0.16em] text-white shadow-[0_14px_0_0_rgba(15,23,42,0.12)] transition-all hover:-translate-y-1 hover:bg-slate-800 sm:w-auto"
               >
-                Sign up free
+                Get tomorrow&apos;s free email
                 <ArrowRight className="ml-3 h-5 w-5 text-white" />
               </Button>
 

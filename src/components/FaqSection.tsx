@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useId, useState, type ReactNode } from "react";
+import React, { useEffect, useId, useState, type ReactNode } from "react";
 import { motion } from "motion/react";
 import { ChevronDown } from "lucide-react";
 import { jakartaSans, fredokaHeadline } from "@/app/fonts";
 
-type FaqItem = { q: string; a: ReactNode };
+type FaqItem = { id?: string; q: string; a: ReactNode };
 
 const FAQ_ITEMS: FaqItem[] = [
   {
@@ -28,6 +28,7 @@ const FAQ_ITEMS: FaqItem[] = [
     ),
   },
   {
+    id: "faq-who-writes",
     q: "Who writes it?",
     a: (
       <>
@@ -63,11 +64,12 @@ function FaqAccordionItem({
 
   return (
     <motion.div
+      id={item.id}
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.35, delay: index * 0.05 }}
-      className="rounded-[1.75rem] border-2 border-slate-100 bg-white shadow-[0_12px_36px_-24px_rgba(15,23,42,0.18)] transition-shadow hover:border-sky-100 hover:shadow-[0_16px_44px_-22px_rgba(14,165,233,0.22)]"
+      className="scroll-mt-36 rounded-[1.75rem] border-2 border-slate-100 bg-white shadow-[0_12px_36px_-24px_rgba(15,23,42,0.18)] transition-shadow hover:border-sky-100 hover:shadow-[0_16px_44px_-22px_rgba(14,165,233,0.22)]"
     >
       <h3 className="text-base font-semibold text-slate-900 sm:text-lg">
         <button
@@ -107,6 +109,25 @@ function FaqAccordionItem({
 export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const baseId = useId();
+
+  useEffect(() => {
+    const openFromHash = () => {
+      const hash = window.location.hash.replace(/^#/, "");
+      if (!hash) return;
+      const idx = FAQ_ITEMS.findIndex((item) => item.id === hash);
+      if (idx >= 0) {
+        setOpenIndex(idx);
+        // Let layout settle, then scroll the FAQ card into view.
+        requestAnimationFrame(() => {
+          document.getElementById(hash)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+    };
+
+    openFromHash();
+    window.addEventListener("hashchange", openFromHash);
+    return () => window.removeEventListener("hashchange", openFromHash);
+  }, []);
 
   return (
     <section

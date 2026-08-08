@@ -224,8 +224,21 @@ export function HeroSection() {
           transition={{ delay: 0.55, duration: 0.55 }}
           className={`${jakartaSans.className} mx-auto mt-5 max-w-2xl text-base font-medium leading-relaxed text-slate-600 sm:mt-6 sm:text-lg`}
         >
-          A free, daily newsletter for parents of high schoolers! Sharing how we, real students, use AI to stay ahead of
-          school!
+          A free, daily newsletter for parents of high schoolers! Sharing how{" "}
+          <a
+            href="#faq-who-writes"
+            className="font-black text-sky-700 underline decoration-sky-300 underline-offset-[0.18em] transition-colors hover:text-sky-600 hover:decoration-sky-400"
+          >
+            we
+          </a>
+          ,{" "}
+          <a
+            href="#faq-who-writes"
+            className={`${fredokaHeadline.className} font-semibold text-slate-900 underline decoration-amber-300/80 underline-offset-[0.18em] transition-colors hover:text-sky-700 hover:decoration-sky-300`}
+          >
+            real students
+          </a>
+          , use AI to stay ahead of school!
         </motion.p>
 
         <motion.div
@@ -233,25 +246,25 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8 flex w-full max-w-md flex-col items-center gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:justify-center sm:gap-4"
+          className="mt-8 flex w-full max-w-lg flex-col items-center gap-4 sm:mt-10"
         >
           <motion.button
             type="button"
             onClick={() => openOnboarding()}
             whileHover={{ y: -3, scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className={`${jakartaSans.className} inline-flex w-full items-center justify-center gap-2 rounded-[1.35rem] bg-slate-900 px-7 py-4 text-sm font-black uppercase tracking-[0.14em] text-white shadow-[0_16px_0_0_rgba(15,23,42,0.12)] transition-colors hover:bg-slate-800 sm:w-auto sm:px-9 sm:py-4 sm:text-[0.8125rem]`}
+            className={`${jakartaSans.className} inline-flex w-full items-center justify-center gap-2 rounded-[1.35rem] bg-slate-900 px-8 py-4 text-sm font-black uppercase tracking-[0.12em] text-white shadow-[0_16px_0_0_rgba(15,23,42,0.12)] transition-colors hover:bg-slate-800 sm:w-auto sm:min-w-[20rem] sm:px-10 sm:py-4 sm:text-[0.8125rem]`}
           >
-            Get the free email
+            Get tomorrow&apos;s free email
             <ArrowRight className="h-4 w-4" aria-hidden />
           </motion.button>
-          <motion.a
-            href="#faq"
-            whileHover={{ y: -2 }}
-            className={`${jakartaSans.className} inline-flex w-full items-center justify-center rounded-[1.35rem] border-2 border-sky-200 bg-white/90 px-7 py-4 text-sm font-bold text-sky-800 no-underline backdrop-blur-sm transition-colors hover:border-sky-300 hover:bg-sky-50 sm:w-auto sm:px-8 sm:text-[0.8125rem]`}
+          <p
+            className={`${jakartaSans.className} max-w-md text-center text-sm font-semibold leading-snug text-slate-500 sm:text-[0.95rem]`}
           >
-            Read the FAQ
-          </motion.a>
+            Join{" "}
+            <span className="font-black text-sky-600">500+</span> parents helping their high schooler stay ahead with
+            AI
+          </p>
         </motion.div>
       </div>
     </section>
