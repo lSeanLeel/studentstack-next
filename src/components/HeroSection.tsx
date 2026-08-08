@@ -184,7 +184,7 @@ export function HeroSection() {
     <section className="relative isolate min-h-[100dvh] min-h-screen w-full overflow-hidden px-4 pb-16 pt-28 sm:px-6 sm:pb-20 sm:pt-32">
       <HeroEmailPlane />
 
-      <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-5.5rem)] w-full max-w-[80rem] flex-col items-center justify-center text-center sm:min-h-[calc(100dvh-6.5rem)]">
+      <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-5.5rem)] w-full max-w-[80rem] -translate-y-6 flex-col items-center justify-center text-center sm:min-h-[calc(100dvh-6.5rem)] sm:-translate-y-10">
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
