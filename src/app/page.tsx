@@ -52,9 +52,15 @@ export default function LandingPage() {
           {showIntro && <IntroAnimation key={introSession} onComplete={handleIntroComplete} />}
           <Navbar onHomeLogoClick={replayIntro} />
           <HeroSection />
-          <DifferenceSection />
-          <AiAdvantageSection />
-          <FaqSection />
+          <div className="relative bg-white">
+            <div
+              className="pointer-events-none absolute inset-x-0 -top-24 h-24 bg-gradient-to-b from-transparent to-white"
+              aria-hidden
+            />
+            <DifferenceSection />
+            <AiAdvantageSection />
+            <FaqSection />
+          </div>
           <FinalCTA />
           <Footer />
         </main>

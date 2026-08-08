@@ -45,7 +45,7 @@ export function TestimonialSection() {
             >
               <span className={`${fredokaHeadline.className} mr-1 text-3xl text-sky-300 sm:text-5xl`}>&ldquo;</span>
               We built StudentStack because we saw the gap between students who use AI for school and those who don&apos;t.
-              College students learn new tools every week — we turn that into a free Sunday email families can actually use.
+              College students learn new tools every week. We turn that into a free Sunday email families can actually use.
               <span className={`${fredokaHeadline.className} ml-1 text-3xl text-sky-300 sm:text-5xl`}>&rdquo;</span>
             </p>
           </div>
@@ -109,43 +109,38 @@ export function FinalCTA() {
   const { openOnboarding } = useOnboarding();
 
   return (
-    <section className="relative overflow-hidden bg-transparent py-20 sm:py-28">
-      <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[2.75rem] border-2 border-sky-200 bg-gradient-to-br from-sky-50 via-white to-emerald-50 px-8 py-14 text-center sm:rounded-[3.5rem] sm:px-16 sm:py-20">
-          <div className="pointer-events-none absolute -right-16 top-0 h-56 w-56 rounded-full bg-sky-300/30 blur-3xl" />
-          <div className="pointer-events-none absolute -left-10 bottom-0 h-48 w-48 rounded-full bg-amber-200/40 blur-3xl" />
+    <section className="relative overflow-hidden bg-gradient-to-b from-white via-sky-50/70 to-[#e0f2fe]/80 px-4 py-16 sm:px-6 sm:py-20 lg:px-8">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sky-200 to-transparent" />
+      <div className="pointer-events-none absolute -right-20 top-10 h-56 w-56 rounded-full bg-sky-300/25 blur-3xl" />
+      <div className="pointer-events-none absolute -left-16 bottom-0 h-48 w-48 rounded-full bg-orange-200/30 blur-3xl" />
 
-          <div className="relative z-10 mx-auto max-w-2xl">
-            <h2
-              className={`text-4xl font-semibold leading-[1.05] tracking-[-0.035em] text-slate-900 sm:text-6xl ${fredokaHeadline.className}`}
-            >
-              One Sunday email.{" "}
-              <span className="text-sky-500">Zero fluff.</span>
-            </h2>
-            <p className={`mx-auto mt-5 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}>
-              Free AI education for parents of high schoolers — tools, prompts, and honest student takes. Drop your email
-              once and you&apos;re in.
-            </p>
+      <div className="relative z-10 mx-auto max-w-3xl text-center lg:max-w-4xl">
+        <h2
+          className={`text-4xl font-semibold leading-[1.05] tracking-[-0.035em] text-slate-900 sm:text-5xl lg:text-6xl ${fredokaHeadline.className}`}
+        >
+          One Sunday email.{" "}
+          <span className="text-sky-500">Zero fluff.</span>
+        </h2>
+        <p className={`mx-auto mt-5 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}>
+          Free AI education for parents of high schoolers: tools, prompts, and honest student takes. Drop your email
+          once and you&apos;re in.
+        </p>
 
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
-              <Button
-                onClick={() => openOnboarding()}
-                className="h-16 w-full rounded-2xl bg-slate-900 px-10 text-sm font-black uppercase tracking-[0.16em] text-white shadow-[0_14px_0_0_rgba(15,23,42,0.12)] transition-all hover:-translate-y-1 hover:bg-slate-800 sm:w-auto"
-              >
-                Get tomorrow&apos;s free email
-                <ArrowRight className="ml-3 h-5 w-5 text-white" />
-              </Button>
+        <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:mt-10 sm:flex-row sm:gap-5">
+          <Button
+            onClick={() => openOnboarding()}
+            className="h-14 w-full rounded-2xl bg-slate-900 px-10 text-sm font-black uppercase tracking-[0.16em] text-white shadow-[0_14px_0_0_rgba(15,23,42,0.12)] transition-all hover:-translate-y-1 hover:bg-slate-800 sm:h-16 sm:w-auto"
+          >
+            Get tomorrow&apos;s free email
+            <ArrowRight className="ml-3 h-5 w-5 text-white" />
+          </Button>
 
-              <div className="flex h-16 items-center gap-3 rounded-2xl border-2 border-emerald-200 bg-white/80 px-6">
-                <CheckCircle2 className="h-5 w-5 text-emerald-500" />
-                <span className={`text-left text-[11px] font-bold uppercase tracking-[0.14em] text-slate-700 ${jakartaSans.className}`}>
-                  100% free
-                  <br />
-                  Unsubscribe anytime
-                </span>
-              </div>
-            </div>
-          </div>
+          <p className={`text-[11px] font-bold uppercase tracking-[0.14em] text-slate-600 ${jakartaSans.className}`}>
+            <span className="inline-flex items-center gap-2">
+              <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+              100% free · Unsubscribe anytime
+            </span>
+          </p>
         </div>
       </div>
     </section>
@@ -157,7 +152,7 @@ export function Footer() {
   const { openContact } = useContact();
 
   return (
-    <footer className="border-t border-slate-100 bg-white/80 pt-24 pb-12 backdrop-blur-sm">
+    <footer className="border-t border-sky-100/80 bg-white pt-20 pb-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
           <div className="col-span-1 md:col-span-2">
