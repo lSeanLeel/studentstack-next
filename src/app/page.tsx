@@ -25,8 +25,8 @@ const AiAdvantageSection = dynamic(
   { loading: sectionLoading }
 );
 
-const OrgSection = dynamic(
-  () => import("@/components/OrgSection").then((m) => ({ default: m.OrgSection })),
+const EliteSection = dynamic(
+  () => import("@/components/EliteSection").then((m) => ({ default: m.EliteSection })),
   { loading: sectionLoading }
 );
 
@@ -65,7 +65,7 @@ export default function LandingPage() {
           <DifferenceSection />
           <NewsletterSection />
           <AiAdvantageSection />
-          <OrgSection />
+          <EliteSection />
           <FaqSection />
           <FinalCTA />
           <Footer />

@@ -8,7 +8,7 @@ const beats = [
   {
     num: "01",
     title: "Support from students still in class",
-    body: "StudentStack is run by college students, not a distant content team. We write from the same pressure, deadlines, and tools high schoolers are about to face.",
+    body: "High school support, from students who just lived it. College students translate what works in class into guidance families can use.",
   },
   {
     num: "02",

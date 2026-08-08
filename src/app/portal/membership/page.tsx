@@ -1,29 +1,18 @@
+import Link from "next/link";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
-import { MembershipCheckoutButton } from "@/components/portal/MembershipCheckoutButton";
-import { isStripeConfigured } from "@/lib/stripe";
+import { getEliteAccessForUser, isEliteActive } from "@/lib/portal/entitlements";
 
+/** Students don't buy here. Parents purchase at /elite. */
 export default async function PortalMembershipPage() {
   const supabase = await createSupabaseServerClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
+  if (!user) return null;
 
-  let tier = "free";
-  let status = "inactive";
-  if (user) {
-    const { data: profile } = await supabase
-      .from("profiles")
-      .select("membership_tier, membership_status")
-      .eq("id", user.id)
-      .maybeSingle();
-    if (profile) {
-      tier = profile.membership_tier ?? "free";
-      status = profile.membership_status ?? "inactive";
-    }
-  }
-
-  const stripeReady = isStripeConfigured();
+  const access = await getEliteAccessForUser(supabase, user);
+  const active = isEliteActive(access);
 
   return (
     <div className="max-w-2xl">
@@ -31,34 +20,43 @@ export default async function PortalMembershipPage() {
         Membership
       </h1>
       <p className={`mt-2 text-sm font-medium text-slate-600 sm:text-base ${jakartaSans.className}`}>
-        Paid membership unlocks the deeper StudentStack experience inside this portal. Pricing and Stripe products can be
-        connected when you are ready.
+        Elite is purchased by a parent and unlocked on your student login.
       </p>
 
       <div className="mt-8 rounded-[1.75rem] border border-slate-100 bg-white p-6">
-        <p className="text-[11px] font-black uppercase tracking-[0.16em] text-slate-400">Current plan</p>
+        <p className="text-[11px] font-black uppercase tracking-[0.16em] text-slate-400">Your access</p>
         <p className={`mt-2 text-2xl font-semibold text-slate-900 ${fredokaHeadline.className}`}>
-          {tier === "elite" ? "StudentStack Elite" : "Free"}
+          {active ? "StudentStack Elite" : "Not unlocked yet"}
         </p>
-        <p className="mt-1 text-sm font-medium text-slate-500">Status: {status}</p>
+        <p className="mt-1 text-sm font-medium text-slate-500">Status: {access.status}</p>
+        {access.parentEmail ? (
+          <p className="mt-2 text-sm font-medium text-slate-500">Gifted by {access.parentEmail}</p>
+        ) : null}
 
-        <div className="mt-6">
-          {tier === "elite" && status === "active" ? (
-            <p className={`text-sm font-medium text-emerald-700 ${jakartaSans.className}`}>
-              Your membership is active. Course and certification access follows this entitlement.
-            </p>
-          ) : (
-            <>
-              <MembershipCheckoutButton disabled={!stripeReady} />
-              {!stripeReady ? (
-                <p className="mt-3 text-xs font-medium text-slate-500">
-                  Add `STRIPE_SECRET_KEY`, `STRIPE_PRICE_ELITE`, and `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` to enable
-                  checkout.
-                </p>
-              ) : null}
-            </>
-          )}
-        </div>
+        {!active ? (
+          <p className={`mt-6 text-sm font-medium text-slate-600 ${jakartaSans.className}`}>
+            Ask a parent to complete checkout at{" "}
+            <Link href="/elite" className="font-bold text-sky-700 hover:text-sky-900">
+              studentstack.info/elite
+            </Link>{" "}
+            using this student email.
+          </p>
+        ) : (
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              href="/portal/toolkit"
+              className="rounded-2xl bg-slate-900 px-4 py-2.5 text-[11px] font-black uppercase tracking-[0.12em] text-white hover:bg-slate-800"
+            >
+              Open AI toolkit
+            </Link>
+            <Link
+              href="/portal/resources"
+              className="rounded-2xl border border-slate-200 px-4 py-2.5 text-[11px] font-black uppercase tracking-[0.12em] text-slate-700 hover:border-sky-200 hover:text-sky-700"
+            >
+              Open resources
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

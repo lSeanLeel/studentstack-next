@@ -8,9 +8,8 @@ import { PortalSignOutButton } from "@/components/portal/PortalSignOutButton";
 
 const nav = [
   { href: "/portal", label: "Home" },
-  { href: "/portal/courses", label: "Courses" },
-  { href: "/portal/certification", label: "Certification" },
-  { href: "/portal/membership", label: "Membership" },
+  { href: "/portal/toolkit", label: "AI Toolkit" },
+  { href: "/portal/resources", label: "Resources" },
 ] as const;
 
 export default async function PortalLayout({ children }: { children: React.ReactNode }) {

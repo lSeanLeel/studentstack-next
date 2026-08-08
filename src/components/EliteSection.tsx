@@ -7,18 +7,17 @@ import { ArrowRight } from "lucide-react";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 
 /**
- * Org framing only: free newsletter as the front door, deeper learning as the
- * longer arc. Avoids product SKUs / pricing grids while leaving room for
- * courses, credentials, and membership later.
+ * Soft, parent-facing Elite framing. No hard product grid / pricing push.
+ * Emphasizes college-student support for high schoolers.
  */
-export function OrgSection() {
+export function EliteSection() {
   return (
     <section
-      id="organization"
+      id="elite"
       className="relative overflow-hidden border-t border-slate-100 bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
-      aria-labelledby="organization-heading"
+      aria-labelledby="elite-heading"
     >
-      <div className="relative mx-auto grid w-full max-w-3xl gap-10 lg:max-w-5xl lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-16 xl:max-w-6xl">
+      <div className="relative mx-auto grid w-full max-w-3xl gap-10 lg:max-w-5xl lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-16 xl:max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -26,27 +25,25 @@ export function OrgSection() {
           transition={{ duration: 0.45 }}
         >
           <p className={`text-[10px] font-black uppercase tracking-[0.22em] text-[#ff6a00] ${jakartaSans.className}`}>
-            The organization
+            When free is not enough
           </p>
           <h2
-            id="organization-heading"
+            id="elite-heading"
             className={`mt-3 text-[1.85rem] font-semibold leading-[1.08] tracking-[-0.035em] text-slate-900 sm:text-4xl lg:text-[2.55rem] ${fredokaHeadline.className}`}
           >
-            A student-run path from{" "}
-            <span className="text-sky-500">curious</span> to{" "}
-            <span className="text-[#ff6a00]">capable</span>
+            A student solution for high school support
           </h2>
           <p
             className={`mt-4 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}
           >
-            The free daily newsletter is how most families meet us. Behind it, StudentStack is building a fuller learning
-            home: guided practice, proof of skill, and a private space for students who want to go further with us.
+            The daily newsletter is how families start. For students who want a private home base, StudentStack Elite
+            opens a portal built around how college students actually work: an AI toolkit for school, plus exclusive
+            resources like summer programs and opportunity lists.
           </p>
           <p
             className={`mt-3 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}
           >
-            Start free. When you are ready for deeper work, your account becomes the door into membership, courses, and
-            certification inside the StudentStack portal.
+            Parents gift access. Students log in. The brand stays student-led; the work stays practical.
           </p>
         </motion.div>
 
@@ -58,27 +55,33 @@ export function OrgSection() {
           className="rounded-[2rem] border border-sky-100 bg-gradient-to-br from-sky-50 via-white to-orange-50/60 p-7 sm:p-8"
         >
           <p className={`text-[11px] font-black uppercase tracking-[0.18em] text-slate-500 ${jakartaSans.className}`}>
-            How it fits together
+            Inside Elite
           </p>
-          <ul className={`mt-5 space-y-4 text-sm font-medium leading-relaxed text-slate-700 sm:text-[0.95rem] ${jakartaSans.className}`}>
+          <ul className={`mt-5 space-y-4 text-sm font-medium leading-relaxed text-slate-700 ${jakartaSans.className}`}>
             <li>
-              <span className={`${fredokaHeadline.className} font-semibold text-slate-900`}>Read free</span>
-              <span className="mt-1 block text-slate-600">Daily email for parents and high schoolers getting oriented.</span>
+              <span className={`${fredokaHeadline.className} font-semibold text-slate-900`}>AI toolkit</span>
+              <span className="mt-1 block text-slate-600">
+                Organization, notetaking, planning, studying, writing, and research.
+              </span>
             </li>
             <li>
-              <span className={`${fredokaHeadline.className} font-semibold text-slate-900`}>Practice deeper</span>
-              <span className="mt-1 block text-slate-600">Structured learning when a student wants more than tips.</span>
+              <span className={`${fredokaHeadline.className} font-semibold text-slate-900`}>Exclusive resources</span>
+              <span className="mt-1 block text-slate-600">
+                Summer programs and opportunity lists sourced for high schoolers.
+              </span>
             </li>
             <li>
-              <span className={`${fredokaHeadline.className} font-semibold text-slate-900`}>Show the work</span>
-              <span className="mt-1 block text-slate-600">Credentials and a logged-in home for progress over time.</span>
+              <span className={`${fredokaHeadline.className} font-semibold text-slate-900`}>Student portal</span>
+              <span className="mt-1 block text-slate-600">
+                One login for your student. You buy it once as the parent.
+              </span>
             </li>
           </ul>
           <Link
-            href="/login"
+            href="/elite"
             className={`mt-7 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.14em] text-sky-700 transition-colors hover:text-sky-900 ${jakartaSans.className}`}
           >
-            Student portal
+            Learn about Elite
             <ArrowRight className="h-4 w-4" aria-hidden />
           </Link>
         </motion.div>

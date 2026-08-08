@@ -12,9 +12,9 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "What is StudentStack?",
     a: (
       <>
-        We are a student-run organization helping high schoolers stay ahead with AI. Most families start with our free
-        daily newsletter. We also build a deeper learning home (practice, credentials, and a private student portal) for
-        those who want to go further.
+        StudentStack is a student-led way to help high schoolers stay ahead with AI. Parents start with our free daily
+        newsletter. When a family wants more, StudentStack Elite gives the student a private portal with our AI toolkit
+        and exclusive resources.
       </>
     ),
   },
@@ -23,7 +23,7 @@ const FAQ_ITEMS: FaqItem[] = [
     a: (
       <>
         Each email is short on purpose: a signal on what changed, a toolkit workflow we actually used, and one concrete
-        move for the week. Written by college students still in class.
+        move for the week. Written from the perspective of college students still in class.
       </>
     ),
   },
@@ -31,8 +31,18 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "Is the newsletter free?",
     a: (
       <>
-        Yes. The daily email is 100% free. Optional deeper learning and membership live in the student portal when a
-        family is ready for more than the newsletter.
+        Yes. The daily email is 100% free. Elite is separate and optional: parents purchase access so their student can
+        use the portal.
+      </>
+    ),
+  },
+  {
+    q: "What is StudentStack Elite?",
+    a: (
+      <>
+        A parent-purchased portal for the student. It includes full access to our AI toolkit (organization, notetaking,
+        planning, studying, writing, research) plus exclusive resources like summer program lists and opportunity
+        shortlists.
       </>
     ),
   },
@@ -41,9 +51,8 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "Who writes it?",
     a: (
       <>
-        Our team of top-performing college students keeps our AI resources updated, shapes what goes out, and answers
-        when you email us. If something needs a specific background (Pre-Med, Coding, Physics, Music), we try to hand it
-        to whoever on the team actually has the relevant experience.
+        StudentStack is built around how college students use AI for school. We keep the work practical and current, and
+        we answer when you email us.
       </>
     ),
   },

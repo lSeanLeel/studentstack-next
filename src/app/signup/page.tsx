@@ -53,7 +53,8 @@ export default function SignupPage() {
             Create your account
           </h1>
           <p className="mt-2 text-sm font-medium text-slate-600">
-            One login for membership, courses, and certificates. Free newsletter signup stays separate.
+            Use the student email your parent entered at Elite checkout. Newsletter signup for parents stays on the home
+            page.
           </p>
 
           <form onSubmit={onSubmit} className="mt-6 space-y-4" noValidate>

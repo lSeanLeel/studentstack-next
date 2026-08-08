@@ -62,5 +62,6 @@ create index if not exists contact_messages_created_at_idx on public.contact_mes
 
 comment on table public.contact_messages is 'Inbound messages from the landing Contact Us form';
 
--- Student portal (profiles, courses, enrollments, certificates, Stripe membership):
+-- Student portal + Elite parent purchase:
 -- see supabase/migrations/002_student_portal.sql
+-- see supabase/migrations/003_elite_parent_purchase.sql
