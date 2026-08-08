@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { jakartaSans, fredokaHeadline } from "@/app/fonts";
 import { useOnboarding } from "@/components/onboarding-context";
 
@@ -130,49 +130,47 @@ function CollegeHeadline() {
   );
 }
 
-/** Full-bleed product plane: oversized email mock as atmosphere, not a floating card. */
+/** Soft atmosphere only in the hero readable zone; email mock peeks below the CTA. */
 function HeroEmailPlane() {
   return (
     <div
       className="pointer-events-none absolute inset-0 overflow-hidden"
       aria-hidden
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_50%_-10%,#7dd3fc_0%,transparent_55%),radial-gradient(ellipse_60%_50%_at_100%_30%,#99f6e4_0%,transparent_50%),radial-gradient(ellipse_55%_45%_at_0%_75%,#fde68a_0%,transparent_48%),linear-gradient(180deg,#e0f2fe_0%,#f8fafc_42%,#ecfeff_100%)]" />
-      <div className="absolute inset-0 opacity-[0.45] [background-image:radial-gradient(rgba(14,165,233,0.22)_1.2px,transparent_1.2px)] [background-size:20px_20px]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_55%_at_50%_0%,#bae6fd_0%,transparent_55%),radial-gradient(ellipse_50%_40%_at_100%_20%,#a5f3fc_0%,transparent_50%),radial-gradient(ellipse_45%_35%_at_0%_30%,#fde68a_0%,transparent_45%),linear-gradient(180deg,#e0f2fe_0%,#f8fafc_55%,#ecfeff_100%)]" />
+      <div className="absolute inset-0 opacity-[0.28] [background-image:radial-gradient(rgba(14,165,233,0.2)_1px,transparent_1px)] [background-size:22px_22px]" />
 
+      {/* Email mock stays under the fold so it never competes with the CTA */}
       <motion.div
-        initial={{ opacity: 0, y: 48 }}
+        initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 1.05, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-1/2 top-[68%] w-[min(150vw,78rem)] -translate-x-1/2 sm:top-[62%]"
+        transition={{ delay: 0.45, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute left-1/2 top-[88%] w-[min(140vw,70rem)] -translate-x-1/2 sm:top-[86%]"
       >
-        <div className="mx-auto origin-top scale-[1.08] rotate-[-1.25deg] opacity-80 sm:scale-100">
-          <div className="rounded-t-[2.75rem] border border-sky-300/70 bg-white/85 px-6 pb-28 pt-5 shadow-[0_48px_120px_-36px_rgba(14,165,233,0.55)] backdrop-blur-md sm:px-12 sm:pt-8">
-            <div className="mb-6 flex items-center gap-2 border-b border-sky-100 pb-4">
-              <span className="h-2.5 w-2.5 rounded-full bg-sky-400" />
-              <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
-              <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
-              <span className="ml-3 h-2.5 w-36 rounded-full bg-sky-200/90" />
+        <div className="mx-auto origin-top scale-105 rotate-[-1deg] opacity-55 sm:scale-100">
+          <div className="rounded-t-[2.5rem] border border-sky-200/50 bg-white/70 px-6 pb-20 pt-4 backdrop-blur-sm sm:px-10">
+            <div className="mb-4 flex items-center gap-2 border-b border-sky-100/80 pb-3">
+              <span className="h-2 w-2 rounded-full bg-sky-300" />
+              <span className="h-2 w-2 rounded-full bg-amber-300" />
+              <span className="h-2 w-2 rounded-full bg-emerald-300" />
+              <span className="ml-2 h-2 w-28 rounded-full bg-sky-100" />
             </div>
-            <div className="space-y-4">
-              <div className="h-4 w-2/5 rounded-full bg-sky-300/80" />
-              <div className="h-9 w-4/5 rounded-2xl bg-slate-300/70" />
-              <div className="h-3.5 w-full rounded-full bg-slate-200/90" />
-              <div className="h-3.5 w-[92%] rounded-full bg-slate-200/80" />
-              <div className="mt-6 grid grid-cols-3 gap-3 sm:gap-4">
-                <div className="h-32 rounded-[1.5rem] bg-sky-200/90 sm:h-36" />
-                <div className="h-32 rounded-[1.5rem] bg-emerald-200/90 sm:h-36" />
-                <div className="h-32 rounded-[1.5rem] bg-amber-200/85 sm:h-36" />
+            <div className="space-y-3">
+              <div className="h-3 w-1/3 rounded-full bg-sky-200/70" />
+              <div className="h-7 w-2/3 rounded-2xl bg-slate-200/60" />
+              <div className="grid grid-cols-3 gap-2 pt-2">
+                <div className="h-16 rounded-2xl bg-sky-100/80" />
+                <div className="h-16 rounded-2xl bg-emerald-100/80" />
+                <div className="h-16 rounded-2xl bg-amber-100/70" />
               </div>
-              <div className="mt-4 h-3.5 w-3/4 rounded-full bg-slate-200/80" />
-              <div className="h-3.5 w-2/3 rounded-full bg-slate-200/70" />
             </div>
           </div>
         </div>
       </motion.div>
 
-      <div className="absolute inset-x-0 bottom-0 h-[28%] bg-gradient-to-t from-[#f8fafc] via-[#f8fafc]/80 to-transparent" />
-      <div className="absolute inset-x-0 top-0 h-[62%] bg-gradient-to-b from-[#e0f2fe] via-[#f0f9ff]/95 to-transparent" />
+      {/* Solid readable band behind brand + CTA */}
+      <div className="absolute inset-x-0 top-0 h-[78%] bg-gradient-to-b from-[#e0f2fe] via-[#f0f9ff]/97 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-[30%] bg-gradient-to-t from-[#f8fafc] via-[#f8fafc]/70 to-transparent" />
     </div>
   );
 }
@@ -181,10 +179,11 @@ export function HeroSection() {
   const { openOnboarding } = useOnboarding();
 
   return (
-    <section className="relative isolate min-h-[100dvh] min-h-screen w-full overflow-hidden px-4 pb-16 pt-28 sm:px-6 sm:pb-20 sm:pt-32">
+    <section className="relative isolate min-h-[100dvh] min-h-screen w-full overflow-hidden px-4 pb-28 pt-28 sm:px-6 sm:pb-32 sm:pt-32">
       <HeroEmailPlane />
 
-      <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-5.5rem)] w-full max-w-[80rem] flex-col items-center justify-center text-center sm:min-h-[calc(100dvh-6.5rem)]">
+      {/* Top-weighted composition keeps CTA above the decorative email edge */}
+      <div className="relative z-10 mx-auto flex w-full max-w-[80rem] flex-col items-center pt-6 text-center sm:pt-10 md:pt-14">
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -222,7 +221,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.55, duration: 0.55 }}
-          className={`${jakartaSans.className} mx-auto mt-5 max-w-2xl text-base font-medium leading-relaxed text-slate-600 sm:mt-6 sm:text-lg`}
+          className={`${jakartaSans.className} mx-auto mt-5 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:mt-6 sm:text-lg`}
         >
           A{" "}
           <span className={`${fredokaHeadline.className} font-semibold text-sky-600`}>free</span>, daily newsletter for
@@ -241,24 +240,28 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-9 flex w-full max-w-md flex-col items-center gap-3.5 sm:mt-11"
+          className="relative z-20 mt-8 w-full max-w-md sm:mt-10"
         >
-          <motion.button
-            type="button"
-            onClick={() => openOnboarding()}
-            whileHover={{ y: -2, scale: 1.015 }}
-            whileTap={{ scale: 0.985 }}
-            className={`${jakartaSans.className} inline-flex w-full items-center justify-center gap-2 rounded-[1.5rem] border border-sky-300/60 bg-gradient-to-b from-sky-500 to-sky-600 px-8 py-4 text-sm font-black uppercase tracking-[0.11em] text-white shadow-[0_14px_0_0_rgba(2,132,199,0.28),0_22px_40px_-18px_rgba(14,165,233,0.55)] transition-colors hover:from-sky-400 hover:to-sky-500 sm:w-auto sm:min-w-[19rem] sm:px-10 sm:text-[0.8125rem]`}
-          >
-            Get tomorrow&apos;s free email
-            <ArrowRight className="h-4 w-4" aria-hidden />
-          </motion.button>
-          <p
-            className={`${jakartaSans.className} rounded-full border border-sky-100/80 bg-white/55 px-4 py-2 text-center text-[13px] font-medium leading-snug text-slate-500 shadow-[0_8px_24px_-18px_rgba(14,165,233,0.35)] backdrop-blur-md sm:text-sm`}
-          >
-            Join <span className="font-bold text-sky-700">500+</span> parents helping their high schooler stay ahead
-            with AI
-          </p>
+          <div className="rounded-[2rem] border border-white/80 bg-white/80 px-5 py-5 shadow-[0_20px_50px_-28px_rgba(14,165,233,0.45)] backdrop-blur-xl sm:px-7 sm:py-6">
+            <motion.button
+              type="button"
+              onClick={() => openOnboarding()}
+              whileHover={{ y: -2, scale: 1.015 }}
+              whileTap={{ scale: 0.985 }}
+              className={`${jakartaSans.className} inline-flex w-full items-center justify-center gap-2 rounded-[1.35rem] bg-slate-900 px-6 py-4 text-sm font-black uppercase tracking-[0.12em] text-white shadow-[0_12px_0_0_rgba(15,23,42,0.14)] transition-colors hover:bg-slate-800 sm:text-[0.8125rem]`}
+            >
+              Get tomorrow&apos;s free email
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </motion.button>
+            <p
+              className={`${jakartaSans.className} mt-3.5 flex items-center justify-center gap-1.5 text-center text-[13px] font-medium leading-snug text-slate-500 sm:text-sm`}
+            >
+              <Sparkles className="h-3.5 w-3.5 shrink-0 text-sky-500" aria-hidden />
+              <span>
+                Trusted by <span className="font-bold text-slate-700">500+</span> parents keeping kids ahead with AI
+              </span>
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>
