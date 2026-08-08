@@ -88,7 +88,7 @@ export function SignupForm({
             .join(" · ");
           setSubmitError(extra ? `${primary} · ${extra}` : primary);
         } catch {
-          setSubmitError(`HTTP ${res.status}: response was not valid JSON.`);
+          setSubmitError(`HTTP ${res.status} — response was not valid JSON.`);
         }
         return;
       }

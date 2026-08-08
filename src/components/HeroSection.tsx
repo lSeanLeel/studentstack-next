@@ -38,7 +38,7 @@ const collegeFlipTransition = {
   ease: [0.22, 1, 0.36, 1] as const,
 };
 
-/** Full “Learn AI from ___ students” line — width flexes with each school; college mark flips in. */
+/** Full “Learn AI from ___ students” line; width flexes with each school; college mark flips in. */
 function CollegeHeadline() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [logosReady, setLogosReady] = useState(false);
@@ -171,7 +171,7 @@ function HeroEmailPlane() {
         </div>
       </motion.div>
 
-      <div className="absolute inset-x-0 bottom-0 h-[34%] bg-gradient-to-t from-white via-white/85 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-[28%] bg-gradient-to-t from-[#f8fafc] via-[#f8fafc]/80 to-transparent" />
       <div className="absolute inset-x-0 top-0 h-[62%] bg-gradient-to-b from-[#e0f2fe] via-[#f0f9ff]/95 to-transparent" />
     </div>
   );
@@ -181,10 +181,10 @@ export function HeroSection() {
   const { openOnboarding } = useOnboarding();
 
   return (
-    <section className="relative isolate min-h-[100dvh] min-h-screen w-full overflow-hidden px-4 pb-10 pt-28 sm:px-6 sm:pb-12 sm:pt-32">
+    <section className="relative isolate min-h-[100dvh] min-h-screen w-full overflow-hidden px-4 pb-16 pt-28 sm:px-6 sm:pb-20 sm:pt-32">
       <HeroEmailPlane />
 
-      <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-5.5rem)] w-full max-w-[80rem] -translate-y-6 flex-col items-center justify-center text-center sm:min-h-[calc(100dvh-6.5rem)] sm:-translate-y-10">
+      <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-5.5rem)] w-full max-w-[80rem] -translate-y-12 flex-col items-center justify-center text-center sm:min-h-[calc(100dvh-6.5rem)] sm:-translate-y-16">
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}

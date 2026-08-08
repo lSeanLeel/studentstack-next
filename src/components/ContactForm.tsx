@@ -63,7 +63,7 @@ export function ContactForm({
               : `HTTP ${res.status}`
           );
         } catch {
-          setSubmitError(`HTTP ${res.status}: could not send message.`);
+          setSubmitError(`HTTP ${res.status} — could not send message.`);
         }
         return;
       }
