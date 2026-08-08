@@ -241,8 +241,15 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-9 flex w-full max-w-md flex-col items-center gap-3.5 sm:mt-11"
+          className="mt-8 flex w-full max-w-md flex-col items-center gap-3 sm:mt-10"
         >
+          {/* Above the button so the email-mock backdrop stays visible below */}
+          <p
+            className={`${jakartaSans.className} text-center text-[13px] font-medium leading-snug text-slate-600 [text-shadow:0_1px_0_rgba(255,255,255,0.85)] sm:text-sm`}
+          >
+            Join <span className="font-bold text-sky-700">500+</span> parents helping their high schooler stay ahead
+            with AI
+          </p>
           <motion.button
             type="button"
             onClick={() => openOnboarding()}
@@ -253,12 +260,6 @@ export function HeroSection() {
             Get tomorrow&apos;s free email
             <ArrowRight className="h-4 w-4" aria-hidden />
           </motion.button>
-          <p
-            className={`${jakartaSans.className} rounded-full border border-sky-100/80 bg-white/55 px-4 py-2 text-center text-[13px] font-medium leading-snug text-slate-500 shadow-[0_8px_24px_-18px_rgba(14,165,233,0.35)] backdrop-blur-md sm:text-sm`}
-          >
-            Join <span className="font-bold text-sky-700">500+</span> parents helping their high schooler stay ahead
-            with AI
-          </p>
         </motion.div>
       </div>
     </section>
