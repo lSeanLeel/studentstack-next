@@ -7,7 +7,7 @@ import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 const arenas = [
   {
     label: "Lectures",
-    line: "Catch up on dense material faster — and walk into class already oriented.",
+    line: "Catch up on dense material faster, and walk into class already oriented.",
   },
   {
     label: "Labs",
@@ -15,7 +15,7 @@ const arenas = [
   },
   {
     label: "Applications",
-    line: "Essays, research, and extracurriculars — where a sharp workflow shows.",
+    line: "Essays, research, and extracurriculars, where a sharp workflow shows.",
   },
 ] as const;
 
@@ -51,7 +51,7 @@ export function AiAdvantageSection() {
           <p
             className={`mt-5 max-w-2xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}
           >
-            As students still in school, we saw peers who learn AI early show up sharper — not just faster. That edge
+            As students still in school, we saw peers who learn AI early show up sharper, not just faster. That edge
             shows up in lectures, labs, and applications. It starts in high school. We share the latest tools we use,
             because the “best” one never stays best for long.
           </p>

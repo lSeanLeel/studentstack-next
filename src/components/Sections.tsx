@@ -45,7 +45,7 @@ export function TestimonialSection() {
             >
               <span className={`${fredokaHeadline.className} mr-1 text-3xl text-sky-300 sm:text-5xl`}>&ldquo;</span>
               We built StudentStack because we saw the gap between students who use AI for school and those who don&apos;t.
-              College students learn new tools every week — we turn that into a free Sunday email families can actually use.
+              College students learn new tools every week. We turn that into a free Sunday email families can actually use.
               <span className={`${fredokaHeadline.className} ml-1 text-3xl text-sky-300 sm:text-5xl`}>&rdquo;</span>
             </p>
           </div>
@@ -123,7 +123,7 @@ export function FinalCTA() {
               <span className="text-sky-500">Zero fluff.</span>
             </h2>
             <p className={`mx-auto mt-5 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}>
-              Free AI education for parents of high schoolers — tools, prompts, and honest student takes. Drop your email
+              Free AI education for parents of high schoolers: tools, prompts, and honest student takes. Drop your email
               once and you&apos;re in.
             </p>
 

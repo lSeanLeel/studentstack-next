@@ -41,7 +41,7 @@ const FAQ_ITEMS: FaqItem[] = [
   },
   {
     q: "How do I unsubscribe?",
-    a: "Every email includes an unsubscribe link. One click and you are off the list — no reply needed.",
+    a: "Every email includes an unsubscribe link. One click and you are off the list. No reply needed.",
   },
 ];
 

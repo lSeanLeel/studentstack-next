@@ -8,17 +8,17 @@ const beats = [
   {
     num: "01",
     title: "Support from students still in class",
-    body: "StudentStack is run by college students — not a distant content team. We write from the same pressure, deadlines, and tools high schoolers are about to face.",
+    body: "StudentStack is run by college students, not a distant content team. We write from the same pressure, deadlines, and tools high schoolers are about to face.",
   },
   {
     num: "02",
     title: "What we use, we share",
-    body: "The “best” AI tool for school changes constantly. We share the latest ones we actually use — so parents get what’s working now, not last semester’s hype.",
+    body: "The “best” AI tool for school changes constantly. We share the latest ones we actually use, so parents get what’s working now, not last semester’s hype.",
   },
   {
     num: "03",
     title: "For the kids coming up behind us",
-    body: "Schools move slowly. We don’t. Our job is to get the next generation fluent early — so high schoolers aren’t catching up when college starts.",
+    body: "Schools move slowly. We don’t. Our job is to get the next generation fluent early, so high schoolers aren’t catching up when college starts.",
   },
 ] as const;
 
@@ -49,7 +49,7 @@ export function DifferenceSection() {
           <p
             className={`mt-5 max-w-md text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}
           >
-            Advice for school ages out fast. We&apos;re still living it — so families get what&apos;s working{" "}
+            Advice for school ages out fast. We&apos;re still living it, so families get what&apos;s working{" "}
             <em className="not-italic font-semibold text-slate-800">right now</em>, not a recycled tip sheet.
           </p>
         </motion.div>

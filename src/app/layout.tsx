@@ -8,7 +8,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "StudentStack — Free weekly AI email for parents",
+  title: "StudentStack | Free weekly AI email for parents",
   description:
     "StudentStack is a free weekly AI education newsletter for parents of high schoolers, written by college students.",
 };
