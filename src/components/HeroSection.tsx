@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowRight, BadgeCheck, University } from "lucide-react";
+import { ArrowRight, BadgeCheck, Landmark } from "lucide-react";
 import { jakartaSans, fredokaHeadline } from "@/app/fonts";
 import { useOnboarding } from "@/components/onboarding-context";
 import { SampleEmailModal } from "@/components/SampleEmailModal";
@@ -263,7 +263,7 @@ export function HeroSection() {
               </span>
             </p>
             <p className="inline-flex items-center justify-center gap-2">
-              <University className="h-3.5 w-3.5 shrink-0 text-[#ff6a00]" aria-hidden />
+              <Landmark className="h-3.5 w-3.5 shrink-0 text-[#ff6a00]" aria-hidden />
               <span>
                 Campus partners across <span className="font-bold text-slate-800">10+ universities</span>, including
                 UCLA, Berkeley &amp; Columbia
