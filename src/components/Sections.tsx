@@ -2,12 +2,11 @@
 
 import React from "react";
 import { motion } from "motion/react";
-import { ArrowRight, CheckCircle2, Users, ShieldCheck, Calendar } from "lucide-react";
+import { Users, ShieldCheck, Calendar } from "lucide-react";
 import Link from "next/link";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { BrandWordmark } from "./BrandWordmark";
-import { Button } from "./ui/Button";
-import { useOnboarding } from "./onboarding-context";
+import { EmailCapture } from "./EmailCapture";
 import { useContact } from "./contact-context";
 export function TestimonialSection() {
   return (
@@ -106,8 +105,6 @@ export function NewsletterBenefitsSection() {
 }
 
 export function FinalCTA() {
-  const { openOnboarding } = useOnboarding();
-
   return (
     <section className="relative overflow-hidden bg-transparent py-20 sm:py-28">
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -127,23 +124,8 @@ export function FinalCTA() {
               school. Drop your email once and you&apos;re in.
             </p>
 
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
-              <Button
-                onClick={() => openOnboarding()}
-                className="h-16 w-full rounded-2xl bg-slate-900 px-10 text-sm font-black uppercase tracking-[0.16em] text-white shadow-[0_14px_0_0_rgba(15,23,42,0.12)] transition-all hover:-translate-y-1 hover:bg-slate-800 sm:w-auto"
-              >
-                Get tomorrow&apos;s free email
-                <ArrowRight className="ml-3 h-5 w-5 text-white" />
-              </Button>
-
-              <div className="flex h-16 items-center gap-3 rounded-2xl border-2 border-emerald-200 bg-white/80 px-6">
-                <CheckCircle2 className="h-5 w-5 text-emerald-500" />
-                <span className={`text-left text-[11px] font-bold uppercase tracking-[0.14em] text-slate-700 ${jakartaSans.className}`}>
-                  100% free
-                  <br />
-                  Unsubscribe anytime
-                </span>
-              </div>
+            <div className="mx-auto mt-10 w-full max-w-xl text-left">
+              <EmailCapture size="cta" submitLabel="Join free daily" />
             </div>
           </div>
         </div>
@@ -168,8 +150,8 @@ export function Footer() {
               <BrandWordmark />
             </Link>
             <p className="mt-6 max-w-sm font-medium leading-relaxed text-slate-500">
-              Free daily education for parents of high schoolers on using AI to stay organized for school, plus an
-              optional Elite student portal subscription.
+              Free daily for parents of high schoolers on using AI to stay organized for school — found on Nextdoor,
+              parent groups, and Instagram. Elite is available by inquiry.
             </p>
           </div>
           <div>
@@ -188,7 +170,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/login" className="transition-colors hover:text-sky-500">
-                  Student portal
+                  Student login
                 </Link>
               </li>
             </ul>

@@ -12,10 +12,9 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "What is StudentStack?",
     a: (
       <>
-        Parents start with our free daily newsletter to learn how their student can use AI to stay organized for school.
-        We keep it educational and practical: how college students structure weeks, notes, and deadlines with AI, so
-        parents can guide without guessing. Many families already treat it as a quiet weekly habit: skim, forward one
-        tip, move on.
+        A free daily newsletter for parents of high schoolers — how students can use AI to stay organized for school.
+        Families usually find us on Nextdoor, parent Facebook groups, or Instagram explainers, then join with just an
+        email.
       </>
     ),
   },
@@ -33,8 +32,7 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "Is the newsletter free?",
     a: (
       <>
-        Yes. The daily email is free. StudentStack Elite is a separate optional subscription for families who want their
-        student to go deeper inside a private portal.
+        Yes. Drop your email and you&apos;re in. No student info required to join the free daily. Unsubscribe anytime.
       </>
     ),
   },
@@ -42,10 +40,8 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "What is StudentStack Elite?",
     a: (
       <>
-        Elite is our direct approach: your student logs into a private portal to check ongoing posts for the AI tools we
-        use across school categories like organization, notetaking, and planning. It is built as their Edge: a living,
-        gamified home base from people still in their shoes. Other parents already subscribe so their students can check
-        in on their own.
+        Elite is a separate path for families who want something more for their student. Parents send a short inquiry
+        with student information and we follow up — there is no checkout on the site.
       </>
     ),
   },

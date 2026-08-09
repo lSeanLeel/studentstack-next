@@ -11,17 +11,18 @@ const topFocusEnum = z.enum([
   "Applying to College",
 ]);
 
+/** v4: parent email is the only required field for the free daily. */
 const bodySchema = z.object({
-  studentName: z.string().trim().min(1, "Student name is required."),
+  parentEmail: z.string().trim().min(1, "Parent email is required").email("Enter a valid parent email."),
+  studentName: z.string().trim().optional().default(""),
   studentEmail: z
     .string()
     .trim()
     .optional()
     .transform((v) => (v && v.length > 0 ? v : ""))
     .pipe(z.union([z.literal(""), z.string().email("Enter a valid student email.")])),
-  parentEmail: z.string().trim().min(1, "Parent email is required").email("Enter a valid parent email."),
-  studentGrade: z.string().trim().min(1, "Grade is required."),
-  topFocus: topFocusEnum,
+  studentGrade: z.string().trim().optional().default(""),
+  topFocus: topFocusEnum.optional(),
 });
 
 export async function POST(req: Request) {
@@ -66,11 +67,11 @@ export async function POST(req: Request) {
     });
 
     const insertRow = {
-      student_name: studentName,
+      student_name: studentName.trim() || "Newsletter parent",
       student_email: studentNorm || null,
       parent_email: parentNorm,
-      grade: studentGrade,
-      top_focus: topFocus,
+      grade: studentGrade.trim() || "—",
+      top_focus: topFocus ?? "Boosting GPA",
     };
 
     const { data: inserted, error: insertError } = await supabase
@@ -82,10 +83,7 @@ export async function POST(req: Request) {
     if (insertError) {
       const code = insertError.code;
       if (code === "23505") {
-        return NextResponse.json(
-          { error: "This email is already signed up.", code },
-          { status: 409 }
-        );
+        return NextResponse.json({ error: "This email is already signed up.", code }, { status: 409 });
       }
       if (/relation|does not exist|schema cache/i.test(insertError.message ?? "")) {
         return NextResponse.json(
@@ -136,7 +134,6 @@ export async function POST(req: Request) {
       return { ok: false as const, message: detail };
     };
 
-    // Parent is the primary subscriber. Student email is optional.
     const parentBee = await beehiivSubscribe(parentNorm);
     if (!parentBee.ok) {
       if (rowId) {

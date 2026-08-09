@@ -341,9 +341,10 @@ export function OperatorStudio() {
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-5">
         <header className="flex flex-wrap items-start justify-between gap-4 rounded-[2rem] border border-slate-800 bg-slate-900/80 p-6">
           <div>
-            <p className="text-[10px] font-black uppercase tracking-[0.22em] text-sky-400">Operator portal</p>
+            <p className="text-[10px] font-black uppercase tracking-[0.22em] text-sky-400">Operator portal · v4</p>
             <h1 className="mt-1 text-3xl font-black text-white">Daily newsletter studio</h1>
-            <p className="mt-2 max-w-xl text-sm font-medium text-slate-400">{NEWSLETTER_ANGLE.promise}</p>
+            <p className="mt-2 max-w-2xl text-sm font-medium text-slate-400">{NEWSLETTER_ANGLE.promise}</p>
+            <p className="mt-1 max-w-2xl text-xs font-medium text-slate-500">{NEWSLETTER_ANGLE.discovery}</p>
           </div>
           <button
             type="button"
@@ -390,7 +391,8 @@ export function OperatorStudio() {
               <h2 className="text-xl font-black text-white">1. Today’s brief</h2>
             </div>
             <p className="mb-5 text-sm font-medium text-slate-400">
-              Pick the organizing pillar, paste research notes, generate a draft around the StudentStack angle.
+              Pick the organizing pillar, paste research notes, generate a draft for free daily parents (community +
+              Instagram discovery). Soft Elite inquiry only — never a portal upsell.
             </p>
 
             <label className="mb-4 block">

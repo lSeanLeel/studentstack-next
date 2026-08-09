@@ -46,11 +46,11 @@ export function LoginForm() {
 
         <div className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_24px_60px_-36px_rgba(15,23,42,0.35)] sm:p-8">
           <h1 className={`text-2xl font-semibold tracking-[-0.03em] text-slate-900 ${fredokaHeadline.className}`}>
-            Student portal
+            Student login
           </h1>
           <p className={`ss-institutional mt-2 text-[0.95rem] leading-relaxed text-slate-600 ${institutionalSerif.className}`}>
-            Elite students sign in here for school-category tool postings and exclusive resources. Parents subscribe on
-            the Elite page.
+            Invited students sign in here. Parents join the free daily on the home page, or inquire about Elite when
+            they want something more for their student.
           </p>
 
           <form onSubmit={onSubmit} className="mt-6 space-y-4" noValidate>

@@ -7,13 +7,13 @@ import { fredokaHeadline, jakartaSans, institutionalSerif } from "@/app/fonts";
 const beats = [
   {
     num: "01",
-    title: "Free education for parents",
-    body: "A daily newsletter on how high schoolers can use AI to stay organized for school: practical, current, skimable.",
+    title: "Free daily parents can join",
+    body: "Found on Nextdoor, parent Facebook groups, or Instagram — then one email to get organizing habits in their inbox.",
   },
   {
     num: "02",
-    title: "Elite when they need the Edge",
-    body: "A parent subscription that unlocks a student portal of school-category tool postings and exclusive resources.",
+    title: "Elite by inquiry",
+    body: "When a family wants something more for their student, they reach out with a short application. We follow up.",
   },
   {
     num: "03",
@@ -48,7 +48,7 @@ export function DifferenceSection() {
           transition={{ duration: 0.45, delay: 0.05 }}
           className={`ss-institutional mt-4 max-w-2xl text-[1.05rem] font-normal leading-[1.65] text-slate-600 sm:text-lg ${institutionalSerif.className}`}
         >
-          Educate parents for free. Offer Elite when a student needs a living portal for the organizing Edge.
+          Educate parents for free. Elite is a conversation when a family wants something more for their student.
         </motion.p>
 
         <div className="relative mt-10 sm:mt-12 lg:mt-14">

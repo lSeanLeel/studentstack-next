@@ -2,9 +2,9 @@
 
 import React, { useEffect } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowRight, X } from "lucide-react";
+import { X } from "lucide-react";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
-import { useOnboarding } from "@/components/onboarding-context";
+import { EmailCapture } from "@/components/EmailCapture";
 
 type Props = {
   open: boolean;
@@ -28,8 +28,6 @@ const previewBlocks = [
 
 /** Newsletter-site pattern: show a sample issue before asking for the email. */
 export function SampleEmailModal({ open, onClose }: Props) {
-  const { openOnboarding } = useOnboarding();
-
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -108,17 +106,9 @@ export function SampleEmailModal({ open, onClose }: Props) {
               </ul>
             </div>
 
-            <button
-              type="button"
-              onClick={() => {
-                onClose();
-                openOnboarding();
-              }}
-              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-900 px-6 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-slate-800"
-            >
-              Get tomorrow&apos;s free email
-              <ArrowRight className="h-4 w-4" aria-hidden />
-            </button>
+            <div className="mt-6">
+              <EmailCapture size="cta" submitLabel="Join free daily" />
+            </div>
           </motion.div>
         </motion.div>
       ) : null}

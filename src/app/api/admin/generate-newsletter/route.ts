@@ -18,6 +18,8 @@ function buildSystemPrompt(focusId: string): string {
   return `You are writing StudentStack Daily — ${NEWSLETTER_ANGLE.promise}
 
 AUDIENCE: ${NEWSLETTER_ANGLE.audience}. Busy. Want credibility, not hype.
+HOW THEY FIND US: ${NEWSLETTER_ANGLE.discovery}
+ELITE RULE: ${NEWSLETTER_ANGLE.eliteNote}
 
 TODAY'S REQUIRED FOCUS PILLAR: ${pillar.label}
 Pillar detail: ${pillar.blurb}
@@ -35,7 +37,7 @@ ${NEWSLETTER_ANGLE.alwaysThis.map((x) => `- ${x}`).join("\n")}
 OUTPUT: structured Markdown only (no preamble, no code fences), sections in this exact order:
 
 1. A single # H1 title — concrete, parent-readable, organization-forward (not "AI is changing everything")
-2. One short lede paragraph under the title (1–2 sentences)
+2. One short lede paragraph under the title (1–2 sentences) welcoming free daily readers
 3. ## Today's organizing angle · ${pillar.label}
    - 2–4 sentences tying the issue to ${pillar.label.toLowerCase()}
 4. ## Signal
@@ -50,6 +52,8 @@ OUTPUT: structured Markdown only (no preamble, no code fences), sections in this
 Optional only if seed research clearly supports it:
 8. ## Opportunity radar
    - 1–3 high-school-relevant deadlines with dates when known
+
+Do not pitch Elite checkout or describe an internal student portal product. If mentioning Elite at all, keep it to one soft line about reaching out / inquiry — usually omit entirely.
 
 Tone: clear, trustworthy, energetic but not hypey. College-student informed. Write for parents who want their kid organized for school.`;
 }

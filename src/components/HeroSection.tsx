@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowRight, BadgeCheck, Landmark } from "lucide-react";
+import { BadgeCheck, Landmark } from "lucide-react";
 import { jakartaSans, fredokaHeadline } from "@/app/fonts";
-import { useOnboarding } from "@/components/onboarding-context";
+import { EmailCapture } from "@/components/EmailCapture";
 import { SampleEmailModal } from "@/components/SampleEmailModal";
 
 /** Order alternates cool (blue) and warm (orange / crimson) so similar reds never sit back-to-back. */
@@ -179,7 +179,6 @@ function HeroEmailPlane() {
 }
 
 export function HeroSection() {
-  const { openOnboarding } = useOnboarding();
   const [sampleOpen, setSampleOpen] = useState(false);
 
   return (
@@ -229,11 +228,11 @@ export function HeroSection() {
         >
           <p>
             A{" "}
-            <span className={`${fredokaHeadline.className} font-semibold text-sky-600`}>free</span> daily for parents of
-            high schoolers.
+            <span className={`${fredokaHeadline.className} font-semibold text-sky-600`}>free</span> daily parents join
+            from Nextdoor, parent Facebook groups, and Instagram.
           </p>
           <p>
-            Learn how your student can use AI to stay organized for school, from{" "}
+            Short education on how your high schooler can use AI to stay organized for school — from{" "}
             <a
               href="#faq-who-writes"
               className={`${fredokaHeadline.className} font-semibold text-slate-900 underline decoration-amber-300/80 underline-offset-[0.18em] transition-colors hover:text-sky-700 hover:decoration-sky-300`}
@@ -249,9 +248,8 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8 flex w-full max-w-lg flex-col items-center gap-4 sm:mt-10"
+          className="mt-8 flex w-full max-w-xl flex-col items-center gap-4 sm:mt-10"
         >
-          {/* Credibility pair: audience scale + campus network (brand-consistent, parent-facing) */}
           <div
             className={`${jakartaSans.className} flex w-full flex-col items-center gap-2 text-center text-[13px] font-medium leading-snug text-slate-600 [text-shadow:0_1px_0_rgba(255,255,255,0.85)] sm:text-sm`}
           >
@@ -271,16 +269,7 @@ export function HeroSection() {
             </p>
           </div>
 
-          <motion.button
-            type="button"
-            onClick={() => openOnboarding()}
-            whileHover={{ y: -2, scale: 1.015 }}
-            whileTap={{ scale: 0.985 }}
-            className={`${jakartaSans.className} inline-flex w-full items-center justify-center gap-2 rounded-[1.5rem] border border-sky-300/60 bg-gradient-to-b from-sky-500 to-sky-600 px-8 py-4 text-sm font-black uppercase tracking-[0.11em] text-white shadow-[0_14px_0_0_rgba(2,132,199,0.28),0_22px_40px_-18px_rgba(14,165,233,0.55)] transition-colors hover:from-sky-400 hover:to-sky-500 sm:w-auto sm:min-w-[19rem] sm:px-10 sm:text-[0.8125rem]`}
-          >
-            Get tomorrow&apos;s free email
-            <ArrowRight className="h-4 w-4" aria-hidden />
-          </motion.button>
+          <EmailCapture size="hero" className="w-full max-w-xl text-left" />
 
           <button
             type="button"

@@ -55,8 +55,8 @@ export function AiAdvantageSection() {
             className={`mt-5 max-w-2xl text-base font-medium leading-[1.65] tracking-[-0.01em] text-slate-600 sm:text-lg ${jakartaSans.className}`}
           >
             Across campus mentors, the pattern is consistent: high schoolers who learn AI early do not just finish faster.
-            They run cleaner weeks. Parents start with our free daily newsletter to learn those habits. Elite is the
-            direct path when a student needs a living portal built around the same school use cases.
+            They run cleaner weeks. Parents join our free daily to learn those habits — then inquire about Elite only if
+            they want a deeper conversation for their student.
           </p>
 
           <dl
