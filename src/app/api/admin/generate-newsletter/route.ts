@@ -2,23 +2,57 @@ import Anthropic from "@anthropic-ai/sdk";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { isAdminAuthorized } from "@/lib/admin-auth";
+import { FOCUS_PILLARS, NEWSLETTER_ANGLE, getFocusPillar } from "@/lib/newsletter/angle";
 import { getAnthropicApiKey, loadServerEnv } from "@/lib/server-env";
 
 const requestSchema = z.object({
   seedText: z.string().min(3, "seedText is required."),
+  focusPillar: z.enum(["organization", "planning", "notetaking"]).optional(),
+  issueDate: z.string().optional(),
 });
 
-const systemPrompt = `Act as StudentStack's CCO writing to parents of high schoolers.
+function buildSystemPrompt(focusId: string): string {
+  const pillar = getFocusPillar(focusId);
+  const pillars = FOCUS_PILLARS.map((p) => `- ${p.label}: ${p.blurb}`).join("\n");
 
-Generate structured Markdown for a weekly newsletter issue. Include these sections in order, using clear ## headings:
+  return `You are writing StudentStack Daily — ${NEWSLETTER_ANGLE.promise}
 
-1. Title — one compelling headline as a single # H1 at the top (no extra heading label)
-2. Daily Gist — 2–3 sentence overview of what happened in AI/education this week
-3. Parent Note Draft — a warm, practical note to parents; include the exact placeholder [EDIT PARENT NOTE HERE] where the author should personalize
-4. AI Toolkit — one featured tool or workflow with name, what it does, and one concrete student use case
-5. Opportunity Radar — 2–4 upcoming deadlines or opportunities for high schoolers (programs, competitions, internships) with dates when known
+AUDIENCE: ${NEWSLETTER_ANGLE.audience}. Busy. Want credibility, not hype.
 
-Tone: clear, trustworthy, energetic but not hypey. Write for busy parents. Use bullet lists where helpful. Return Markdown only — no preamble or code fences.`;
+TODAY'S REQUIRED FOCUS PILLAR: ${pillar.label}
+Pillar detail: ${pillar.blurb}
+Parent value: ${pillar.parentValue}
+
+THE THREE ARENAS (always stay inside this optic):
+${pillars}
+
+NEVER:
+${NEWSLETTER_ANGLE.notThis.map((x) => `- ${x}`).join("\n")}
+
+ALWAYS:
+${NEWSLETTER_ANGLE.alwaysThis.map((x) => `- ${x}`).join("\n")}
+
+OUTPUT: structured Markdown only (no preamble, no code fences), sections in this exact order:
+
+1. A single # H1 title — concrete, parent-readable, organization-forward (not "AI is changing everything")
+2. One short lede paragraph under the title (1–2 sentences)
+3. ## Today's organizing angle · ${pillar.label}
+   - 2–4 sentences tying the issue to ${pillar.label.toLowerCase()}
+4. ## Signal
+   - What is worth noticing in AI/education *through an organizing lens* (2–4 sentences)
+5. ## Parent note
+   - Warm, practical. Include the exact placeholder [EDIT PARENT NOTE HERE] on its own line near the top of this section
+6. ## The toolkit move
+   - One featured workflow: Name, what it does, one concrete high-school use case for ${pillar.label.toLowerCase()}
+7. ## Forward this
+   - One short message a parent can copy/text to their student tonight
+
+Optional only if seed research clearly supports it:
+8. ## Opportunity radar
+   - 1–3 high-school-relevant deadlines with dates when known
+
+Tone: clear, trustworthy, energetic but not hypey. College-student informed. Write for parents who want their kid organized for school.`;
+}
 
 function formatAnthropicError(error: unknown): string {
   if (error instanceof Anthropic.APIError) {
@@ -57,16 +91,27 @@ export async function POST(request: Request) {
     );
   }
 
+  const focusPillar = parsed.data.focusPillar ?? "organization";
+  const issueDate = parsed.data.issueDate?.trim();
+
   try {
     const client = new Anthropic({ apiKey });
     const message = await client.messages.create({
       model: "claude-3-5-sonnet-20241022",
       max_tokens: 4096,
-      system: systemPrompt,
+      system: buildSystemPrompt(focusPillar),
       messages: [
         {
           role: "user",
-          content: `Use this seed research / link dump as source material:\n\n${parsed.data.seedText}`,
+          content: [
+            issueDate ? `Issue date: ${issueDate}` : null,
+            `Focus pillar: ${getFocusPillar(focusPillar).label}`,
+            "Use this seed research / link dump / operator notes as source material:",
+            "",
+            parsed.data.seedText,
+          ]
+            .filter(Boolean)
+            .join("\n"),
         },
       ],
     });
@@ -81,7 +126,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Model returned empty content." }, { status: 502 });
     }
 
-    return NextResponse.json({ success: true, markdown });
+    return NextResponse.json({ success: true, markdown, focusPillar });
   } catch (error) {
     return NextResponse.json({ error: formatAnthropicError(error) }, { status: 502 });
   }

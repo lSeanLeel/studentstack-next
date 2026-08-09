@@ -4,11 +4,16 @@ import { isAdminAuthorized } from "@/lib/admin-auth";
 import { getBeehiivApiKey, getBeehiivPublicationId, loadServerEnv } from "@/lib/server-env";
 import { markdownToHtml } from "@/lib/markdown-to-html";
 
-const requestSchema = z.object({
-  title: z.string().min(1, "title is required."),
-  subtitle: z.string().optional(),
-  markdownContent: z.string().min(1, "markdownContent is required."),
-});
+const requestSchema = z
+  .object({
+    title: z.string().min(1, "title is required."),
+    subtitle: z.string().optional(),
+    markdownContent: z.string().optional(),
+    htmlContent: z.string().optional(),
+  })
+  .refine((d) => Boolean(d.htmlContent?.trim() || d.markdownContent?.trim()), {
+    message: "htmlContent or markdownContent is required.",
+  });
 
 export async function POST(request: Request) {
   loadServerEnv();
@@ -33,7 +38,9 @@ export async function POST(request: Request) {
     );
   }
 
-  const htmlBody = markdownToHtml(parsed.data.markdownContent);
+  const htmlBody = parsed.data.htmlContent?.trim()
+    ? parsed.data.htmlContent.trim()
+    : markdownToHtml(parsed.data.markdownContent ?? "");
 
   try {
     const response = await fetch(`https://api.beehiiv.com/v2/publications/${publicationId}/posts`, {
