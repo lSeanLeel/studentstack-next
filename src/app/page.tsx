@@ -10,18 +10,13 @@ import { ContactProvider } from "@/components/contact-context";
 
 const sectionLoading = () => <div className="h-96" aria-hidden />;
 
-const DifferenceSection = dynamic(
-  () => import("@/components/DifferenceSection").then((m) => ({ default: m.DifferenceSection })),
-  { loading: sectionLoading }
-);
-
-const NewsletterSection = dynamic(
-  () => import("@/components/NewsletterSection").then((m) => ({ default: m.NewsletterSection })),
-  { loading: sectionLoading }
-);
-
 const AiAdvantageSection = dynamic(
   () => import("@/components/AiAdvantageSection").then((m) => ({ default: m.AiAdvantageSection })),
+  { loading: sectionLoading }
+);
+
+const DifferenceSection = dynamic(
+  () => import("@/components/DifferenceSection").then((m) => ({ default: m.DifferenceSection })),
   { loading: sectionLoading }
 );
 
@@ -62,9 +57,8 @@ export default function LandingPage() {
           {showIntro && <IntroAnimation key={introSession} onComplete={handleIntroComplete} />}
           <Navbar onHomeLogoClick={replayIntro} />
           <HeroSection />
-          <DifferenceSection />
-          <NewsletterSection />
           <AiAdvantageSection />
+          <DifferenceSection />
           <EliteSection />
           <FaqSection />
           <FinalCTA />
