@@ -12,9 +12,10 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "What is StudentStack?",
     a: (
       <>
-        StudentStack is a student-led way to help high schoolers stay ahead with AI. Parents start with our free daily
-        newsletter. When a family wants more, StudentStack Elite gives the student a private portal with our AI toolkit
-        and exclusive resources.
+        StudentStack is a free daily newsletter for parents of high schoolers, written by college students who use AI in
+        real classes. Parents use it to stay current, forward one useful workflow to their student, and feel less behind
+        when school tech moves fast. Thousands of families already read it that way: a quick Sunday-through-week habit,
+        not another overwhelm inbox.
       </>
     ),
   },
