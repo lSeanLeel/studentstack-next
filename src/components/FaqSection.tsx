@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useId, useState, type ReactNode } from "react";
+import React, { useEffect, useState, type ReactNode } from "react";
 import { motion } from "motion/react";
 import { ChevronDown } from "lucide-react";
 import { jakartaSans, fredokaHeadline } from "@/app/fonts";
