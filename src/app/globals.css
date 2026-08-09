@@ -9,6 +9,12 @@
   --ss-sun: #fbbf24;
   --ss-ink: #0f172a;
   --ss-paper: #f8fafc;
+  --ss-elite-ink: #0f172a;
+  --ss-elite-muted: #475569;
+}
+
+.ss-institutional {
+  font-family: var(--font-institutional), ui-serif, Georgia, "Times New Roman", serif;
 }
 
 html {

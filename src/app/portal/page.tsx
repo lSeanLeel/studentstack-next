@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { fredokaHeadline, jakartaSans } from "@/app/fonts";
+import { fredokaHeadline, jakartaSans, institutionalSerif } from "@/app/fonts";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { getEliteAccessForUser, isEliteActive } from "@/lib/portal/entitlements";
 import { ELITE_TOOLKIT_CATEGORIES } from "@/lib/portal/toolkit";
@@ -33,7 +33,9 @@ export default async function PortalHomePage() {
         <h1 className={`mt-2 text-3xl font-semibold tracking-[-0.03em] text-slate-900 sm:text-4xl ${fredokaHeadline.className}`}>
           Welcome, {name}
         </h1>
-        <p className={`mt-3 max-w-2xl text-sm font-medium leading-relaxed text-slate-600 sm:text-base ${jakartaSans.className}`}>
+        <p
+          className={`ss-institutional mt-3 max-w-2xl text-[0.95rem] font-normal leading-relaxed text-slate-600 sm:text-base ${institutionalSerif.className}`}
+        >
           Your private home for the AI toolkit and exclusive resources. Built for high schoolers, informed by how college
           students actually stay ahead in school.
         </p>

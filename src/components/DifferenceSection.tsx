@@ -2,23 +2,23 @@
 
 import React from "react";
 import { motion } from "motion/react";
-import { fredokaHeadline, jakartaSans } from "@/app/fonts";
+import { fredokaHeadline, jakartaSans, institutionalSerif } from "@/app/fonts";
 
 const beats = [
   {
     num: "01",
-    title: "Education first for parents",
-    body: "Our free daily newsletter teaches how high schoolers can use AI to stay organized for school, without the hype cycle.",
+    title: "Free education for parents",
+    body: "A daily newsletter on how high schoolers can use AI to stay organized for school: practical, current, skimable.",
   },
   {
     num: "02",
-    title: "Then a direct Edge for students",
-    body: "Elite is the subscription path: your student logs into a living portal of school-category tool postings, built by people still in their shoes.",
+    title: "Elite when they need the Edge",
+    body: "A parent subscription that unlocks a student portal of school-category tool postings and exclusive resources.",
   },
   {
     num: "03",
-    title: "Credible, current, student-led",
-    body: "We keep the guidance practical and educational. Other parents already use both the free email and the Elite subscription to stay a step ahead.",
+    title: "Mentor-informed, still in the work",
+    body: "Guidance shaped from the college-student side of the same pressure, so families are not guessing alone.",
   },
 ] as const;
 
@@ -46,9 +46,9 @@ export function DifferenceSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.45, delay: 0.05 }}
-          className={`mt-4 max-w-2xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}
+          className={`ss-institutional mt-4 max-w-2xl text-[1.05rem] font-normal leading-[1.65] text-slate-600 sm:text-lg ${institutionalSerif.className}`}
         >
-          Lead with learning. Offer the Edge when a family is ready.
+          Educate parents for free. Offer Elite when a student needs a living portal for the organizing Edge.
         </motion.p>
 
         <div className="relative mt-10 sm:mt-12 lg:mt-14">
@@ -80,7 +80,7 @@ export function DifferenceSection() {
                     {beat.title}
                   </h3>
                   <p
-                    className={`mt-1.5 text-sm font-medium leading-relaxed text-slate-600 sm:text-[0.95rem] ${jakartaSans.className}`}
+                    className={`ss-institutional mt-1.5 text-sm font-normal leading-relaxed text-slate-600 sm:text-[0.95rem] ${institutionalSerif.className}`}
                   >
                     {beat.body}
                   </p>

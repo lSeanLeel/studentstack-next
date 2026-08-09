@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { fredokaHeadline, jakartaSans } from "@/app/fonts";
+import { fredokaHeadline, jakartaSans, institutionalSerif } from "@/app/fonts";
 import { BrandWordmark } from "@/components/BrandWordmark";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 
@@ -48,8 +48,9 @@ export function LoginForm() {
           <h1 className={`text-2xl font-semibold tracking-[-0.03em] text-slate-900 ${fredokaHeadline.className}`}>
             Student portal
           </h1>
-          <p className="mt-2 text-sm font-medium text-slate-600">
-            Elite students sign in here to check school-category tool postings. Parents subscribe separately.
+          <p className={`ss-institutional mt-2 text-[0.95rem] leading-relaxed text-slate-600 ${institutionalSerif.className}`}>
+            Elite students sign in here for school-category tool postings and exclusive resources. Parents subscribe on
+            the Elite page.
           </p>
 
           <form onSubmit={onSubmit} className="mt-6 space-y-4" noValidate>

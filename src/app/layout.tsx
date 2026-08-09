@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { jakartaSans, fredokaHeadline } from "./fonts";
+import { jakartaSans, fredokaHeadline, institutionalSerif } from "./fonts";
 import "./globals.css";
 
 export const viewport: Viewport = {
@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${jakartaSans.variable} ${fredokaHeadline.variable} ${jakartaSans.className} antialiased`}
+        className={`${jakartaSans.variable} ${fredokaHeadline.variable} ${institutionalSerif.variable} ${jakartaSans.className} antialiased`}
       >
         {children}
       </body>

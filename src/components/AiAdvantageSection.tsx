@@ -7,15 +7,18 @@ import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 const arenas = [
   {
     label: "Organization",
-    line: "Keep classes, deadlines, and files from stacking into chaos before the week even starts.",
+    line: "Systems for classes, deadlines, and files, so the week does not collapse into catch-up mode.",
+    proof: "Most common early win parents report forwarding to their student.",
   },
   {
     label: "Planning",
-    line: "Turn a syllabus into a real week: blocks, buffers, and what actually gets done.",
+    line: "Syllabus to calendar: time blocks, buffers, and what actually gets finished.",
+    proof: "Where college mentors see the biggest gap between “busy” and “prepared.”",
   },
   {
     label: "Notetaking",
     line: "Capture in class, then reshape notes into something a high schooler can study from.",
+    proof: "A habit that compounds every unit, not a one-week tip.",
   },
 ] as const;
 
@@ -41,18 +44,43 @@ export function AiAdvantageSection() {
           </p>
           <h2
             id="ai-advantage-heading"
-            className={`mt-3 text-[1.85rem] font-semibold leading-[1.08] tracking-[-0.035em] text-slate-900 sm:text-4xl lg:text-[2.55rem] ${fredokaHeadline.className}`}
+            className={`mt-3 text-[2rem] font-semibold leading-[1.05] tracking-[-0.035em] text-slate-900 sm:text-4xl lg:text-[2.85rem] ${fredokaHeadline.className}`}
           >
-            AI for staying organized in{" "}
-            <span className="text-sky-500">high school</span>
+            The advantage is not “using AI.”
+            <br className="hidden sm:block" />
+            It is staying{" "}
+            <span className="text-sky-500">organized</span> with it.
           </h2>
           <p
-            className={`mt-5 max-w-2xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}
+            className={`mt-5 max-w-2xl text-base font-medium leading-[1.65] tracking-[-0.01em] text-slate-600 sm:text-lg ${jakartaSans.className}`}
           >
-            From the college-student side of the same pressure, we saw a simple Edge: students who learn AI early do not
-            just move faster. They stay organized. Parents start with our free daily newsletter to learn those habits.
-            When a family wants the direct path, Elite puts the student in a portal built around those school use cases.
+            Across campus mentors, the pattern is consistent: high schoolers who learn AI early do not just finish faster.
+            They run cleaner weeks. Parents start with our free daily newsletter to learn those habits. Elite is the
+            direct path when a student needs a living portal built around the same school use cases.
           </p>
+
+          <dl
+            className={`mt-8 grid gap-4 sm:grid-cols-3 sm:gap-6 ${jakartaSans.className}`}
+          >
+            <div className="rounded-2xl border border-sky-100/90 bg-white/70 px-4 py-3">
+              <dt className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">Observed</dt>
+              <dd className={`mt-1 text-sm font-semibold text-slate-800 ${fredokaHeadline.className}`}>
+                Organization first
+              </dd>
+            </div>
+            <div className="rounded-2xl border border-sky-100/90 bg-white/70 px-4 py-3">
+              <dt className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">Taught by</dt>
+              <dd className={`mt-1 text-sm font-semibold text-slate-800 ${fredokaHeadline.className}`}>
+                Campus mentors
+              </dd>
+            </div>
+            <div className="rounded-2xl border border-sky-100/90 bg-white/70 px-4 py-3">
+              <dt className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">Built for</dt>
+              <dd className={`mt-1 text-sm font-semibold text-slate-800 ${fredokaHeadline.className}`}>
+                Parents &amp; students
+              </dd>
+            </div>
+          </dl>
         </motion.div>
 
         <ul className="mt-10 divide-y divide-sky-100/90 border-y border-sky-100/90 sm:mt-12">
@@ -63,16 +91,21 @@ export function AiAdvantageSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.45 }}
               transition={{ duration: 0.4, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
-              className="grid gap-2 py-6 sm:grid-cols-[10rem_1fr] sm:items-baseline sm:gap-8 sm:py-7"
+              className="grid gap-2 py-6 sm:grid-cols-[10rem_1fr] sm:items-start sm:gap-8 sm:py-7"
             >
               <span
                 className={`text-xl font-semibold tracking-[-0.02em] text-[#ff6a00] sm:text-2xl ${fredokaHeadline.className}`}
               >
                 {arena.label}
               </span>
-              <p className={`text-sm font-medium leading-relaxed text-slate-600 sm:text-base ${jakartaSans.className}`}>
-                {arena.line}
-              </p>
+              <div>
+                <p className={`text-sm font-medium leading-relaxed text-slate-700 sm:text-base ${jakartaSans.className}`}>
+                  {arena.line}
+                </p>
+                <p className={`mt-1.5 text-xs font-medium text-slate-500 sm:text-[13px] ${jakartaSans.className}`}>
+                  {arena.proof}
+                </p>
+              </div>
             </motion.li>
           ))}
         </ul>
