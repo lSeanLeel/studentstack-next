@@ -128,7 +128,9 @@ function FaqAccordionItem({
 
 export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-  const baseId = useId();
+  // Stable prefix (not useId): FaqSection is dynamically imported, so React useId
+  // prefixes can differ between SSR and client and cause hydration mismatches.
+  const baseId = "faq";
 
   useEffect(() => {
     const openFromHash = () => {
