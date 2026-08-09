@@ -119,12 +119,12 @@ export function FinalCTA() {
             <h2
               className={`text-4xl font-semibold leading-[1.05] tracking-[-0.035em] text-slate-900 sm:text-6xl ${fredokaHeadline.className}`}
             >
-              One daily email.{" "}
-              <span className="text-sky-500">Zero fluff.</span>
+              Learn the organizing Edge.{" "}
+              <span className="text-sky-500">Free, daily.</span>
             </h2>
             <p className={`mx-auto mt-5 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}>
-              Free AI education for parents of high schoolers: a signal, a toolkit move, and honest student takes. Drop
-              your email once and you&apos;re in.
+              Parents start with our free daily newsletter to learn how their student can use AI to stay organized for
+              school. Drop your email once and you&apos;re in.
             </p>
 
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
@@ -168,8 +168,8 @@ export function Footer() {
               <BrandWordmark />
             </Link>
             <p className="mt-6 max-w-sm font-medium leading-relaxed text-slate-500">
-              Free weekly email from university students: AI tools for school, exclusive research opportunities for high
-              schoolers, + more!
+              Free daily education for parents of high schoolers on using AI to stay organized for school, plus an
+              optional Elite student portal subscription.
             </p>
           </div>
           <div>
@@ -188,7 +188,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/login" className="transition-colors hover:text-sky-500">
-                  Student sign in
+                  Student portal
                 </Link>
               </li>
             </ul>

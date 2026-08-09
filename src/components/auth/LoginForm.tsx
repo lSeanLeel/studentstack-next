@@ -49,7 +49,7 @@ export function LoginForm() {
             Student portal
           </h1>
           <p className="mt-2 text-sm font-medium text-slate-600">
-            Students sign in here for Elite toolkit and resource access. Parents buy Elite separately.
+            Elite students sign in here to check school-category tool postings. Parents subscribe separately.
           </p>
 
           <form onSubmit={onSubmit} className="mt-6 space-y-4" noValidate>

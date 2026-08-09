@@ -7,18 +7,18 @@ import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 const beats = [
   {
     num: "01",
-    title: "Support from students still in class",
-    body: "High school support, from students who just lived it. College students translate what works in class into guidance families can use.",
+    title: "Education first for parents",
+    body: "Our free daily newsletter teaches how high schoolers can use AI to stay organized for school, without the hype cycle.",
   },
   {
     num: "02",
-    title: "What we use, we share",
-    body: "The “best” AI tool for school changes constantly. We share the latest ones we actually use, so parents get what’s working now, not last semester’s hype.",
+    title: "Then a direct Edge for students",
+    body: "Elite is the subscription path: your student logs into a living portal of school-category tool postings, built by people still in their shoes.",
   },
   {
     num: "03",
-    title: "For the kids coming up behind us",
-    body: "Schools move slowly. We don’t. Our job is to get the next generation fluent early, so high schoolers aren’t catching up when college starts.",
+    title: "Credible, current, student-led",
+    body: "We keep the guidance practical and educational. Other parents already use both the free email and the Elite subscription to stay a step ahead.",
   },
 ] as const;
 
@@ -41,6 +41,15 @@ export function DifferenceSection() {
           Stay ahead with{" "}
           <span className="text-[#ff6a00]">AI</span>
         </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.45, delay: 0.05 }}
+          className={`mt-4 max-w-2xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}
+        >
+          Lead with learning. Offer the Edge when a family is ready.
+        </motion.p>
 
         <div className="relative mt-10 sm:mt-12 lg:mt-14">
           <div

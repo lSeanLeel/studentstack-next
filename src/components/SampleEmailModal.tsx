@@ -14,15 +14,15 @@ type Props = {
 const previewBlocks = [
   {
     label: "The signal",
-    body: "What actually changed in AI for school this week, in plain English for busy parents.",
+    body: "What changed in AI for student organization this week, in plain English for busy parents.",
   },
   {
     label: "The toolkit",
-    body: "One workflow college students are using right now in lectures, labs, or writing.",
+    body: "One workflow college students use to stay organized: notes, planning, or weekly systems.",
   },
   {
     label: "The move",
-    body: "A short action you can forward to your high schooler before the next deadline.",
+    body: "A short action you can forward so your high schooler tries one organizing habit this week.",
   },
 ] as const;
 
@@ -85,7 +85,8 @@ export function SampleEmailModal({ open, onClose }: Props) {
               What tomorrow&apos;s email looks like
             </h2>
             <p className="mt-2 text-sm font-medium leading-relaxed text-slate-600">
-              Short on purpose. Written so a parent can skim it, and a high schooler can use it.
+              Educational on purpose. Written so a parent can learn the habit, then hand one organizing move to their
+              student.
             </p>
 
             <div className="mt-6 overflow-hidden rounded-[1.5rem] border border-sky-100 bg-gradient-to-b from-sky-50/80 to-white">

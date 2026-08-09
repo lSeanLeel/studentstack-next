@@ -17,26 +17,39 @@ export default function ElitePage() {
           <h1
             className={`mt-3 text-3xl font-semibold tracking-[-0.035em] text-slate-900 sm:text-5xl ${fredokaHeadline.className}`}
           >
-            Gift your student a portal built by students
+            Subscribe your student to the Edge
           </h1>
           <p className="mt-4 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg">
-            You purchase Elite as the parent. Your student gets a private login with full access to our AI toolkit for
-            school and exclusive resources like summer programs and opportunity lists.
+            Parents start with our free daily newsletter to learn how their student can use AI to stay organized for
+            school. Elite is the direct subscription: your student logs into a private portal to check postings for the
+            tools we use across school categories.
           </p>
 
           <ul className="mt-8 space-y-4 text-sm font-medium text-slate-700">
             <li className="rounded-[1.5rem] border border-slate-100 bg-white px-5 py-4">
-              <span className={`${fredokaHeadline.className} text-lg font-semibold text-slate-900`}>AI toolkit</span>
+              <span className={`${fredokaHeadline.className} text-lg font-semibold text-slate-900`}>
+                School-category postings
+              </span>
               <p className="mt-1 text-slate-600">
-                Organization, notetaking, planning, studying, writing, and research workflows we use for school.
+                Organization, notetaking, planning, studying, writing, and research: living updates from the
+                college-student side of the same work.
               </p>
             </li>
             <li className="rounded-[1.5rem] border border-slate-100 bg-white px-5 py-4">
               <span className={`${fredokaHeadline.className} text-lg font-semibold text-slate-900`}>
-                Exclusive resources
+                A gamified, intricate portal
               </span>
               <p className="mt-1 text-slate-600">
-                Summer program shortlists and sourced opportunities kept for Elite students.
+                Built as their Edge: progress-oriented, continually refreshed, and designed for high schoolers who want
+                more than a tip email.
+              </p>
+            </li>
+            <li className="rounded-[1.5rem] border border-slate-100 bg-white px-5 py-4">
+              <span className={`${fredokaHeadline.className} text-lg font-semibold text-slate-900`}>
+                Already used by other parents
+              </span>
+              <p className="mt-1 text-slate-600">
+                You subscribe. Your student signs in. Quiet, credible support that stays educational.
               </p>
             </li>
           </ul>
@@ -44,7 +57,7 @@ export default function ElitePage() {
 
         <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_24px_60px_-36px_rgba(15,23,42,0.3)] sm:p-8">
           <h2 className={`text-xl font-semibold tracking-[-0.02em] text-slate-900 ${fredokaHeadline.className}`}>
-            Start checkout
+            Start the subscription
           </h2>
           <p className="mt-2 text-sm font-medium text-slate-600">
             Billing goes to the parent email. Portal access goes to the student email.
@@ -55,7 +68,7 @@ export default function ElitePage() {
           <p className="mt-5 text-center text-xs font-medium text-slate-500">
             Already have access?{" "}
             <Link href="/login" className="font-bold text-sky-700 hover:text-sky-900">
-              Student sign in
+              Student portal login
             </Link>
           </p>
         </div>

@@ -12,10 +12,10 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "What is StudentStack?",
     a: (
       <>
-        StudentStack is a free daily newsletter for parents of high schoolers, written by college students who use AI in
-        real classes. Parents use it to stay current, forward one useful workflow to their student, and feel less behind
-        when school tech moves fast. Thousands of families already read it that way: a quick Sunday-through-week habit,
-        not another overwhelm inbox.
+        Parents start with our free daily newsletter to learn how their student can use AI to stay organized for school.
+        We keep it educational and practical: how college students structure weeks, notes, and deadlines with AI, so
+        parents can guide without guessing. Many families already treat it as a quiet weekly habit: skim, forward one
+        tip, move on.
       </>
     ),
   },
@@ -23,8 +23,9 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "What is in the daily newsletter?",
     a: (
       <>
-        Each email is short on purpose: a signal on what changed, a toolkit workflow we actually used, and one concrete
-        move for the week. Written from the perspective of college students still in class.
+        Short education for parents around AI for student organization: what changed, one workflow that helps a high
+        schooler stay on top of school, and one move you can share. Written from the perspective of college students
+        still in class.
       </>
     ),
   },
@@ -32,8 +33,8 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "Is the newsletter free?",
     a: (
       <>
-        Yes. The daily email is 100% free. Elite is separate and optional: parents purchase access so their student can
-        use the portal.
+        Yes. The daily email is free. StudentStack Elite is a separate optional subscription for families who want their
+        student to go deeper inside a private portal.
       </>
     ),
   },
@@ -41,9 +42,10 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "What is StudentStack Elite?",
     a: (
       <>
-        A parent-purchased portal for the student. It includes full access to our AI toolkit (organization, notetaking,
-        planning, studying, writing, research) plus exclusive resources like summer program lists and opportunity
-        shortlists.
+        Elite is our direct approach: your student logs into a private portal to check ongoing posts for the AI tools we
+        use across school categories like organization, notetaking, and planning. It is built as their Edge: a living,
+        gamified home base from people still in their shoes. Other parents already subscribe so their students can check
+        in on their own.
       </>
     ),
   },
@@ -52,8 +54,8 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "Who writes it?",
     a: (
       <>
-        StudentStack is built around how college students use AI for school. We keep the work practical and current, and
-        we answer when you email us.
+        StudentStack is shaped by how college students actually stay organized with AI. We keep the guidance current,
+        credible, and useful for parents of high schoolers, and we answer when you email us.
       </>
     ),
   },
@@ -135,7 +137,6 @@ export function FaqSection() {
       const idx = FAQ_ITEMS.findIndex((item) => item.id === hash);
       if (idx >= 0) {
         setOpenIndex(idx);
-        // Let layout settle, then scroll the FAQ card into view.
         requestAnimationFrame(() => {
           document.getElementById(hash)?.scrollIntoView({ behavior: "smooth", block: "start" });
         });

@@ -7,8 +7,8 @@ import { ArrowRight } from "lucide-react";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 
 /**
- * Soft, parent-facing Elite framing. No hard product grid / pricing push.
- * Emphasizes college-student support for high schoolers.
+ * Soft parent-facing Elite subscription framing.
+ * Vague on mechanics; specific on student school use cases.
  */
 export function EliteSection() {
   return (
@@ -25,25 +25,26 @@ export function EliteSection() {
           transition={{ duration: 0.45 }}
         >
           <p className={`text-[10px] font-black uppercase tracking-[0.22em] text-[#ff6a00] ${jakartaSans.className}`}>
-            When free is not enough
+            StudentStack Elite
           </p>
           <h2
             id="elite-heading"
             className={`mt-3 text-[1.85rem] font-semibold leading-[1.08] tracking-[-0.035em] text-slate-900 sm:text-4xl lg:text-[2.55rem] ${fredokaHeadline.className}`}
           >
-            A student solution for high school support
+            Their Edge, built by students still in the work
           </h2>
           <p
             className={`mt-4 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}
           >
-            The daily newsletter is how families start. For students who want a private home base, StudentStack Elite
-            opens a portal built around how college students actually work: an AI toolkit for school, plus exclusive
-            resources like summer programs and opportunity lists.
+            Parents start with our free daily newsletter to learn how their student can use AI to stay organized for
+            school. Elite is the next step: a private student portal where your high schooler checks ongoing posts for
+            the tools we use in real school categories.
           </p>
           <p
             className={`mt-3 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}
           >
-            Parents gift access. Students log in. The brand stays student-led; the work stays practical.
+            Think of it as their tailored Edge: living, challenge-driven, and designed from the college-student side of
+            the same pressure. A growing set of parents already subscribe so their student can log in on their own.
           </p>
         </motion.div>
 
@@ -55,25 +56,25 @@ export function EliteSection() {
           className="rounded-[2rem] border border-sky-100 bg-gradient-to-br from-sky-50 via-white to-orange-50/60 p-7 sm:p-8"
         >
           <p className={`text-[11px] font-black uppercase tracking-[0.18em] text-slate-500 ${jakartaSans.className}`}>
-            Inside Elite
+            Inside the portal
           </p>
           <ul className={`mt-5 space-y-4 text-sm font-medium leading-relaxed text-slate-700 ${jakartaSans.className}`}>
             <li>
-              <span className={`${fredokaHeadline.className} font-semibold text-slate-900`}>AI toolkit</span>
+              <span className={`${fredokaHeadline.className} font-semibold text-slate-900`}>School-use postings</span>
               <span className="mt-1 block text-slate-600">
-                Organization, notetaking, planning, studying, writing, and research.
+                Organization, notetaking, planning, and related workflows students actually open for class.
               </span>
             </li>
             <li>
-              <span className={`${fredokaHeadline.className} font-semibold text-slate-900`}>Exclusive resources</span>
+              <span className={`${fredokaHeadline.className} font-semibold text-slate-900`}>A living Edge</span>
               <span className="mt-1 block text-slate-600">
-                Summer programs and opportunity lists sourced for high schoolers.
+                An intricate, progress-oriented space that keeps updating as school tools change.
               </span>
             </li>
             <li>
-              <span className={`${fredokaHeadline.className} font-semibold text-slate-900`}>Student portal</span>
+              <span className={`${fredokaHeadline.className} font-semibold text-slate-900`}>Parent subscribes</span>
               <span className="mt-1 block text-slate-600">
-                One login for your student. You buy it once as the parent.
+                Student logs in. Quiet, credible support, without turning school into another app chase.
               </span>
             </li>
           </ul>
@@ -81,7 +82,7 @@ export function EliteSection() {
             href="/elite"
             className={`mt-7 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.14em] text-sky-700 transition-colors hover:text-sky-900 ${jakartaSans.className}`}
           >
-            Learn about Elite
+            Explore the subscription
             <ArrowRight className="h-4 w-4" aria-hidden />
           </Link>
         </motion.div>

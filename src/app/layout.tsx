@@ -8,9 +8,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "StudentStack | Free weekly AI email for parents",
+  title: "StudentStack | Free daily AI organization newsletter for parents",
   description:
-    "StudentStack is a free weekly AI education newsletter for parents of high schoolers, written by college students.",
+    "Parents start with StudentStack’s free daily newsletter to learn how their high schooler can use AI to stay organized for school. Optional Elite student portal subscription available.",
 };
 
 export default function RootLayout({

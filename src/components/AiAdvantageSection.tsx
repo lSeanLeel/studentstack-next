@@ -6,16 +6,16 @@ import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 
 const arenas = [
   {
-    label: "Lectures",
-    line: "Catch up on dense material faster, and walk into class already oriented.",
+    label: "Organization",
+    line: "Keep classes, deadlines, and files from stacking into chaos before the week even starts.",
   },
   {
-    label: "Labs",
-    line: "Debug, draft, and explore with tools we actually open for coursework.",
+    label: "Planning",
+    line: "Turn a syllabus into a real week: blocks, buffers, and what actually gets done.",
   },
   {
-    label: "Applications",
-    line: "Essays, research, and extracurriculars, where a sharp workflow shows.",
+    label: "Notetaking",
+    line: "Capture in class, then reshape notes into something a high schooler can study from.",
   },
 ] as const;
 
@@ -36,24 +36,22 @@ export function AiAdvantageSection() {
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-3xl"
         >
-          <p
-            className={`text-[10px] font-black uppercase tracking-[0.22em] text-[#ff6a00] ${jakartaSans.className}`}
-          >
+          <p className={`text-[10px] font-black uppercase tracking-[0.22em] text-[#ff6a00] ${jakartaSans.className}`}>
             The AI Advantage
           </p>
           <h2
             id="ai-advantage-heading"
             className={`mt-3 text-[1.85rem] font-semibold leading-[1.08] tracking-[-0.035em] text-slate-900 sm:text-4xl lg:text-[2.55rem] ${fredokaHeadline.className}`}
           >
-            We identified an AI advantage for{" "}
-            <span className="text-sky-500">high schoolers</span>
+            AI for staying organized in{" "}
+            <span className="text-sky-500">high school</span>
           </h2>
           <p
             className={`mt-5 max-w-2xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}
           >
-            As students still in school, we saw peers who learn AI early show up sharper, not just faster. That edge
-            shows up in lectures, labs, and applications. It starts in high school. We share the latest tools we use,
-            because the “best” one never stays best for long.
+            From the college-student side of the same pressure, we saw a simple Edge: students who learn AI early do not
+            just move faster. They stay organized. Parents start with our free daily newsletter to learn those habits.
+            When a family wants the direct path, Elite puts the student in a portal built around those school use cases.
           </p>
         </motion.div>
 

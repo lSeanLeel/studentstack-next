@@ -228,15 +228,15 @@ export function HeroSection() {
           className={`${jakartaSans.className} mx-auto mt-5 max-w-2xl text-base font-medium leading-relaxed text-slate-600 sm:mt-6 sm:text-lg`}
         >
           A{" "}
-          <span className={`${fredokaHeadline.className} font-semibold text-sky-600`}>free</span>, daily newsletter for
-          parents of high schoolers! Sharing how we,{" "}
+          <span className={`${fredokaHeadline.className} font-semibold text-sky-600`}>free</span> daily newsletter for
+          parents of high schoolers, so you can learn how your student can use AI to stay organized for school. From{" "}
           <a
             href="#faq-who-writes"
             className={`${fredokaHeadline.className} font-semibold text-slate-900 underline decoration-amber-300/80 underline-offset-[0.18em] transition-colors hover:text-sky-700 hover:decoration-sky-300`}
           >
             real students
-          </a>
-          , use AI to stay ahead of school!
+          </a>{" "}
+          still living it.
         </motion.p>
 
         <motion.div
@@ -253,8 +253,8 @@ export function HeroSection() {
             <p className="inline-flex items-center justify-center gap-2">
               <Users className="h-3.5 w-3.5 shrink-0 text-sky-600" aria-hidden />
               <span>
-                Join <span className="font-bold text-sky-700">2000+</span> parents helping their high schooler stay
-                ahead with AI
+                Join <span className="font-bold text-sky-700">2000+</span> parents learning how AI keeps high schoolers
+                organized
               </span>
             </p>
             <p className="inline-flex items-center justify-center gap-2">
