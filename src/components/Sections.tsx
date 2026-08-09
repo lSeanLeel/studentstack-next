@@ -186,6 +186,11 @@ export function Footer() {
                   Contact Us
                 </button>
               </li>
+              <li>
+                <Link href="/login" className="transition-colors hover:text-sky-500">
+                  Student sign in
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

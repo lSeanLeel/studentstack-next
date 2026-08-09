@@ -2,9 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, GraduationCap, Users } from "lucide-react";
 import { jakartaSans, fredokaHeadline } from "@/app/fonts";
 import { useOnboarding } from "@/components/onboarding-context";
+import { SampleEmailModal } from "@/components/SampleEmailModal";
 
 /** Order alternates cool (blue) and warm (orange / crimson) so similar reds never sit back-to-back. */
 const featuredColleges = [
@@ -179,10 +180,12 @@ function HeroEmailPlane() {
 
 export function HeroSection() {
   const { openOnboarding } = useOnboarding();
+  const [sampleOpen, setSampleOpen] = useState(false);
 
   return (
     <section className="relative isolate min-h-[100dvh] min-h-screen w-full overflow-hidden px-4 pb-16 pt-28 sm:px-6 sm:pb-20 sm:pt-32">
       <HeroEmailPlane />
+      <SampleEmailModal open={sampleOpen} onClose={() => setSampleOpen(false)} />
 
       <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-5.5rem)] w-full max-w-[80rem] -translate-y-12 flex-col items-center justify-center text-center sm:min-h-[calc(100dvh-6.5rem)] sm:-translate-y-16">
         <motion.h1
@@ -241,15 +244,28 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8 flex w-full max-w-md flex-col items-center gap-3 sm:mt-10"
+          className="mt-8 flex w-full max-w-lg flex-col items-center gap-4 sm:mt-10"
         >
-          {/* Above the button so the email-mock backdrop stays visible below */}
-          <p
-            className={`${jakartaSans.className} text-center text-[13px] font-medium leading-snug text-slate-600 [text-shadow:0_1px_0_rgba(255,255,255,0.85)] sm:text-sm`}
+          {/* Credibility pair: audience scale + campus network (brand-consistent, parent-facing) */}
+          <div
+            className={`${jakartaSans.className} flex w-full flex-col items-center gap-2 text-center text-[13px] font-medium leading-snug text-slate-600 [text-shadow:0_1px_0_rgba(255,255,255,0.85)] sm:text-sm`}
           >
-            Join <span className="font-bold text-sky-700">2000+</span> parents helping their high schooler stay ahead
-            with AI
-          </p>
+            <p className="inline-flex items-center justify-center gap-2">
+              <Users className="h-3.5 w-3.5 shrink-0 text-sky-600" aria-hidden />
+              <span>
+                Join <span className="font-bold text-sky-700">2000+</span> parents helping their high schooler stay
+                ahead with AI
+              </span>
+            </p>
+            <p className="inline-flex items-center justify-center gap-2">
+              <GraduationCap className="h-3.5 w-3.5 shrink-0 text-[#ff6a00]" aria-hidden />
+              <span>
+                Campus partners across <span className="font-bold text-slate-800">10+ universities</span>, including
+                UCLA, Berkeley &amp; Columbia
+              </span>
+            </p>
+          </div>
+
           <motion.button
             type="button"
             onClick={() => openOnboarding()}
@@ -260,6 +276,14 @@ export function HeroSection() {
             Get tomorrow&apos;s free email
             <ArrowRight className="h-4 w-4" aria-hidden />
           </motion.button>
+
+          <button
+            type="button"
+            onClick={() => setSampleOpen(true)}
+            className={`${jakartaSans.className} text-[12px] font-bold text-slate-600 underline decoration-sky-300/80 underline-offset-[0.18em] transition-colors hover:text-sky-700 sm:text-[13px]`}
+          >
+            Preview a sample email
+          </button>
         </motion.div>
       </div>
     </section>
