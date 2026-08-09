@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowRight, GraduationCap, Users } from "lucide-react";
+import { ArrowRight, BadgeCheck, University } from "lucide-react";
 import { jakartaSans, fredokaHeadline } from "@/app/fonts";
 import { useOnboarding } from "@/components/onboarding-context";
 import { SampleEmailModal } from "@/components/SampleEmailModal";
@@ -39,7 +39,7 @@ const collegeFlipTransition = {
   ease: [0.22, 1, 0.36, 1] as const,
 };
 
-/** Full “Learn AI from ___ students” line; width flexes with each school; college mark flips in. */
+/** Full “Learn AI from ___ mentors” line; width flexes with each school; college mark flips in. */
 function CollegeHeadline() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [logosReady, setLogosReady] = useState(false);
@@ -123,7 +123,7 @@ function CollegeHeadline() {
       </span>
 
       <motion.span layout className="leading-none">
-        students
+        mentors
       </motion.span>
 
       <span className="sr-only">{current.name}</span>
@@ -221,23 +221,28 @@ export function HeroSection() {
           <CollegeHeadline />
         </motion.p>
 
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.55, duration: 0.55 }}
-          className={`${jakartaSans.className} mx-auto mt-5 max-w-2xl text-base font-medium leading-relaxed text-slate-600 sm:mt-6 sm:text-lg`}
+          className={`${jakartaSans.className} mx-auto mt-5 max-w-xl space-y-1.5 text-base font-medium leading-snug text-slate-600 sm:mt-6 sm:text-lg`}
         >
-          A{" "}
-          <span className={`${fredokaHeadline.className} font-semibold text-sky-600`}>free</span> daily newsletter for
-          parents of high schoolers, so you can learn how your student can use AI to stay organized for school. From{" "}
-          <a
-            href="#faq-who-writes"
-            className={`${fredokaHeadline.className} font-semibold text-slate-900 underline decoration-amber-300/80 underline-offset-[0.18em] transition-colors hover:text-sky-700 hover:decoration-sky-300`}
-          >
-            real students
-          </a>{" "}
-          still living it.
-        </motion.p>
+          <p>
+            A{" "}
+            <span className={`${fredokaHeadline.className} font-semibold text-sky-600`}>free</span> daily for parents of
+            high schoolers.
+          </p>
+          <p>
+            Learn how your student can use AI to stay organized for school, from{" "}
+            <a
+              href="#faq-who-writes"
+              className={`${fredokaHeadline.className} font-semibold text-slate-900 underline decoration-amber-300/80 underline-offset-[0.18em] transition-colors hover:text-sky-700 hover:decoration-sky-300`}
+            >
+              real students
+            </a>
+            .
+          </p>
+        </motion.div>
 
         <motion.div
           id="hero-cta"
@@ -251,14 +256,14 @@ export function HeroSection() {
             className={`${jakartaSans.className} flex w-full flex-col items-center gap-2 text-center text-[13px] font-medium leading-snug text-slate-600 [text-shadow:0_1px_0_rgba(255,255,255,0.85)] sm:text-sm`}
           >
             <p className="inline-flex items-center justify-center gap-2">
-              <Users className="h-3.5 w-3.5 shrink-0 text-sky-600" aria-hidden />
+              <BadgeCheck className="h-3.5 w-3.5 shrink-0 text-sky-600" aria-hidden />
               <span>
                 Join <span className="font-bold text-sky-700">2000+</span> parents learning how AI keeps high schoolers
                 organized
               </span>
             </p>
             <p className="inline-flex items-center justify-center gap-2">
-              <GraduationCap className="h-3.5 w-3.5 shrink-0 text-[#ff6a00]" aria-hidden />
+              <University className="h-3.5 w-3.5 shrink-0 text-[#ff6a00]" aria-hidden />
               <span>
                 Campus partners across <span className="font-bold text-slate-800">10+ universities</span>, including
                 UCLA, Berkeley &amp; Columbia
