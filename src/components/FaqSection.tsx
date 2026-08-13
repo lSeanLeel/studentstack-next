@@ -49,8 +49,8 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "Can I talk with your team?",
     a: (
       <>
-        Yes. Start with the free daily, then use Reach out on this site if you want a personal reply about supporting
-        your student. We respond by email. No checkout on the landing page.
+        Yes. Use Reach out on this site anytime for a personal reply about your student. We respond by email. No checkout
+        on the landing page.
       </>
     ),
   },

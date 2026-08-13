@@ -120,8 +120,8 @@ export function FinalCTA() {
               <span className="text-sky-500">Free, daily.</span>
             </h2>
             <p className={`mx-auto mt-5 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}>
-              Parents start with our free daily newsletter to learn how their student can use AI to stay organized for
-              school. Drop your email once and you&apos;re in.
+              Join our free daily for parents: how high schoolers use AI to stay organized for school. One email. You are
+              in.
             </p>
 
             <div className="mx-auto mt-10 w-full max-w-xl text-left">
