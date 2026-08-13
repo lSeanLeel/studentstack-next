@@ -221,11 +221,7 @@ export function HeroSection() {
           <p>
             A{" "}
             <span className={`${fredokaHeadline.className} font-semibold text-sky-600`}>free</span> daily from a
-            student-led organization. Not another tip sheet from the sidelines.
-          </p>
-          <p>
-            We translate how college students actually stay organized with AI into habits parents can trust for high
-            school.
+            student-led organization. Stay current on AI in school with other parents.
           </p>
         </motion.div>
 

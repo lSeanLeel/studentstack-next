@@ -12,8 +12,8 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "What is StudentStack?",
     a: (
       <>
-        A student-led organization for parents of high schoolers. We publish a free daily newsletter on how students use
-        AI to stay organized for school: practical habits from people still in class.
+        A student-led organization. Parents get a free daily newsletter on AI in school. Students can go deeper with
+        courses and certifications built around real academic workflows.
       </>
     ),
   },
@@ -21,27 +21,37 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "What is in the free daily?",
     a: (
       <>
-        Short education around organization, planning, and notetaking: one clear lens, one toolkit move, and one thing
-        you can forward to your student. Built to build trust, not to overwhelm your inbox.
+        A short pulse so you stay current with other parents. We keep it skim-friendly on purpose. The longer learning
+        lives in courses and certifications.
       </>
     ),
   },
   {
-    q: "Why student-led?",
+    q: "Who are courses for?",
     a: (
       <>
-        Campus tools and workflows change fast. Working with students who are still in that environment gives parents an
-        informational edge that static guides rarely match.
+        Student learners. Each course is a novel school workflow (systems, writing voice, lab notes, portfolios, and
+        more), with notes on which backgrounds or intended majors often benefit most. Parents can request access on
+        behalf of their student.
+      </>
+    ),
+  },
+  {
+    q: "Are the certifications real degrees?",
+    a: (
+      <>
+        No. They are StudentStack credentials for specific AI-in-school use cases, issued with education partners.
+        Early partner names on this site are placeholders while agreements finalize. They are not university degrees.
       </>
     ),
   },
   {
     id: "faq-who-writes",
-    q: "Who writes it?",
+    q: "Why student-led?",
     a: (
       <>
-        StudentStack is shaped by how college students actually stay organized with AI. We keep the guidance current,
-        credible, and useful for parents of high schoolers, and we answer when you email us.
+        Campus tools and classroom norms change fast. Working with students who are still in that environment keeps the
+        guidance current for parents and learners.
       </>
     ),
   },
@@ -49,8 +59,8 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "Can I talk with your team?",
     a: (
       <>
-        Yes. Use Reach out on this site anytime for a personal reply about your student. We respond by email. No checkout
-        on the landing page.
+        Yes. Use Reach out anytime for a personal reply. For a specific course or certification, use Request access or
+        Start certification on those sections.
       </>
     ),
   },

@@ -9,10 +9,12 @@
 - Use **Lucide React** (or other curated SVG icon libraries) or intentional **CSS shapes** only.
 
 ## Product & Content Boundaries
-- **StudentStack is a 100% free weekly AI education newsletter** for parents of high schoolers.
-- Do **not** implement or reference: paid tiers, “StudentStack Elite,” subscription pricing, checkout flows, or “24/7” / concierge paid peer support.
-- The “college student team” presentation is a **branding layer**; keep “Meet the Team” style mockups for optics, but do not add paid upsells in code or copy.
+- **StudentStack** is a student-led org for parents of high schoolers and student learners.
+- **Free daily newsletter** for parents: keep the hero description vague (social traffic already knows the pitch). No long climate encyclopedias above the fold.
+- **Monetization** on the public site: educational **courses** and **certifications** (waitlist / inquire / enroll framing). Prefer novel course concepts; frame major/background benefits tastefully (no stereotypes, no “guaranteed admissions”).
+- Certification partners may be placeholder / fictional institutes for now. Do not claim real university degrees, official university seals, or accredited credentials you do not have.
+- Do **not** implement or reference: “StudentStack Elite,” 24/7 concierge paid peer support, or hard portal upsells as the primary CTA.
+- The “college student team” presentation is a **branding layer**; keep Meet-the-Team style optics.
 
 ## Engineering defaults
-- App code and `package.json` live in `studentthisisfinal-main/` (Vite + React + Express + Tailwind).
-- Do not introduce unrelated frameworks or large refactors unless explicitly requested.
+- App is Next.js at the repo root (`package.json` in `/`). Do not introduce unrelated frameworks or large refactors unless explicitly requested.

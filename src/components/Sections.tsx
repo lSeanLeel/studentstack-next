@@ -120,8 +120,8 @@ export function FinalCTA() {
               <span className="text-sky-500">Free, daily.</span>
             </h2>
             <p className={`mx-auto mt-5 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}>
-              Join our free daily for parents: how high schoolers use AI to stay organized for school. One email. You are
-              in.
+              Stay current with other parents. One email. Free daily. Courses and certifications live below when your
+              student is ready to go deeper.
             </p>
 
             <div className="mx-auto mt-10 w-full max-w-xl text-left">
@@ -150,8 +150,8 @@ export function Footer() {
               <BrandWordmark />
             </Link>
             <p className="mt-6 max-w-sm font-medium leading-relaxed text-slate-500">
-              A student-led organization helping parents of high schoolers use AI to keep school weeks organized. Free
-              daily education, and a team you can write anytime.
+              Student-led organization: free daily for parents, courses and certifications for students who want to go
+              deeper on AI in school.
             </p>
           </div>
           <div>

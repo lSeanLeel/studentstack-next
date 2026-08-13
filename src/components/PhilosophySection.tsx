@@ -44,20 +44,20 @@ export function PhilosophySection() {
           className="max-w-3xl"
         >
           <p className={`text-[10px] font-black uppercase tracking-[0.22em] text-[#ff6a00] ${jakartaSans.className}`}>
-            Our approach
+            Why StudentStack
           </p>
           <h2
             id="philosophy-heading"
             className={`mt-3 text-[2rem] font-semibold leading-[1.05] tracking-[-0.04em] text-slate-900 sm:text-5xl lg:text-[3.1rem] ${fredokaHeadline.className}`}
           >
-            The informational edge of a{" "}
-            <span className="text-sky-500">student-led</span> organization
+            The edge of a{" "}
+            <span className="text-sky-500">student-led</span> team
           </h2>
           <p
             className={`ss-institutional mt-5 max-w-2xl text-[1.05rem] font-normal leading-[1.7] text-slate-600 sm:text-lg ${institutionalSerif.className}`}
           >
-            StudentStack exists because high school families deserve campus-current judgment on how AI actually helps
-            students stay organized, without the noise of tool hype or homework shortcuts.
+            Free daily for parents. Courses and certifications for students who want structured practice. Same campus
+            judgment underneath all of it.
           </p>
         </motion.div>
 

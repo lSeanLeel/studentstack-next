@@ -10,8 +10,18 @@ import { ContactProvider } from "@/components/contact-context";
 
 const sectionLoading = () => <div className="h-96" aria-hidden />;
 
-const AiAdvantageSection = dynamic(
-  () => import("@/components/AiAdvantageSection").then((m) => ({ default: m.AiAdvantageSection })),
+const NewsletterPulseSection = dynamic(
+  () => import("@/components/NewsletterPulseSection").then((m) => ({ default: m.NewsletterPulseSection })),
+  { loading: sectionLoading }
+);
+
+const CoursesSection = dynamic(
+  () => import("@/components/CoursesSection").then((m) => ({ default: m.CoursesSection })),
+  { loading: sectionLoading }
+);
+
+const CertificationsSection = dynamic(
+  () => import("@/components/CertificationsSection").then((m) => ({ default: m.CertificationsSection })),
   { loading: sectionLoading }
 );
 
@@ -57,7 +67,9 @@ export default function LandingPage() {
           {showIntro && <IntroAnimation key={introSession} onComplete={handleIntroComplete} />}
           <Navbar onHomeLogoClick={replayIntro} />
           <HeroSection />
-          <AiAdvantageSection />
+          <NewsletterPulseSection />
+          <CoursesSection />
+          <CertificationsSection />
           <PhilosophySection />
           <ReachOutSection />
           <FaqSection />
