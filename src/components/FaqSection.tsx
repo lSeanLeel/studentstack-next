@@ -13,8 +13,7 @@ const FAQ_ITEMS: FaqItem[] = [
     a: (
       <>
         A free daily newsletter for parents of high schoolers — how students can use AI to stay organized for school.
-        Families usually find us on Nextdoor, parent Facebook groups, or Instagram explainers, then join with just an
-        email.
+        Join with just your email. Skim, forward one tip, move on.
       </>
     ),
   },

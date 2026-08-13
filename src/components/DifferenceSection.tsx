@@ -8,7 +8,7 @@ const beats = [
   {
     num: "01",
     title: "Free daily parents can join",
-    body: "Found on Nextdoor, parent Facebook groups, or Instagram — then one email to get organizing habits in their inbox.",
+    body: "One email for organizing habits — Organization, Planning, Notetaking — written so parents can guide without guessing.",
   },
   {
     num: "02",

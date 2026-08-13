@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { BadgeCheck, Landmark } from "lucide-react";
 import { jakartaSans, fredokaHeadline } from "@/app/fonts";
 import { EmailCapture } from "@/components/EmailCapture";
 import { SampleEmailModal } from "@/components/SampleEmailModal";
@@ -223,16 +222,16 @@ export function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.55, duration: 0.55 }}
-          className={`${jakartaSans.className} mx-auto mt-5 max-w-xl space-y-1.5 text-base font-medium leading-snug text-slate-600 sm:mt-6 sm:text-lg`}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className={`${jakartaSans.className} mx-auto mt-4 max-w-xl space-y-1 text-base font-medium leading-snug text-slate-600 sm:mt-5 sm:text-lg`}
         >
           <p>
             A{" "}
-            <span className={`${fredokaHeadline.className} font-semibold text-sky-600`}>free</span> daily parents join
-            from Nextdoor, parent Facebook groups, and Instagram.
+            <span className={`${fredokaHeadline.className} font-semibold text-sky-600`}>free</span> daily for parents of
+            high schoolers.
           </p>
           <p>
-            Short education on how your high schooler can use AI to stay organized for school — from{" "}
+            How your student can use AI to stay organized for school — from{" "}
             <a
               href="#faq-who-writes"
               className={`${fredokaHeadline.className} font-semibold text-slate-900 underline decoration-amber-300/80 underline-offset-[0.18em] transition-colors hover:text-sky-700 hover:decoration-sky-300`}
@@ -245,30 +244,11 @@ export function HeroSection() {
 
         <motion.div
           id="hero-cta"
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8 flex w-full max-w-xl flex-col items-center gap-4 sm:mt-10"
+          transition={{ delay: 0.62, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-5 flex w-full max-w-xl flex-col items-center gap-3 sm:mt-6"
         >
-          <div
-            className={`${jakartaSans.className} flex w-full flex-col items-center gap-2 text-center text-[13px] font-medium leading-snug text-slate-600 [text-shadow:0_1px_0_rgba(255,255,255,0.85)] sm:text-sm`}
-          >
-            <p className="inline-flex items-center justify-center gap-2">
-              <BadgeCheck className="h-3.5 w-3.5 shrink-0 text-sky-600" aria-hidden />
-              <span>
-                Join <span className="font-bold text-sky-700">2000+</span> parents learning how AI keeps high schoolers
-                organized
-              </span>
-            </p>
-            <p className="inline-flex items-center justify-center gap-2">
-              <Landmark className="h-3.5 w-3.5 shrink-0 text-[#ff6a00]" aria-hidden />
-              <span>
-                Campus partners across <span className="font-bold text-slate-800">10+ universities</span>, including
-                UCLA, Berkeley &amp; Columbia
-              </span>
-            </p>
-          </div>
-
           <EmailCapture size="hero" className="w-full max-w-xl text-left" />
 
           <button

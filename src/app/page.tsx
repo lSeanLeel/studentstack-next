@@ -25,6 +25,11 @@ const EliteSection = dynamic(
   { loading: sectionLoading }
 );
 
+const CommunityProofSection = dynamic(
+  () => import("@/components/CommunityProofSection").then((m) => ({ default: m.CommunityProofSection })),
+  { loading: sectionLoading }
+);
+
 const FaqSection = dynamic(
   () => import("@/components/FaqSection").then((m) => ({ default: m.FaqSection })),
   { loading: sectionLoading }
@@ -59,6 +64,7 @@ export default function LandingPage() {
           <HeroSection />
           <AiAdvantageSection />
           <DifferenceSection />
+          <CommunityProofSection />
           <EliteSection />
           <FaqSection />
           <FinalCTA />

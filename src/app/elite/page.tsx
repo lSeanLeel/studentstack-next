@@ -23,8 +23,8 @@ export default function ElitePage() {
             <p
               className={`ss-institutional mt-5 max-w-xl text-[1.1rem] leading-[1.7] text-slate-700 ${institutionalSerif.className}`}
             >
-              StudentStack begins as a free daily newsletter parents join from Nextdoor, parent Facebook groups, or our
-              Instagram explainers — how high schoolers use AI to stay organized for school.
+              StudentStack begins as a free daily newsletter for parents — how high schoolers use AI to stay organized
+              for school.
             </p>
             <p
               className={`ss-institutional mt-3 max-w-xl text-[1.05rem] leading-[1.7] text-slate-600 ${institutionalSerif.className}`}
