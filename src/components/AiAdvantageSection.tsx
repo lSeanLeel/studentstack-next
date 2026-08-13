@@ -9,23 +9,26 @@ const arenas = [
   {
     label: "Organization",
     icon: FolderKanban,
-    line: "Systems for classes, deadlines, and files — so the week does not collapse into catch-up mode.",
-    proof: "The early win parents most often forward to their student.",
+    line: "How strong students keep classes, deadlines, and files from turning into midweek catch-up.",
+    proof: "We test workflows in real weeks, then keep only what actually clears the clutter.",
   },
   {
     label: "Planning",
     icon: CalendarCheck2,
-    line: "Syllabus to calendar: time blocks, buffers, and what actually gets finished.",
-    proof: "Where campus mentors see the gap between “busy” and “prepared.”",
+    line: "How they turn a syllabus into blocks, buffers, and priorities that get finished.",
+    proof: "New planners ship every month. We separate the ones that help from the ones that just add noise.",
   },
   {
     label: "Notetaking",
     icon: PenLine,
-    line: "Capture in class, then reshape notes into something a high schooler can study from.",
-    proof: "A habit that compounds every unit — not a one-week tip.",
+    line: "How they capture in class, then reshape notes into something they can study from.",
+    proof: "Bottom-up practice: use the tool, see what sticks, teach parents the habit that compounds.",
   },
 ] as const;
 
+/**
+ * Bottom-up AI Advantage: lived campus use → which tools streamline school → how top students stay ahead.
+ */
 export function AiAdvantageSection() {
   return (
     <section
@@ -50,16 +53,17 @@ export function AiAdvantageSection() {
             id="ai-advantage-heading"
             className={`mt-3 text-[2rem] font-semibold leading-[1.05] tracking-[-0.035em] text-slate-900 sm:text-4xl lg:text-[2.85rem] ${fredokaHeadline.className}`}
           >
-            The advantage is not “using AI.”
+            How top students stay on top
             <br className="hidden sm:block" />
-            It is staying{" "}
-            <span className="text-sky-500">organized</span> with it.
+            with{" "}
+            <span className="text-sky-500">AI</span>
           </h2>
           <p
             className={`mt-5 max-w-2xl text-base font-medium leading-[1.65] tracking-[-0.01em] text-slate-600 sm:text-lg ${jakartaSans.className}`}
           >
-            Across campus, the pattern is consistent: high schoolers who learn AI early do not just finish faster — they
-            run cleaner weeks. Our free daily teaches parents that organizing lens first.
+            We learn this from the bottom up. As we use the tools ourselves, we see where AI actually streamlines school
+            work, and which new apps are worth a high schooler&apos;s time. Then we translate that into what parents can
+            recognize: cleaner weeks, not louder tech.
           </p>
         </motion.div>
 

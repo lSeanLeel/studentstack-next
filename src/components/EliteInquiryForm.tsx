@@ -74,7 +74,7 @@ export function EliteInquiryForm({ compact = false }: { compact?: boolean }) {
         </h3>
         {!compact ? (
           <p className={`ss-institutional mt-1 text-sm leading-relaxed text-slate-600 ${institutionalSerif.className}`}>
-            Tell us about your student. We’ll follow up — no checkout on this page.
+            Tell us about your student. We’ll follow up, no checkout on this page.
           </p>
         ) : (
           <p className="mt-1 text-xs font-medium text-slate-500">Parent + student details. We’ll reach out.</p>

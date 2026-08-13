@@ -1,5 +1,5 @@
 /**
- * StudentStack daily newsletter angle — shared by operator generator (v4).
+ * StudentStack daily newsletter angle, shared by operator generator (v4).
  * Free daily for parents · community discovery · AI for student organization.
  */
 
@@ -7,11 +7,11 @@ export const NEWSLETTER_ANGLE = {
   product: "StudentStack Daily",
   audience: "parents of high schoolers",
   discovery:
-    "Parents usually find StudentStack on Nextdoor, Facebook parent groups, or Instagram educational videos — then join the free daily with just an email.",
+    "Parents usually find StudentStack on Nextdoor, Facebook parent groups, or Instagram educational videos, then join the free daily with just an email.",
   promise:
-    "A free daily email that teaches parents how their student can use AI to stay organized for school — practical moves from the college-student side of the same work.",
+    "A free daily email that teaches parents how their student can use AI to stay organized for school: practical moves from the college-student side of the same work.",
   eliteNote:
-    "Elite is never the lead story. It is a soft inquiry path for families who want something more — never a hard checkout pitch in the daily.",
+    "Elite is never the lead story. It is a soft inquiry path for families who want something more. Never a hard checkout pitch in the daily.",
   notThis: [
     "Generic AI news dump",
     "Tool hype without a school use case",
@@ -32,14 +32,14 @@ export const FOCUS_PILLARS = [
   {
     id: "organization",
     label: "Organization",
-    blurb: "Folders, inboxes, deadline hygiene — so the week does not collapse into catch-up.",
+    blurb: "Folders, inboxes, deadline hygiene, so the week does not collapse into catch-up.",
     parentValue: "Parents learn systems they can spot-check without micromanaging.",
   },
   {
     id: "planning",
     label: "Planning",
     blurb: "Syllabus → calendar: time blocks, buffers, and what actually gets finished.",
-    parentValue: "Parents see the gap between “busy” and “prepared” — and how AI closes it.",
+    parentValue: "Parents see the gap between “busy” and “prepared”, and how AI closes it.",
   },
   {
     id: "notetaking",

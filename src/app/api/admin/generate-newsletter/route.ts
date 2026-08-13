@@ -15,7 +15,7 @@ function buildSystemPrompt(focusId: string): string {
   const pillar = getFocusPillar(focusId);
   const pillars = FOCUS_PILLARS.map((p) => `- ${p.label}: ${p.blurb}`).join("\n");
 
-  return `You are writing StudentStack Daily — ${NEWSLETTER_ANGLE.promise}
+  return `You are writing StudentStack Daily, ${NEWSLETTER_ANGLE.promise}
 
 AUDIENCE: ${NEWSLETTER_ANGLE.audience}. Busy. Want credibility, not hype.
 HOW THEY FIND US: ${NEWSLETTER_ANGLE.discovery}
@@ -36,12 +36,12 @@ ${NEWSLETTER_ANGLE.alwaysThis.map((x) => `- ${x}`).join("\n")}
 
 OUTPUT: structured Markdown only (no preamble, no code fences), sections in this exact order:
 
-1. A single # H1 title — concrete, parent-readable, organization-forward (not "AI is changing everything")
-2. One short lede paragraph under the title (1–2 sentences) welcoming free daily readers
+1. A single # H1 title, concrete, parent-readable, organization-forward (not "AI is changing everything")
+2. One short lede paragraph under the title (1-2 sentences) welcoming free daily readers
 3. ## Today's organizing angle · ${pillar.label}
-   - 2–4 sentences tying the issue to ${pillar.label.toLowerCase()}
+   - 2-4 sentences tying the issue to ${pillar.label.toLowerCase()}
 4. ## Signal
-   - What is worth noticing in AI/education *through an organizing lens* (2–4 sentences)
+   - What is worth noticing in AI/education *through an organizing lens* (2-4 sentences)
 5. ## Parent note
    - Warm, practical. Include the exact placeholder [EDIT PARENT NOTE HERE] on its own line near the top of this section
 6. ## The toolkit move
@@ -51,9 +51,9 @@ OUTPUT: structured Markdown only (no preamble, no code fences), sections in this
 
 Optional only if seed research clearly supports it:
 8. ## Opportunity radar
-   - 1–3 high-school-relevant deadlines with dates when known
+   - 1-3 high-school-relevant deadlines with dates when known
 
-Do not pitch Elite checkout or describe an internal student portal product. If mentioning Elite at all, keep it to one soft line about reaching out / inquiry — usually omit entirely.
+Do not pitch Elite checkout or describe an internal student portal product. If mentioning Elite at all, keep it to one soft line about reaching out / inquiry, usually omit entirely.
 
 Tone: clear, trustworthy, energetic but not hypey. College-student informed. Write for parents who want their kid organized for school.`;
 }

@@ -71,7 +71,7 @@ export function ManualWeeklyEmailPreview({ data, className = "" }: Props) {
               This week&apos;s picks (by category)
             </h3>
             <p className={`mt-1 text-xs font-semibold text-slate-600 sm:text-[13px] ${jakartaSans.className}`}>
-              Curated by your team — one standout tool per lane. No AI auto-fill here.
+              Curated by your team, one standout tool per lane. No AI auto-fill here.
             </p>
           </div>
           <ul className="divide-y divide-slate-100/90 bg-white/80">
@@ -91,7 +91,7 @@ export function ManualWeeklyEmailPreview({ data, className = "" }: Props) {
                       <p className={`mt-0.5 text-[10px] font-medium text-slate-400 ${jakartaSans.className}`}>{hint}</p>
                     ) : null}
                     <p className={`mt-2 text-base font-semibold text-slate-900 ${fredokaHeadline.className}`}>
-                      {slot.toolName.trim() || "— Add tool name —"}
+                      {slot.toolName.trim() || ",  Add tool name , "}
                     </p>
                     <p className={`mt-1.5 text-sm leading-relaxed text-slate-600 ${jakartaSans.className}`}>
                       {slot.blurb.trim() || "One line: why this tool matters this week."}
@@ -120,7 +120,7 @@ export function ManualWeeklyEmailPreview({ data, className = "" }: Props) {
               Google Sheet · programs &amp; deadlines
             </h3>
             <p className={`mt-2 text-sm leading-relaxed text-teal-900/80 ${jakartaSans.className}`}>
-              Same link every week — you maintain rows in Google Sheets. Parents tap through to the live board.
+              Same link every week, you maintain rows in Google Sheets. Parents tap through to the live board.
             </p>
             {sheet ? (
               <div className="mt-4">

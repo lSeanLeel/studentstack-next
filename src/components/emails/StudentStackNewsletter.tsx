@@ -77,7 +77,7 @@ export function StudentStackNewsletter(props: StudentStackNewsletterProps) {
       <Head>
         <meta httpEquiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{weekLabel} — StudentStack</title>
+        <title>{weekLabel}, StudentStack</title>
       </Head>
       <Body
         style={{
@@ -233,13 +233,13 @@ export function StudentStackNewsletter(props: StudentStackNewsletterProps) {
                         color: SLATE600,
                       }}
                     >
-                      Curated by our team — not auto-generated. One standout tool per lane.
+                      Curated by our team, not auto-generated. One standout tool per lane.
                     </Text>
                   </Section>
 
                   {MANUAL_TOOLKIT_SLOTS.map((meta, i) => {
                     const slot = toolkit.find((t) => t.id === meta.id)!;
-                    const name = slot.toolName.trim() || "— TBD this week —";
+                    const name = slot.toolName.trim() || ",  TBD this week , ";
                     const blurb = slot.blurb.trim() || "Add a one-line note in admin.";
                     const url = slot.url.trim();
                     const stripe = i % 2 === 0 ? "#f8fafc" : "#ffffff";
@@ -386,7 +386,7 @@ export function StudentStackNewsletter(props: StudentStackNewsletterProps) {
                         color: TEAL_BODY,
                       }}
                     >
-                      Living spreadsheet you update — parents always get the same link.
+                      Living spreadsheet you update, parents always get the same link.
                     </Text>
 
                     <table
@@ -440,7 +440,7 @@ export function StudentStackNewsletter(props: StudentStackNewsletterProps) {
                         color: SLATE500,
                       }}
                     >
-                      Same board every week — we tidy rows and deadlines as we learn them.
+                      Same board every week, we tidy rows and deadlines as we learn them.
                       Always double-check dates on the program&apos;s site before your student applies.
                     </Text>
                   </Section>

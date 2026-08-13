@@ -24,7 +24,7 @@ export const DESIGN_PRESETS: Array<{
   {
     id: "sky-classic",
     label: "Sky Classic",
-    hint: "Default StudentStack — sky accent",
+    hint: "Default StudentStack, sky accent",
     design: {
       presetId: "sky-classic",
       accent: "#0ea5e9",
@@ -94,7 +94,7 @@ export function createDefaultDesign(pillarLabel = "Organization"): NewsletterDes
     brandName: "StudentStack Daily",
     pillarLabel,
     footerNote:
-      "You're receiving StudentStack because you joined the free daily — AI for student organization for parents of high schoolers. Reply anytime. Elite is by inquiry only.",
+      "You're receiving StudentStack because you joined the free daily, AI for student organization for parents of high schoolers. Reply anytime. Elite is by inquiry only.",
   };
 }
 
@@ -183,7 +183,7 @@ A short daily for parents: how AI helps a high schooler stay organized for schoo
 
 ## Today's organizing angle · Organization
 
-The students who look “fine” midweek are usually the ones with a reset habit — not more apps. Today’s issue is about a 12-minute folder + deadline reset a parent can forward tonight.
+The students who look “fine” midweek are usually the ones with a reset habit, not more apps. Today’s issue is about a 12-minute folder + deadline reset a parent can forward tonight.
 
 ## Signal
 
@@ -193,7 +193,7 @@ AI note-takers and planners keep shipping features. The useful filter for parent
 
 [EDIT PARENT NOTE HERE]
 
-Hey — quick one. If your student’s week already feels like catch-up by Wednesday, skip the new-tool hunt. Ask them to run one reset: clear the downloads pile, put every due date into one place, and pick three priorities before tomorrow’s first class.
+Hey, quick one. If your student’s week already feels like catch-up by Wednesday, skip the new-tool hunt. Ask them to run one reset: clear the downloads pile, put every due date into one place, and pick three priorities before tomorrow’s first class.
 
 ## The toolkit move
 
@@ -203,5 +203,5 @@ Hey — quick one. If your student’s week already feels like catch-up by Wedne
 
 ## Forward this
 
-Text your student: “Spend 12 minutes on a week reset — folders, due dates, three priorities. Send me a screenshot of the list when you’re done.”
+Text your student: “Spend 12 minutes on a week reset, folders, due dates, three priorities. Send me a screenshot of the list when you’re done.”
 `;

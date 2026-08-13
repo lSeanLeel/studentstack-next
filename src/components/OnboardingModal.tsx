@@ -68,7 +68,7 @@ export function OnboardingModal({ open, onClose }: Props) {
                 Join the free daily
               </h2>
               <p className="mx-auto mt-2 max-w-sm text-center text-sm font-medium text-slate-600">
-                Parent email only. AI for student organization — unsubscribe anytime.
+                Parent email only. AI for student organization. Unsubscribe anytime.
               </p>
               <div className="mt-5">
                 <EmailCapture size="cta" />

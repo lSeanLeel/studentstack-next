@@ -13,7 +13,7 @@ type Props = {
 };
 
 /**
- * Parent email-only subscribe — no student name / grade / focus required.
+ * Parent email-only subscribe, no student name / grade / focus required.
  */
 export function EmailCapture({
   size = "hero",
@@ -57,7 +57,7 @@ export function EmailCapture({
       >
         <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" aria-hidden />
         <div className={jakartaSans.className}>
-          <p className="text-sm font-bold text-slate-900">You’re in — check your inbox</p>
+          <p className="text-sm font-bold text-slate-900">You&apos;re in. Check your inbox.</p>
           <p className="mt-1 text-xs font-medium leading-relaxed text-slate-600">
             Confirmation sometimes lands in Promotions or Spam for first-time signups.
           </p>

@@ -199,7 +199,7 @@ export function OperatorStudio() {
       }));
       setGenerateStatus({
         kind: "success",
-        message: "Draft ready — tailor the Parent note, then design & copy Beehiiv HTML.",
+        message: "Draft ready. Tailor the Parent note, then design and copy Beehiiv HTML.",
       });
       setStep("edit");
     } catch {
@@ -224,7 +224,7 @@ export function OperatorStudio() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      setPushStatus({ kind: "error", message: "Could not copy HTML — select the code box manually." });
+      setPushStatus({ kind: "error", message: "Could not copy HTML. Select the code box manually." });
     }
   }
 
@@ -288,7 +288,7 @@ export function OperatorStudio() {
           </div>
           <h1 className="text-3xl font-black text-white">Newsletter studio</h1>
           <p className="mt-3 text-sm font-medium text-slate-400">
-            Sign in to draft today’s StudentStack Daily — AI for student organization.
+            Sign in to draft today’s StudentStack Daily on AI for student organization.
           </p>
           <form onSubmit={handleLogin} className="mt-6 space-y-4">
             <label className="block">
@@ -392,7 +392,7 @@ export function OperatorStudio() {
             </div>
             <p className="mb-5 text-sm font-medium text-slate-400">
               Pick the organizing pillar, paste research notes, generate a draft for free daily parents (community +
-              Instagram discovery). Soft Elite inquiry only — never a portal upsell.
+              Instagram discovery). Soft Elite inquiry only. Never a portal upsell.
             </p>
 
             <label className="mb-4 block">
@@ -624,7 +624,7 @@ export function OperatorStudio() {
             </div>
             <p className="mb-4 text-sm font-medium text-slate-400">
               End of daily flow: copy this HTML into Beehiiv (or push a draft if keys are set). Title for Beehiiv:{" "}
-              <span className="font-bold text-slate-200">{title || "—"}</span>
+              <span className="font-bold text-slate-200">{title || ", "}</span>
             </p>
             <div className="flex flex-wrap gap-3">
               <button
@@ -656,7 +656,7 @@ export function OperatorStudio() {
               </div>
             ) : null}
             <pre className="mt-5 max-h-[28rem] overflow-auto whitespace-pre-wrap rounded-2xl border border-slate-700 bg-slate-950 p-4 text-xs leading-relaxed text-slate-300">
-              {html || "No HTML yet — generate or load a draft first."}
+              {html || "No HTML yet. Generate or load a draft first."}
             </pre>
           </section>
         ) : null}

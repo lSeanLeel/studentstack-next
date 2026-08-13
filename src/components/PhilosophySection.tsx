@@ -9,7 +9,7 @@ const tenets = [
   {
     icon: GraduationCap,
     title: "Still in the work",
-    body: "Guidance from students who live campus pressure now — not a corporate curriculum written from outside the classroom.",
+    body: "Guidance from students who live campus pressure now, not a corporate curriculum written from outside the classroom.",
   },
   {
     icon: Layers3,
@@ -19,12 +19,12 @@ const tenets = [
   {
     icon: Compass,
     title: "Parents guide. Students own it.",
-    body: "We educate parents so they can spot the right habits — then hand one concrete move to their high schooler.",
+    body: "We educate parents so they can spot the right habits, then hand one concrete move to their high schooler.",
   },
 ] as const;
 
 /**
- * Institutional trust via student-led philosophy — no product/upsell naming.
+ * Institutional trust via student-led philosophy, no product/upsell naming.
  */
 export function PhilosophySection() {
   return (
@@ -56,8 +56,8 @@ export function PhilosophySection() {
           <p
             className={`ss-institutional mt-5 max-w-2xl text-[1.05rem] font-normal leading-[1.7] text-slate-600 sm:text-lg ${institutionalSerif.className}`}
           >
-            StudentStack exists because high school families deserve campus-current judgment — how AI actually helps
-            students stay organized — without the noise of tool hype or homework shortcuts.
+            StudentStack exists because high school families deserve campus-current judgment on how AI actually helps
+            students stay organized, without the noise of tool hype or homework shortcuts.
           </p>
         </motion.div>
 

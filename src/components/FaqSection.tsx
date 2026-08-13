@@ -13,7 +13,7 @@ const FAQ_ITEMS: FaqItem[] = [
     a: (
       <>
         A student-led organization for parents of high schoolers. We publish a free daily newsletter on how students use
-        AI to stay organized for school — practical habits from people still in class.
+        AI to stay organized for school: practical habits from people still in class.
       </>
     ),
   },
@@ -22,7 +22,7 @@ const FAQ_ITEMS: FaqItem[] = [
     a: (
       <>
         Short education around organization, planning, and notetaking: one clear lens, one toolkit move, and one thing
-        you can forward to your student. Built to build trust — not overwhelm your inbox.
+        you can forward to your student. Built to build trust, not to overwhelm your inbox.
       </>
     ),
   },
@@ -41,7 +41,7 @@ const FAQ_ITEMS: FaqItem[] = [
     a: (
       <>
         StudentStack is shaped by how college students actually stay organized with AI. We keep the guidance current,
-        credible, and useful for parents of high schoolers — and we answer when you email us.
+        credible, and useful for parents of high schoolers, and we answer when you email us.
       </>
     ),
   },
@@ -50,7 +50,7 @@ const FAQ_ITEMS: FaqItem[] = [
     a: (
       <>
         Yes. Start with the free daily, then use Reach out on this site if you want a personal reply about supporting
-        your student. We respond by email — no checkout on the landing page.
+        your student. We respond by email. No checkout on the landing page.
       </>
     ),
   },

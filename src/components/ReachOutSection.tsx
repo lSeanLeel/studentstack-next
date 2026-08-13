@@ -37,13 +37,13 @@ export function ReachOutSection() {
           <p
             className={`ss-institutional mt-4 max-w-xl text-[1.05rem] font-normal leading-[1.7] text-slate-700 sm:text-lg ${institutionalSerif.className}`}
           >
-            Most families begin with the newsletter — that is how we build trust. If you want a closer conversation about
+            Most families begin with the newsletter. That is how we build trust. If you want a closer conversation about
             how StudentStack can support your student, reach out. We reply personally.
           </p>
           <p
             className={`ss-institutional mt-3 max-w-xl text-[1.05rem] font-normal leading-[1.7] text-slate-600 sm:text-lg ${institutionalSerif.className}`}
           >
-            Tell us a little about your student and what you are hoping for. No checkout on this page — just a real note
+            Tell us a little about your student and what you are hoping for. No checkout on this page. Just a real note
             back from our team.
           </p>
         </motion.div>

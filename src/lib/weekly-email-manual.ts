@@ -1,11 +1,11 @@
 /**
  * Manual weekly parent email (from help@studentstack.info).
- * No OpenAI — you paste copy; this module only formats branded HTML + preview data.
+ * No OpenAI, you paste copy; this module only formats branded HTML + preview data.
  */
 
 export const WEEKLY_EMAIL_FROM = "StudentStack <help@studentstack.info>";
 
-/** Fixed toolkit slots — fill each week in admin. */
+/** Fixed toolkit slots, fill each week in admin. */
 export const MANUAL_TOOLKIT_SLOTS = [
   {
     id: "organization",
@@ -67,7 +67,7 @@ export function createDefaultManualWeeklyEmail(): ManualWeeklyEmailPayload {
     weekLabel: `Week of ${week}`,
     preheader: "AI toolkit picks, opportunity board, and one parent question.",
     intro:
-      "Hey there — here’s this week’s StudentStack note: a tight AI toolkit (picked by our team), the link to our running opportunity board, and one featured question from a family like yours.",
+      "Hey there, here’s this week’s StudentStack note: a tight AI toolkit (picked by our team), the link to our running opportunity board, and one featured question from a family like yours.",
     toolkit: MANUAL_TOOLKIT_SLOTS.map((s) => ({
       id: s.id,
       toolName: "",
@@ -81,7 +81,7 @@ export function createDefaultManualWeeklyEmail(): ManualWeeklyEmailPayload {
     featuredQuestion: "",
     featuredAnswer: "",
     footnote:
-      "You're receiving this because you signed up at studentstack.info. Reply any time — we read every message.",
+      "You're receiving this because you signed up at studentstack.info. Reply any time, we read every message.",
   };
 }
 
@@ -177,7 +177,7 @@ export function buildManualWeeklyEmailHtml(p: ManualWeeklyEmailPayload): string 
     .map((slot, i) => {
       const meta = MANUAL_TOOLKIT_SLOTS.find((m) => m.id === slot.id);
       const label = meta?.label ?? slot.id;
-      const name = slot.toolName.trim() || "— TBD this week —";
+      const name = slot.toolName.trim() || ",  TBD this week , ";
       const blurb = slot.blurb.trim() || "Add a one-line note in admin.";
       const url = slot.url.trim();
       const linkHtml = url
@@ -217,7 +217,7 @@ export function buildManualWeeklyEmailHtml(p: ManualWeeklyEmailPayload): string 
     </tr>
   </table>
   <p style="margin:10px 0 0 0;font-size:12px;line-height:1.45;color:${slate500};font-family:system-ui,-apple-system,sans-serif;">
-    Same board every week — we tidy rows and deadlines as we learn them. Always double-check dates on the program&apos;s site before your student applies.
+    Same board every week, we tidy rows and deadlines as we learn them. Always double-check dates on the program&apos;s site before your student applies.
   </p>`;
 
   const qaBlock = `
@@ -263,7 +263,7 @@ export function buildManualWeeklyEmailHtml(p: ManualWeeklyEmailPayload): string 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>${esc(p.weekLabel)} — StudentStack</title>
+  <title>${esc(p.weekLabel)}, StudentStack</title>
 </head>
 <body style="margin:0;padding:0;background:${outerBg};-webkit-text-size-adjust:100%;">
   <div style="display:none;max-height:0;overflow:hidden;mso-hide:all;">${esc(p.preheader)}</div>
@@ -294,7 +294,7 @@ export function buildManualWeeklyEmailHtml(p: ManualWeeklyEmailPayload): string 
                         <td style="padding:14px 18px;background:linear-gradient(135deg,#f0f9ff 0%,#ffffff 48%,#faf5ff 100%);border-bottom:1px solid #e0f2fe;">
                           <p style="margin:0;font-size:10px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;color:${sky600};font-family:system-ui,-apple-system,sans-serif;">AI toolkit</p>
                           <p style="margin:6px 0 0 0;font-size:15px;font-weight:700;color:${slate900};font-family:Georgia,serif;">This week&apos;s picks (by category)</p>
-                          <p style="margin:6px 0 0 0;font-size:13px;line-height:1.45;color:${slate600};font-family:system-ui,-apple-system,sans-serif;">Curated by our team — not auto-generated. One standout tool per lane.</p>
+                          <p style="margin:6px 0 0 0;font-size:13px;line-height:1.45;color:${slate600};font-family:system-ui,-apple-system,sans-serif;">Curated by our team, not auto-generated. One standout tool per lane.</p>
                         </td>
                       </tr>
                       ${toolkitRows}
@@ -305,7 +305,7 @@ export function buildManualWeeklyEmailHtml(p: ManualWeeklyEmailPayload): string 
                         <td style="padding:16px 18px;border-bottom:1px solid #99f6e4;">
                           <p style="margin:0;font-size:10px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:#0f766e;font-family:system-ui,-apple-system,sans-serif;">Opportunity board</p>
                           <p style="margin:6px 0 0 0;font-size:16px;font-weight:700;color:#134e4a;font-family:Georgia,serif;">Google Sheet · programs &amp; deadlines</p>
-                          <p style="margin:6px 0 0 0;font-size:13px;line-height:1.5;color:#115e59;font-family:system-ui,-apple-system,sans-serif;">Living spreadsheet you update — parents always get the same link.</p>
+                          <p style="margin:6px 0 0 0;font-size:13px;line-height:1.5;color:#115e59;font-family:system-ui,-apple-system,sans-serif;">Living spreadsheet you update, parents always get the same link.</p>
                           ${ctaBlock}
                         </td>
                       </tr>

@@ -8,7 +8,7 @@ import { fredokaHeadline, jakartaSans, institutionalSerif } from "@/app/fonts";
 import { EliteInquiryForm } from "@/components/EliteInquiryForm";
 
 /**
- * v4: Elite as a soft parent inquiry — not a portal product tour.
+ * v4: Elite as a soft parent inquiry, not a portal product tour.
  */
 export function EliteSection() {
   return (
@@ -39,7 +39,7 @@ export function EliteSection() {
             className={`ss-institutional mt-4 max-w-xl text-[1.05rem] font-normal leading-[1.65] text-slate-700 sm:text-lg ${institutionalSerif.className}`}
           >
             Most families start with the free daily. If you want us to look at Elite for your student, send a short
-            inquiry — parent contact plus a few student details — and we’ll reach out.
+            inquiry, parent contact plus a few student details, and we’ll reach out.
           </p>
           <p
             className={`ss-institutional mt-3 max-w-xl text-[1.05rem] font-normal leading-[1.65] text-slate-600 sm:text-lg ${institutionalSerif.className}`}
