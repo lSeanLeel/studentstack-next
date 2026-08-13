@@ -56,8 +56,9 @@ export function PhilosophySection() {
           <p
             className={`ss-institutional mt-5 max-w-2xl text-[1.05rem] font-normal leading-[1.7] text-slate-600 sm:text-lg ${institutionalSerif.className}`}
           >
-            Free daily for parents. Certifications for students who want a credentialed AI-in-school pathway. Same
-            campus judgment underneath both.
+            As college students, we live the AI shift inside real classrooms every week. We work to help bridge this
+            gap, providing our parents and students with the latest tools, norms, and organizing habits that actually
+            matter for school.
           </p>
         </motion.div>
 

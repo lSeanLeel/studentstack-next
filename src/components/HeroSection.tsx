@@ -219,8 +219,7 @@ export function HeroSection() {
           className={`${jakartaSans.className} mx-auto mt-4 max-w-2xl space-y-2 text-base font-medium leading-snug text-slate-600 sm:mt-5 sm:text-lg`}
         >
           <p>
-            Campus-current AI briefings from a student-led organization. Stay current on AI in school with other
-            parents.
+            Built by college students still in the work, for parents navigating AI in school.
           </p>
         </motion.div>
 

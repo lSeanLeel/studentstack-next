@@ -10,11 +10,6 @@ import { ContactProvider } from "@/components/contact-context";
 
 const sectionLoading = () => <div className="h-96" aria-hidden />;
 
-const NewsletterPulseSection = dynamic(
-  () => import("@/components/NewsletterPulseSection").then((m) => ({ default: m.NewsletterPulseSection })),
-  { loading: sectionLoading }
-);
-
 const CertificationsSection = dynamic(
   () => import("@/components/CertificationsSection").then((m) => ({ default: m.CertificationsSection })),
   { loading: sectionLoading }
@@ -63,7 +58,6 @@ export default function LandingPage() {
           <Navbar onHomeLogoClick={replayIntro} />
           <HeroSection />
           <CertificationsSection />
-          <NewsletterPulseSection />
           <PhilosophySection />
           <ReachOutSection />
           <FaqSection />
