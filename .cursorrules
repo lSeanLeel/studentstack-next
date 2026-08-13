@@ -9,12 +9,12 @@
 - Use **Lucide React** (or other curated SVG icon libraries) or intentional **CSS shapes** only.
 
 ## Product & Content Boundaries
-- **StudentStack** is a student-led org for parents of high schoolers and student learners.
-- **Free daily newsletter** for parents: keep the hero description vague (social traffic already knows the pitch). No long climate encyclopedias above the fold.
-- **Monetization** on the public site: educational **courses** and **certifications** (waitlist / inquire / enroll framing). Prefer novel course concepts; frame major/background benefits tastefully (no stereotypes, no “guaranteed admissions”).
-- Certification partners may be placeholder / fictional institutes for now. Do not claim real university degrees, official university seals, or accredited credentials you do not have.
-- Do **not** implement or reference: “StudentStack Elite,” 24/7 concierge paid peer support, or hard portal upsells as the primary CTA.
-- The “college student team” presentation is a **branding layer**; keep Meet-the-Team style optics.
+- **StudentStack** public surface is **newsletter + certifications**.
+- Landing hero: student-led daily for parents (do not over-explain; social traffic already knows the pitch). Avoid repeating “free” in hero body when the CTA already says it.
+- **Certifications** are the clear paid student pathway on the public site (priced, timeline-driven).
+- **StudentStack Elite** (parent/student portal) may be soft-upsold from the daily later; do not hard-sell checkout or “24/7 concierge” on the landing page until productized.
+- Do **not** advertise course catalogs on the landing page.
+- The “college student team” presentation is a branding layer.
 
 ## Engineering defaults
-- App is Next.js at the repo root (`package.json` in `/`). Do not introduce unrelated frameworks or large refactors unless explicitly requested.
+- App is Next.js at the repo root. Prefer extending the operator newsletter pipeline (`/operator`, `/api/admin/*`, `/api/cron/*`) over new frameworks.

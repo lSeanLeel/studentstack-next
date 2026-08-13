@@ -15,11 +15,6 @@ const NewsletterPulseSection = dynamic(
   { loading: sectionLoading }
 );
 
-const CoursesSection = dynamic(
-  () => import("@/components/CoursesSection").then((m) => ({ default: m.CoursesSection })),
-  { loading: sectionLoading }
-);
-
 const CertificationsSection = dynamic(
   () => import("@/components/CertificationsSection").then((m) => ({ default: m.CertificationsSection })),
   { loading: sectionLoading }
@@ -68,7 +63,6 @@ export default function LandingPage() {
           <Navbar onHomeLogoClick={replayIntro} />
           <HeroSection />
           <NewsletterPulseSection />
-          <CoursesSection />
           <CertificationsSection />
           <PhilosophySection />
           <ReachOutSection />

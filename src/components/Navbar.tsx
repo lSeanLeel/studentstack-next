@@ -30,16 +30,10 @@ export function Navbar({ onHomeLogoClick }: { onHomeLogoClick?: () => void }) {
 
         <div className={`flex shrink-0 items-center gap-1.5 sm:gap-3 ${jakartaSans.className}`}>
           <a
-            href="/#courses"
+            href="/#certifications"
             className="hidden rounded-2xl px-2.5 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-slate-600 transition-colors hover:bg-sky-50 hover:text-sky-700 sm:inline-flex sm:px-3 sm:py-2 sm:text-[11px]"
           >
-            Courses
-          </a>
-          <a
-            href="/#certifications"
-            className="hidden rounded-2xl px-2.5 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-slate-600 transition-colors hover:bg-sky-50 hover:text-sky-700 md:inline-flex md:px-3 md:py-2 md:text-[11px]"
-          >
-            Certs
+            Certifications
           </a>
           <Link
             href="/login"

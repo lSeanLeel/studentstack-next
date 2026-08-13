@@ -120,8 +120,8 @@ export function FinalCTA() {
               <span className="text-sky-500">Free, daily.</span>
             </h2>
             <p className={`mx-auto mt-5 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}>
-              Stay current with other parents. One email. Free daily. Courses and certifications live below when your
-              student is ready to go deeper.
+              Stay current with other parents. One email. Certifications live below when your student is ready for a
+              credentialed pathway.
             </p>
 
             <div className="mx-auto mt-10 w-full max-w-xl text-left">
@@ -150,8 +150,8 @@ export function Footer() {
               <BrandWordmark />
             </Link>
             <p className="mt-6 max-w-sm font-medium leading-relaxed text-slate-500">
-              Student-led organization: free daily for parents, courses and certifications for students who want to go
-              deeper on AI in school.
+              Student-led organization: a daily for parents on AI in school, and certifications for students who want a
+              credentialed pathway.
             </p>
           </div>
           <div>

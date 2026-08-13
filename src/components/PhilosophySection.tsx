@@ -56,8 +56,8 @@ export function PhilosophySection() {
           <p
             className={`ss-institutional mt-5 max-w-2xl text-[1.05rem] font-normal leading-[1.7] text-slate-600 sm:text-lg ${institutionalSerif.className}`}
           >
-            Free daily for parents. Courses and certifications for students who want structured practice. Same campus
-            judgment underneath all of it.
+            Free daily for parents. Certifications for students who want a credentialed AI-in-school pathway. Same
+            campus judgment underneath both.
           </p>
         </motion.div>
 

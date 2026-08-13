@@ -12,26 +12,17 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "What is StudentStack?",
     a: (
       <>
-        A student-led organization. Parents get a free daily newsletter on AI in school. Students can go deeper with
-        courses and certifications built around real academic workflows.
+        A student-led organization. Parents get a daily newsletter on AI in school. Students can pursue certifications
+        for concrete academic AI use cases.
       </>
     ),
   },
   {
-    q: "What is in the free daily?",
+    q: "What is in the daily?",
     a: (
       <>
-        A short pulse so you stay current with other parents. We keep it skim-friendly on purpose. The longer learning
-        lives in courses and certifications.
-      </>
-    ),
-  },
-  {
-    q: "Who are courses for?",
-    a: (
-      <>
-        High school students (parents can enroll them). Each listing shows start date or self-paced access, duration,
-        mentor, seat count for live cohorts, and price. Pick a course that matches how your student works.
+        A short pulse so you stay current with other parents: what is moving in the school AI climate, and one practical
+        move you can forward. Longer credentialed learning lives in certifications.
       </>
     ),
   },
@@ -39,9 +30,8 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "How do certifications work?",
     a: (
       <>
-        Paid pathways with a fixed price that includes the exam or review. Students complete modules, meet the
-        requirements, and earn a StudentStack credential issued with an education partner (credential codes like
-        SS-AAIP).
+        Paid pathways with a clear price, timeline, and issuing partner. Students complete modules, meet the
+        requirements, and earn a StudentStack credential (codes like SS-AAIP).
       </>
     ),
   },
@@ -59,8 +49,8 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "Can I talk with your team?",
     a: (
       <>
-        Yes. Use Reach out anytime. For a specific course or certification, use Enroll on that listing and we will
-        follow up to complete payment and rostering.
+        Yes. Use Reach out anytime. For a certification, use Enroll on that listing and we will follow up to complete
+        payment and rostering.
       </>
     ),
   },
