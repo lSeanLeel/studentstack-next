@@ -53,9 +53,7 @@ export function AiAdvantageSection() {
             id="ai-advantage-heading"
             className={`mt-3 text-[2rem] font-semibold leading-[1.05] tracking-[-0.035em] text-slate-900 sm:text-4xl lg:text-[2.85rem] ${fredokaHeadline.className}`}
           >
-            How top students stay on top
-            <br className="hidden sm:block" />
-            with{" "}
+            How top students stay ahead of school with{" "}
             <span className="text-sky-500">AI</span>
           </h2>
           <p

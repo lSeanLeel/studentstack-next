@@ -6,8 +6,8 @@ import { fredokaHeadline, jakartaSans, institutionalSerif } from "@/app/fonts";
 import { ContactForm } from "@/components/ContactForm";
 
 /**
- * Soft monetization path: parents reach out; we respond personally.
- * No Elite / portal / pricing language on the public landing.
+ * Parallel path: parents can write the organization anytime.
+ * No "newsletter first, reach out later" funnel framing.
  */
 export function ReachOutSection() {
   return (
@@ -32,19 +32,18 @@ export function ReachOutSection() {
             id="reach-out-heading"
             className={`mt-3 text-[1.85rem] font-semibold leading-[1.08] tracking-[-0.035em] text-slate-900 sm:text-4xl lg:text-[2.55rem] ${fredokaHeadline.className}`}
           >
-            When the free daily isn&apos;t enough
+            Write our student-led team
           </h2>
           <p
             className={`ss-institutional mt-4 max-w-xl text-[1.05rem] font-normal leading-[1.7] text-slate-700 sm:text-lg ${institutionalSerif.className}`}
           >
-            Most families begin with the newsletter. That is how we build trust. If you want a closer conversation about
-            how StudentStack can support your student, reach out. We reply personally.
+            Want a personal reply about your high schooler? Send a note. Tell us a little about your student and what you
+            are hoping for. We respond ourselves.
           </p>
           <p
             className={`ss-institutional mt-3 max-w-xl text-[1.05rem] font-normal leading-[1.7] text-slate-600 sm:text-lg ${institutionalSerif.className}`}
           >
-            Tell us a little about your student and what you are hoping for. No checkout on this page. Just a real note
-            back from our team.
+            No checkout on this page. Just a real conversation with the organization.
           </p>
         </motion.div>
 

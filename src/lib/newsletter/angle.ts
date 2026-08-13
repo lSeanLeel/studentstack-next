@@ -11,7 +11,7 @@ export const NEWSLETTER_ANGLE = {
   promise:
     "A free daily email that teaches parents how their student can use AI to stay organized for school: practical moves from the college-student side of the same work.",
   eliteNote:
-    "Elite is never the lead story. It is a soft inquiry path for families who want something more. Never a hard checkout pitch in the daily.",
+    "Never pitch paid products or a newsletter-then-upsell funnel. Reach-out is parallel, not a later step. Never a hard checkout pitch in the daily.",
   notThis: [
     "Generic AI news dump",
     "Tool hype without a school use case",

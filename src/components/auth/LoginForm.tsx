@@ -49,8 +49,7 @@ export function LoginForm() {
             Student login
           </h1>
           <p className={`ss-institutional mt-2 text-[0.95rem] leading-relaxed text-slate-600 ${institutionalSerif.className}`}>
-            Invited students sign in here. Parents join the free daily on the home page, or reach out if they want a
-            personal reply from our team.
+            Invited students sign in here. Parents can join the free daily or write our team from the home page.
           </p>
 
           <form onSubmit={onSubmit} className="mt-6 space-y-4" noValidate>

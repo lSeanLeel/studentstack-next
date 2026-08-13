@@ -4,7 +4,7 @@ import { BrandWordmark } from "@/components/BrandWordmark";
 import { ContactForm } from "@/components/ContactForm";
 
 /**
- * Soft reach-out page (legacy /elite URL). No product/pricing pitch, personal reply path.
+ * Soft reach-out page (legacy /elite URL). No product/pricing pitch.
  */
 export default function ReachOutPage() {
   return (
@@ -24,13 +24,12 @@ export default function ReachOutPage() {
             <p
               className={`ss-institutional mt-5 max-w-xl text-[1.1rem] leading-[1.7] text-slate-700 ${institutionalSerif.className}`}
             >
-              Most families start with our free daily on AI for student organization. If you want a closer conversation
-              about supporting your high schooler, send a note. We respond personally.
+              Write us about your high schooler. Tell us a little about what you are hoping for. We respond personally.
             </p>
             <p className="mt-6 text-sm font-medium text-slate-500">
-              Prefer the newsletter first?{" "}
+              Looking for the free daily?{" "}
               <Link href="/#hero-cta" className="font-bold text-sky-700 hover:text-sky-900">
-                Join free on the home page
+                Join on the home page
               </Link>
             </p>
           </div>
