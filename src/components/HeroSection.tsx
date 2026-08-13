@@ -219,7 +219,7 @@ export function HeroSection() {
           className={`${jakartaSans.className} mx-auto mt-4 max-w-2xl space-y-2 text-base font-medium leading-snug text-slate-600 sm:mt-5 sm:text-lg`}
         >
           <p>
-            Built by college students still in the work, for parents navigating AI in school.
+            Built by college students still in school, helping parents of high schoolers stay ahead on AI.
           </p>
         </motion.div>
 
