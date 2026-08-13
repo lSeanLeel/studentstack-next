@@ -78,7 +78,7 @@ export function ContactModal({ open, onClose }: Props) {
                     Contact Us
                   </h2>
                   <p className="mt-2 text-center text-sm font-medium text-slate-500">
-                    Questions about the newsletter? We&apos;d love to hear from you.
+                    Student and family questions, or enterprise partnerships. Choose a path below.
                   </p>
                 </>
               ) : null}

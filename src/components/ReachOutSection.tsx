@@ -37,13 +37,8 @@ export function ReachOutSection() {
           <p
             className={`ss-institutional mt-4 max-w-xl text-[1.05rem] font-normal leading-[1.7] text-slate-700 sm:text-lg ${institutionalSerif.className}`}
           >
-            Want a personal reply about your high schooler? Send a note. Tell us a little about your student and what you
-            are hoping for. We respond ourselves.
-          </p>
-          <p
-            className={`ss-institutional mt-3 max-w-xl text-[1.05rem] font-normal leading-[1.7] text-slate-600 sm:text-lg ${institutionalSerif.className}`}
-          >
-            No checkout on this page. Just a real conversation with the organization.
+            Families and students can write us about the daily or a credential pathway. Schools and organizations can
+            reach our partnerships desk. Pick the path that fits, and we respond ourselves.
           </p>
         </motion.div>
 
