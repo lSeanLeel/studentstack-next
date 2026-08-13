@@ -124,9 +124,9 @@ export function ProductInterestModal({
                 id="interest-heading"
                 className={`mt-2 text-2xl font-semibold tracking-[-0.03em] text-slate-900 ${fredokaHeadline.className}`}
               >
-                Get notified
-              </h3>
-              <p className={`mt-2 text-sm font-medium text-slate-600 ${jakartaSans.className}`}>{title}</p>
+              Get enrolled
+            </h3>
+            <p className={`mt-2 text-sm font-medium text-slate-600 ${jakartaSans.className}`}>{title}</p>
             </div>
 
             <label className="block">
@@ -175,7 +175,7 @@ export function ProductInterestModal({
               disabled={busy}
               className={`w-full rounded-2xl bg-slate-900 py-3 text-sm font-black text-white shadow-[0_14px_28px_-18px_rgba(15,23,42,0.55)] transition hover:-translate-y-0.5 hover:bg-slate-800 disabled:opacity-60 ${jakartaSans.className}`}
             >
-              {busy ? "Sending…" : "Request access"}
+              {busy ? "Sending…" : "Continue enrollment"}
             </button>
           </form>
         )}

@@ -30,18 +30,18 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "Who are courses for?",
     a: (
       <>
-        Student learners. Each course is a novel school workflow (systems, writing voice, lab notes, portfolios, and
-        more), with notes on which backgrounds or intended majors often benefit most. Parents can request access on
-        behalf of their student.
+        High school students (parents can enroll them). Each listing shows start date or self-paced access, duration,
+        mentor, seat count for live cohorts, and price. Pick a course that matches how your student works.
       </>
     ),
   },
   {
-    q: "Are the certifications real degrees?",
+    q: "How do certifications work?",
     a: (
       <>
-        No. They are StudentStack credentials for specific AI-in-school use cases, issued with education partners.
-        Early partner names on this site are placeholders while agreements finalize. They are not university degrees.
+        Paid pathways with a fixed price that includes the exam or review. Students complete modules, meet the
+        requirements, and earn a StudentStack credential issued with an education partner (credential codes like
+        SS-AAIP).
       </>
     ),
   },
@@ -59,8 +59,8 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "Can I talk with your team?",
     a: (
       <>
-        Yes. Use Reach out anytime for a personal reply. For a specific course or certification, use Request access or
-        Start certification on those sections.
+        Yes. Use Reach out anytime. For a specific course or certification, use Enroll on that listing and we will
+        follow up to complete payment and rostering.
       </>
     ),
   },
