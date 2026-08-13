@@ -116,12 +116,11 @@ export function FinalCTA() {
             <h2
               className={`text-4xl font-semibold leading-[1.05] tracking-[-0.035em] text-slate-900 sm:text-6xl ${fredokaHeadline.className}`}
             >
-              Learn the organizing Edge.{" "}
+              Join StudentStack!{" "}
               <span className="text-sky-500">Free, daily.</span>
             </h2>
             <p className={`mx-auto mt-5 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}>
-              Stay current with other parents. One email. Certifications live below when your student is ready for a
-              credentialed pathway.
+              Stay current with other parents. One email.
             </p>
 
             <div className="mx-auto mt-10 w-full max-w-xl text-left">

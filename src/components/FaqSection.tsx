@@ -127,7 +127,7 @@ export function FaqSection() {
           viewport={{ once: true }}
           className={`text-[2rem] font-semibold tracking-[-0.035em] text-slate-900 sm:text-4xl ${fredokaHeadline.className}`}
         >
-          Questions parents ask
+          Questions <span className="text-sky-500">parents</span> ask
         </motion.h2>
         <div className="mt-8 rounded-[1.75rem] border border-slate-100 bg-[#f8fafc] px-5 sm:px-7">
           {mounted
