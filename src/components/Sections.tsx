@@ -1,12 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "motion/react";
-import { Users, ShieldCheck, Calendar } from "lucide-react";
+import { Calendar, Forward, Newspaper, ShieldCheck, Sparkles, Users } from "lucide-react";
 import Link from "next/link";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { BrandWordmark } from "./BrandWordmark";
 import { EmailCapture } from "./EmailCapture";
+import { SampleEmailModal } from "./SampleEmailModal";
 import { useContact } from "./contact-context";
 export function TestimonialSection() {
   return (
@@ -105,16 +106,28 @@ export function NewsletterBenefitsSection() {
 }
 
 export function FinalCTA() {
+  const [sampleOpen, setSampleOpen] = useState(false);
+
+  const beats = [
+    { icon: Newspaper, title: "AI news", line: "What moved in school this week, skim-ready." },
+    { icon: Sparkles, title: "One toolkit move", line: "A workflow students actually use." },
+    { icon: Forward, title: "Forward tonight", line: "A short note you can send your high schooler." },
+  ] as const;
+
   return (
-    <section className="relative overflow-hidden bg-transparent py-20 sm:py-28">
+    <section id="join" className="relative overflow-hidden bg-transparent py-20 sm:py-28">
+      <SampleEmailModal open={sampleOpen} onClose={() => setSampleOpen(false)} />
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[2.75rem] border-2 border-sky-200 bg-gradient-to-br from-sky-50 via-white to-emerald-50 px-8 py-14 text-center sm:rounded-[3.5rem] sm:px-16 sm:py-20">
+        <div className="relative overflow-hidden rounded-[2.75rem] border-2 border-sky-200 bg-gradient-to-br from-sky-50 via-white to-emerald-50 px-6 py-12 text-center sm:rounded-[3.5rem] sm:px-14 sm:py-16">
           <div className="pointer-events-none absolute -right-16 top-0 h-56 w-56 rounded-full bg-sky-300/30 blur-3xl" />
           <div className="pointer-events-none absolute -left-10 bottom-0 h-48 w-48 rounded-full bg-amber-200/40 blur-3xl" />
 
           <div className="relative z-10 mx-auto max-w-2xl">
+            <p className={`text-[10px] font-black uppercase tracking-[0.22em] text-[#ff6a00] ${jakartaSans.className}`}>
+              StudentStack Daily
+            </p>
             <h2
-              className={`text-4xl font-semibold leading-[1.05] tracking-[-0.035em] text-slate-900 sm:text-6xl ${fredokaHeadline.className}`}
+              className={`mt-3 text-4xl font-semibold leading-[1.05] tracking-[-0.035em] text-slate-900 sm:text-6xl ${fredokaHeadline.className}`}
             >
               Join StudentStack!{" "}
               <span className="text-sky-500">Free, daily.</span>
@@ -123,9 +136,39 @@ export function FinalCTA() {
               Stay current with other parents. One email. Written by students still in class.
             </p>
 
-            <div className="mx-auto mt-10 w-full max-w-xl text-left">
-              <EmailCapture size="cta" submitLabel="Join free daily" />
+            <ul className="mx-auto mt-8 grid max-w-2xl gap-3 text-left sm:grid-cols-3 sm:gap-4">
+              {beats.map((beat) => {
+                const Icon = beat.icon;
+                return (
+                  <li
+                    key={beat.title}
+                    className="rounded-[1.35rem] border border-sky-100/90 bg-white/80 px-4 py-3.5 shadow-[0_12px_28px_-24px_rgba(14,165,233,0.45)]"
+                  >
+                    <div className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-sky-100 text-sky-700">
+                      <Icon className="h-4 w-4" strokeWidth={2.25} aria-hidden />
+                    </div>
+                    <p className={`mt-2 text-sm font-semibold text-slate-900 ${fredokaHeadline.className}`}>
+                      {beat.title}
+                    </p>
+                    <p className={`mt-0.5 text-xs font-medium leading-snug text-slate-500 ${jakartaSans.className}`}>
+                      {beat.line}
+                    </p>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <div className="mx-auto mt-8 w-full max-w-xl text-left">
+              <EmailCapture size="cta" submitLabel="Join the daily" />
             </div>
+
+            <button
+              type="button"
+              onClick={() => setSampleOpen(true)}
+              className={`mt-4 text-[12px] font-bold text-slate-600 underline decoration-sky-300/80 underline-offset-[0.18em] transition-colors hover:text-sky-700 sm:text-[13px] ${jakartaSans.className}`}
+            >
+              Preview a sample email
+            </button>
           </div>
         </div>
       </div>

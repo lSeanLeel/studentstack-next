@@ -18,7 +18,7 @@ type Props = {
 export function EmailCapture({
   size = "hero",
   className = "",
-  submitLabel = "Get tomorrow’s free email",
+  submitLabel = "Join the daily",
 }: Props) {
   const [email, setEmail] = useState("");
   const [busy, setBusy] = useState(false);
