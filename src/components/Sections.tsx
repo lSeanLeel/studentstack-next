@@ -120,7 +120,7 @@ export function FinalCTA() {
               <span className="text-sky-500">Free, daily.</span>
             </h2>
             <p className={`mx-auto mt-5 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}>
-              Stay current with other parents. One email.
+              Stay current with other parents. One email. Written by students still in class.
             </p>
 
             <div className="mx-auto mt-10 w-full max-w-xl text-left">
@@ -148,10 +148,6 @@ export function Footer() {
             >
               <BrandWordmark />
             </Link>
-            <p className="mt-6 max-w-sm font-medium leading-relaxed text-slate-500">
-              Student-led organization: a daily for parents on AI in school, and certifications for students who want a
-              credentialed pathway.
-            </p>
           </div>
           <div>
             <h4 className="mb-6 text-sm font-bold uppercase tracking-widest text-slate-900">Legal</h4>

@@ -57,8 +57,8 @@ export default function LandingPage() {
           {showIntro && <IntroAnimation key={introSession} onComplete={handleIntroComplete} />}
           <Navbar onHomeLogoClick={replayIntro} />
           <HeroSection />
-          <CertificationsSection />
           <PhilosophySection />
+          <CertificationsSection />
           <ReachOutSection />
           <FaqSection />
           <FinalCTA />
