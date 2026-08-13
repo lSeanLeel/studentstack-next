@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { jakartaSans, fredokaHeadline } from "@/app/fonts";
 import { EmailCapture } from "@/components/EmailCapture";
@@ -38,12 +38,11 @@ const collegeFlipTransition = {
   ease: [0.22, 1, 0.36, 1] as const,
 };
 
-/** Full “Learn AI from ___ mentors” line; width flexes with each school; college mark flips in. */
 function CollegeHeadline() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [logosReady, setLogosReady] = useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     let cancelled = false;
     preloadCollegeLogos().then(() => {
       if (!cancelled) setLogosReady(true);
@@ -53,7 +52,7 @@ function CollegeHeadline() {
     };
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!logosReady) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % featuredColleges.length);
@@ -113,7 +112,7 @@ function CollegeHeadline() {
               loading="eager"
               decoding="sync"
               initial={{ rotate: -12, scale: 0.7 }}
-              animate={{ rotate: [ -12, 8, 0 ], scale: [0.7, 1.12, 1] }}
+              animate={{ rotate: [-12, 8, 0], scale: [0.7, 1.12, 1] }}
               transition={{ duration: 0.55, ease: [0.34, 1.4, 0.64, 1] }}
             />
             {current.showName ? <span className="leading-none">{current.name}</span> : null}
@@ -130,13 +129,9 @@ function CollegeHeadline() {
   );
 }
 
-/** Full-bleed product plane: oversized email mock as atmosphere, not a floating card. */
 function HeroEmailPlane() {
   return (
-    <div
-      className="pointer-events-none absolute inset-0 overflow-hidden"
-      aria-hidden
-    >
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_50%_-10%,#7dd3fc_0%,transparent_55%),radial-gradient(ellipse_60%_50%_at_100%_30%,#99f6e4_0%,transparent_50%),radial-gradient(ellipse_55%_45%_at_0%_75%,#fde68a_0%,transparent_48%),linear-gradient(180deg,#e0f2fe_0%,#f8fafc_42%,#ecfeff_100%)]" />
       <div className="absolute inset-0 opacity-[0.45] [background-image:radial-gradient(rgba(14,165,233,0.22)_1.2px,transparent_1.2px)] [background-size:20px_20px]" />
 
@@ -164,8 +159,6 @@ function HeroEmailPlane() {
                 <div className="h-32 rounded-[1.5rem] bg-emerald-200/90 sm:h-36" />
                 <div className="h-32 rounded-[1.5rem] bg-amber-200/85 sm:h-36" />
               </div>
-              <div className="mt-4 h-3.5 w-3/4 rounded-full bg-slate-200/80" />
-              <div className="h-3.5 w-2/3 rounded-full bg-slate-200/70" />
             </div>
           </div>
         </div>
@@ -223,22 +216,16 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
-          className={`${jakartaSans.className} mx-auto mt-4 max-w-xl space-y-1 text-base font-medium leading-snug text-slate-600 sm:mt-5 sm:text-lg`}
+          className={`${jakartaSans.className} mx-auto mt-4 max-w-2xl space-y-2 text-base font-medium leading-snug text-slate-600 sm:mt-5 sm:text-lg`}
         >
           <p>
             A{" "}
-            <span className={`${fredokaHeadline.className} font-semibold text-sky-600`}>free</span> daily for parents of
-            high schoolers.
+            <span className={`${fredokaHeadline.className} font-semibold text-sky-600`}>free</span> daily from a
+            student-led organization — not another tip sheet from the sidelines.
           </p>
           <p>
-            How your student can use AI to stay organized for school — from{" "}
-            <a
-              href="#faq-who-writes"
-              className={`${fredokaHeadline.className} font-semibold text-slate-900 underline decoration-amber-300/80 underline-offset-[0.18em] transition-colors hover:text-sky-700 hover:decoration-sky-300`}
-            >
-              real students
-            </a>
-            .
+            We translate how college students actually stay organized with AI into habits parents can trust for high
+            school.
           </p>
         </motion.div>
 

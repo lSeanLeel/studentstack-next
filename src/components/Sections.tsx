@@ -150,8 +150,8 @@ export function Footer() {
               <BrandWordmark />
             </Link>
             <p className="mt-6 max-w-sm font-medium leading-relaxed text-slate-500">
-              Free daily for parents of high schoolers on using AI to stay organized for school. Elite is available by
-              inquiry.
+              A student-led organization helping parents of high schoolers use AI to keep school weeks organized — starting
+              with a free daily.
             </p>
           </div>
           <div>

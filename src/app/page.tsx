@@ -15,18 +15,13 @@ const AiAdvantageSection = dynamic(
   { loading: sectionLoading }
 );
 
-const DifferenceSection = dynamic(
-  () => import("@/components/DifferenceSection").then((m) => ({ default: m.DifferenceSection })),
+const PhilosophySection = dynamic(
+  () => import("@/components/PhilosophySection").then((m) => ({ default: m.PhilosophySection })),
   { loading: sectionLoading }
 );
 
-const EliteSection = dynamic(
-  () => import("@/components/EliteSection").then((m) => ({ default: m.EliteSection })),
-  { loading: sectionLoading }
-);
-
-const CommunityProofSection = dynamic(
-  () => import("@/components/CommunityProofSection").then((m) => ({ default: m.CommunityProofSection })),
+const ReachOutSection = dynamic(
+  () => import("@/components/ReachOutSection").then((m) => ({ default: m.ReachOutSection })),
   { loading: sectionLoading }
 );
 
@@ -63,9 +58,8 @@ export default function LandingPage() {
           <Navbar onHomeLogoClick={replayIntro} />
           <HeroSection />
           <AiAdvantageSection />
-          <DifferenceSection />
-          <CommunityProofSection />
-          <EliteSection />
+          <PhilosophySection />
+          <ReachOutSection />
           <FaqSection />
           <FinalCTA />
           <Footer />

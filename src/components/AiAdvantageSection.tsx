@@ -2,23 +2,27 @@
 
 import React from "react";
 import { motion } from "motion/react";
+import { CalendarCheck2, FolderKanban, PenLine } from "lucide-react";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 
 const arenas = [
   {
     label: "Organization",
-    line: "Systems for classes, deadlines, and files, so the week does not collapse into catch-up mode.",
-    proof: "Most common early win parents report forwarding to their student.",
+    icon: FolderKanban,
+    line: "Systems for classes, deadlines, and files — so the week does not collapse into catch-up mode.",
+    proof: "The early win parents most often forward to their student.",
   },
   {
     label: "Planning",
+    icon: CalendarCheck2,
     line: "Syllabus to calendar: time blocks, buffers, and what actually gets finished.",
-    proof: "Where college mentors see the biggest gap between “busy” and “prepared.”",
+    proof: "Where campus mentors see the gap between “busy” and “prepared.”",
   },
   {
     label: "Notetaking",
+    icon: PenLine,
     line: "Capture in class, then reshape notes into something a high schooler can study from.",
-    proof: "A habit that compounds every unit, not a one-week tip.",
+    proof: "A habit that compounds every unit — not a one-week tip.",
   },
 ] as const;
 
@@ -54,60 +58,39 @@ export function AiAdvantageSection() {
           <p
             className={`mt-5 max-w-2xl text-base font-medium leading-[1.65] tracking-[-0.01em] text-slate-600 sm:text-lg ${jakartaSans.className}`}
           >
-            Across campus mentors, the pattern is consistent: high schoolers who learn AI early do not just finish faster.
-            They run cleaner weeks. Parents join our free daily to learn those habits — then inquire about Elite only if
-            they want a deeper conversation for their student.
+            Across campus, the pattern is consistent: high schoolers who learn AI early do not just finish faster — they
+            run cleaner weeks. Our free daily teaches parents that organizing lens first.
           </p>
-
-          <dl
-            className={`mt-8 grid gap-4 sm:grid-cols-3 sm:gap-6 ${jakartaSans.className}`}
-          >
-            <div className="rounded-2xl border border-sky-100/90 bg-white/70 px-4 py-3">
-              <dt className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">Observed</dt>
-              <dd className={`mt-1 text-sm font-semibold text-slate-800 ${fredokaHeadline.className}`}>
-                Organization first
-              </dd>
-            </div>
-            <div className="rounded-2xl border border-sky-100/90 bg-white/70 px-4 py-3">
-              <dt className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">Taught by</dt>
-              <dd className={`mt-1 text-sm font-semibold text-slate-800 ${fredokaHeadline.className}`}>
-                Campus mentors
-              </dd>
-            </div>
-            <div className="rounded-2xl border border-sky-100/90 bg-white/70 px-4 py-3">
-              <dt className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">Built for</dt>
-              <dd className={`mt-1 text-sm font-semibold text-slate-800 ${fredokaHeadline.className}`}>
-                Parents &amp; students
-              </dd>
-            </div>
-          </dl>
         </motion.div>
 
-        <ul className="mt-10 divide-y divide-sky-100/90 border-y border-sky-100/90 sm:mt-12">
-          {arenas.map((arena, index) => (
-            <motion.li
-              key={arena.label}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.45 }}
-              transition={{ duration: 0.4, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
-              className="grid gap-2 py-6 sm:grid-cols-[10rem_1fr] sm:items-start sm:gap-8 sm:py-7"
-            >
-              <span
-                className={`text-xl font-semibold tracking-[-0.02em] text-[#ff6a00] sm:text-2xl ${fredokaHeadline.className}`}
+        <ul className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-3 sm:gap-5">
+          {arenas.map((arena, index) => {
+            const Icon = arena.icon;
+            return (
+              <motion.li
+                key={arena.label}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ duration: 0.4, delay: index * 0.06 }}
+                whileHover={{ y: -3 }}
+                className="rounded-[1.75rem] border border-sky-100/90 bg-white/80 p-5 shadow-[0_18px_40px_-32px_rgba(15,23,42,0.3)] sm:p-6"
               >
-                {arena.label}
-              </span>
-              <div>
-                <p className={`text-sm font-medium leading-relaxed text-slate-700 sm:text-base ${jakartaSans.className}`}>
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-sky-100 text-sky-700">
+                  <Icon className="h-5 w-5" strokeWidth={2.25} aria-hidden />
+                </div>
+                <h3 className={`mt-4 text-xl font-semibold tracking-[-0.02em] text-[#ff6a00] ${fredokaHeadline.className}`}>
+                  {arena.label}
+                </h3>
+                <p className={`mt-2 text-sm font-medium leading-relaxed text-slate-700 ${jakartaSans.className}`}>
                   {arena.line}
                 </p>
-                <p className={`mt-1.5 text-xs font-medium text-slate-500 sm:text-[13px] ${jakartaSans.className}`}>
+                <p className={`mt-3 border-t border-slate-100 pt-3 text-xs font-semibold text-slate-500 ${jakartaSans.className}`}>
                   {arena.proof}
                 </p>
-              </div>
-            </motion.li>
-          ))}
+              </motion.li>
+            );
+          })}
         </ul>
       </div>
     </section>
