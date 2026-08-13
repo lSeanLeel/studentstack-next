@@ -57,8 +57,7 @@ export function PhilosophySection() {
             className={`ss-institutional mt-5 max-w-2xl text-[1.05rem] font-normal leading-[1.7] text-slate-600 sm:text-lg ${institutionalSerif.className}`}
           >
             As college students, we live the AI shift inside real classrooms every week. We work to help bridge this
-            gap, providing our parents and students with the latest tools, norms, and organizing habits that actually
-            matter for school.
+            gap, providing our parents and students with the latest tools and AI news to stay ahead for school.
           </p>
         </motion.div>
 
