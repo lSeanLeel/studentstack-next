@@ -12,8 +12,8 @@ const beats = [
   },
   {
     num: "02",
-    title: "Elite by inquiry",
-    body: "When a family wants something more for their student, they reach out with a short application. We follow up.",
+    title: "Write the team anytime",
+    body: "Families can send a short note about their student whenever they want a personal reply. We follow up.",
   },
   {
     num: "03",
@@ -48,7 +48,7 @@ export function DifferenceSection() {
           transition={{ duration: 0.45, delay: 0.05 }}
           className={`ss-institutional mt-4 max-w-2xl text-[1.05rem] font-normal leading-[1.65] text-slate-600 sm:text-lg ${institutionalSerif.className}`}
         >
-          Educate parents for free. Elite is a conversation when a family wants something more for their student.
+          Educate parents for free. Write our student-led team anytime for a personal reply about your high schooler.
         </motion.p>
 
         <div className="relative mt-10 sm:mt-12 lg:mt-14">

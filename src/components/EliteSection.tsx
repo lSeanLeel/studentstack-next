@@ -38,8 +38,8 @@ export function EliteSection() {
           <p
             className={`ss-institutional mt-4 max-w-xl text-[1.05rem] font-normal leading-[1.65] text-slate-700 sm:text-lg ${institutionalSerif.className}`}
           >
-            Most families start with the free daily. If you want us to look at Elite for your student, send a short
-            inquiry, parent contact plus a few student details, and we’ll reach out.
+            Want us to look at Elite for your student? Send a short inquiry with parent contact and a few student
+            details. We will reach out.
           </p>
           <p
             className={`ss-institutional mt-3 max-w-xl text-[1.05rem] font-normal leading-[1.65] text-slate-600 sm:text-lg ${institutionalSerif.className}`}
