@@ -12,7 +12,7 @@ export function StudentShowcase() {
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
 
   return (
-    <section id="mentors" className="overflow-hidden bg-slate-50 py-16 sm:py-28 lg:py-32">
+    <section id="mentors" className="overflow-hidden bg-transparent py-16 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 flex flex-col justify-between gap-5 sm:mb-16 sm:gap-8 md:mb-20 md:flex-row md:items-end">
           <div>

@@ -38,8 +38,14 @@ export function getBeehiivPublicationId(): string | undefined {
   return id || undefined;
 }
 
+/** Operator portal username (default: test). */
+export function getOperatorUsername(): string {
+  return process.env.OPERATOR_USERNAME?.trim() || process.env.ADMIN_USERNAME?.trim() || "test";
+}
+
+/** Operator portal password (default: Sean1234!). */
 export function getAdminPassword(): string {
-  return process.env.ADMIN_PASSWORD?.trim() || "Sean1234!";
+  return process.env.ADMIN_PASSWORD?.trim() || process.env.OPERATOR_PASSWORD?.trim() || "Sean1234!";
 }
 
 export function getEnvStatus() {
@@ -51,6 +57,7 @@ export function getEnvStatus() {
     anthropicApiKey: Boolean(getAnthropicApiKey()),
     beehiivApiKey: Boolean(getBeehiivApiKey()),
     beehiivPublicationId: Boolean(getBeehiivPublicationId()),
-    adminPassword: Boolean(process.env.ADMIN_PASSWORD?.trim()),
+    adminPassword: Boolean(process.env.ADMIN_PASSWORD?.trim() || process.env.OPERATOR_PASSWORD?.trim()),
+    operatorUsername: Boolean(process.env.OPERATOR_USERNAME?.trim() || process.env.ADMIN_USERNAME?.trim()),
   };
 }

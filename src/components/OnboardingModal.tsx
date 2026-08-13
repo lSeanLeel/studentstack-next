@@ -1,36 +1,26 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { X } from "lucide-react";
-import { jakartaSans } from "@/app/fonts";
-import { SignupForm } from "@/components/SignupForm";
+import { fredokaHeadline, jakartaSans } from "@/app/fonts";
+import { EmailCapture } from "@/components/EmailCapture";
 
 type Props = {
   open: boolean;
   onClose: () => void;
 };
 
+/** Lightweight email-only join modal (v4). */
 export function OnboardingModal({ open, onClose }: Props) {
-  const [formBusy, setFormBusy] = useState(false);
-  const [signupComplete, setSignupComplete] = useState(false);
-  const blocking = formBusy;
-
   useEffect(() => {
     if (!open) return;
     const esc = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && !blocking) onClose();
+      if (e.key === "Escape") onClose();
     };
     window.addEventListener("keydown", esc);
     return () => window.removeEventListener("keydown", esc);
-  }, [open, onClose, blocking]);
-
-  useEffect(() => {
-    if (!open) {
-      setFormBusy(false);
-      setSignupComplete(false);
-    }
-  }, [open]);
+  }, [open, onClose]);
 
   return (
     <AnimatePresence>
@@ -48,12 +38,12 @@ export function OnboardingModal({ open, onClose }: Props) {
             exit={{ opacity: 0 }}
             className="absolute inset-0 bg-slate-900/50"
             aria-hidden
-            onClick={() => !blocking && onClose()}
+            onClick={onClose}
           />
           <motion.div
             role="dialog"
             aria-modal="true"
-            aria-labelledby={signupComplete ? "signup-success-title" : "onboarding-title"}
+            aria-labelledby="onboarding-title"
             initial={{ opacity: 0, y: 24, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
@@ -64,27 +54,24 @@ export function OnboardingModal({ open, onClose }: Props) {
             <button
               type="button"
               onClick={onClose}
-              disabled={blocking}
-              className="absolute right-3 top-3 rounded-full p-2 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-800 disabled:pointer-events-none disabled:opacity-40"
+              className="absolute right-3 top-3 rounded-full p-2 text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-800"
               aria-label="Close"
             >
               <X className="h-5 w-5" />
             </button>
 
             <div className="relative pt-1">
-              {!signupComplete ? (
-                <h2 id="onboarding-title" className="pr-10 text-center text-xl font-black text-slate-900">
-                  Sign Up
-                </h2>
-              ) : null}
-              <div className={signupComplete ? "mt-0" : "mt-5"}>
-                <SignupForm
-                  integrated
-                  showDescription={false}
-                  variant="default"
-                  onBusyChange={setFormBusy}
-                  onSubmittedChange={setSignupComplete}
-                />
+              <h2
+                id="onboarding-title"
+                className={`pr-10 text-center text-xl font-semibold tracking-[-0.03em] text-slate-900 ${fredokaHeadline.className}`}
+              >
+                Join the free daily
+              </h2>
+              <p className="mx-auto mt-2 max-w-sm text-center text-sm font-medium text-slate-600">
+                Parent email only. AI for student organization. Unsubscribe anytime.
+              </p>
+              <div className="mt-5">
+                <EmailCapture size="cta" />
               </div>
             </div>
           </motion.div>

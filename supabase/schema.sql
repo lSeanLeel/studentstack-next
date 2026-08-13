@@ -48,3 +48,20 @@ create table if not exists public.signups (
 create unique index if not exists signups_student_email_lower_key on public.signups (lower(student_email));
 
 comment on table public.signups is 'Weekly email signup captures from the landing modal';
+
+-- Contact form messages from the landing "Contact Us" modal
+create table if not exists public.contact_messages (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  email text not null,
+  message text not null,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists contact_messages_created_at_idx on public.contact_messages (created_at desc);
+
+comment on table public.contact_messages is 'Inbound messages from the landing Contact Us form';
+
+-- Student portal + Elite parent purchase:
+-- see supabase/migrations/002_student_portal.sql
+-- see supabase/migrations/003_elite_parent_purchase.sql

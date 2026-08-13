@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import { cookies } from "next/headers";
-import { getAdminPassword as readAdminPassword } from "@/lib/server-env";
+import { getAdminPassword as readAdminPassword, getOperatorUsername } from "@/lib/server-env";
 
 const ADMIN_COOKIE = "ss_admin_pw";
 
@@ -13,6 +13,17 @@ export function constantTimeEqual(input: string, expected: string) {
 
 export function getAdminPassword() {
   return readAdminPassword();
+}
+
+export function getOperatorUser() {
+  return getOperatorUsername();
+}
+
+/** Validate operator username + password (defaults: test / Sean1234!). */
+export function verifyOperatorCredentials(username: string, password: string) {
+  const userOk = constantTimeEqual(username.trim(), getOperatorUsername());
+  const passOk = constantTimeEqual(password, getAdminPassword());
+  return userOk && passOk;
 }
 
 export async function isAdminAuthorized() {

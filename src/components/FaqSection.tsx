@@ -1,56 +1,62 @@
 "use client";
 
-import React, { useId, useState, type ReactNode } from "react";
+import React, { useEffect, useState, type ReactNode } from "react";
 import { motion } from "motion/react";
 import { ChevronDown } from "lucide-react";
 import { jakartaSans, fredokaHeadline } from "@/app/fonts";
 
-type FaqItem = { q: string; a: ReactNode };
-
-const teamLinkClass =
-  "font-semibold text-sky-700 underline decoration-sky-200 underline-offset-[0.18em] transition-colors hover:text-sky-600 hover:decoration-sky-300";
+type FaqItem = { id?: string; q: string; a: ReactNode };
 
 const FAQ_ITEMS: FaqItem[] = [
   {
     q: "What is StudentStack?",
     a: (
       <>
-        We are a group of college students building a free online community to share how students are using AI to stay
-        ahead of school. We have grown a community of parents and high schoolers looking to learn from the students and
-        people who TRULY know how to optimize work using AI.
+        A student-led organization for parents of high schoolers. We publish a free daily newsletter on how students use
+        AI to stay organized for school: practical habits from people still in class.
       </>
     ),
   },
   {
-    q: "Is it really free?",
+    q: "What is in the free daily?",
     a: (
       <>
-        Yes. There are no paid tiers or hidden fees. We are all college students volunteering and working around our
-        schedules to build our community.
+        Short education around organization, planning, and notetaking: one clear lens, one toolkit move, and one thing
+        you can forward to your student. Built to build trust, not to overwhelm your inbox.
       </>
     ),
   },
   {
+    q: "Why student-led?",
+    a: (
+      <>
+        Campus tools and workflows change fast. Working with students who are still in that environment gives parents an
+        informational edge that static guides rarely match.
+      </>
+    ),
+  },
+  {
+    id: "faq-who-writes",
     q: "Who writes it?",
     a: (
       <>
-        <a href="#mentors" className={teamLinkClass}>
-          Our team
-        </a>{" "}
-        of top-performing college students keeps our AI resources updated, shapes what goes out each week, and answers
-        when you email us. If something needs a specific background (Pre-Med, Coding, Physics, Music), we try to hand
-        it to whoever on the team actually has the relevant experience and depth to provide their valuable
-        &ldquo;student&rdquo; perspective.
+        StudentStack is shaped by how college students actually stay organized with AI. We keep the guidance current,
+        credible, and useful for parents of high schoolers, and we answer when you email us.
       </>
     ),
   },
   {
-    q: "How often will we reach out?",
-    a: "Once a week on Sunday. No spam, ever.",
+    q: "Can I talk with your team?",
+    a: (
+      <>
+        Yes. Start with the free daily, then use Reach out on this site if you want a personal reply about supporting
+        your student. We respond by email. No checkout on the landing page.
+      </>
+    ),
   },
   {
     q: "How do I unsubscribe?",
-    a: "Every email includes an unsubscribe link. One click and you are off the list — no reply needed.",
+    a: "Every email includes an unsubscribe link. One click and you are off the list. No reply needed.",
   },
 ];
 
@@ -67,95 +73,75 @@ function FaqAccordionItem({
   setOpenIndex: (i: number | null) => void;
   baseId: string;
 }) {
-  const isOpen = openIndex === index;
-  const panelId = `${baseId}-panel-${index}`;
-  const headerId = `${baseId}-header-${index}`;
+  const open = openIndex === index;
+  const panelId = `${baseId}-panel-${item.id ?? index}`;
+  const buttonId = `${baseId}-button-${item.id ?? index}`;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.35, delay: index * 0.05 }}
-      className="rounded-[1.75rem] border-2 border-slate-100 bg-white shadow-[0_12px_36px_-24px_rgba(15,23,42,0.18)] transition-shadow hover:border-sky-100 hover:shadow-[0_16px_44px_-22px_rgba(14,165,233,0.22)]"
-    >
-      <h3 className="text-base font-semibold text-slate-900 sm:text-lg">
+    <div className="border-b border-slate-100 last:border-b-0">
+      <h3>
         <button
           type="button"
-          id={headerId}
-          aria-expanded={isOpen}
+          id={buttonId}
+          aria-expanded={open}
           aria-controls={panelId}
-          onClick={() => setOpenIndex(isOpen ? null : index)}
-          className={`flex w-full items-center justify-between gap-4 rounded-[1.65rem] px-5 py-4 text-left outline-none transition-colors focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2 sm:px-6 sm:py-5 ${jakartaSans.className}`}
+          onClick={() => setOpenIndex(open ? null : index)}
+          className={`flex w-full items-center justify-between gap-4 py-5 text-left text-base font-semibold tracking-[-0.02em] text-slate-900 sm:text-lg ${fredokaHeadline.className}`}
         >
-          <span className="font-bold tracking-tight text-slate-900">{item.q}</span>
-          <motion.span
-            animate={{ rotate: isOpen ? 180 : 0 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-slate-100 bg-slate-50 text-sky-600"
+          {item.q}
+          <ChevronDown
+            className={`h-5 w-5 shrink-0 text-slate-400 transition-transform ${open ? "rotate-180" : ""}`}
             aria-hidden
-          >
-            <ChevronDown className="h-5 w-5" strokeWidth={2.25} />
-          </motion.span>
+          />
         </button>
       </h3>
       <div
-        className={`grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+        id={panelId}
+        role="region"
+        aria-labelledby={buttonId}
+        hidden={!open}
+        className={`pb-5 text-sm font-medium leading-relaxed text-slate-600 sm:text-[0.95rem] ${jakartaSans.className}`}
       >
-        <div id={panelId} role="region" aria-labelledby={headerId} className="min-h-0 overflow-hidden">
-          <p
-            className={`px-5 pb-5 text-sm font-medium leading-relaxed text-slate-600 sm:px-6 sm:pb-6 sm:text-[15px] ${jakartaSans.className}`}
-          >
-            {item.a}
-          </p>
-        </div>
+        {open ? item.a : null}
       </div>
-    </motion.div>
+    </div>
   );
 }
 
 export function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-  const baseId = useId();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   return (
     <section
       id="faq"
-      className="relative overflow-hidden border-t border-sky-100/80 bg-gradient-to-b from-violet-50/30 via-white to-sky-50/25 px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
+      className="relative overflow-hidden border-t border-slate-100 bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
       aria-labelledby="faq-heading"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_45%_at_50%_0%,rgba(14,165,233,0.07),transparent)]" />
-
-      <div className="relative mx-auto w-full max-w-3xl lg:max-w-4xl xl:max-w-5xl">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
+      <div className="relative mx-auto w-full max-w-3xl lg:max-w-5xl xl:max-w-6xl">
+        <motion.h2
+          id="faq-heading"
+          initial={{ opacity: 0, y: 14 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.45 }}
-          className="text-center"
+          className={`text-[2rem] font-semibold tracking-[-0.035em] text-slate-900 sm:text-4xl ${fredokaHeadline.className}`}
         >
-          <p className={`text-[10px] font-black uppercase tracking-[0.22em] text-sky-600 ${jakartaSans.className}`}>
-            FAQ
-          </p>
-          <h2
-            id="faq-heading"
-            className={`mt-2.5 text-[1.65rem] font-semibold tracking-[-0.03em] text-slate-900 sm:text-3xl lg:text-[2.15rem] ${fredokaHeadline.className}`}
-          >
-            Questions parents ask us
-          </h2>
-        </motion.div>
-
-        <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:gap-4">
-          {FAQ_ITEMS.map((item, index) => (
-            <FaqAccordionItem
-              key={item.q}
-              item={item}
-              index={index}
-              openIndex={openIndex}
-              setOpenIndex={setOpenIndex}
-              baseId={baseId}
-            />
-          ))}
+          Questions parents ask
+        </motion.h2>
+        <div className="mt-8 rounded-[1.75rem] border border-slate-100 bg-[#f8fafc] px-5 sm:px-7">
+          {mounted
+            ? FAQ_ITEMS.map((item, index) => (
+                <FaqAccordionItem
+                  key={item.id ?? item.q}
+                  item={item}
+                  index={index}
+                  openIndex={openIndex}
+                  setOpenIndex={setOpenIndex}
+                  baseId="faq"
+                />
+              ))
+            : null}
         </div>
       </div>
     </section>

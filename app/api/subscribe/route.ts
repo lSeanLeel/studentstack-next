@@ -11,12 +11,18 @@ const topFocusEnum = z.enum([
   "Applying to College",
 ]);
 
+/** v4: parent email is the only required field for the free daily. */
 const bodySchema = z.object({
-  studentName: z.string().trim().min(1, "Student name is required."),
-  studentEmail: z.string().trim().email("Enter a valid student email."),
   parentEmail: z.string().trim().min(1, "Parent email is required").email("Enter a valid parent email."),
-  studentGrade: z.string().trim().min(1, "Grade is required."),
-  topFocus: topFocusEnum,
+  studentName: z.string().trim().optional().default(""),
+  studentEmail: z
+    .string()
+    .trim()
+    .optional()
+    .transform((v) => (v && v.length > 0 ? v : ""))
+    .pipe(z.union([z.literal(""), z.string().email("Enter a valid student email.")])),
+  studentGrade: z.string().trim().optional().default(""),
+  topFocus: topFocusEnum.optional(),
 });
 
 export async function POST(req: Request) {
@@ -49,10 +55,10 @@ export async function POST(req: Request) {
     }
 
     const { studentName, studentEmail, parentEmail, studentGrade, topFocus } = parsed.data;
-    const studentNorm = studentEmail.toLowerCase();
+    const studentNorm = studentEmail ? studentEmail.toLowerCase() : "";
     const parentNorm = parentEmail.trim().toLowerCase();
 
-    if (parentNorm === studentNorm) {
+    if (studentNorm && parentNorm === studentNorm) {
       return NextResponse.json({ error: "Parent email must differ from the student email." }, { status: 400 });
     }
 
@@ -61,11 +67,11 @@ export async function POST(req: Request) {
     });
 
     const insertRow = {
-      student_name: studentName,
-      student_email: studentNorm,
+      student_name: studentName.trim() || "Newsletter parent",
+      student_email: studentNorm || null,
       parent_email: parentNorm,
-      grade: studentGrade,
-      top_focus: topFocus,
+      grade: studentGrade.trim() || "—",
+      top_focus: topFocus ?? "Boosting GPA",
     };
 
     const { data: inserted, error: insertError } = await supabase
@@ -77,7 +83,7 @@ export async function POST(req: Request) {
     if (insertError) {
       const code = insertError.code;
       if (code === "23505") {
-        return NextResponse.json({ error: "This student email is already signed up.", code }, { status: 409 });
+        return NextResponse.json({ error: "This email is already signed up.", code }, { status: 409 });
       }
       if (/relation|does not exist|schema cache/i.test(insertError.message ?? "")) {
         return NextResponse.json(
@@ -128,17 +134,19 @@ export async function POST(req: Request) {
       return { ok: false as const, message: detail };
     };
 
-    const studentBee = await beehiivSubscribe(studentNorm);
-    if (!studentBee.ok) {
+    const parentBee = await beehiivSubscribe(parentNorm);
+    if (!parentBee.ok) {
       if (rowId) {
         await supabase.from("signups").delete().eq("id", rowId);
       }
-      return NextResponse.json({ error: studentBee.message }, { status: 502 });
+      return NextResponse.json({ error: parentBee.message }, { status: 502 });
     }
 
-    const parentBee = await beehiivSubscribe(parentNorm);
-    if (!parentBee.ok) {
-      console.warn("[subscribe] Beehiiv parent subscribe failed:", parentBee.message);
+    if (studentNorm) {
+      const studentBee = await beehiivSubscribe(studentNorm);
+      if (!studentBee.ok) {
+        console.warn("[subscribe] Beehiiv student subscribe failed:", studentBee.message);
+      }
     }
 
     return NextResponse.json({ ok: true }, { status: 200 });

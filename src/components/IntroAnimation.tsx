@@ -26,7 +26,7 @@ export const IntroAnimation: React.FC<{ onComplete: () => void }> = ({ onComplet
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="fixed inset-0 z-[1000] flex items-center justify-center bg-gradient-to-br from-sky-50 via-white to-violet-50 select-none"
+          className="fixed inset-0 z-[1000] flex select-none items-center justify-center bg-gradient-to-br from-sky-50 via-white to-cyan-50"
         >
           <div
             className={`${fredokaHeadline.className} flex items-center text-5xl font-semibold tracking-[-0.04em] antialiased md:text-8xl`}

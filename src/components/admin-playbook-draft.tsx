@@ -27,23 +27,23 @@ function buildMasterPromptBody(params: {
     "",
     "Format the content into: The Tool, The Opportunities, and The Q&A.",
     "",
-    "FOOTER (wordmark — required):",
-    "Match the site loading / navbar wordmark: the brand name is two-tone — the word \"Student\" in dark slate `#0f172a`, immediately followed by \"Stack\" in sky `#0ea5e9` (same split as the splash animation). Do NOT render \"StudentStack\" as one flat color or as generic black body text.",
+    "FOOTER (wordmark, required):",
+    "Match the site loading / navbar wordmark: the brand name is two-tone, the word \"Student\" in dark slate `#0f172a`, immediately followed by \"Stack\" in sky `#0ea5e9` (same split as the splash animation). Do NOT render \"StudentStack\" as one flat color or as generic black body text.",
     "Use a single line with two inline-styled spans, for example: <p style=\"margin:0;font-size:20px;font-weight:600;letter-spacing:-0.04em;line-height:1;font-family:'Fredoka','Helvetica Neue',Helvetica,Arial,sans-serif;\"><span style=\"color:#0f172a;\">Student</span><span style=\"color:#0ea5e9;\">Stack</span></p>",
-    `Optional: you may also include a small centered logo image (same artwork as the site) with src ${logoUrl} and alt=\"StudentStack\"; images must stay optional extras — the two-tone text wordmark above is required so the footer matches the app when images are blocked.`,
+    `Optional: you may also include a small centered logo image (same artwork as the site) with src ${logoUrl} and alt=\"StudentStack\"; images must stay optional extras, the two-tone text wordmark above is required so the footer matches the app when images are blocked.`,
     "",
     "---",
-    "SECTION 1 — THE TOOL (toolkit / living page):",
+    "SECTION 1, THE TOOL (toolkit / living page):",
     `- Include one clear call-to-action link or bulletproof button whose href is EXACTLY: ${tu}`,
     "- Summarize this week's highlight in warm, peer-to-peer language:",
     params.toolkitBlurb.trim() || "(Add your blurb in admin.)",
     "",
-    "SECTION 2 — THE OPPORTUNITIES (Google Sheet / programs & deadlines):",
+    "SECTION 2, THE OPPORTUNITIES (Google Sheet / programs & deadlines):",
     `- Include one clear call-to-action link or bulletproof button whose href is EXACTLY: ${su}`,
     "- Optional context:",
     params.boardBlurb.trim() || "(Add your blurb in admin.)",
     "",
-    "SECTION 3 — THE Q&A (featured parent/family question):",
+    "SECTION 3, THE Q&A (featured parent/family question):",
     params.qaNotes.trim() || "(Add question + answer in admin.)",
     "",
     "Also include a short greeting at the top reminding readers the newsletter is free and weekly, written by real university students.",
@@ -96,7 +96,7 @@ export function AdminPlaybookDraft() {
       <p className="mt-2 text-sm font-semibold text-slate-600">
         Prefer the <strong className="text-slate-800">Branded weekly email</strong> card above for the real send (manual copy, no API). Use this
         section only if you still want a <strong className="text-slate-800">master prompt</strong> to paste into free ChatGPT for alternate HTML.
-        Paste your toolkit page URL, Google Sheet URL, and Q&A notes — the prompt asks for living link, Sheet link, and human Q&A without a
+        Paste your toolkit page URL, Google Sheet URL, and Q&A notes, the prompt asks for living link, Sheet link, and human Q&A without a
         three-column robot layout.
       </p>
 

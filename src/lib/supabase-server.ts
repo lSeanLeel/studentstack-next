@@ -1,6 +1,6 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 
-/** Strip BOM / CRLF and quotes — Windows `.env` often leaves `\r` on values. */
+/** Strip BOM / CRLF and quotes, Windows `.env` often leaves `\r` on values. */
 export function stripEnvValue(raw: string | undefined): string {
   if (!raw) return "";
   return raw

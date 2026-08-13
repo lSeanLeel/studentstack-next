@@ -6,26 +6,32 @@ import { Navbar } from "@/components/Navbar";
 import { IntroAnimation } from "@/components/IntroAnimation";
 import { HeroSection } from "@/components/HeroSection";
 import { OnboardingProvider } from "@/components/onboarding-context";
+import { ContactProvider } from "@/components/contact-context";
 
 const sectionLoading = () => <div className="h-96" aria-hidden />;
 
-const PlaybookSection = dynamic(
-  () => import("@/components/PlaybookSection").then((m) => ({ default: m.PlaybookSection })),
+const AiAdvantageSection = dynamic(
+  () => import("@/components/AiAdvantageSection").then((m) => ({ default: m.AiAdvantageSection })),
   { loading: sectionLoading }
 );
 
-const TestimonialSection = dynamic(
-  () => import("@/components/Sections").then((m) => ({ default: m.TestimonialSection })),
+const PhilosophySection = dynamic(
+  () => import("@/components/PhilosophySection").then((m) => ({ default: m.PhilosophySection })),
   { loading: sectionLoading }
 );
 
-const StudentShowcase = dynamic(
-  () => import("@/components/StudentShowcase").then((m) => ({ default: m.StudentShowcase })),
+const ReachOutSection = dynamic(
+  () => import("@/components/ReachOutSection").then((m) => ({ default: m.ReachOutSection })),
   { loading: sectionLoading }
 );
 
 const FaqSection = dynamic(
   () => import("@/components/FaqSection").then((m) => ({ default: m.FaqSection })),
+  { loading: sectionLoading }
+);
+
+const FinalCTA = dynamic(
+  () => import("@/components/Sections").then((m) => ({ default: m.FinalCTA })),
   { loading: sectionLoading }
 );
 
@@ -41,22 +47,24 @@ export default function LandingPage() {
   const replayIntro = useCallback(() => {
     setIntroSession((n) => n + 1);
     setShowIntro(true);
-        window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }, []);
 
   return (
     <OnboardingProvider>
-      <main className="min-h-screen bg-white selection:bg-sky-100 selection:text-sky-900">
-        {showIntro && <IntroAnimation key={introSession} onComplete={handleIntroComplete} />}
-        <Navbar onHomeLogoClick={replayIntro} />
-        <HeroSection />
-
-        <PlaybookSection />
-        <TestimonialSection />
-        <FaqSection />
-        <StudentShowcase />
-        <Footer />
-      </main>
+      <ContactProvider>
+        <main className="min-h-screen bg-transparent selection:bg-sky-100 selection:text-sky-900">
+          {showIntro && <IntroAnimation key={introSession} onComplete={handleIntroComplete} />}
+          <Navbar onHomeLogoClick={replayIntro} />
+          <HeroSection />
+          <AiAdvantageSection />
+          <PhilosophySection />
+          <ReachOutSection />
+          <FaqSection />
+          <FinalCTA />
+          <Footer />
+        </main>
+      </ContactProvider>
     </OnboardingProvider>
   );
 }

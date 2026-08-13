@@ -12,7 +12,6 @@ const TOP_FOCUS_OPTIONS = [
 
 interface SignupFormData {
   studentName: string;
-  studentEmail: string;
   parentEmail: string;
   studentGrade: string;
   topFocus: (typeof TOP_FOCUS_OPTIONS)[number] | "";
@@ -50,7 +49,6 @@ export function SignupForm({
   } = useForm<SignupFormData>({
     defaultValues: {
       studentName: "",
-      studentEmail: "",
       parentEmail: "",
       studentGrade: "",
       topFocus: "",
@@ -71,7 +69,7 @@ export function SignupForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           studentName: data.studentName,
-          studentEmail: data.studentEmail || "",
+          studentEmail: "",
           parentEmail: (data.parentEmail ?? "").trim(),
           studentGrade: data.studentGrade || "",
           topFocus: data.topFocus,
@@ -90,7 +88,7 @@ export function SignupForm({
             .join(" · ");
           setSubmitError(extra ? `${primary} · ${extra}` : primary);
         } catch {
-          setSubmitError(`HTTP ${res.status} — response was not valid JSON.`);
+          setSubmitError(`HTTP ${res.status}: response was not valid JSON.`);
         }
         return;
       }
@@ -174,28 +172,6 @@ export function SignupForm({
               />
               {errors.studentName && (
                 <p className="mt-1 px-1 text-xs font-bold text-red-500">{errors.studentName.message}</p>
-              )}
-            </div>
-
-            <div className="relative">
-              <input
-                {...register("studentEmail", {
-                  required: "Student email is required",
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: "Invalid email address",
-                  },
-                })}
-                type="email"
-                inputMode="email"
-                autoComplete="email"
-                placeholder="Student Email *"
-                className={`h-14 w-full rounded-2xl border-2 bg-slate-50 px-6 text-sm font-bold text-slate-900 outline-none transition-all placeholder:text-slate-400 focus:bg-white ${
-                  errors.studentEmail ? "border-red-100" : "border-transparent focus:border-sky-500/20"
-                }`}
-              />
-              {errors.studentEmail && (
-                <p className="mt-1 px-1 text-xs font-bold text-red-500">{errors.studentEmail.message}</p>
               )}
             </div>
 
@@ -293,7 +269,7 @@ export function SignupForm({
           </button>
 
           <p className="text-center text-[10px] font-bold uppercase tracking-widest text-slate-400">
-            100% free weekly email • No spam, ever.
+            100% free daily email • No spam, ever.
           </p>
         </form>
       </div>

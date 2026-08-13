@@ -90,7 +90,7 @@ export function AdminWeeklyEmailComposer() {
             </div>
             <h2 className="mt-3 text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">Branded weekly email</h2>
             <p className="mt-2 text-sm font-semibold leading-relaxed text-slate-600">
-              Compose in plain text here — no OpenAI. Paste your Sheet link, write each toolkit row, and fabricate the featured Q&amp;A.
+              Compose in plain text here, no OpenAI. Paste your Sheet link, write each toolkit row, and fabricate the featured Q&amp;A.
               Copy HTML and paste into Gmail from <strong className="text-slate-800">help@studentstack.info</strong>. Draft auto-saves in
               this browser.
             </p>
@@ -166,7 +166,7 @@ export function AdminWeeklyEmailComposer() {
           <div>
             <h3 className="text-sm font-black uppercase tracking-[0.2em] text-sky-800">AI toolkit (5 picks)</h3>
             <p className="mt-1 text-xs font-semibold text-slate-500">
-              One tool per category — name, one-line blurb, optional link.
+              One tool per category, name, one-line blurb, optional link.
             </p>
             <div className="mt-4 space-y-5">
               {MANUAL_TOOLKIT_SLOTS.map((meta) => {
@@ -194,7 +194,7 @@ export function AdminWeeklyEmailComposer() {
                       </div>
                       <div>
                         <label className={labelClass} htmlFor={`${formId}-bl-${meta.id}`}>
-                          Why it matters (1–2 lines)
+                          Why it matters (1-2 lines)
                         </label>
                         <textarea
                           id={`${formId}-bl-${meta.id}`}
