@@ -33,13 +33,13 @@ export function Navbar({ onHomeLogoClick }: { onHomeLogoClick?: () => void }) {
             href="/#inside-daily"
             className="hidden rounded-2xl px-2.5 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-slate-600 transition-colors hover:bg-sky-50 hover:text-sky-700 sm:inline-flex sm:px-3 sm:py-2 sm:text-[11px]"
           >
-            The daily
+            Inside Elite
           </a>
           <a
             href="/#certifications"
             className="hidden rounded-2xl px-2.5 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-slate-600 transition-colors hover:bg-sky-50 hover:text-sky-700 md:inline-flex md:px-3 md:py-2 md:text-[11px]"
           >
-            Partners
+            Certifications
           </a>
           <a
             href="/#faq"
@@ -48,17 +48,23 @@ export function Navbar({ onHomeLogoClick }: { onHomeLogoClick?: () => void }) {
             FAQ
           </a>
           <Link
-            href="/operator"
+            href="/login"
             className="rounded-2xl px-2.5 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-800 sm:px-3 sm:py-2 sm:text-[11px]"
           >
-            Operator
+            Student login
           </Link>
+          <a
+            href="/#apply-elite"
+            className="rounded-2xl border border-slate-900 bg-slate-900 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-white shadow-[0_12px_24px_-16px_rgba(15,23,42,0.5)] transition-all hover:-translate-y-0.5 hover:bg-slate-800 sm:px-4 sm:py-2 sm:text-[11px] sm:tracking-[0.16em] md:text-xs lg:px-5 lg:py-2.5 lg:text-[0.8125rem] xl:px-6"
+          >
+            Apply for Elite
+          </a>
           <button
             type="button"
             onClick={openContact}
-            className="rounded-2xl border border-slate-900 bg-slate-900 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-white shadow-[0_12px_24px_-16px_rgba(15,23,42,0.5)] transition-all hover:-translate-y-0.5 hover:bg-slate-800 sm:px-4 sm:py-2 sm:text-[11px] sm:tracking-[0.16em] md:text-xs lg:px-5 lg:py-2.5 lg:text-[0.8125rem] xl:px-6"
+            className="hidden rounded-2xl px-2.5 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-slate-600 transition-colors hover:bg-sky-50 hover:text-sky-700 lg:inline-flex lg:px-3 lg:py-2 lg:text-[11px]"
           >
-            Contact Us
+            Contact
           </button>
         </div>
       </nav>

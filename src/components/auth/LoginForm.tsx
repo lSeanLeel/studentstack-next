@@ -46,16 +46,17 @@ export function LoginForm() {
 
         <div className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_24px_60px_-36px_rgba(15,23,42,0.35)] sm:p-8">
           <h1 className={`text-2xl font-semibold tracking-[-0.03em] text-slate-900 ${fredokaHeadline.className}`}>
-            Student login
+            Elite student login
           </h1>
           <p className={`ss-institutional mt-2 text-[0.95rem] leading-relaxed text-slate-600 ${institutionalSerif.className}`}>
-            Invited students sign in here. Parents can join the free daily or write our team from the home page.
+            Use the unique email and temporary password issued after your parent&apos;s Stripe subscription. Change your
+            password after the first visit.
           </p>
 
           <form onSubmit={onSubmit} className="mt-6 space-y-4" noValidate>
             <div>
               <label htmlFor="login-email" className="mb-1.5 block text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500">
-                Email
+                Student email
               </label>
               <input
                 id="login-email"
@@ -93,14 +94,14 @@ export function LoginForm() {
               disabled={busy}
               className="inline-flex w-full items-center justify-center rounded-2xl bg-slate-900 px-6 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-slate-800 disabled:opacity-60"
             >
-              {busy ? "Signing in…" : "Sign in"}
+              {busy ? "Signing in…" : "Sign in to portal"}
             </button>
           </form>
 
           <p className="mt-5 text-center text-sm font-medium text-slate-500">
-            New here?{" "}
-            <Link href="/signup" className="font-bold text-sky-700 hover:text-sky-900">
-              Create an account
+            Parents:{" "}
+            <Link href="/#apply-elite" className="font-bold text-sky-700 hover:text-sky-900">
+              Apply for Elite
             </Link>
           </p>
         </div>

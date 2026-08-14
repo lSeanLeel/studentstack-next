@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { ArrowRight } from "lucide-react";
 import { jakartaSans, fredokaHeadline } from "@/app/fonts";
-import { EmailCapture } from "@/components/EmailCapture";
 
 /** Order alternates cool (blue) and warm (orange / crimson) so similar reds never sit back-to-back. */
 const featuredColleges = [
@@ -77,7 +77,7 @@ function CollegeHeadline() {
       </span>
 
       <motion.span layout className="leading-none">
-        Learn AI from
+        Elite portal from
       </motion.span>
 
       <span className="relative inline-flex items-center justify-center [transform-style:preserve-3d]">
@@ -128,7 +128,7 @@ function CollegeHeadline() {
   );
 }
 
-function HeroEmailPlane() {
+function HeroPortalPlane() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_70%_at_50%_-10%,#7dd3fc_0%,transparent_55%),radial-gradient(ellipse_60%_50%_at_100%_30%,#99f6e4_0%,transparent_50%),radial-gradient(ellipse_55%_45%_at_0%_75%,#fde68a_0%,transparent_48%),linear-gradient(180deg,#e0f2fe_0%,#f8fafc_42%,#ecfeff_100%)]" />
@@ -146,17 +146,23 @@ function HeroEmailPlane() {
               <span className="h-2.5 w-2.5 rounded-full bg-sky-400" />
               <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
               <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
-              <span className="ml-3 h-2.5 w-36 rounded-full bg-sky-200/90" />
+              <span className="ml-3 text-[10px] font-black uppercase tracking-[0.16em] text-sky-600">
+                Elite portal
+              </span>
             </div>
             <div className="space-y-4">
               <div className="h-4 w-2/5 rounded-full bg-sky-300/80" />
               <div className="h-9 w-4/5 rounded-2xl bg-slate-300/70" />
-              <div className="h-3.5 w-full rounded-full bg-slate-200/90" />
-              <div className="h-3.5 w-[92%] rounded-full bg-slate-200/80" />
               <div className="mt-6 grid grid-cols-3 gap-3 sm:gap-4">
-                <div className="h-32 rounded-[1.5rem] bg-sky-200/90 sm:h-36" />
-                <div className="h-32 rounded-[1.5rem] bg-emerald-200/90 sm:h-36" />
-                <div className="h-32 rounded-[1.5rem] bg-amber-200/85 sm:h-36" />
+                <div className="flex h-32 flex-col justify-end rounded-[1.5rem] bg-sky-200/90 p-3 sm:h-36">
+                  <span className="text-[9px] font-black uppercase tracking-wider text-sky-900/70">Toolkit</span>
+                </div>
+                <div className="flex h-32 flex-col justify-end rounded-[1.5rem] bg-emerald-200/90 p-3 sm:h-36">
+                  <span className="text-[9px] font-black uppercase tracking-wider text-emerald-900/70">Vault</span>
+                </div>
+                <div className="flex h-32 flex-col justify-end rounded-[1.5rem] bg-amber-200/85 p-3 sm:h-36">
+                  <span className="text-[9px] font-black uppercase tracking-wider text-amber-900/70">Certs</span>
+                </div>
               </div>
             </div>
           </div>
@@ -172,7 +178,7 @@ function HeroEmailPlane() {
 export function HeroSection() {
   return (
     <section className="relative isolate min-h-[100dvh] min-h-screen w-full overflow-hidden px-4 pb-16 pt-28 sm:px-6 sm:pb-20 sm:pt-32">
-      <HeroEmailPlane />
+      <HeroPortalPlane />
 
       <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-5.5rem)] w-full max-w-[80rem] -translate-y-12 flex-col items-center justify-center text-center sm:min-h-[calc(100dvh-6.5rem)] sm:-translate-y-16">
         <motion.h1
@@ -197,13 +203,16 @@ export function HeroSection() {
               Stack
             </motion.span>
           </span>
+          <span className="mt-2 block text-[clamp(1.6rem,4.5vw+0.4rem,2.75rem)] tracking-[-0.03em] text-slate-800">
+            <span className="text-[#ff6a00]">Elite</span>
+          </span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.35, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          className={`${fredokaHeadline.className} mt-6 max-w-4xl text-[clamp(1.35rem,3.2vw+0.55rem,2.35rem)] font-semibold leading-[1.25] tracking-[-0.03em] text-slate-800 sm:mt-8`}
+          className={`${fredokaHeadline.className} mt-5 max-w-4xl text-[clamp(1.2rem,2.8vw+0.45rem,2rem)] font-semibold leading-[1.25] tracking-[-0.03em] text-slate-800 sm:mt-6`}
         >
           <CollegeHeadline />
         </motion.p>
@@ -215,7 +224,8 @@ export function HeroSection() {
           className={`${jakartaSans.className} mx-auto mt-4 max-w-2xl space-y-2 text-base font-medium leading-snug text-slate-600 sm:mt-5 sm:text-lg`}
         >
           <p>
-            Built by college students still in school, helping parents of high schoolers stay ahead on AI.
+            The paid student portal for AI toolkit mastery, admissions opportunities, and organization-issued AI
+            certifications.
           </p>
         </motion.div>
 
@@ -224,15 +234,21 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.62, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-5 flex w-full max-w-xl flex-col items-center gap-3 sm:mt-6"
+          className="mt-6 flex w-full max-w-xl flex-col items-center gap-3 sm:mt-7"
         >
-          <EmailCapture size="hero" className="w-full max-w-xl text-left" />
+          <a
+            href="#apply-elite"
+            className={`${jakartaSans.className} inline-flex w-full max-w-sm items-center justify-center gap-2 rounded-2xl bg-slate-900 px-6 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-white shadow-[0_14px_28px_-18px_rgba(15,23,42,0.5)] transition hover:-translate-y-0.5 hover:bg-slate-800`}
+          >
+            Apply for Elite
+            <ArrowRight className="h-4 w-4" aria-hidden />
+          </a>
 
           <a
             href="#inside-daily"
             className={`${jakartaSans.className} text-[12px] font-bold text-slate-600 underline decoration-sky-300/80 underline-offset-[0.18em] transition-colors hover:text-sky-700 sm:text-[13px]`}
           >
-            See what&apos;s in the daily
+            See what members get every day
           </a>
         </motion.div>
       </div>

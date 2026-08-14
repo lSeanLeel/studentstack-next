@@ -8,15 +8,15 @@ export default function EliteSuccessPage() {
       <div className="mx-auto w-full max-w-xl rounded-[2rem] border border-slate-200 bg-white p-8 sm:p-10">
         <BrandWordmark />
         <h1 className={`mt-8 text-3xl font-semibold tracking-[-0.03em] text-slate-900 ${fredokaHeadline.className}`}>
-          You&apos;re in
+          Subscription confirmed
         </h1>
         <p className="mt-3 text-base font-medium leading-relaxed text-slate-600">
-          Thanks for supporting your student. They should receive an invite at the student email you entered so they can
-          set a password and open the Elite portal.
+          Thanks for unlocking StudentStack Elite. We generate a unique student login and temporary password for the
+          student email you entered. Our team delivers those credentials to the parent email on file (usually within
+          minutes of checkout).
         </p>
         <p className="mt-3 text-sm font-medium text-slate-500">
-          If the invite is delayed, they can also create an account with that same student email and Elite will unlock
-          automatically.
+          Your student should sign in at Student login, then change the temporary password after the first visit.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Link

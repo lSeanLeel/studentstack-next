@@ -2,12 +2,12 @@
 
 import React from "react";
 import { motion } from "motion/react";
-import { Calendar, Forward, Newspaper, ShieldCheck, Sparkles, Users } from "lucide-react";
+import { BadgeCheck, Database, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { BrandWordmark } from "./BrandWordmark";
-import { EmailCapture } from "./EmailCapture";
 import { useContact } from "./contact-context";
+
 export function TestimonialSection() {
   return (
     <section id="about" className="relative overflow-hidden bg-transparent pt-6 pb-20 sm:pt-8 sm:pb-28">
@@ -43,8 +43,8 @@ export function TestimonialSection() {
               className={`max-w-2xl text-xl font-medium leading-[1.35] tracking-tight text-slate-100 sm:text-3xl ${jakartaSans.className}`}
             >
               <span className={`${fredokaHeadline.className} mr-1 text-3xl text-sky-300 sm:text-5xl`}>&ldquo;</span>
-              We built StudentStack because we saw the gap between students who use AI for school and those who don&apos;t.
-              College students learn new tools every week. We turn that into a free Sunday email families can actually use.
+              We built StudentStack Elite so high schoolers get the same AI toolkit edge college students use, plus
+              credentials and opportunity intel they can put on applications.
               <span className={`${fredokaHeadline.className} ml-1 text-3xl text-sky-300 sm:text-5xl`}>&rdquo;</span>
             </p>
           </div>
@@ -54,61 +54,11 @@ export function TestimonialSection() {
   );
 }
 
-export function NewsletterBenefitsSection() {
-  const perks = [
-    { title: "Sunday drop", desc: "One focused email so families aren’t drowning in tabs.", icon: Calendar },
-    { title: "Student-written", desc: "Tool picks explained the way we use them in lectures and labs.", icon: Users },
-    { title: "100% free", desc: "No tiers, no upsell: just the weekly email and occasional bonus links.", icon: ShieldCheck },
-  ];
-
-  return (
-    <section id="why-newsletter" className="overflow-hidden bg-white py-28 sm:py-32">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center sm:text-left">
-          <p className="text-[10px] font-black uppercase tracking-[0.22em] text-sky-600">Why StudentStack</p>
-          <h2
-            className={`mb-6 mt-3 text-4xl font-semibold leading-[1.1] tracking-[-0.03em] text-slate-900 sm:text-5xl lg:text-6xl ${fredokaHeadline.className}`}
-          >
-            A weekly email <br />
-            <span className="text-sky-500">parents actually read</span>
-          </h2>
-          <p
-            className={`mb-10 max-w-xl text-lg font-medium leading-relaxed text-slate-500 mx-auto sm:mx-0 ${jakartaSans.className}`}
-          >
-            StudentStack is a free Sunday email with AI tools, study workflows, and research ideas for high schoolers,
-            explained by college students who live in both worlds.
-          </p>
-          <div className="grid gap-4 max-w-xl mx-auto sm:mx-0">
-            {perks.map((item, i) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="flex items-start gap-4 p-5 rounded-[1.75rem] bg-white border border-slate-100 shadow-[0_14px_40px_-24px_rgba(15,23,42,0.25)] hover:-translate-y-1 transition-transform"
-              >
-                <div className="h-12 w-12 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center border border-sky-100">
-                  <item.icon className="h-6 w-6" />
-                </div>
-                <div className="text-left">
-                  <p className="text-sm font-black text-slate-900">{item.title}</p>
-                  <p className="text-sm text-slate-500 font-medium leading-relaxed mt-1">{item.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export function FinalCTA() {
   const beats = [
-    { icon: Newspaper, title: "AI news", line: "What moved in school this week, skim-ready." },
-    { icon: Sparkles, title: "One toolkit move", line: "A workflow students actually use." },
-    { icon: Forward, title: "Forward tonight", line: "A short note you can send your high schooler." },
+    { icon: Sparkles, title: "AI Toolkit", line: "Tools we use and how we use them." },
+    { icon: Database, title: "Admissions Vault", line: "Programs, research, deadlines." },
+    { icon: BadgeCheck, title: "AI certifications", line: "SS-AIS and SS-ACR for applications." },
   ] as const;
 
   return (
@@ -120,16 +70,17 @@ export function FinalCTA() {
 
           <div className="relative z-10 mx-auto max-w-2xl">
             <p className={`text-[10px] font-black uppercase tracking-[0.22em] text-[#ff6a00] ${jakartaSans.className}`}>
-              StudentStack Daily
+              StudentStack Elite
             </p>
             <h2
               className={`mt-3 text-4xl font-semibold leading-[1.05] tracking-[-0.035em] text-slate-900 sm:text-6xl ${fredokaHeadline.className}`}
             >
-              Join the daily.{" "}
-              <span className="text-sky-500">Stay ahead.</span>
+              Apply for Elite.{" "}
+              <span className="text-sky-500">Unlock the portal.</span>
             </h2>
             <p className={`mx-auto mt-5 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}>
-              Stay current with other parents. One membership email, written by students still in class.
+              Parents apply. Students get a unique login after subscription. The portal stays current through the AI
+              daily desk.
             </p>
 
             <ul className="mx-auto mt-8 grid max-w-2xl gap-3 text-left sm:grid-cols-3 sm:gap-4">
@@ -154,15 +105,18 @@ export function FinalCTA() {
               })}
             </ul>
 
-            <div className="mx-auto mt-8 w-full max-w-xl text-left">
-              <EmailCapture size="cta" submitLabel="Join the daily" />
-            </div>
+            <a
+              href="#apply-elite"
+              className={`mt-8 inline-flex items-center justify-center rounded-2xl bg-slate-900 px-8 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-slate-800 ${jakartaSans.className}`}
+            >
+              Apply for Elite
+            </a>
 
             <a
               href="#inside-daily"
               className={`mt-4 inline-block text-[12px] font-bold text-slate-600 underline decoration-sky-300/80 underline-offset-[0.18em] transition-colors hover:text-sky-700 sm:text-[13px] ${jakartaSans.className}`}
             >
-              See what&apos;s in the daily
+              See what members get every day
             </a>
           </div>
         </div>
@@ -186,12 +140,24 @@ export function Footer() {
             >
               <BrandWordmark />
             </Link>
+            <p className={`mt-4 max-w-md text-sm font-medium text-slate-500 ${jakartaSans.className}`}>
+              StudentStack Elite: the paid student portal for AI toolkit, admissions vault, and organization-issued AI
+              certifications.
+            </p>
           </div>
           <div>
             <h4 className="mb-6 text-sm font-bold uppercase tracking-widest text-slate-900">Legal</h4>
             <ul className="space-y-4 text-sm font-medium text-slate-500">
-              <li><a href="/privacy" className="hover:text-sky-500 transition-colors">Privacy Policy</a></li>
-              <li><a href="/terms" className="hover:text-sky-700 transition-colors">Terms of Service</a></li>
+              <li>
+                <a href="/privacy" className="transition-colors hover:text-sky-500">
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="/terms" className="transition-colors hover:text-sky-700">
+                  Terms of Service
+                </a>
+              </li>
               <li>
                 <button
                   type="button"
@@ -202,8 +168,8 @@ export function Footer() {
                 </button>
               </li>
               <li>
-                <Link href="/operator" className="transition-colors hover:text-sky-500">
-                  Operator
+                <Link href="/login" className="transition-colors hover:text-sky-500">
+                  Student login
                 </Link>
               </li>
             </ul>

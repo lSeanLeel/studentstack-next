@@ -9,38 +9,40 @@ type FaqItem = { id?: string; q: string; a: ReactNode };
 
 const FAQ_ITEMS: FaqItem[] = [
   {
-    q: "What is StudentStack?",
+    q: "What is StudentStack Elite?",
     a: (
       <>
-        A student-led organization helping parents of high schoolers stay ahead on AI in school. Our core product is the
-        StudentStack Daily membership, plus partner credential pathways for students.
+        A paid student portal for high schoolers. Members get the AI Toolkit, the Super Opportunity & Admissions Vault,
+        organization-issued AI certifications (SS-AIS and SS-ACR), and an AI daily desk that refreshes when they prompt
+        it.
       </>
     ),
   },
   {
-    q: "What is the Daily membership?",
+    q: "How do parents apply?",
     a: (
       <>
-        A paid membership for parents. You join with your email, then unlock the full daily desk for $40/mo. Each send
-        includes a school AI signal, one toolkit move, and a forwardable note for your student.
+        Use Apply for Elite with parent name, parent email, student grade, intended major, and questions for our team.
+        We reach out within 24 hours with next steps and how the student receives a unique login after subscription.
       </>
     ),
   },
   {
-    q: "What is in each daily email?",
+    q: "How does student login work?",
     a: (
       <>
-        The same tight format every day: a morning note from students still in class, one school AI signal, one
-        Organization / Planning / Notetaking toolkit move, and a short forward-tonight message.
+        After Stripe subscription, we issue a unique login and temporary password for the student email. Students sign
+        in at Student login and should change the password after the first visit. Open self-serve signup is not the path
+        into Elite.
       </>
     ),
   },
   {
-    q: "How do partner credentials work?",
+    q: "What are the AI certifications?",
     a: (
       <>
-        Separate paid pathways with a clear price and timeline. Students complete modules with an issuing partner and
-        earn a StudentStack credential (codes like SS-AAIP).
+        SS-AIS (AI Safety & Academic Integrity) and SS-ACR (AI for College Readiness). Modular credentials students
+        attach to Common App activities, counselor notes, and portfolios as proof of responsible AI use.
       </>
     ),
   },
@@ -50,21 +52,13 @@ const FAQ_ITEMS: FaqItem[] = [
     a: (
       <>
         Campus tools and classroom norms change fast. Working with students who are still in that environment keeps the
-        guidance current for parents and learners.
+        portal current for high schoolers preparing for college.
       </>
     ),
   },
   {
     q: "Can I talk with your team?",
-    a: (
-      <>
-        Yes. Use Contact for student/family questions or enterprise partnerships. We respond ourselves.
-      </>
-    ),
-  },
-  {
-    q: "How do I cancel?",
-    a: "Membership is month to month. Cancel anytime from your billing email or by writing our team.",
+    a: <>Yes. Use Contact for family questions or partnerships. We respond ourselves.</>,
   },
 ];
 

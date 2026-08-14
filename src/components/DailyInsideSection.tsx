@@ -2,38 +2,38 @@
 
 import React from "react";
 import { motion } from "motion/react";
-import { CalendarDays, Forward, Newspaper, Sparkles, SunMedium } from "lucide-react";
+import { BadgeCheck, BookOpen, CalendarDays, Database, Sparkles, Wrench } from "lucide-react";
 import { fredokaHeadline, jakartaSans, institutionalSerif } from "@/app/fonts";
 
 const dayParts = [
   {
-    icon: SunMedium,
-    label: "Morning desk note",
-    title: "From students still in class",
-    body: "A short open from our college desk: what we are seeing on campus and in high-school adjacent tools this week.",
-  },
-  {
-    icon: Newspaper,
-    label: "School AI signal",
-    title: "What actually moved",
-    body: "One clear signal on AI in school: classroom norms, new tools worth noticing, or a policy shift parents should not miss.",
-  },
-  {
     icon: Sparkles,
-    label: "Toolkit move",
-    title: "One workflow, not a dump",
-    body: "A concrete organizing habit in Organization, Planning, or Notetaking that a high schooler can run the same day.",
+    label: "AI daily desk",
+    title: "A fresh briefing when they prompt",
+    body: "Inside the portal, students ask for today's update: toolkit tip, vault highlight, certification nudge, and three application moves. Not an inbox blast. A desk that refreshes on demand.",
   },
   {
-    icon: Forward,
-    label: "Forward tonight",
-    title: "Parent → student text",
-    body: "A ready-to-send note so you can hand the move to your student without rewriting the whole email.",
+    icon: Wrench,
+    label: "AI Toolkit",
+    title: "The tools we use, and how",
+    body: "Claude, ChatGPT, Gemini, Notion AI, Perplexity, and more, organized by school job: organization, notes, planning, studying, writing, research, and applications.",
+  },
+  {
+    icon: Database,
+    label: "Admissions Vault",
+    title: "Live opportunity board",
+    body: "Summer programs, research lanes, and competitive deadlines with fit notes. Built so students calendar real options instead of doomscrolling lists.",
+  },
+  {
+    icon: BadgeCheck,
+    label: "AI certifications",
+    title: "Credentials for the application",
+    body: "SS-AIS (AI Safety & Academic Integrity) and SS-ACR (AI for College Readiness). Digital badges students already attach to Common App activities and counselor notes.",
   },
 ] as const;
 
 /**
- * Branded description of daily membership contents (aligned with operator AI pipeline).
+ * What Elite members get every day — revised for the paid student portal.
  */
 export function DailyInsideSection() {
   return (
@@ -53,7 +53,7 @@ export function DailyInsideSection() {
           className="max-w-3xl"
         >
           <p className={`text-[10px] font-black uppercase tracking-[0.22em] text-[#ff6a00] ${jakartaSans.className}`}>
-            Inside the daily
+            Inside Elite
           </p>
           <h2
             id="inside-daily-heading"
@@ -65,8 +65,8 @@ export function DailyInsideSection() {
           <p
             className={`ss-institutional mt-4 max-w-2xl text-[1.05rem] font-normal leading-[1.7] text-slate-600 sm:text-lg ${institutionalSerif.className}`}
           >
-            A tight, same-shape email from our student-led desk. Built to skim in two minutes, then give your high
-            schooler one move that keeps them ahead on AI in school.
+            StudentStack Elite is a paid student portal. Members log in, open the AI desk, work the toolkit and vault,
+            and progress on organization-issued certifications they can attach to college applications.
           </p>
         </motion.div>
 
@@ -108,10 +108,16 @@ export function DailyInsideSection() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className={`mt-8 flex items-center gap-2 text-sm font-medium text-slate-500 ${jakartaSans.className}`}
+          className={`mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-medium text-slate-500 ${jakartaSans.className}`}
         >
-          <CalendarDays className="h-4 w-4 text-[#ff6a00]" aria-hidden />
-          Same format daily. Fresh signal and toolkit each send. Membership unlocks the full desk.
+          <span className="inline-flex items-center gap-2">
+            <CalendarDays className="h-4 w-4 text-[#ff6a00]" aria-hidden />
+            Portal updates daily when your student prompts the AI desk.
+          </span>
+          <span className="inline-flex items-center gap-2">
+            <BookOpen className="h-4 w-4 text-sky-600" aria-hidden />
+            Unique login issued after Stripe subscription.
+          </span>
         </motion.p>
       </div>
     </section>

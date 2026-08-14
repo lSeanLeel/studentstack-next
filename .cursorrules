@@ -9,11 +9,12 @@
 - Use **Lucide React** (or other curated SVG icon libraries) or intentional **CSS shapes** only.
 
 ## Product & Content Boundaries
-- **Primary monetization:** StudentStack Daily membership (**$40/mo**). CTA says “Join the daily”; reveal price only after that step.
-- Public surface also includes **partner certifications**. No student login on the marketing site.
-- Present as a **student-led organization**. Do not market “AI writes the newsletter” on the public site; the operator engine may use AI internally.
-- Operator portal at `/operator` (default credentials `admin` / `admin` unless env overrides).
-- Do not advertise Elite portal / 24/7 concierge as the lead CTA.
+- **Primary product:** StudentStack Elite, a paid student portal for high schoolers.
+- Landing CTA: **Apply for Elite** (parent application). Do not lead with newsletter signup.
+- Portal modules: **AI Toolkit**, **Super Opportunity & Admissions Vault**, **Organization-issued AI Certifications**.
+- Student login is for Elite members (credentials issued after Stripe subscription / invite).
+- Present as a **student-led organization**. Do not market “AI writes everything” on the public site; portal may include an AI refresh desk for members.
+- Do not feature an operator/newsletter studio on the marketing site.
 
 ## Engineering defaults
-- App is Next.js at the repo root under `src/`. Prefer extending `/operator` and `/api/admin/*` / `/api/cron/*` for the newsletter engine.
+- App is Next.js under `src/`. Portal lives at `/portal`. Stripe Elite checkout/webhook under `src/app/api/stripe/`.

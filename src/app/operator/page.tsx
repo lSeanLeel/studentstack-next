@@ -1,11 +1,6 @@
-import { OperatorStudio } from "@/components/operator/OperatorStudio";
+import { redirect } from "next/navigation";
 
-export const metadata = {
-  title: "Operator · StudentStack Daily",
-  description: "Internal newsletter studio for StudentStack Daily.",
-  robots: { index: false, follow: false },
-};
-
+/** Operator / newsletter studio removed from product surface. */
 export default function OperatorPage() {
-  return <OperatorStudio />;
+  redirect("/");
 }

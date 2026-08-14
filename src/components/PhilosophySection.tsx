@@ -56,8 +56,9 @@ export function PhilosophySection() {
           <p
             className={`ss-institutional mt-5 max-w-2xl text-[1.05rem] font-normal leading-[1.7] text-slate-600 sm:text-lg ${institutionalSerif.className}`}
           >
-            As college students, we live the AI shift inside real classrooms every week. We work to help bridge this
-            gap, providing our parents and students with the latest tools and AI news to stay ahead for school.
+            As college students, we live the AI shift inside real classrooms every week. Elite packages that edge into a
+            student portal: toolkit habits, admissions opportunities, and credentials high schoolers can put on
+            applications.
           </p>
         </motion.div>
 

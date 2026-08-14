@@ -25,6 +25,11 @@ const CertificationsSection = dynamic(
   { loading: sectionLoading }
 );
 
+const ApplyEliteSection = dynamic(
+  () => import("@/components/ApplyEliteSection").then((m) => ({ default: m.ApplyEliteSection })),
+  { loading: sectionLoading }
+);
+
 const ReachOutSection = dynamic(
   () => import("@/components/ReachOutSection").then((m) => ({ default: m.ReachOutSection })),
   { loading: sectionLoading }
@@ -65,6 +70,7 @@ export default function LandingPage() {
           <PhilosophySection />
           <DailyInsideSection />
           <CertificationsSection />
+          <ApplyEliteSection />
           <ReachOutSection />
           <FaqSection />
           <FinalCTA />
