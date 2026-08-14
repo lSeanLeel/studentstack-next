@@ -1,30 +1,29 @@
 /**
- * StudentStack Daily angle + focus pillars.
- * Public product: parent daily + certifications. Elite is a soft secondary upsell later.
+ * StudentStack Daily membership angle + focus pillars.
+ * Public product: paid parent daily ($40/mo after join) + partner certifications.
  */
 
 export const NEWSLETTER_ANGLE = {
   product: "StudentStack Daily",
-  audience: "parents of high schoolers",
+  audience: "parents of high schoolers (paid membership)",
   discovery:
-    "Parents usually find StudentStack on Nextdoor, Facebook parent groups, or Instagram educational videos, then join the daily with just an email.",
+    "Parents usually find StudentStack on Nextdoor, Facebook parent groups, or Instagram educational videos, then join the daily with a parent email.",
   promise:
-    "A short daily email that keeps parents current on AI in school and hands them one concrete organizing move from the college-student side of the same work.",
+    "A daily membership email that keeps parents ahead on AI in school: one school signal, one toolkit move, and one forwardable note from a student-led desk.",
   eliteNote:
-    "Optional one soft line near the end about StudentStack Elite (deeper portal for families who want ongoing systems). Never a hard checkout pitch, never a portal product tour as the lead story.",
+    "Membership is the product. Do not pitch free forever. Soft reminders that the desk is for members only are fine. No portal product tour as the lead.",
   notThis: [
     "Generic AI news dump with no school lens",
     "Tool hype without a high-school use case",
     "Doing the student’s homework for them",
-    "Hard paid upsell or checkout CTA as the lead",
-    "Requiring student name/grade to feel welcome",
+    "Revealing internal generation tooling or model names",
     "Course catalog pitches",
   ],
   alwaysThis: [
+    "Sound like a student-led desk still in campus work",
     "School-climate signal parents can skim in under two minutes",
     "Organization optic: cleaner weeks, not louder tech",
     "One concrete student move a parent can forward",
-    "Mentor-informed, calm, educational tone",
     "Clear arena: Organization, Planning, or Notetaking",
   ],
 } as const;
@@ -54,13 +53,13 @@ export type FocusPillarId = (typeof FOCUS_PILLARS)[number]["id"];
 
 /** Mon/Thu organization, Tue/Fri planning, Wed/Sat notetaking, Sun organization. */
 const PILLAR_BY_DOW: FocusPillarId[] = [
-  "organization", // Sun
-  "organization", // Mon
-  "planning", // Tue
-  "notetaking", // Wed
-  "organization", // Thu
-  "planning", // Fri
-  "notetaking", // Sat
+  "organization",
+  "organization",
+  "planning",
+  "notetaking",
+  "organization",
+  "planning",
+  "notetaking",
 ];
 
 export function getFocusPillar(id: FocusPillarId | string | undefined) {
@@ -88,15 +87,15 @@ export function buildAngleSeed(pillar: FocusPillarId, dateLabel?: string): strin
     `Focus pillar: ${p.label}`,
     `Angle: ${NEWSLETTER_ANGLE.promise}`,
     `Discovery context: ${NEWSLETTER_ANGLE.discovery}`,
-    `Elite: ${NEWSLETTER_ANGLE.eliteNote}`,
+    `Membership: ${NEWSLETTER_ANGLE.eliteNote}`,
     "",
     "Operator notes / research dump:",
     `- Keep today's issue centered on ${p.label.toLowerCase()}.`,
     `- ${p.blurb}`,
-    "- Open with one school-climate AI signal worth noticing this week.",
+    "- Open with one school-climate AI signal worth noticing.",
     "- Prefer one sharp workflow over a list of tools.",
     "- Parent can forward one move to their high schooler tonight.",
-    "- Assume many readers joined from community apps or Instagram.",
+    "- Voice: student-led desk. Never mention model names or internal generation.",
   ].join("\n");
 }
 
@@ -108,7 +107,7 @@ export function buildNewsletterSystemPrompt(focusId: string): string {
 
 AUDIENCE: ${NEWSLETTER_ANGLE.audience}. Busy. Want credibility, not hype.
 HOW THEY FIND US: ${NEWSLETTER_ANGLE.discovery}
-ELITE RULE: ${NEWSLETTER_ANGLE.eliteNote}
+MEMBERSHIP RULE: ${NEWSLETTER_ANGLE.eliteNote}
 
 TODAY'S REQUIRED FOCUS PILLAR: ${pillar.label}
 Pillar detail: ${pillar.blurb}
@@ -125,24 +124,22 @@ ${NEWSLETTER_ANGLE.alwaysThis.map((x) => `- ${x}`).join("\n")}
 
 OUTPUT: structured Markdown only (no preamble, no code fences), sections in this exact order:
 
-1. A single # H1 title, concrete, parent-readable, organization-forward (not "AI is changing everything")
-2. One short lede paragraph under the title (1-2 sentences)
+1. A single # H1 title, concrete, parent-readable, organization-forward
+2. One short lede paragraph under the title (1-2 sentences) from the student desk
 3. ## Today's organizing angle · ${pillar.label}
    - 2-4 sentences tying the issue to ${pillar.label.toLowerCase()}
 4. ## Signal
-   - What is worth noticing in AI/education *through an organizing lens* (2-4 sentences)
+   - What is worth noticing in AI/education through an organizing lens (2-4 sentences)
 5. ## Parent note
    - Warm, practical. Include the exact placeholder [EDIT PARENT NOTE HERE] on its own line near the top of this section
 6. ## The toolkit move
    - One featured workflow: Name, what it does, one concrete high-school use case for ${pillar.label.toLowerCase()}
 7. ## Forward this
    - One short message a parent can copy/text to their student tonight
-8. ## Soft close (optional)
-   - At most one calm sentence that StudentStack Elite exists for families who want deeper ongoing systems. No price, no checkout link, no portal tour.
 
 Optional only if seed research clearly supports it:
-9. ## Opportunity radar
+8. ## Opportunity radar
    - 1-3 high-school-relevant deadlines with dates when known
 
-Tone: clear, trustworthy, energetic but not hypey. College-student informed. Write for parents who want their kid organized for school.`;
+Tone: clear, trustworthy, energetic but not hypey. College-student informed. Never reveal that draft generation is automated.`;
 }

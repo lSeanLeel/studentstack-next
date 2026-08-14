@@ -339,7 +339,7 @@ export function OperatorStudio() {
           </div>
           <h1 className="text-3xl font-black text-white">Newsletter studio</h1>
           <p className="mt-3 text-sm font-medium text-slate-400">
-            Sign in to draft today’s StudentStack Daily on AI for student organization.
+            Sign in to draft today&apos;s StudentStack Daily membership email. Default login: admin / admin.
           </p>
           <form onSubmit={handleLogin} className="mt-6 space-y-4">
             <label className="block">
@@ -352,7 +352,7 @@ export function OperatorStudio() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
-                placeholder="test"
+                placeholder="admin"
                 className="w-full rounded-2xl border-2 border-slate-700 bg-slate-950 px-4 py-3 font-semibold text-white outline-none transition focus:border-sky-500"
               />
             </label>
@@ -366,7 +366,7 @@ export function OperatorStudio() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                placeholder="••••••••"
+                placeholder="admin"
                 className="w-full rounded-2xl border-2 border-slate-700 bg-slate-950 px-4 py-3 font-semibold text-white outline-none transition focus:border-sky-500"
               />
             </label>

@@ -5,9 +5,10 @@ import { getSupabaseServerClient, isSupabaseConfigured } from "@/lib/supabase-se
 
 export const runtime = "nodejs";
 
-/** Parent email is the only required field for the daily. */
+/** Parent email for Daily membership lead / join step. */
 const bodySchema = z.object({
   parentEmail: z.string().trim().min(1, "Parent email is required").email("Enter a valid parent email."),
+  intent: z.string().trim().optional(),
 });
 
 export async function POST(req: Request) {
@@ -28,21 +29,13 @@ export async function POST(req: Request) {
     }
 
     const parentNorm = parsed.data.parentEmail.trim().toLowerCase();
-    const beehiivApiKey = getBeehiivApiKey();
-    const beehiivPubId = getBeehiivPublicationId();
-
-    if (!beehiivApiKey || !beehiivPubId) {
-      return NextResponse.json(
-        { error: "Signup is not connected yet. Email help@studentstack.info and we will add you." },
-        { status: 503 }
-      );
-    }
+    const membershipLead = parsed.data.intent === "membership_lead";
 
     if (isSupabaseConfigured()) {
       try {
         const supabase = getSupabaseServerClient();
         const { error: insertError } = await supabase.from("signups").insert({
-          student_name: "Newsletter parent",
+          student_name: membershipLead ? "Daily membership lead" : "Newsletter parent",
           student_email: null,
           parent_email: parentNorm,
           grade: "-",
@@ -56,29 +49,38 @@ export async function POST(req: Request) {
       }
     }
 
-    const url = `https://api.beehiiv.com/v2/publications/${beehiivPubId}/subscriptions`;
-    const res = await fetch(url, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${beehiivApiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: parentNorm,
-        tier: "free",
-        reactivate_existing: true,
-      }),
-    });
+    const beehiivApiKey = getBeehiivApiKey();
+    const beehiivPubId = getBeehiivPublicationId();
 
-    if (!res.ok) {
-      const errJson = (await res.json().catch(() => null)) as { message?: string } | null;
+    if (beehiivApiKey && beehiivPubId) {
+      const url = `https://api.beehiiv.com/v2/publications/${beehiivPubId}/subscriptions`;
+      const res = await fetch(url, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${beehiivApiKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: parentNorm,
+          tier: "free",
+          reactivate_existing: true,
+        }),
+      });
+      if (!res.ok && !membershipLead) {
+        const errJson = (await res.json().catch(() => null)) as { message?: string } | null;
+        return NextResponse.json(
+          { error: errJson?.message ?? `Could not subscribe (${res.status}).` },
+          { status: 502 }
+        );
+      }
+    } else if (!membershipLead) {
       return NextResponse.json(
-        { error: errJson?.message ?? `Could not subscribe (${res.status}).` },
-        { status: 502 }
+        { error: "Signup is not connected yet. Email help@studentstack.info and we will add you." },
+        { status: 503 }
       );
     }
 
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true, membershipLead });
   } catch (error: unknown) {
     console.error("Subscribe error:", error);
     return NextResponse.json({ error: "Something went wrong." }, { status: 500 });

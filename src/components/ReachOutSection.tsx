@@ -37,7 +37,7 @@ export function ReachOutSection() {
           <p
             className={`ss-institutional mt-4 max-w-xl text-[1.05rem] font-normal leading-[1.7] text-slate-700 sm:text-lg ${institutionalSerif.className}`}
           >
-            Families and students can write us about the daily or a credential pathway. Schools and organizations can
+            Families can write us about the Daily membership or a credential pathway. Schools and organizations can
             reach our partnerships desk. Pick the path that fits, and we respond ourselves.
           </p>
         </motion.div>

@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { jakartaSans, fredokaHeadline } from "@/app/fonts";
 import { EmailCapture } from "@/components/EmailCapture";
-import { SampleEmailModal } from "@/components/SampleEmailModal";
 
 /** Order alternates cool (blue) and warm (orange / crimson) so similar reds never sit back-to-back. */
 const featuredColleges = [
@@ -171,12 +170,9 @@ function HeroEmailPlane() {
 }
 
 export function HeroSection() {
-  const [sampleOpen, setSampleOpen] = useState(false);
-
   return (
     <section className="relative isolate min-h-[100dvh] min-h-screen w-full overflow-hidden px-4 pb-16 pt-28 sm:px-6 sm:pb-20 sm:pt-32">
       <HeroEmailPlane />
-      <SampleEmailModal open={sampleOpen} onClose={() => setSampleOpen(false)} />
 
       <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-5.5rem)] w-full max-w-[80rem] -translate-y-12 flex-col items-center justify-center text-center sm:min-h-[calc(100dvh-6.5rem)] sm:-translate-y-16">
         <motion.h1
@@ -232,13 +228,12 @@ export function HeroSection() {
         >
           <EmailCapture size="hero" className="w-full max-w-xl text-left" />
 
-          <button
-            type="button"
-            onClick={() => setSampleOpen(true)}
+          <a
+            href="#inside-daily"
             className={`${jakartaSans.className} text-[12px] font-bold text-slate-600 underline decoration-sky-300/80 underline-offset-[0.18em] transition-colors hover:text-sky-700 sm:text-[13px]`}
           >
-            Preview a sample email
-          </button>
+            See what&apos;s in the daily
+          </a>
         </motion.div>
       </div>
     </section>

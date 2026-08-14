@@ -10,13 +10,18 @@ import { ContactProvider } from "@/components/contact-context";
 
 const sectionLoading = () => <div className="h-96" aria-hidden />;
 
-const CertificationsSection = dynamic(
-  () => import("@/components/CertificationsSection").then((m) => ({ default: m.CertificationsSection })),
+const PhilosophySection = dynamic(
+  () => import("@/components/PhilosophySection").then((m) => ({ default: m.PhilosophySection })),
   { loading: sectionLoading }
 );
 
-const PhilosophySection = dynamic(
-  () => import("@/components/PhilosophySection").then((m) => ({ default: m.PhilosophySection })),
+const DailyInsideSection = dynamic(
+  () => import("@/components/DailyInsideSection").then((m) => ({ default: m.DailyInsideSection })),
+  { loading: sectionLoading }
+);
+
+const CertificationsSection = dynamic(
+  () => import("@/components/CertificationsSection").then((m) => ({ default: m.CertificationsSection })),
   { loading: sectionLoading }
 );
 
@@ -58,6 +63,7 @@ export default function LandingPage() {
           <Navbar onHomeLogoClick={replayIntro} />
           <HeroSection />
           <PhilosophySection />
+          <DailyInsideSection />
           <CertificationsSection />
           <ReachOutSection />
           <FaqSection />

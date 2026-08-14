@@ -9,12 +9,11 @@
 - Use **Lucide React** (or other curated SVG icon libraries) or intentional **CSS shapes** only.
 
 ## Product & Content Boundaries
-- **StudentStack** public surface is **newsletter + certifications**.
-- Landing hero: student-led daily for parents (do not over-explain; social traffic already knows the pitch). Avoid repeating “free” in hero body when the CTA already says it.
-- **Certifications** are the clear paid student pathway on the public site (priced, timeline-driven).
-- **StudentStack Elite** (parent/student portal) may be soft-upsold from the daily later; do not hard-sell checkout or “24/7 concierge” on the landing page until productized.
-- Do **not** advertise course catalogs on the landing page.
-- The “college student team” presentation is a branding layer.
+- **Primary monetization:** StudentStack Daily membership (**$40/mo**). CTA says “Join the daily”; reveal price only after that step.
+- Public surface also includes **partner certifications**. No student login on the marketing site.
+- Present as a **student-led organization**. Do not market “AI writes the newsletter” on the public site; the operator engine may use AI internally.
+- Operator portal at `/operator` (default credentials `admin` / `admin` unless env overrides).
+- Do not advertise Elite portal / 24/7 concierge as the lead CTA.
 
 ## Engineering defaults
-- App is Next.js at the repo root. Prefer extending the operator newsletter pipeline (`/operator`, `/api/admin/*`, `/api/cron/*`) over new frameworks.
+- App is Next.js at the repo root under `src/`. Prefer extending `/operator` and `/api/admin/*` / `/api/cron/*` for the newsletter engine.

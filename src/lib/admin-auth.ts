@@ -19,7 +19,7 @@ export function getOperatorUser() {
   return getOperatorUsername();
 }
 
-/** Validate operator username + password (defaults: test / Sean1234!). */
+/** Validate operator username + password (defaults: admin / admin). */
 export function verifyOperatorCredentials(username: string, password: string) {
   const userOk = constantTimeEqual(username.trim(), getOperatorUsername());
   const passOk = constantTimeEqual(password, getAdminPassword());

@@ -1,13 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "motion/react";
 import { Calendar, Forward, Newspaper, ShieldCheck, Sparkles, Users } from "lucide-react";
 import Link from "next/link";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { BrandWordmark } from "./BrandWordmark";
 import { EmailCapture } from "./EmailCapture";
-import { SampleEmailModal } from "./SampleEmailModal";
 import { useContact } from "./contact-context";
 export function TestimonialSection() {
   return (
@@ -106,8 +105,6 @@ export function NewsletterBenefitsSection() {
 }
 
 export function FinalCTA() {
-  const [sampleOpen, setSampleOpen] = useState(false);
-
   const beats = [
     { icon: Newspaper, title: "AI news", line: "What moved in school this week, skim-ready." },
     { icon: Sparkles, title: "One toolkit move", line: "A workflow students actually use." },
@@ -116,7 +113,6 @@ export function FinalCTA() {
 
   return (
     <section id="join" className="relative overflow-hidden bg-transparent py-20 sm:py-28">
-      <SampleEmailModal open={sampleOpen} onClose={() => setSampleOpen(false)} />
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[2.75rem] border-2 border-sky-200 bg-gradient-to-br from-sky-50 via-white to-emerald-50 px-6 py-12 text-center sm:rounded-[3.5rem] sm:px-14 sm:py-16">
           <div className="pointer-events-none absolute -right-16 top-0 h-56 w-56 rounded-full bg-sky-300/30 blur-3xl" />
@@ -129,11 +125,11 @@ export function FinalCTA() {
             <h2
               className={`mt-3 text-4xl font-semibold leading-[1.05] tracking-[-0.035em] text-slate-900 sm:text-6xl ${fredokaHeadline.className}`}
             >
-              Join StudentStack!{" "}
-              <span className="text-sky-500">Free, daily.</span>
+              Join the daily.{" "}
+              <span className="text-sky-500">Stay ahead.</span>
             </h2>
             <p className={`mx-auto mt-5 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}>
-              Stay current with other parents. One email. Written by students still in class.
+              Stay current with other parents. One membership email, written by students still in class.
             </p>
 
             <ul className="mx-auto mt-8 grid max-w-2xl gap-3 text-left sm:grid-cols-3 sm:gap-4">
@@ -162,13 +158,12 @@ export function FinalCTA() {
               <EmailCapture size="cta" submitLabel="Join the daily" />
             </div>
 
-            <button
-              type="button"
-              onClick={() => setSampleOpen(true)}
-              className={`mt-4 text-[12px] font-bold text-slate-600 underline decoration-sky-300/80 underline-offset-[0.18em] transition-colors hover:text-sky-700 sm:text-[13px] ${jakartaSans.className}`}
+            <a
+              href="#inside-daily"
+              className={`mt-4 inline-block text-[12px] font-bold text-slate-600 underline decoration-sky-300/80 underline-offset-[0.18em] transition-colors hover:text-sky-700 sm:text-[13px] ${jakartaSans.className}`}
             >
-              Preview a sample email
-            </button>
+              See what&apos;s in the daily
+            </a>
           </div>
         </div>
       </div>
@@ -207,8 +202,8 @@ export function Footer() {
                 </button>
               </li>
               <li>
-                <Link href="/login" className="transition-colors hover:text-sky-500">
-                  Student login
+                <Link href="/operator" className="transition-colors hover:text-sky-500">
+                  Operator
                 </Link>
               </li>
             </ul>

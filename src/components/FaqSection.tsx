@@ -12,26 +12,35 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "What is StudentStack?",
     a: (
       <>
-        A student-led organization. Parents get a daily newsletter on AI in school. Students can pursue certifications
-        for concrete academic AI use cases.
+        A student-led organization helping parents of high schoolers stay ahead on AI in school. Our core product is the
+        StudentStack Daily membership, plus partner credential pathways for students.
       </>
     ),
   },
   {
-    q: "What is in the daily?",
+    q: "What is the Daily membership?",
     a: (
       <>
-        A short pulse so you stay current with other parents: what is moving in the school AI climate, and one practical
-        move you can forward. Longer credentialed learning lives in certifications.
+        A paid membership for parents. You join with your email, then unlock the full daily desk for $40/mo. Each send
+        includes a school AI signal, one toolkit move, and a forwardable note for your student.
       </>
     ),
   },
   {
-    q: "How do certifications work?",
+    q: "What is in each daily email?",
     a: (
       <>
-        Paid pathways with a clear price, timeline, and issuing partner. Students complete modules, meet the
-        requirements, and earn a StudentStack credential (codes like SS-AAIP).
+        The same tight format every day: a morning note from students still in class, one school AI signal, one
+        Organization / Planning / Notetaking toolkit move, and a short forward-tonight message.
+      </>
+    ),
+  },
+  {
+    q: "How do partner credentials work?",
+    a: (
+      <>
+        Separate paid pathways with a clear price and timeline. Students complete modules with an issuing partner and
+        earn a StudentStack credential (codes like SS-AAIP).
       </>
     ),
   },
@@ -49,14 +58,13 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "Can I talk with your team?",
     a: (
       <>
-        Yes. Use Reach out anytime. For a certification, use Enroll on that listing and we will follow up to complete
-        payment and rostering.
+        Yes. Use Contact for student/family questions or enterprise partnerships. We respond ourselves.
       </>
     ),
   },
   {
-    q: "How do I unsubscribe?",
-    a: "Every email includes an unsubscribe link. One click and you are off the list. No reply needed.",
+    q: "How do I cancel?",
+    a: "Membership is month to month. Cancel anytime from your billing email or by writing our team.",
   },
 ];
 
