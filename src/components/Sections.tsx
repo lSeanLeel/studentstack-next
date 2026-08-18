@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "motion/react";
-import { BadgeCheck, Database, Sparkles } from "lucide-react";
+import { FolderLock, Landmark, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { BrandWordmark } from "./BrandWordmark";
@@ -36,15 +36,17 @@ export function TestimonialSection() {
                 Sean Lee
               </p>
               <p className={`text-[10px] font-bold uppercase tracking-[0.22em] text-slate-400 ${jakartaSans.className}`}>
-                Founder · UCLA &apos;27
+                Founder · UCLA junior · started in Irvine
               </p>
             </div>
             <p
               className={`max-w-2xl text-xl font-medium leading-[1.35] tracking-tight text-slate-100 sm:text-3xl ${jakartaSans.className}`}
             >
               <span className={`${fredokaHeadline.className} mr-1 text-3xl text-sky-300 sm:text-5xl`}>&ldquo;</span>
-              We built StudentStack Elite so high schoolers get the same AI toolkit edge college students use, plus
-              credentials and opportunity intel they can put on applications.
+              I started StudentStack in Irvine because the high schoolers around me were getting a panic version of AI,
+              while the students I sit next to at UCLA were already using it to stay ahead. Parents found that work.
+              They asked for a way in for their kids. Membership is how we kept operating as a student organization,
+              with a real desk behind it.
               <span className={`${fredokaHeadline.className} ml-1 text-3xl text-sky-300 sm:text-5xl`}>&rdquo;</span>
             </p>
           </div>
@@ -56,9 +58,9 @@ export function TestimonialSection() {
 
 export function FinalCTA() {
   const beats = [
-    { icon: Sparkles, title: "AI Toolkit", line: "Tools we use and how we use them." },
-    { icon: Database, title: "Admissions Vault", line: "Programs, research, deadlines." },
-    { icon: BadgeCheck, title: "AI certifications", line: "SS-AIS and SS-ACR for applications." },
+    { icon: Sparkles, title: "AI use, current", line: "How students actually work with tools right now." },
+    { icon: Landmark, title: "Programs we push", line: "Where we tell members to apply." },
+    { icon: FolderLock, title: "Gated portal", line: "Access for high school members." },
   ] as const;
 
   return (
@@ -70,17 +72,17 @@ export function FinalCTA() {
 
           <div className="relative z-10 mx-auto max-w-2xl">
             <p className={`text-[10px] font-black uppercase tracking-[0.22em] text-[#ff6a00] ${jakartaSans.className}`}>
-              StudentStack Elite
+              StudentStack membership
             </p>
             <h2
               className={`mt-3 text-4xl font-semibold leading-[1.05] tracking-[-0.035em] text-slate-900 sm:text-6xl ${fredokaHeadline.className}`}
             >
-              Apply for Elite.{" "}
-              <span className="text-sky-500">Unlock the portal.</span>
+              Apply your student.{" "}
+              <span className="text-sky-500">They do not need to be here.</span>
             </h2>
             <p className={`mx-auto mt-5 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}>
-              Parents apply. Students get a unique login after subscription. The portal stays current through the AI
-              daily desk.
+              Parents who already found our work are putting their high schoolers in. Membership is the gated access our
+              student organization keeps. You can apply from this page tonight.
             </p>
 
             <ul className="mx-auto mt-8 grid max-w-2xl gap-3 text-left sm:grid-cols-3 sm:gap-4">
@@ -106,17 +108,17 @@ export function FinalCTA() {
             </ul>
 
             <a
-              href="#apply-elite"
+              href="#apply"
               className={`mt-8 inline-flex items-center justify-center rounded-2xl bg-slate-900 px-8 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-slate-800 ${jakartaSans.className}`}
             >
-              Apply for Elite
+              Apply for membership
             </a>
 
             <a
-              href="#inside-daily"
+              href="#story"
               className={`mt-4 inline-block text-[12px] font-bold text-slate-600 underline decoration-sky-300/80 underline-offset-[0.18em] transition-colors hover:text-sky-700 sm:text-[13px] ${jakartaSans.className}`}
             >
-              See what members get every day
+              How families found us
             </a>
           </div>
         </div>
@@ -141,8 +143,8 @@ export function Footer() {
               <BrandWordmark />
             </Link>
             <p className={`mt-4 max-w-md text-sm font-medium text-slate-500 ${jakartaSans.className}`}>
-              StudentStack Elite: the paid student portal for AI toolkit, admissions vault, and organization-issued AI
-              certifications.
+              A student-led organization helping parents of high schoolers. Membership is gated access, kept current by
+              college students still in class.
             </p>
           </div>
           <div>

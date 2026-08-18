@@ -79,8 +79,7 @@ export function EliteApplyForm({ compact = false }: { compact?: boolean }) {
           Application Received
         </h3>
         <p className="mx-auto mt-3 max-w-md text-sm font-medium leading-relaxed text-slate-600">
-          Our team will reach out within 24 hours with Elite portal access next steps, pricing confirmation, and how your
-          student receives their unique login after subscription.
+          Our team will reach out within 24 hours about membership next steps for your student.
         </p>
       </motion.div>
     );
@@ -88,7 +87,7 @@ export function EliteApplyForm({ compact = false }: { compact?: boolean }) {
 
   return (
     <form
-      id="apply-elite"
+      id="apply-membership"
       onSubmit={handleSubmit(onSubmit)}
       className={`space-y-4 ${jakartaSans.className} ${compact ? "" : ""}`}
       noValidate
@@ -178,7 +177,7 @@ export function EliteApplyForm({ compact = false }: { compact?: boolean }) {
           id="elite-questions"
           rows={4}
           className={`${fieldClass} min-h-[7rem] resize-y`}
-          placeholder="Tell us about your student, timing, or what you want from Elite…"
+          placeholder="Tell us about your student, timing, or what you want them to get from membership…"
           {...register("questions", {
             required: "Add a short note for our team.",
             minLength: { value: 10, message: "Tell us a bit more (at least 10 characters)." },
@@ -196,7 +195,7 @@ export function EliteApplyForm({ compact = false }: { compact?: boolean }) {
         disabled={busy}
         className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-900 px-6 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-white shadow-[0_14px_28px_-18px_rgba(15,23,42,0.5)] transition hover:-translate-y-0.5 hover:bg-slate-800 disabled:opacity-60"
       >
-        {busy ? "Submitting…" : "Apply for Elite"}
+        {busy ? "Submitting…" : "Apply for membership"}
         {!busy ? <ArrowRight className="h-4 w-4" aria-hidden /> : null}
       </button>
     </form>

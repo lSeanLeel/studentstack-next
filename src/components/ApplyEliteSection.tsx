@@ -22,25 +22,24 @@ export function ApplyEliteSection() {
           transition={{ duration: 0.45 }}
         >
           <p className={`text-[10px] font-black uppercase tracking-[0.22em] text-[#ff6a00] ${jakartaSans.className}`}>
-            Apply for Elite
+            Apply for membership
           </p>
           <h2
             id="apply-heading"
             className={`mt-3 text-[1.85rem] font-semibold leading-[1.08] tracking-[-0.035em] text-slate-900 sm:text-4xl lg:text-[2.55rem] ${fredokaHeadline.className}`}
           >
-            Tell us about your student
+            Apply your student from this page
           </h2>
           <p
             className={`ss-institutional mt-4 max-w-xl text-[1.05rem] font-normal leading-[1.65] text-slate-700 sm:text-lg ${institutionalSerif.className}`}
           >
-            Parents apply first. Our team follows up within 24 hours with next steps, pricing confirmation, and how your
-            student receives a unique portal login after subscription.
+            Parents who found our work are already putting their high schooler in. You do not need your student sitting
+            next to you. Our team follows up within 24 hours about next steps.
           </p>
-          <ul className={`mt-6 space-y-2 text-sm font-semibold text-slate-600 ${jakartaSans.className}`}>
-            <li>AI Toolkit with how we actually use each tool</li>
-            <li>Super Opportunity & Admissions Vault</li>
-            <li>SS-AIS and SS-ACR certification modules</li>
-          </ul>
+          <p className={`mt-4 text-sm font-semibold leading-relaxed text-slate-600 ${jakartaSans.className}`}>
+            Membership is the gated access our organization keeps for high schoolers. The families who wait usually wait
+            because they wanted to ask their kid first. You can apply now.
+          </p>
         </motion.div>
 
         <motion.div

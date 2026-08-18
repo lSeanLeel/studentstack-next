@@ -77,7 +77,7 @@ function CollegeHeadline() {
       </span>
 
       <motion.span layout className="leading-none">
-        Elite portal from
+        From
       </motion.span>
 
       <span className="relative inline-flex items-center justify-center [transform-style:preserve-3d]">
@@ -120,7 +120,7 @@ function CollegeHeadline() {
       </span>
 
       <motion.span layout className="leading-none">
-        mentors
+        students
       </motion.span>
 
       <span className="sr-only">{current.name}</span>
@@ -147,7 +147,7 @@ function HeroPortalPlane() {
               <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
               <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
               <span className="ml-3 text-[10px] font-black uppercase tracking-[0.16em] text-sky-600">
-                Elite portal
+                Membership
               </span>
             </div>
             <div className="space-y-4">
@@ -155,13 +155,13 @@ function HeroPortalPlane() {
               <div className="h-9 w-4/5 rounded-2xl bg-slate-300/70" />
               <div className="mt-6 grid grid-cols-3 gap-3 sm:gap-4">
                 <div className="flex h-32 flex-col justify-end rounded-[1.5rem] bg-sky-200/90 p-3 sm:h-36">
-                  <span className="text-[9px] font-black uppercase tracking-wider text-sky-900/70">Toolkit</span>
+                  <span className="text-[9px] font-black uppercase tracking-wider text-sky-900/70">Tools</span>
                 </div>
                 <div className="flex h-32 flex-col justify-end rounded-[1.5rem] bg-emerald-200/90 p-3 sm:h-36">
-                  <span className="text-[9px] font-black uppercase tracking-wider text-emerald-900/70">Vault</span>
+                  <span className="text-[9px] font-black uppercase tracking-wider text-emerald-900/70">Programs</span>
                 </div>
                 <div className="flex h-32 flex-col justify-end rounded-[1.5rem] bg-amber-200/85 p-3 sm:h-36">
-                  <span className="text-[9px] font-black uppercase tracking-wider text-amber-900/70">Certs</span>
+                  <span className="text-[9px] font-black uppercase tracking-wider text-amber-900/70">Portal</span>
                 </div>
               </div>
             </div>
@@ -203,9 +203,6 @@ export function HeroSection() {
               Stack
             </motion.span>
           </span>
-          <span className="mt-2 block text-[clamp(1.6rem,4.5vw+0.4rem,2.75rem)] tracking-[-0.03em] text-slate-800">
-            <span className="text-[#ff6a00]">Elite</span>
-          </span>
         </motion.h1>
 
         <motion.p
@@ -224,8 +221,8 @@ export function HeroSection() {
           className={`${jakartaSans.className} mx-auto mt-4 max-w-2xl space-y-2 text-base font-medium leading-snug text-slate-600 sm:mt-5 sm:text-lg`}
         >
           <p>
-            The paid student portal for AI toolkit mastery, admissions opportunities, and organization-issued AI
-            certifications.
+            A student-led organization for parents of high schoolers. College students, still in class, helping your
+            student stay current with how AI actually shows up in school.
           </p>
         </motion.div>
 
@@ -237,18 +234,18 @@ export function HeroSection() {
           className="mt-6 flex w-full max-w-xl flex-col items-center gap-3 sm:mt-7"
         >
           <a
-            href="#apply-elite"
+            href="#apply"
             className={`${jakartaSans.className} inline-flex w-full max-w-sm items-center justify-center gap-2 rounded-2xl bg-slate-900 px-6 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-white shadow-[0_14px_28px_-18px_rgba(15,23,42,0.5)] transition hover:-translate-y-0.5 hover:bg-slate-800`}
           >
-            Apply for Elite
+            Apply for membership
             <ArrowRight className="h-4 w-4" aria-hidden />
           </a>
 
           <a
-            href="#inside-daily"
+            href="#story"
             className={`${jakartaSans.className} text-[12px] font-bold text-slate-600 underline decoration-sky-300/80 underline-offset-[0.18em] transition-colors hover:text-sky-700 sm:text-[13px]`}
           >
-            See what members get every day
+            How families found us
           </a>
         </motion.div>
       </div>

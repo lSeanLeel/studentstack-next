@@ -2,7 +2,7 @@ import Link from "next/link";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { BrandWordmark } from "@/components/BrandWordmark";
 
-/** Open signup is closed. Elite credentials are issued after Stripe subscription. */
+/** Open signup is closed. Member credentials follow the parent application path. */
 export default function SignupPage() {
   return (
     <main className={`min-h-screen bg-[#f8fafc] px-4 py-10 sm:px-6 ${jakartaSans.className}`}>
@@ -13,11 +13,11 @@ export default function SignupPage() {
 
         <div className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_24px_60px_-36px_rgba(15,23,42,0.35)] sm:p-8">
           <h1 className={`text-2xl font-semibold tracking-[-0.03em] text-slate-900 ${fredokaHeadline.className}`}>
-            Elite access is invite-only
+            Membership access is invite-only
           </h1>
           <p className="mt-3 text-sm font-medium leading-relaxed text-slate-600">
-            Student accounts are created when a parent completes Stripe subscription for StudentStack Elite. You will
-            receive a unique login email and temporary password. Sign in here after that.
+            Student accounts are created after a parent applies and completes membership. You will receive a login. Sign
+            in here after that.
           </p>
           <div className="mt-6 flex flex-col gap-3">
             <Link
@@ -27,10 +27,10 @@ export default function SignupPage() {
               Student login
             </Link>
             <Link
-              href="/#apply-elite"
+              href="/#apply"
               className="inline-flex items-center justify-center rounded-2xl border border-slate-200 px-6 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-slate-700 transition hover:border-sky-200 hover:text-sky-700"
             >
-              Apply for Elite
+              Apply for membership
             </Link>
           </div>
         </div>

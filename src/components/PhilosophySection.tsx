@@ -2,29 +2,29 @@
 
 import React from "react";
 import { motion } from "motion/react";
-import { Compass, GraduationCap, Layers3 } from "lucide-react";
+import { Compass, GraduationCap, Sparkles } from "lucide-react";
 import { fredokaHeadline, jakartaSans, institutionalSerif } from "@/app/fonts";
 
 const tenets = [
   {
     icon: GraduationCap,
-    title: "Still in the work",
-    body: "Guidance from students who live campus pressure now, not a corporate curriculum written from outside the classroom.",
+    title: "Still in the rooms that matter",
+    body: "We are current college students at campuses parents already take seriously. The habits we talk about are the ones next to us in lecture, not a curriculum written from outside school.",
   },
   {
-    icon: Layers3,
-    title: "Organization before tools",
-    body: "The edge is a cleaner school week: systems for deadlines, planning, and notes. AI is the accelerator, never the point.",
+    icon: Sparkles,
+    title: "AI the way students actually use it",
+    body: "High school already runs on AI, whether families planned for that or not. The edge is judgment: what to use, what to ignore, and how to stay honest in class. We stay close to that shift because we live it.",
   },
   {
     icon: Compass,
-    title: "Parents guide. Students own it.",
-    body: "We educate parents so they can spot the right habits, then hand one concrete move to their high schooler.",
+    title: "A student-native org, not a tutoring shop",
+    body: "Parents get us in the loop. High schoolers do the work. We push members toward programs, tools, and credentials worth completing. That is a different kind of help than sitting beside one student on one assignment.",
   },
 ] as const;
 
 /**
- * Institutional trust via student-led philosophy, no product/upsell naming.
+ * Why StudentStack: AI thesis + student-native org, for parents.
  */
 export function PhilosophySection() {
   return (
@@ -50,15 +50,16 @@ export function PhilosophySection() {
             id="philosophy-heading"
             className={`mt-3 text-[2rem] font-semibold leading-[1.05] tracking-[-0.04em] text-slate-900 sm:text-5xl lg:text-[3.1rem] ${fredokaHeadline.className}`}
           >
-            The edge of a{" "}
-            <span className="text-sky-500">student-led</span> team
+            The advantage of a{" "}
+            <span className="text-sky-500">student-led</span> desk
           </h2>
           <p
             className={`ss-institutional mt-5 max-w-2xl text-[1.05rem] font-normal leading-[1.7] text-slate-600 sm:text-lg ${institutionalSerif.className}`}
           >
-            As college students, we live the AI shift inside real classrooms every week. Elite packages that edge into a
-            student portal: toolkit habits, admissions opportunities, and credentials high schoolers can put on
-            applications.
+            AI is already inside the high school week. Most families only see the loud version. We see the version
+            sitting in college classrooms: students who stay organized, disclose when they should, and use new tools
+            without handing over the work. That is the thesis we organize around, and why a student-native org can move
+            faster than something built far from campus.
           </p>
         </motion.div>
 

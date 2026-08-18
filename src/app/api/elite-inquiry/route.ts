@@ -32,7 +32,7 @@ export async function POST(req: Request) {
 
     const { parentFullName, parentEmail, studentGrade, intendedMajor, questions } = parsed.data;
     const message = [
-      "APPLY FOR ELITE",
+      "APPLY FOR MEMBERSHIP",
       `Parent: ${parentFullName}`,
       `Grade: ${studentGrade}`,
       `Intended major: ${intendedMajor}`,

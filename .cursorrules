@@ -9,12 +9,13 @@
 - Use **Lucide React** (or other curated SVG icon libraries) or intentional **CSS shapes** only.
 
 ## Product & Content Boundaries
-- **Primary product:** StudentStack Elite, a paid student portal for high schoolers.
-- Landing CTA: **Apply for Elite** (parent application). Do not lead with newsletter signup.
-- Portal modules: **AI Toolkit**, **Super Opportunity & Admissions Vault**, **Organization-issued AI Certifications**.
-- Student login is for Elite members (credentials issued after Stripe subscription / invite).
-- Present as a **student-led organization**. Do not market “AI writes everything” on the public site; portal may include an AI refresh desk for members.
-- Do not feature an operator/newsletter studio on the marketing site.
+- **Primary product:** StudentStack membership, a gated student portal for high schoolers. Do not use the name Elite on the marketing site.
+- Landing speaks to **parents**. Novelty: student-led org of current college students at well-known universities. Trust: real people, real campuses, a working desk.
+- Story: started as a student organization (Irvine / Sean Lee, UCLA junior) sharing how top students use AI in school. Parents found that work. Membership grew from parents wanting their high schooler inside that loop. Stay ambiguous about where daily content lives. No newsletter/operator marketing.
+- Membership is **access** (tools, programs we push, portal). Do not catalog exact courses or issued certs on the public site. Imply we push members toward AI-related courses and certifications for admissions.
+- Do not say “solution.” Do not use em dashes. Do not lead with pricing. CTA is a **parent application** (FOMO: apply your student without the kid on the form).
+- Do not explicitly caution against essay writing or 1:1 consulting. Help is framed as access and the work we push members to complete.
+- Student login is for members after the parent path. Present as a student-led organization.
 
 ## Engineering defaults
-- App is Next.js under `src/`. Portal lives at `/portal`. Stripe Elite checkout/webhook under `src/app/api/stripe/`.
+- App is Next.js under `src/`. Portal lives at `/portal`. Stripe checkout/webhook under `src/app/api/stripe/`.

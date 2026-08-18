@@ -46,11 +46,10 @@ export function LoginForm() {
 
         <div className="mt-10 rounded-[2rem] border border-slate-200 bg-white p-7 shadow-[0_24px_60px_-36px_rgba(15,23,42,0.35)] sm:p-8">
           <h1 className={`text-2xl font-semibold tracking-[-0.03em] text-slate-900 ${fredokaHeadline.className}`}>
-            Elite student login
+            Member login
           </h1>
           <p className={`ss-institutional mt-2 text-[0.95rem] leading-relaxed text-slate-600 ${institutionalSerif.className}`}>
-            Use the unique email and temporary password issued after your parent&apos;s Stripe subscription. Change your
-            password after the first visit.
+            High school members sign in here. Parents apply for membership from the home page.
           </p>
 
           <form onSubmit={onSubmit} className="mt-6 space-y-4" noValidate>
@@ -100,8 +99,8 @@ export function LoginForm() {
 
           <p className="mt-5 text-center text-sm font-medium text-slate-500">
             Parents:{" "}
-            <Link href="/#apply-elite" className="font-bold text-sky-700 hover:text-sky-900">
-              Apply for Elite
+            <Link href="/#apply" className="font-bold text-sky-700 hover:text-sky-900">
+              Apply for membership
             </Link>
           </p>
         </div>

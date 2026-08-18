@@ -11,11 +11,10 @@ export default function ElitePage() {
           <BrandWordmark />
         </Link>
         <h1 className={`mt-8 text-3xl font-semibold tracking-[-0.03em] text-slate-900 ${fredokaHeadline.className}`}>
-          Apply for Elite
+          Apply for membership
         </h1>
         <p className="mt-3 text-sm font-medium leading-relaxed text-slate-600">
-          Parents apply here. We follow up within 24 hours with portal next steps and how your student receives a unique
-          login after subscription.
+          Parents apply here. We follow up within 24 hours about next steps for your student.
         </p>
         <div className="mt-8 rounded-[1.75rem] border border-slate-200 bg-white p-6 sm:p-8">
           <EliteApplyForm />

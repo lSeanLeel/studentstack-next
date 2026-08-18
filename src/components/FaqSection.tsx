@@ -9,12 +9,30 @@ type FaqItem = { id?: string; q: string; a: ReactNode };
 
 const FAQ_ITEMS: FaqItem[] = [
   {
-    q: "What is StudentStack Elite?",
+    q: "What is StudentStack?",
     a: (
       <>
-        A paid student portal for high schoolers. Members get the AI Toolkit, the Super Opportunity & Admissions Vault,
-        organization-issued AI certifications (SS-AIS and SS-ACR), and an AI daily desk that refreshes when they prompt
-        it.
+        A student-led organization of current college students helping parents of high schoolers. We started by sharing
+        how students actually use AI in school. Membership is how a high schooler gets gated access to that same desk.
+      </>
+    ),
+  },
+  {
+    q: "How do families usually find you?",
+    a: (
+      <>
+        Through the educational work we already put out: how top students use AI to stay ahead in school. Parents in the
+        community pass it along. Membership came later, when those same parents wanted their own student inside the loop.
+      </>
+    ),
+  },
+  {
+    q: "What is membership?",
+    a: (
+      <>
+        Gated access for high schoolers. Members stay current on AI use, get pointed toward programs we actually push,
+        and work from a portal our team keeps. We also send members toward AI-related courses and certifications worth
+        completing for admissions. We do not publish a public list of those picks.
       </>
     ),
   },
@@ -22,27 +40,8 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "How do parents apply?",
     a: (
       <>
-        Use Apply for Elite with parent name, parent email, student grade, intended major, and questions for our team.
-        We reach out within 24 hours with next steps and how the student receives a unique login after subscription.
-      </>
-    ),
-  },
-  {
-    q: "How does student login work?",
-    a: (
-      <>
-        After Stripe subscription, we issue a unique login and temporary password for the student email. Students sign
-        in at Student login and should change the password after the first visit. Open self-serve signup is not the path
-        into Elite.
-      </>
-    ),
-  },
-  {
-    q: "What are the AI certifications?",
-    a: (
-      <>
-        SS-AIS (AI Safety & Academic Integrity) and SS-ACR (AI for College Readiness). Modular credentials students
-        attach to Common App activities, counselor notes, and portfolios as proof of responsible AI use.
+        Use Apply for membership with parent name, parent email, student grade, intended major, and questions for our
+        team. You can submit without your student on the form. We reach out within 24 hours about next steps.
       </>
     ),
   },
@@ -51,14 +50,14 @@ const FAQ_ITEMS: FaqItem[] = [
     q: "Why student-led?",
     a: (
       <>
-        Campus tools and classroom norms change fast. Working with students who are still in that environment keeps the
-        portal current for high schoolers preparing for college.
+        Campus tools and classroom norms change while we are still sitting in them. A student-native org can stay honest
+        about AI use, and about what high schoolers should actually finish, because we are not guessing from outside.
       </>
     ),
   },
   {
     q: "Can I talk with your team?",
-    a: <>Yes. Use Contact for family questions or partnerships. We respond ourselves.</>,
+    a: <>Yes. Use Contact. We respond ourselves.</>,
   },
 ];
 
