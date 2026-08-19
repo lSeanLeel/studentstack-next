@@ -56,22 +56,11 @@ export function FinalCTA() {
           <div className="pointer-events-none absolute -right-16 top-0 h-56 w-56 rounded-full bg-sky-500/20 blur-3xl" />
           <div className="pointer-events-none absolute -left-10 bottom-0 h-48 w-48 rounded-full bg-amber-400/15 blur-3xl" />
 
-          <div className="relative z-10 mx-auto max-w-md">
-            <p className={`text-[10px] font-black uppercase tracking-[0.22em] text-[#ff9a4d] ${jakartaSans.className}`}>
-              Apply your student
+          <div className="relative z-10 mx-auto max-w-sm text-left">
+            <MembershipForm dark />
+            <p className={`mt-4 text-center text-xs font-medium text-slate-400 ${jakartaSans.className}`}>
+              A mentor from our team will reach out by email.
             </p>
-            <h2
-              className={`mt-3 text-3xl font-semibold leading-[1.08] tracking-[-0.035em] text-white sm:text-4xl ${fredokaHeadline.className}`}
-            >
-              Three fields. We handle the rest.
-            </h2>
-            <p className={`mx-auto mt-4 max-w-sm text-sm font-medium leading-relaxed text-slate-300 ${jakartaSans.className}`}>
-              Your kid does not need to be here. We will email you with next steps.
-            </p>
-
-            <div className="mx-auto mt-8 max-w-sm text-left">
-              <MembershipForm dark />
-            </div>
           </div>
         </div>
       </div>
