@@ -8,9 +8,9 @@ import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 const items = [
   {
     icon: Sparkles,
-    label: "AI education",
-    title: "What your student should know about AI right now",
-    body: "Not a general overview. The specific tools, habits, and disclosure norms that matter for school this semester. Updated because we are still taking classes.",
+    label: "Assigned access",
+    title: "What your student should know right now",
+    body: "Not a general overview. The specific tools, habits, and disclosure norms that matter for school this semester. Assigned by our desk because we are still taking classes.",
   },
   {
     icon: Landmark,
@@ -20,15 +20,15 @@ const items = [
   },
   {
     icon: BookOpen,
-    label: "AI courses + credentials",
-    title: "Certifications we push members to finish",
-    body: "AI-related courses and credentials that read well on a college application. We pick them. Members complete them. No public catalog.",
+    label: "Courses + credentials",
+    title: "Work we push members to finish",
+    body: "Courses and credentials that read well on a college application. We pick them. Members complete them. No public catalog.",
   },
   {
     icon: FolderLock,
-    label: "Gated access",
-    title: "A member portal run by college students",
-    body: "The portal is where members work. Daily material from our desk, program recommendations, and the credential path we set for them. Access starts after a parent applies.",
+    label: "Gated portal",
+    title: "A member workspace run by college students",
+    body: "The portal is where members work. Daily material from our desk, program recommendations, and the path we set for them. Access starts after a parent registers.",
   },
 ] as const;
 

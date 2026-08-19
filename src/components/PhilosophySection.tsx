@@ -18,8 +18,8 @@ const tenets = [
   },
   {
     icon: Compass,
-    title: "Programs, not just information",
-    body: "Members are pushed toward AI certifications, summer research, and college-readiness work we vet ourselves. We do not hand over a link dump.",
+    title: "Access assigned, not cataloged",
+    body: "Each member gets a path our desk sets: tools, programs, and credentials we push them to finish. We do not hand over a link dump.",
   },
 ] as const;
 

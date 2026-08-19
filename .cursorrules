@@ -13,7 +13,7 @@
 - Landing speaks to **parents**. Novelty: student-led org of current college students at well-known universities. Trust: real people, real campuses, a working desk.
 - Story: started as a student organization (Irvine / Sean Lee, UCLA junior) sharing how top students use AI in school. Parents found that work. Membership grew from parents wanting their high schooler inside that loop. Stay ambiguous about where daily content lives. No newsletter/operator marketing.
 - Membership is **access** (tools, programs we push, portal). Do not catalog exact courses or issued certs on the public site. Imply we push members toward AI-related courses and certifications for admissions.
-- Do not say “solution.” Do not use em dashes. Do not lead with pricing. CTA is a **parent application** (FOMO: apply your student without the kid on the form).
+- Do not say "solution." Do not use em dashes. Do not lead with pricing. CTA is **parent registration** (FOMO: register your student without the kid on the form). After submit, parents land on `/register/success`.
 - Do not explicitly caution against essay writing or 1:1 consulting. Help is framed as access and the work we push members to complete.
 - Student login is for members after the parent path. Present as a student-led organization.
 

@@ -142,7 +142,7 @@ export function HeroSection() {
           transition={{ delay: 0.5, duration: 0.5 }}
           className={`${jakartaSans.className} mx-auto mt-4 max-w-lg text-[0.95rem] font-semibold leading-snug text-slate-600 sm:mt-5 sm:text-lg`}
         >
-          AI education for high schoolers. Run by college students who use it every week.
+          A membership program shaped student-to-student. Access is assigned, not cataloged.
         </motion.p>
 
         <motion.div
@@ -153,10 +153,10 @@ export function HeroSection() {
           className="mt-6 flex w-full max-w-xl flex-col items-center gap-3 sm:mt-7"
         >
           <a
-            href="#apply"
+            href="/register"
             className={`${jakartaSans.className} inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-2xl bg-slate-900 px-6 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-white shadow-[0_14px_28px_-18px_rgba(15,23,42,0.5)] transition hover:-translate-y-0.5 hover:bg-slate-800`}
           >
-            Apply your student
+            Register your student
             <ArrowRight className="h-4 w-4" aria-hidden />
           </a>
           <a

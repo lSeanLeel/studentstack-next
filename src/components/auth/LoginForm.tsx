@@ -49,7 +49,7 @@ export function LoginForm() {
             Member login
           </h1>
           <p className={`ss-institutional mt-2 text-[0.95rem] leading-relaxed text-slate-600 ${institutionalSerif.className}`}>
-            High school members sign in here. Parents apply for membership from the home page.
+            High school members sign in here. Parents register their student from the home page.
           </p>
 
           <form onSubmit={onSubmit} className="mt-6 space-y-4" noValidate>
@@ -99,8 +99,8 @@ export function LoginForm() {
 
           <p className="mt-5 text-center text-sm font-medium text-slate-500">
             Parents:{" "}
-            <Link href="/#apply" className="font-bold text-sky-700 hover:text-sky-900">
-              Apply for membership
+            <Link href="/register" className="font-bold text-sky-700 hover:text-sky-900">
+              Register for membership
             </Link>
           </p>
         </div>

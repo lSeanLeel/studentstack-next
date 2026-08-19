@@ -10,7 +10,7 @@ type FaqItem = { id?: string; q: string; a: ReactNode };
 const FAQ_ITEMS: FaqItem[] = [
   {
     q: "What is StudentStack?",
-    a: "A student-led organization run by college students at well-known universities. We focus on AI education for high schoolers and push members toward programs, credentials, and habits that matter for college admissions.",
+    a: "A student-led membership program run by college students at well-known universities. Each member gets a path we assign: portal access, programs we push, and work we expect them to finish for college admissions.",
   },
   {
     q: "Who runs this?",
@@ -18,16 +18,16 @@ const FAQ_ITEMS: FaqItem[] = [
   },
   {
     q: "What do members actually get?",
-    a: "Gated portal access. AI education that tracks what tools are actually in use this semester. Program and deadline recommendations we vet. AI-related courses and certifications we tell them to finish.",
+    a: "Gated portal access. AI education that tracks what tools are actually in use this semester. Program and deadline recommendations we vet. Courses and credentials we tell them to finish. Nothing is pulled from a public catalog.",
   },
   {
-    q: "How do I apply my student?",
-    a: "Parent email, student name, and grade. Three fields. We follow up by email with next steps. Your student does not need to be on the form.",
+    q: "How do I register my student?",
+    a: "Parents register at the link on this page. You will need parent contact info and basic student details. Your student does not need to be on the form. After registration, our desk assigns access and sends enrollment details to the parent email.",
   },
   {
     id: "faq-why-young",
     q: "Why a student-run org?",
-    a: "AI in school changes faster than any curriculum can track. A student-native team sees the shift while it is happening, not after a committee reports on it.",
+    a: "School and admissions move faster than any curriculum can track. A student-native team sees the shift while it is happening, not after a committee reports on it.",
   },
 ];
 

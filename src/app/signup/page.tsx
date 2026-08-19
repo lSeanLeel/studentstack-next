@@ -2,7 +2,7 @@ import Link from "next/link";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { BrandWordmark } from "@/components/BrandWordmark";
 
-/** Open signup is closed. Member credentials follow the parent application path. */
+/** Open signup is closed. Member credentials follow the parent registration path. */
 export default function SignupPage() {
   return (
     <main className={`min-h-screen bg-[#f8fafc] px-4 py-10 sm:px-6 ${jakartaSans.className}`}>
@@ -16,8 +16,8 @@ export default function SignupPage() {
             Membership access is invite-only
           </h1>
           <p className="mt-3 text-sm font-medium leading-relaxed text-slate-600">
-            Student accounts are created after a parent applies and completes membership. You will receive a login. Sign
-            in here after that.
+            Student accounts are created after a parent registers and access is assigned. You will receive login
+            credentials. Sign in here after that.
           </p>
           <div className="mt-6 flex flex-col gap-3">
             <Link
@@ -27,10 +27,10 @@ export default function SignupPage() {
               Student login
             </Link>
             <Link
-              href="/#apply"
+              href="/register"
               className="inline-flex items-center justify-center rounded-2xl border border-slate-200 px-6 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-slate-700 transition hover:border-sky-200 hover:text-sky-700"
             >
-              Apply for membership
+              Register for membership
             </Link>
           </div>
         </div>

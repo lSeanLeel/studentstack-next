@@ -10,7 +10,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "StudentStack | Membership for parents of high schoolers",
   description:
-    "A student-led organization of college students helping parents of high schoolers stay current with how AI shows up in school. Apply your student for membership.",
+    "A student-led membership program where college students assign access for high schoolers. Register your student for membership.",
 };
 
 export default function RootLayout({

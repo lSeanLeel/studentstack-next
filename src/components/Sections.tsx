@@ -6,7 +6,7 @@ import Link from "next/link";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { BrandWordmark } from "./BrandWordmark";
 import { useContact } from "./contact-context";
-import { MembershipForm } from "./MembershipForm";
+import { ArrowRight } from "lucide-react";
 
 export function TestimonialSection() {
   return (
@@ -50,17 +50,30 @@ export function TestimonialSection() {
 
 export function FinalCTA() {
   return (
-    <section id="apply" className="relative overflow-hidden bg-transparent py-20 sm:py-28">
+    <section id="register" className="relative overflow-hidden bg-transparent py-20 sm:py-28">
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[2.75rem] border-2 border-slate-800 bg-slate-900 px-6 py-12 text-center sm:rounded-[3.5rem] sm:px-14 sm:py-16">
           <div className="pointer-events-none absolute -right-16 top-0 h-56 w-56 rounded-full bg-sky-500/20 blur-3xl" />
           <div className="pointer-events-none absolute -left-10 bottom-0 h-48 w-48 rounded-full bg-amber-400/15 blur-3xl" />
 
-          <div className="relative z-10 mx-auto max-w-sm text-left">
-            <MembershipForm dark />
-            <p className={`mt-4 text-center text-xs font-medium text-slate-400 ${jakartaSans.className}`}>
-              A mentor from our team will reach out by email.
+          <div className="relative z-10 mx-auto max-w-md">
+            <p className={`text-[10px] font-black uppercase tracking-[0.22em] text-sky-200 ${jakartaSans.className}`}>
+              Membership
             </p>
+            <h2 className={`mt-3 text-2xl font-semibold tracking-[-0.03em] text-white sm:text-3xl ${fredokaHeadline.className}`}>
+              Register your student
+            </h2>
+            <p className={`mx-auto mt-3 max-w-sm text-sm font-medium leading-relaxed text-slate-300 ${jakartaSans.className}`}>
+              Our campus desk assigns what each member gets inside. Parents register here. Students sign in after access
+              is issued.
+            </p>
+            <Link
+              href="/register"
+              className={`${jakartaSans.className} mt-8 inline-flex items-center justify-center gap-2 rounded-2xl bg-white px-8 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-slate-900 shadow-[0_14px_28px_-18px_rgba(255,255,255,0.3)] transition hover:-translate-y-0.5 hover:bg-sky-100`}
+            >
+              Register your student
+              <ArrowRight className="h-4 w-4" aria-hidden />
+            </Link>
           </div>
         </div>
       </div>
@@ -84,7 +97,7 @@ export function Footer() {
               <BrandWordmark />
             </Link>
             <p className={`mt-4 max-w-md text-sm font-medium text-slate-500 ${jakartaSans.className}`}>
-              AI education for high schoolers. Run by college students still in class.
+              A student-led membership program. Access shaped by college students for high schoolers.
             </p>
           </div>
           <div>
