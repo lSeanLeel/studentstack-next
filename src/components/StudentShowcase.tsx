@@ -26,7 +26,7 @@ export function StudentShowcase() {
             </h2>
           </div>
           <p className={`max-w-md text-base font-medium leading-relaxed text-slate-500 sm:text-lg ${jakartaSans.className}`}>
-            Sharing how we use AI for everyday organization, school, research + more!
+            Current college students at schools parents recognize. Tap a profile for background, major, and campus.
           </p>
         </div>
 

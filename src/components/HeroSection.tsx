@@ -86,6 +86,10 @@ function CollegeHeadline() {
         </AnimatePresence>
       </span>
       <motion.span layout className="leading-none">students</motion.span>
+      <motion.span layout className="leading-none text-slate-600">
+        {" "}
+        (for high schoolers)
+      </motion.span>
       <span className="sr-only">{cur.name}</span>
     </motion.span>
   );
@@ -142,7 +146,7 @@ export function HeroSection() {
           transition={{ delay: 0.5, duration: 0.5 }}
           className={`${jakartaSans.className} mx-auto mt-4 max-w-lg text-[0.95rem] font-semibold leading-snug text-slate-600 sm:mt-5 sm:text-lg`}
         >
-          A membership program shaped student-to-student. Access is assigned, not cataloged.
+          Guidance for high schoolers from college students still on campus. The edge competitive applicants need now.
         </motion.p>
 
         <motion.div

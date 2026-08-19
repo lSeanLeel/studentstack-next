@@ -22,9 +22,9 @@ export function Navbar({ onHomeLogoClick }: { onHomeLogoClick?: () => void }) {
         </Link>
 
         <div className={`flex shrink-0 items-center gap-1.5 sm:gap-3 ${jakartaSans.className}`}>
-          <a href="/#membership" className="hidden rounded-2xl px-2.5 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-slate-600 transition-colors hover:bg-sky-50 hover:text-sky-700 sm:inline-flex sm:px-3 sm:py-2 sm:text-[11px]">
-            Membership
-          </a>
+          <Link href="/team" className="hidden rounded-2xl px-2.5 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-slate-600 transition-colors hover:bg-sky-50 hover:text-sky-700 sm:inline-flex sm:px-3 sm:py-2 sm:text-[11px]">
+            Team
+          </Link>
           <a href="/#faq" className="hidden rounded-2xl px-2.5 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-slate-600 transition-colors hover:bg-sky-50 hover:text-sky-700 sm:inline-flex sm:px-3 sm:py-2 sm:text-[11px]">
             FAQ
           </a>

@@ -16,16 +16,17 @@ export const students: Student[] = [
     id: 1,
     name: "Sean Lee",
     university: "UCLA",
-    classYear: "2027",
-    major: "Computer Science and Linguistics",
-    bio: "I'm a CS and Linguistics student at UCLA. I focus on practical AI systems and workflows for school and research. I founded StudentStack to make high-signal AI guidance more accessible to families.",
+    classYear: "2028",
+    major: "CS + Statistics",
+    bio: "I'm a CS and Statistics student at UCLA. I focus on practical AI systems and workflows for school and research. I founded StudentStack to make high-signal guidance more accessible to families.",
     accomplishments: [
       "Kleiner Perkins Engineering Fellow",
       "Incoming Software Engineer at Amazon (AWS)",
       "USACO Platinum Medalist",
-      "Built AI study systems used by 500+ students"
+      "Built AI study systems used by 500+ students",
     ],
-    initials: "SL"
+    initials: "SL",
+    photo: "/sean-lee.jpg",
   },
   {
     id: 2,
