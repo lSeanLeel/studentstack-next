@@ -2,30 +2,27 @@
 
 import React from "react";
 import { motion } from "motion/react";
-import { Compass, GraduationCap, Sparkles } from "lucide-react";
-import { fredokaHeadline, jakartaSans, institutionalSerif } from "@/app/fonts";
+import { Brain, Compass, GraduationCap } from "lucide-react";
+import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 
 const tenets = [
   {
-    icon: GraduationCap,
-    title: "Still in the rooms that matter",
-    body: "We are current college students at campuses parents already take seriously. The habits we talk about are the ones next to us in lecture, not a curriculum written from outside school.",
+    icon: Brain,
+    title: "AI native, not AI scared",
+    body: "Your student is already using AI. The question is whether they are using it well. We teach the version that shows up in real classrooms, not the panic version from the news.",
   },
   {
-    icon: Sparkles,
-    title: "AI the way students actually use it",
-    body: "High school already runs on AI, whether families planned for that or not. The edge is judgment: what to use, what to ignore, and how to stay honest in class. We stay close to that shift because we live it.",
+    icon: GraduationCap,
+    title: "22-year-olds, on purpose",
+    body: "The tools change semester to semester. A student org sees that in real time. By the time a textbook covers it, the classroom has moved on.",
   },
   {
     icon: Compass,
-    title: "A student-native org, not a tutoring shop",
-    body: "Parents get us in the loop. High schoolers do the work. We push members toward programs, tools, and credentials worth completing. That is a different kind of help than sitting beside one student on one assignment.",
+    title: "Programs, not just information",
+    body: "Members are pushed toward AI certifications, summer research, and college-readiness work we vet ourselves. We do not hand over a link dump.",
   },
 ] as const;
 
-/**
- * Why StudentStack: AI thesis + student-native org, for parents.
- */
 export function PhilosophySection() {
   return (
     <section
@@ -50,17 +47,9 @@ export function PhilosophySection() {
             id="philosophy-heading"
             className={`mt-3 text-[2rem] font-semibold leading-[1.05] tracking-[-0.04em] text-slate-900 sm:text-5xl lg:text-[3.1rem] ${fredokaHeadline.className}`}
           >
-            The advantage of a{" "}
-            <span className="text-sky-500">student-led</span> desk
+            Young enough to <span className="text-sky-500">know the tools.</span>{" "}
+            Serious enough to teach them.
           </h2>
-          <p
-            className={`ss-institutional mt-5 max-w-2xl text-[1.05rem] font-normal leading-[1.7] text-slate-600 sm:text-lg ${institutionalSerif.className}`}
-          >
-            AI is already inside the high school week. Most families only see the loud version. We see the version
-            sitting in college classrooms: students who stay organized, disclose when they should, and use new tools
-            without handing over the work. That is the thesis we organize around, and why a student-native org can move
-            faster than something built far from campus.
-          </p>
         </motion.div>
 
         <ul className="mt-12 grid gap-6 sm:grid-cols-3 sm:gap-5">
@@ -73,7 +62,8 @@ export function PhilosophySection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.35 }}
                 transition={{ duration: 0.45, delay: index * 0.07 }}
-                className="rounded-[1.75rem] border border-slate-100 bg-[#f8fafc] p-6"
+                whileHover={{ y: -3, scale: 1.01 }}
+                className="rounded-[1.75rem] border border-slate-100 bg-[#f8fafc] p-6 transition-shadow hover:shadow-[0_24px_48px_-28px_rgba(15,23,42,0.35)]"
               >
                 <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-sky-100 text-sky-700">
                   <Icon className="h-5 w-5" strokeWidth={2.25} aria-hidden />

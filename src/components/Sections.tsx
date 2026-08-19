@@ -2,11 +2,11 @@
 
 import React from "react";
 import { motion } from "motion/react";
-import { FolderLock, Landmark, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { BrandWordmark } from "./BrandWordmark";
 import { useContact } from "./contact-context";
+import { MembershipForm } from "./MembershipForm";
 
 export function TestimonialSection() {
   return (
@@ -26,27 +26,19 @@ export function TestimonialSection() {
             <div className="flex flex-col items-center">
               <div className="mb-4 h-24 w-24 overflow-hidden rounded-[1.75rem] border-2 border-white/20 shadow-[0_16px_0_0_rgba(0,0,0,0.25)]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/sean-lee.jpg"
-                  alt="Sean Lee"
-                  className="h-full w-full object-cover object-top"
-                />
+                <img src="/sean-lee.jpg" alt="Sean Lee" className="h-full w-full object-cover object-top" />
               </div>
               <p className={`text-sm font-black uppercase tracking-[0.22em] text-sky-200 ${jakartaSans.className}`}>
                 Sean Lee
               </p>
               <p className={`text-[10px] font-bold uppercase tracking-[0.22em] text-slate-400 ${jakartaSans.className}`}>
-                Founder · UCLA junior
+                Founder · UCLA &apos;28 · CS + Statistics
               </p>
             </div>
-            <p
-              className={`max-w-2xl text-xl font-medium leading-[1.35] tracking-tight text-slate-100 sm:text-3xl ${jakartaSans.className}`}
-            >
+            <p className={`max-w-2xl text-xl font-medium leading-[1.35] tracking-tight text-slate-100 sm:text-3xl ${jakartaSans.className}`}>
               <span className={`${fredokaHeadline.className} mr-1 text-3xl text-sky-300 sm:text-5xl`}>&ldquo;</span>
-              I started StudentStack in Irvine because the high schoolers around me were getting a panic version of AI,
-              while the students I sit next to at UCLA were already using it to stay ahead. Parents found that work.
-              They asked for a way in for their kids. Membership is how we kept operating as a student organization,
-              with a real desk behind it.
+              Parents kept finding the AI work we were putting out for students. Then they asked how to get their kid
+              inside the same loop. That is still how most families land here.
               <span className={`${fredokaHeadline.className} ml-1 text-3xl text-sky-300 sm:text-5xl`}>&rdquo;</span>
             </p>
           </div>
@@ -57,69 +49,29 @@ export function TestimonialSection() {
 }
 
 export function FinalCTA() {
-  const beats = [
-    { icon: Sparkles, title: "AI use, current", line: "How students actually work with tools right now." },
-    { icon: Landmark, title: "Programs we push", line: "Where we tell members to apply." },
-    { icon: FolderLock, title: "Gated portal", line: "Access for high school members." },
-  ] as const;
-
   return (
-    <section id="join" className="relative overflow-hidden bg-transparent py-20 sm:py-28">
+    <section id="apply" className="relative overflow-hidden bg-transparent py-20 sm:py-28">
       <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-[2.75rem] border-2 border-sky-200 bg-gradient-to-br from-sky-50 via-white to-emerald-50 px-6 py-12 text-center sm:rounded-[3.5rem] sm:px-14 sm:py-16">
-          <div className="pointer-events-none absolute -right-16 top-0 h-56 w-56 rounded-full bg-sky-300/30 blur-3xl" />
-          <div className="pointer-events-none absolute -left-10 bottom-0 h-48 w-48 rounded-full bg-amber-200/40 blur-3xl" />
+        <div className="relative overflow-hidden rounded-[2.75rem] border-2 border-slate-800 bg-slate-900 px-6 py-12 text-center sm:rounded-[3.5rem] sm:px-14 sm:py-16">
+          <div className="pointer-events-none absolute -right-16 top-0 h-56 w-56 rounded-full bg-sky-500/20 blur-3xl" />
+          <div className="pointer-events-none absolute -left-10 bottom-0 h-48 w-48 rounded-full bg-amber-400/15 blur-3xl" />
 
-          <div className="relative z-10 mx-auto max-w-2xl">
-            <p className={`text-[10px] font-black uppercase tracking-[0.22em] text-[#ff6a00] ${jakartaSans.className}`}>
-              StudentStack membership
+          <div className="relative z-10 mx-auto max-w-md">
+            <p className={`text-[10px] font-black uppercase tracking-[0.22em] text-[#ff9a4d] ${jakartaSans.className}`}>
+              Apply your student
             </p>
             <h2
-              className={`mt-3 text-4xl font-semibold leading-[1.05] tracking-[-0.035em] text-slate-900 sm:text-6xl ${fredokaHeadline.className}`}
+              className={`mt-3 text-3xl font-semibold leading-[1.08] tracking-[-0.035em] text-white sm:text-4xl ${fredokaHeadline.className}`}
             >
-              Apply your student.{" "}
-              <span className="text-sky-500">They do not need to be here.</span>
+              Three fields. We handle the rest.
             </h2>
-            <p className={`mx-auto mt-5 max-w-xl text-base font-medium leading-relaxed text-slate-600 sm:text-lg ${jakartaSans.className}`}>
-              Parents who already found our work are putting their high schoolers in. Membership is the gated access our
-              student organization keeps. You can apply from this page tonight.
+            <p className={`mx-auto mt-4 max-w-sm text-sm font-medium leading-relaxed text-slate-300 ${jakartaSans.className}`}>
+              Your kid does not need to be here. We will email you with next steps.
             </p>
 
-            <ul className="mx-auto mt-8 grid max-w-2xl gap-3 text-left sm:grid-cols-3 sm:gap-4">
-              {beats.map((beat) => {
-                const Icon = beat.icon;
-                return (
-                  <li
-                    key={beat.title}
-                    className="rounded-[1.35rem] border border-sky-100/90 bg-white/80 px-4 py-3.5 shadow-[0_12px_28px_-24px_rgba(14,165,233,0.45)]"
-                  >
-                    <div className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-sky-100 text-sky-700">
-                      <Icon className="h-4 w-4" strokeWidth={2.25} aria-hidden />
-                    </div>
-                    <p className={`mt-2 text-sm font-semibold text-slate-900 ${fredokaHeadline.className}`}>
-                      {beat.title}
-                    </p>
-                    <p className={`mt-0.5 text-xs font-medium leading-snug text-slate-500 ${jakartaSans.className}`}>
-                      {beat.line}
-                    </p>
-                  </li>
-                );
-              })}
-            </ul>
-
-            <a
-              href="#apply"
-              className={`mt-8 inline-flex items-center justify-center rounded-2xl bg-slate-900 px-8 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-slate-800 ${jakartaSans.className}`}
-            >
-              Apply for membership
-            </a>
-
-            <a
-              href="#story"
-              className={`mt-4 inline-block text-[12px] font-bold text-slate-600 underline decoration-sky-300/80 underline-offset-[0.18em] transition-colors hover:text-sky-700 sm:text-[13px] ${jakartaSans.className}`}
-            >
-              How families found us
-            </a>
+            <div className="mx-auto mt-8 max-w-sm text-left">
+              <MembershipForm dark />
+            </div>
           </div>
         </div>
       </div>
@@ -143,44 +95,25 @@ export function Footer() {
               <BrandWordmark />
             </Link>
             <p className={`mt-4 max-w-md text-sm font-medium text-slate-500 ${jakartaSans.className}`}>
-              A student-led organization helping parents of high schoolers. Membership is gated access, kept current by
-              college students still in class.
+              AI education for high schoolers. Run by college students still in class.
             </p>
           </div>
           <div>
             <h4 className="mb-6 text-sm font-bold uppercase tracking-widest text-slate-900">Legal</h4>
             <ul className="space-y-4 text-sm font-medium text-slate-500">
+              <li><a href="/privacy" className="transition-colors hover:text-sky-500">Privacy Policy</a></li>
+              <li><a href="/terms" className="transition-colors hover:text-sky-700">Terms of Service</a></li>
               <li>
-                <a href="/privacy" className="transition-colors hover:text-sky-500">
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a href="/terms" className="transition-colors hover:text-sky-700">
-                  Terms of Service
-                </a>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={openContact}
-                  className="text-left font-medium text-slate-500 transition-colors hover:text-sky-500"
-                >
+                <button type="button" onClick={openContact} className="text-left font-medium text-slate-500 transition-colors hover:text-sky-500">
                   Contact Us
                 </button>
               </li>
-              <li>
-                <Link href="/login" className="transition-colors hover:text-sky-500">
-                  Student login
-                </Link>
-              </li>
+              <li><Link href="/login" className="transition-colors hover:text-sky-500">Student login</Link></li>
             </ul>
           </div>
         </div>
         <div className="border-t border-slate-100 pt-8">
-          <p className="text-sm font-medium text-slate-400">
-            &copy; {new Date().getFullYear()} StudentStack. All rights reserved.
-          </p>
+          <p className="text-sm font-medium text-slate-400">&copy; {new Date().getFullYear()} StudentStack. All rights reserved.</p>
         </div>
       </div>
     </footer>

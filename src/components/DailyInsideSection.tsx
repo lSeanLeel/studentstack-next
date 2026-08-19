@@ -2,39 +2,36 @@
 
 import React from "react";
 import { motion } from "motion/react";
-import { FolderLock, Landmark, Route, Sparkles } from "lucide-react";
-import { fredokaHeadline, jakartaSans, institutionalSerif } from "@/app/fonts";
+import { BookOpen, FolderLock, Landmark, Sparkles } from "lucide-react";
+import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 
-const accessParts = [
+const items = [
   {
     icon: Sparkles,
-    label: "AI, as it is used",
-    title: "Stay current with the tools that actually show up in school",
-    body: "Members get the same kind of AI-use intel our campus desk is already watching: what students reach for, how they keep it honest, and what is noise. We keep this moving on purpose. The stack changes. The thesis does not.",
+    label: "AI education",
+    title: "What your student should know about AI right now",
+    body: "Not a general overview. The specific tools, habits, and disclosure norms that matter for school this semester. Updated because we are still taking classes.",
   },
   {
     icon: Landmark,
-    label: "Where we send people",
-    title: "Apply to the programs we are actually pushing",
-    body: "Our team points high school members toward summer work, research, and deadlines that fit how college-bound students build a real record. It reads like a list we use, not a directory anyone could Google.",
+    label: "Programs + deadlines",
+    title: "Where we tell members to apply",
+    body: "Summer research, competitions, and college-readiness programs we vet. Members get the list. We tell them when to apply and what actually matters on the application.",
   },
   {
-    icon: Route,
-    label: "Work we push",
-    title: "Courses and AI credentials, because we tell them to finish them",
-    body: "Members complete AI-related courses and certifications for college admissions when our desk sends them there. We recommend that path because we understand which work reads as judgment, not a shopping cart of badges. You will not find a public catalog of those picks here.",
+    icon: BookOpen,
+    label: "AI courses + credentials",
+    title: "Certifications we push members to finish",
+    body: "AI-related courses and credentials that read well on a college application. We pick them. Members complete them. No public catalog.",
   },
   {
     icon: FolderLock,
-    label: "Membership home",
-    title: "A gated portal for the students whose parents asked us in",
-    body: "That is the membership. Access to the portal our organization keeps for high schoolers. Daily material still comes from the same student desk. The portal is where members go when it is time to act.",
+    label: "Gated access",
+    title: "A member portal run by college students",
+    body: "The portal is where members work. Daily material from our desk, program recommendations, and the credential path we set for them. Access starts after a parent applies.",
   },
 ] as const;
 
-/**
- * Membership as access. Deliverables stay intentionally underspecified.
- */
 export function DailyInsideSection() {
   return (
     <section
@@ -53,57 +50,47 @@ export function DailyInsideSection() {
           className="max-w-3xl"
         >
           <p className={`text-[10px] font-black uppercase tracking-[0.22em] text-[#ff6a00] ${jakartaSans.className}`}>
-            StudentStack membership
+            Membership
           </p>
           <h2
             id="membership-heading"
             className={`mt-3 text-[2rem] font-semibold leading-[1.05] tracking-[-0.035em] text-slate-900 sm:text-4xl lg:text-[2.85rem] ${fredokaHeadline.className}`}
           >
-            What members{" "}
-            <span className="text-sky-500">get access to</span>
+            What your student <span className="text-sky-500">gets inside</span>
           </h2>
-          <p
-            className={`ss-institutional mt-4 max-w-2xl text-[1.05rem] font-normal leading-[1.7] text-slate-600 sm:text-lg ${institutionalSerif.className}`}
-          >
-            Membership is how a high schooler gets inside the gated side of our organization. We keep it current because
-            we are still in school. Families who found our public work already understand the shape of this. They apply
-            their student for the access, not for a brochure of modules.
-          </p>
         </motion.div>
 
-        <ol className="mt-10 space-y-4 sm:mt-12">
-          {accessParts.map((part, index) => {
-            const Icon = part.icon;
+        <div className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2">
+          {items.map((item, index) => {
+            const Icon = item.icon;
             return (
-              <motion.li
-                key={part.label}
+              <motion.article
+                key={item.label}
                 initial={{ opacity: 0, y: 14 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.35 }}
-                transition={{ duration: 0.35, delay: index * 0.05 }}
-                whileHover={{ y: -2 }}
-                className="flex flex-col gap-4 rounded-[1.75rem] border border-sky-100/90 bg-white/90 p-5 shadow-[0_18px_40px_-34px_rgba(15,23,42,0.3)] sm:flex-row sm:items-start sm:gap-6 sm:p-6"
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.35, delay: index * 0.06 }}
+                whileHover={{ y: -3 }}
+                className="rounded-[1.75rem] border border-sky-100/90 bg-white/90 p-6 shadow-[0_18px_40px_-34px_rgba(15,23,42,0.25)] transition-shadow hover:shadow-[0_24px_48px_-28px_rgba(15,23,42,0.4)]"
               >
-                <div className="flex items-center gap-3 sm:w-44 sm:shrink-0 sm:flex-col sm:items-start sm:gap-2">
-                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-sky-100 text-sky-700">
+                <div className="flex items-center gap-3">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-sky-100 text-sky-700">
                     <Icon className="h-5 w-5" strokeWidth={2.25} aria-hidden />
                   </div>
                   <p className={`text-[10px] font-black uppercase tracking-[0.16em] text-sky-600 ${jakartaSans.className}`}>
-                    {String(index + 1).padStart(2, "0")} · {part.label}
+                    {item.label}
                   </p>
                 </div>
-                <div className="min-w-0 flex-1">
-                  <h3 className={`text-xl font-semibold tracking-[-0.02em] text-slate-900 ${fredokaHeadline.className}`}>
-                    {part.title}
-                  </h3>
-                  <p className={`mt-2 text-sm font-medium leading-relaxed text-slate-600 sm:text-[0.95rem] ${jakartaSans.className}`}>
-                    {part.body}
-                  </p>
-                </div>
-              </motion.li>
+                <h3 className={`mt-4 text-lg font-semibold tracking-[-0.02em] text-slate-900 ${fredokaHeadline.className}`}>
+                  {item.title}
+                </h3>
+                <p className={`mt-2 text-sm font-medium leading-relaxed text-slate-600 ${jakartaSans.className}`}>
+                  {item.body}
+                </p>
+              </motion.article>
             );
           })}
-        </ol>
+        </div>
       </div>
     </section>
   );

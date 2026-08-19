@@ -10,69 +10,32 @@ type FaqItem = { id?: string; q: string; a: ReactNode };
 const FAQ_ITEMS: FaqItem[] = [
   {
     q: "What is StudentStack?",
-    a: (
-      <>
-        A student-led organization of current college students helping parents of high schoolers. We started by sharing
-        how students actually use AI in school. Membership is how a high schooler gets gated access to that same desk.
-      </>
-    ),
+    a: "A student-led organization run by college students at well-known universities. We focus on AI education for high schoolers and push members toward programs, credentials, and habits that matter for college admissions.",
   },
   {
-    q: "How do families usually find you?",
-    a: (
-      <>
-        Through the educational work we already put out: how top students use AI to stay ahead in school. Parents in the
-        community pass it along. Membership came later, when those same parents wanted their own student inside the loop.
-      </>
-    ),
+    q: "Who runs this?",
+    a: "Current college students. Sean Lee (UCLA '28, CS + Statistics) started the organization. The team spans campuses parents already take seriously.",
   },
   {
-    q: "What is membership?",
-    a: (
-      <>
-        Gated access for high schoolers. Members stay current on AI use, get pointed toward programs we actually push,
-        and work from a portal our team keeps. We also send members toward AI-related courses and certifications worth
-        completing for admissions. We do not publish a public list of those picks.
-      </>
-    ),
+    q: "What do members actually get?",
+    a: "Gated portal access. AI education that tracks what tools are actually in use this semester. Program and deadline recommendations we vet. AI-related courses and certifications we tell them to finish.",
   },
   {
-    q: "How do parents apply?",
-    a: (
-      <>
-        Use Apply for membership with parent name, parent email, student grade, intended major, and questions for our
-        team. You can submit without your student on the form. We reach out within 24 hours about next steps.
-      </>
-    ),
+    q: "How do I apply my student?",
+    a: "Parent email, student name, and grade. Three fields. We follow up by email with next steps. Your student does not need to be on the form.",
   },
   {
-    id: "faq-who-writes",
-    q: "Why student-led?",
-    a: (
-      <>
-        Campus tools and classroom norms change while we are still sitting in them. A student-native org can stay honest
-        about AI use, and about what high schoolers should actually finish, because we are not guessing from outside.
-      </>
-    ),
-  },
-  {
-    q: "Can I talk with your team?",
-    a: <>Yes. Use Contact. We respond ourselves.</>,
+    id: "faq-why-young",
+    q: "Why a student-run org?",
+    a: "AI in school changes faster than any curriculum can track. A student-native team sees the shift while it is happening, not after a committee reports on it.",
   },
 ];
 
 function FaqAccordionItem({
-  item,
-  index,
-  openIndex,
-  setOpenIndex,
-  baseId,
+  item, index, openIndex, setOpenIndex, baseId,
 }: {
-  item: FaqItem;
-  index: number;
-  openIndex: number | null;
-  setOpenIndex: (i: number | null) => void;
-  baseId: string;
+  item: FaqItem; index: number; openIndex: number | null;
+  setOpenIndex: (i: number | null) => void; baseId: string;
 }) {
   const open = openIndex === index;
   const panelId = `${baseId}-panel-${item.id ?? index}`;
@@ -82,25 +45,15 @@ function FaqAccordionItem({
     <div className="border-b border-slate-100 last:border-b-0">
       <h3>
         <button
-          type="button"
-          id={buttonId}
-          aria-expanded={open}
-          aria-controls={panelId}
+          type="button" id={buttonId} aria-expanded={open} aria-controls={panelId}
           onClick={() => setOpenIndex(open ? null : index)}
           className={`flex w-full items-center justify-between gap-4 py-5 text-left text-base font-semibold tracking-[-0.02em] text-slate-900 sm:text-lg ${fredokaHeadline.className}`}
         >
           {item.q}
-          <ChevronDown
-            className={`h-5 w-5 shrink-0 text-slate-400 transition-transform ${open ? "rotate-180" : ""}`}
-            aria-hidden
-          />
+          <ChevronDown className={`h-5 w-5 shrink-0 text-slate-400 transition-transform ${open ? "rotate-180" : ""}`} aria-hidden />
         </button>
       </h3>
-      <div
-        id={panelId}
-        role="region"
-        aria-labelledby={buttonId}
-        hidden={!open}
+      <div id={panelId} role="region" aria-labelledby={buttonId} hidden={!open}
         className={`pb-5 text-sm font-medium leading-relaxed text-slate-600 sm:text-[0.95rem] ${jakartaSans.className}`}
       >
         {open ? item.a : null}
@@ -115,17 +68,10 @@ export function FaqSection() {
   useEffect(() => setMounted(true), []);
 
   return (
-    <section
-      id="faq"
-      className="relative overflow-hidden border-t border-slate-100 bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
-      aria-labelledby="faq-heading"
-    >
+    <section id="faq" className="relative overflow-hidden border-t border-slate-100 bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24" aria-labelledby="faq-heading">
       <div className="relative mx-auto w-full max-w-3xl lg:max-w-5xl xl:max-w-6xl">
         <motion.h2
-          id="faq-heading"
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          id="faq-heading" initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className={`text-[2rem] font-semibold tracking-[-0.035em] text-slate-900 sm:text-4xl ${fredokaHeadline.className}`}
         >
           Questions <span className="text-sky-500">parents</span> ask
@@ -133,14 +79,7 @@ export function FaqSection() {
         <div className="mt-8 rounded-[1.75rem] border border-slate-100 bg-[#f8fafc] px-5 sm:px-7">
           {mounted
             ? FAQ_ITEMS.map((item, index) => (
-                <FaqAccordionItem
-                  key={item.id ?? item.q}
-                  item={item}
-                  index={index}
-                  openIndex={openIndex}
-                  setOpenIndex={setOpenIndex}
-                  baseId="faq"
-                />
+                <FaqAccordionItem key={item.id ?? item.q} item={item} index={index} openIndex={openIndex} setOpenIndex={setOpenIndex} baseId="faq" />
               ))
             : null}
         </div>
