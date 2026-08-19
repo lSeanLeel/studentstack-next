@@ -36,7 +36,7 @@ export function TestimonialSection() {
                 Sean Lee
               </p>
               <p className={`text-[10px] font-bold uppercase tracking-[0.22em] text-slate-400 ${jakartaSans.className}`}>
-                Founder · UCLA junior · started in Irvine
+                Founder · UCLA junior
               </p>
             </div>
             <p

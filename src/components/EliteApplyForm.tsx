@@ -79,7 +79,7 @@ export function EliteApplyForm({ compact = false }: { compact?: boolean }) {
           Application Received
         </h3>
         <p className="mx-auto mt-3 max-w-md text-sm font-medium leading-relaxed text-slate-600">
-          Our team will reach out within 24 hours about membership next steps for your student.
+          You will hear from our team by email shortly with next steps for your student.
         </p>
       </motion.div>
     );

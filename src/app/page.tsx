@@ -35,11 +35,6 @@ const ApplyEliteSection = dynamic(
   { loading: sectionLoading }
 );
 
-const ReachOutSection = dynamic(
-  () => import("@/components/ReachOutSection").then((m) => ({ default: m.ReachOutSection })),
-  { loading: sectionLoading }
-);
-
 const FaqSection = dynamic(
   () => import("@/components/FaqSection").then((m) => ({ default: m.FaqSection })),
   { loading: sectionLoading }
@@ -77,7 +72,6 @@ export default function LandingPage() {
           <DailyInsideSection />
           <TestimonialSection />
           <ApplyEliteSection />
-          <ReachOutSection />
           <FaqSection />
           <FinalCTA />
           <Footer />
