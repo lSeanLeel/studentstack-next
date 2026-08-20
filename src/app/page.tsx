@@ -30,8 +30,8 @@ const FaqSection = dynamic(
   { loading: sectionLoading }
 );
 
-const FinalCTA = dynamic(
-  () => import("@/components/Sections").then((m) => ({ default: m.FinalCTA })),
+const WriteUsSection = dynamic(
+  () => import("@/components/WriteUsSection").then((m) => ({ default: m.WriteUsSection })),
   { loading: sectionLoading }
 );
 
@@ -61,7 +61,7 @@ export default function LandingPage() {
           <DailyInsideSection />
           <TestimonialSection />
           <FaqSection />
-          <FinalCTA />
+          <WriteUsSection />
           <Footer />
         </main>
       </ContactProvider>
