@@ -209,7 +209,7 @@ export async function POST(req: Request) {
       mode: "subscription",
       customer: customer.id,
       line_items: [{ price: priceId, quantity: 1 }],
-      success_url: `${origin}/join/success?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${origin}/join/success?session_id={CHECKOUT_SESSION_ID}&student=${encodeURIComponent(studentName)}&email=${encodeURIComponent(parentEmail)}`,
       cancel_url: `${origin}/join?step=payment&checkout=cancel`,
       client_reference_id: pendingRow.id,
       metadata: {
