@@ -7,18 +7,18 @@ import { fredokaHeadline, jakartaSans, institutionalSerif } from "@/app/fonts";
 const pillars = [
   {
     index: "01",
-    title: "Student-native perspective",
-    body: "Our desk is run by college students at universities parents already recognize. We see how tools and admissions standards shift semester to semester.",
+    title: "Closer to the classroom",
+    body: "Tutors and admissions counselors often teach last year's playbook. Our team is still in class, watching how AI and school standards move this semester.",
   },
   {
     index: "02",
-    title: "Assigned access",
-    body: "Members do not browse a catalog. Our team assigns a path: programs to apply to, credentials to finish, and habits that hold up in review.",
+    title: "Built for the families already watching",
+    body: "Parents found our free AI notes and admissions masterminds first. Membership is how they put their high schooler inside the same work.",
   },
   {
     index: "03",
-    title: "Operating standards",
-    body: "We run like a student organization with a membership desk, not a content feed. Parents register a student. We prepare what that student gets inside.",
+    title: "Access, not a public catalog",
+    body: "Members do not browse a menu. They get the gated access our community uses to stay ahead. Details stay inside.",
   },
 ] as const;
 
@@ -51,14 +51,15 @@ export function PhilosophySection() {
             id="philosophy-heading"
             className={`mx-auto mt-8 max-w-3xl text-[1.85rem] font-semibold leading-[1.08] tracking-[-0.035em] text-slate-900 sm:text-4xl lg:text-[2.75rem] ${fredokaHeadline.className}`}
           >
-            A student organization with a membership desk
+            College students changed what parents expect
           </h2>
 
           <p
             className={`ss-institutional mx-auto mt-5 max-w-2xl text-[1.05rem] font-normal leading-[1.7] text-slate-600 sm:text-lg ${institutionalSerif.className}`}
           >
-            StudentStack is run by current college students who assign what each member gets inside. Not a public
-            catalog. Not generic advice. A gated program parents register into.
+            We started by publishing free AI literacy for school, then ran parent masterminds on college admissions.
+            Families kept asking for a way to put their high schooler inside that work. Membership is that access:
+            private, student-built, and designed for the families already ahead.
           </p>
         </motion.div>
 

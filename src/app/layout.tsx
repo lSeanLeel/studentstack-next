@@ -8,9 +8,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "StudentStack | Membership for parents of high schoolers",
+  title: "StudentStack | Private membership for high schoolers",
   description:
-    "A student-led community where parents learn from college students how to keep their high schooler ahead.",
+    "Private membership for high school students, built by college students. From free AI literacy and parent admissions masterminds to gated community access.",
 };
 
 export default function RootLayout({

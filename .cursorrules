@@ -9,13 +9,13 @@
 - Use **Lucide React** (or other curated SVG icon libraries) or intentional **CSS shapes** only.
 
 ## Product & Content Boundaries
-- **Primary product:** StudentStack membership, a gated student portal for high schoolers. Do not use the name Elite on the marketing site.
-- Landing speaks to **parents**. Novelty: student-led org of current college students at well-known universities. Trust: real people, real campuses, a working desk.
-- Story: started as a student organization (Irvine / Sean Lee, UCLA junior) sharing how top students use AI in school. Parents found that work. Membership grew from parents wanting their high schooler inside that loop. Stay ambiguous about where daily content lives. No newsletter/operator marketing.
-- Membership is **access** (tools, programs we push, portal). Do not catalog exact courses or issued certs on the public site. Imply we push members toward AI-related courses and certifications for admissions.
-- Do not say "solution." Do not use em dashes. Do not lead with pricing. CTA is **Join our Community** → `/join` (application → mentor reach-out → payment with parent-created student password → welcome email).
-- Do not explicitly caution against essay writing or 1:1 consulting. Help is framed as access and the work we push members to complete.
-- Student login is for members after the parent path. Present as a student-led organization.
+- **Primary product:** Private membership for high schoolers, built by college students. Do not use the name Elite on the marketing site.
+- Landing speaks to **parents**. Thesis: college students are closer to school and AI than old-school tutors or admissions counselors.
+- Origin story (imply, sprinkle): free AI literacy notes / newsletters → parent college admissions masterminds → private membership access for the community. Discovery optic: parents find the work via posts and parent newsletters.
+- Membership is **gated access**. Stay ambiguous on public deliverables. Do not catalog courses, certs, or a feature grid. Clear enough to join; light on detail.
+- Do not say "solution." Do not use em dashes. Do not lead with pricing. Do not say "membership desk" or lead with "student organization with a desk."
+- CTA is **Join our Community** → `/join` (application → mentor reach-out → payment with parent-created student password → welcome email).
+- Student login is for members after the parent path.
 
 ## Engineering defaults
-- App is Next.js under `src/`. Portal lives at `/portal`. Stripe checkout/webhook under `src/app/api/stripe/`.
+- App is Next.js under `src/`. Portal lives at `/portal`. Stripe checkout/webhook under `src/app/api/stripe/`. Root `app/` re-exports routes so they resolve.

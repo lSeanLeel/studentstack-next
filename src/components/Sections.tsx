@@ -36,7 +36,7 @@ export function TestimonialSection() {
             </div>
             <p className={`max-w-2xl text-xl font-medium leading-[1.35] tracking-tight text-slate-100 sm:text-3xl ${jakartaSans.className}`}>
               <span className={`${fredokaHeadline.className} mr-1 text-3xl text-sky-300 sm:text-5xl`}>&ldquo;</span>
-              Parents kept finding the AI work we were putting out for students. Then they asked how to get their kid
+              Parents found our free AI notes and admissions masterminds first. Then they asked how to get their kid
               inside the same loop. That is still how most families land here.
               <span className={`${fredokaHeadline.className} ml-1 text-3xl text-sky-300 sm:text-5xl`}>&rdquo;</span>
             </p>
@@ -63,7 +63,7 @@ export function Footer() {
               <BrandWordmark />
             </Link>
             <p className={`mt-4 max-w-md text-sm font-medium text-slate-500 ${jakartaSans.className}`}>
-              Student-led membership for college-bound families.
+              Private membership for high schoolers. Built by college students.
             </p>
           </div>
           <div>

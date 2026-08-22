@@ -10,24 +10,23 @@ type FaqItem = { id?: string; q: string; a: ReactNode };
 const FAQ_ITEMS: FaqItem[] = [
   {
     q: "What is StudentStack?",
-    a: "A student-led membership program run by college students at well-known universities. Each member gets a path we assign: portal access, programs we push, and work we expect them to finish for college admissions.",
+    a: "A private membership for high school students, built by college students. We began with free AI literacy for school and parent admissions masterminds. Membership is how families put their student inside that work.",
   },
   {
     q: "Who runs this?",
-    a: "Current college students. Sean Lee (UCLA '28, CS + Statistics) started the organization. The team spans campuses parents already take seriously.",
+    a: "Current college students. Sean Lee (UCLA '28, CS + Statistics) started the team. Campuses parents already recognize.",
   },
   {
-    q: "What do members actually get?",
-    a: "Gated portal access. AI education that tracks what tools are actually in use this semester. Program and deadline recommendations we vet. Courses and credentials we tell them to finish. Nothing is pulled from a public catalog.",
+    q: "How is this different from tutors or admissions counselors?",
+    a: "We are still in the classrooms and admissions cycles that shape what high schoolers need now. That is closer to the signal than last year's tutoring or counseling playbook.",
+  },
+  {
+    q: "What do members get?",
+    a: "Gated access run by our student team. What lives inside is for members. We stay light on public catalogs on purpose.",
   },
   {
     q: "How do I join?",
-    a: "Parents complete a short application, review how mentorship is matched to their student, create a portal password, and finish secure checkout. After payment, a welcome email with login details goes to the parent email, and a mentor reaches out.",
-  },
-  {
-    id: "faq-why-young",
-    q: "Why a student-run org?",
-    a: "School and admissions move faster than any curriculum can track. A student-native team sees the shift while it is happening, not after a committee reports on it.",
+    a: "Parents complete a short application, review mentorship matching, create a portal password, and finish checkout. A welcome email with login details goes to the parent email. A mentor reaches out after.",
   },
 ];
 

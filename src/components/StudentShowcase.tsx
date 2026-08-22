@@ -26,7 +26,7 @@ export function StudentShowcase() {
             </h2>
           </div>
           <p className={`max-w-md text-base font-medium leading-relaxed text-slate-500 sm:text-lg ${jakartaSans.className}`}>
-            Current college students at schools parents recognize. Tap a profile for background, major, and campus.
+            The college students behind the membership. Tap a profile for campus, major, and background.
           </p>
         </div>
 

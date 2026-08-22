@@ -200,8 +200,8 @@ export function JoinFlow({ initialStep = "application" }: { initialStep?: Step }
                 Join our Community
               </h1>
               <p className={`ss-institutional mt-2 text-sm leading-relaxed text-slate-600 sm:text-base ${institutionalSerif.className}`}>
-                Tell us about your student. Next, you will see how mentorship is matched. Then you complete payment and
-                create their portal login.
+                Private membership for high schoolers, built by college students. Tell us about your student, then create
+                their login and complete checkout.
               </p>
             </div>
 
@@ -284,7 +284,7 @@ export function JoinFlow({ initialStep = "application" }: { initialStep?: Step }
                 id="join-note"
                 rows={3}
                 className={`${fieldClass} min-h-[5.5rem] resize-y`}
-                placeholder="Interests, current courses, or what you want them to get from membership…"
+                placeholder="Interests, courses, or what you want them focused on…"
                 {...appForm.register("backgroundNote")}
               />
             </div>

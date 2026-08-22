@@ -11,7 +11,7 @@ export function EliteGate() {
         This portal is for members
       </h1>
       <p className={`mt-3 max-w-xl text-sm font-medium leading-relaxed text-slate-600 sm:text-base ${jakartaSans.className}`}>
-        A parent registers for StudentStack membership, tied to your student email. Once you have login credentials, sign
+        A parent joins StudentStack membership for their student. Once you have login credentials, sign
         in here to open the gated portal.
       </p>
       <div className="mt-6 flex flex-wrap gap-3">
