@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getSupabaseServerClient, isSupabaseConfigured } from "@/lib/supabase-server";
+import { persistInquiryFallback } from "@/lib/inquiry-fallback";
 
 export const runtime = "nodejs";
 
@@ -30,40 +31,53 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: msg }, { status: 400 });
     }
 
-    if (!isSupabaseConfigured()) {
-      return NextResponse.json(
-        {
-          error:
-            "Contact form is not connected yet. Email advising@studentstack.info and we’ll get back to you.",
-        },
-        { status: 503 }
-      );
-    }
-
     const { name, email, message } = parsed.data;
-    const supabase = getSupabaseServerClient();
+    const normalizedEmail = email.toLowerCase();
 
-    const { error } = await supabase.from("contact_messages").insert({
-      name,
-      email: email.toLowerCase(),
-      message,
-    });
+    if (isSupabaseConfigured()) {
+      const supabase = getSupabaseServerClient();
+      const { error } = await supabase.from("contact_messages").insert({
+        name,
+        email: normalizedEmail,
+        message,
+      });
 
-    if (error) {
-      return NextResponse.json(
-        {
-          error:
-            "Could not send your message right now. Email advising@studentstack.info instead.",
-        },
-        { status: 500 }
-      );
+      if (error) {
+        console.error("[contact] supabase insert failed", error.message);
+        try {
+          await persistInquiryFallback({
+            source: "contact",
+            name,
+            email: normalizedEmail,
+            message,
+            createdAt: new Date().toISOString(),
+          });
+          return NextResponse.json({ ok: true, stored: "fallback" });
+        } catch {
+          return NextResponse.json(
+            {
+              error: "Could not send your message right now. Email advising@studentstack.info instead.",
+            },
+            { status: 500 }
+          );
+        }
+      }
+
+      return NextResponse.json({ ok: true });
     }
 
-    return NextResponse.json({ ok: true });
+    await persistInquiryFallback({
+      source: "contact",
+      name,
+      email: normalizedEmail,
+      message,
+      createdAt: new Date().toISOString(),
+    });
+    return NextResponse.json({ ok: true, stored: "fallback" });
   } catch {
     return NextResponse.json(
       {
-        error: "Something went wrong. Email advising@studentstack.info and we’ll help.",
+        error: "Something went wrong. Email advising@studentstack.info and we will help.",
       },
       { status: 500 }
     );

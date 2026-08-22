@@ -227,7 +227,7 @@ export function RegisterForm({ dark = false }: { dark?: boolean }) {
             : "bg-slate-900 text-white shadow-[0_14px_28px_-18px_rgba(15,23,42,0.5)] hover:bg-slate-800"
         }`}
       >
-        {busy ? "Registering…" : "Register your student"}
+        {busy ? "Joining…" : "Join our Community"}
         {!busy ? <ArrowRight className="h-4 w-4" aria-hidden /> : null}
       </button>
     </form>

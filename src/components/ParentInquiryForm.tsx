@@ -7,8 +7,9 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { jakartaSans } from "@/app/fonts";
 
 type FormData = {
-  name: string;
-  email: string;
+  parentName: string;
+  parentEmail: string;
+  studentName: string;
   inquiry: string;
 };
 
@@ -22,20 +23,27 @@ export function ParentInquiryForm({ dark = false }: { dark?: boolean }) {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    defaultValues: { name: "", email: "", inquiry: "" },
+    defaultValues: { parentName: "", parentEmail: "", studentName: "", inquiry: "" },
   });
 
   const onSubmit = async (data: FormData) => {
     setBusy(true);
     setError(null);
     try {
+      const message = [
+        "WRITE US INQUIRY",
+        `Student: ${data.studentName.trim()}`,
+        "",
+        data.inquiry.trim(),
+      ].join("\n");
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: data.name.trim(),
-          email: data.email.trim(),
-          message: data.inquiry.trim(),
+          name: data.parentName.trim(),
+          email: data.parentEmail.trim(),
+          message,
           audience: "student",
         }),
       });
@@ -78,20 +86,31 @@ export function ParentInquiryForm({ dark = false }: { dark?: boolean }) {
         type="text"
         className={fieldClass}
         placeholder="Your name"
-        {...register("name", { required: "Name is required." })}
+        autoComplete="name"
+        {...register("parentName", { required: "Name is required." })}
       />
-      {errors.name ? <p className={errorClass}>{errors.name.message}</p> : null}
+      {errors.parentName ? <p className={errorClass}>{errors.parentName.message}</p> : null}
 
       <input
         type="email"
         className={fieldClass}
-        placeholder="Email"
-        {...register("email", {
-          required: "Email is required.",
+        placeholder="Parent email"
+        autoComplete="email"
+        {...register("parentEmail", {
+          required: "Parent email is required.",
           pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Enter a valid email." },
         })}
       />
-      {errors.email ? <p className={errorClass}>{errors.email.message}</p> : null}
+      {errors.parentEmail ? <p className={errorClass}>{errors.parentEmail.message}</p> : null}
+
+      <input
+        type="text"
+        className={fieldClass}
+        placeholder="Student name"
+        autoComplete="off"
+        {...register("studentName", { required: "Student name is required." })}
+      />
+      {errors.studentName ? <p className={errorClass}>{errors.studentName.message}</p> : null}
 
       <textarea
         rows={4}

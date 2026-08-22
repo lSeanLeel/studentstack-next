@@ -21,8 +21,8 @@ const FAQ_ITEMS: FaqItem[] = [
     a: "Gated portal access. AI education that tracks what tools are actually in use this semester. Program and deadline recommendations we vet. Courses and credentials we tell them to finish. Nothing is pulled from a public catalog.",
   },
   {
-    q: "How do I register my student?",
-    a: "Parents register at the link on this page. You will need parent contact info and basic student details. Your student does not need to be on the form. After registration, our desk assigns access and sends enrollment details to the parent email.",
+    q: "How do I join?",
+    a: "Parents join from the home page. You will need parent contact info and basic student details. Your student does not need to be on the form. After you join, our desk assigns access and sends enrollment details to the parent email.",
   },
   {
     id: "faq-why-young",

@@ -19,16 +19,16 @@ export default function RegisterPage() {
         <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_24px_48px_-32px_rgba(15,23,42,0.2)] sm:p-9">
           <BrandWordmark />
           <p className={`mt-6 text-[10px] font-black uppercase tracking-[0.22em] text-[#ff6a00] ${jakartaSans.className}`}>
-            Membership registration
+            Community
           </p>
           <h1
             className={`mt-2 text-2xl font-semibold tracking-[-0.03em] text-slate-900 sm:text-3xl ${fredokaHeadline.className}`}
           >
-            Register your student
+            Join our Community
           </h1>
           <p className="mt-3 text-sm font-medium leading-relaxed text-slate-600">
-            A student-led desk at top universities assigns what each member gets inside. Tell us about your student and
-            we will prepare their access path.
+            Parents enroll their student into a community led by college students. Tell us about your student and we
+            will prepare their access path.
           </p>
 
           <div className="mt-8">
@@ -36,7 +36,7 @@ export default function RegisterPage() {
           </div>
 
           <p className="mt-5 text-center text-xs font-medium text-slate-400">
-            Your student does not need to be present for registration.
+            Your student does not need to be present to join.
           </p>
         </div>
       </div>

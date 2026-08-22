@@ -63,7 +63,7 @@ export function Footer() {
               <BrandWordmark />
             </Link>
             <p className={`mt-4 max-w-md text-sm font-medium text-slate-500 ${jakartaSans.className}`}>
-              College guidance from students one step ahead.
+              Student-led membership for college-bound families.
             </p>
           </div>
           <div>

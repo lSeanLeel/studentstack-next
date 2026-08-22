@@ -24,18 +24,18 @@ export default async function RegisterSuccessPage({ searchParams }: Props) {
             </div>
 
             <p className={`text-[10px] font-black uppercase tracking-[0.22em] text-emerald-600 ${jakartaSans.className}`}>
-              Registration complete
+              You are in
             </p>
             <h1
               className={`mt-2 text-2xl font-semibold tracking-[-0.03em] text-slate-900 sm:text-3xl ${fredokaHeadline.className}`}
             >
-              {studentName ? `${studentName} is registered` : "Your student is registered"}
+              {studentName ? `${studentName} joined the community` : "Your student joined the community"}
             </h1>
           </div>
 
           <div className="mt-8 space-y-4 text-sm font-medium leading-relaxed text-slate-600">
             <p>
-              Our campus desk reviews each registration and assigns a member path: portal access, programs we push, and
+              Our campus desk reviews each enrollment and assigns a member path: portal access, programs we push, and
               the work we expect them to complete. Nothing is pulled from a public catalog.
             </p>
             <p>

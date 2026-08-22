@@ -142,7 +142,7 @@ export function HeroSection() {
           transition={{ delay: 0.5, duration: 0.5 }}
           className={`${jakartaSans.className} mx-auto mt-4 max-w-lg text-[0.95rem] font-semibold leading-snug text-slate-600 sm:mt-5 sm:text-lg`}
         >
-          Advice from college students one step ahead. Calibrated for where school and admissions actually are.
+          Parents in our community learn from college students how to keep their high schooler ahead.
         </motion.p>
 
         <motion.div
@@ -156,7 +156,7 @@ export function HeroSection() {
             href="/register"
             className={`${jakartaSans.className} inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-2xl bg-slate-900 px-6 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-white shadow-[0_14px_28px_-18px_rgba(15,23,42,0.5)] transition hover:-translate-y-0.5 hover:bg-slate-800`}
           >
-            Register your student
+            Join our Community
             <ArrowRight className="h-4 w-4" aria-hidden />
           </a>
           <a
