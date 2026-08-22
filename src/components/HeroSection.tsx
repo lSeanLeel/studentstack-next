@@ -153,7 +153,7 @@ export function HeroSection() {
           className="mt-6 flex w-full max-w-xl flex-col items-center gap-3 sm:mt-7"
         >
           <a
-            href="/register"
+            href="/join"
             className={`${jakartaSans.className} inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-2xl bg-slate-900 px-6 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-white shadow-[0_14px_28px_-18px_rgba(15,23,42,0.5)] transition hover:-translate-y-0.5 hover:bg-slate-800`}
           >
             Join our Community

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getServiceSupabase } from "@/lib/portal/entitlements";
+import { provisionEliteStudentLogin } from "@/lib/portal/provision-login";
 import { getStripe, isStripeConfigured } from "@/lib/stripe";
 
 export const runtime = "nodejs";
@@ -35,31 +36,12 @@ async function activateEntitlement(opts: {
   if (!studentEmail) return;
 
   if (opts.status === "active") {
-    const { data: profile } = await supabase
-      .from("profiles")
-      .select("id")
-      .eq("email", studentEmail)
-      .maybeSingle();
-
-    if (profile?.id) {
-      await supabase.from("profiles").upsert({
-        id: profile.id,
-        email: studentEmail,
-        full_name: opts.studentName,
-        membership_tier: "elite",
-        membership_status: "active",
-      });
-    } else {
-      const origin = process.env.NEXT_PUBLIC_SITE_URL?.trim() || "http://localhost:3000";
-      await supabase.auth.admin.inviteUserByEmail(studentEmail, {
-        data: {
-          full_name: opts.studentName,
-          parent_email: parentEmail,
-          product: "studentstack_elite",
-        },
-        redirectTo: `${origin}/login`,
-      });
-    }
+    await provisionEliteStudentLogin({
+      entitlementId: opts.entitlementId,
+      studentEmail,
+      parentEmail,
+      studentName: opts.studentName,
+    });
   }
 
   if (opts.status === "canceled" || opts.status === "past_due") {

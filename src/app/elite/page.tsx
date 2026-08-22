@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-/** Legacy route: parent registration lives at /register */
+/** Legacy Elite purchase path → community join */
 export default function ElitePage() {
-  redirect("/register");
+  redirect("/join");
 }

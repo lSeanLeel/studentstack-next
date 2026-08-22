@@ -22,10 +22,10 @@ export function EliteGate() {
           Student login
         </Link>
         <Link
-          href="/register"
+          href="/join"
           className="inline-flex rounded-2xl border border-slate-200 px-4 py-2.5 text-[11px] font-black uppercase tracking-[0.12em] text-slate-700 hover:border-sky-200 hover:text-sky-700"
         >
-          Register for membership
+          Join our Community
         </Link>
       </div>
     </div>

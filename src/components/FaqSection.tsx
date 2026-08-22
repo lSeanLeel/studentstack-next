@@ -22,7 +22,7 @@ const FAQ_ITEMS: FaqItem[] = [
   },
   {
     q: "How do I join?",
-    a: "Parents join from the home page. You will need parent contact info and basic student details. Your student does not need to be on the form. After you join, our desk assigns access and sends enrollment details to the parent email.",
+    a: "Parents complete a short application, review how mentorship is matched to their student, create a portal password, and finish secure checkout. After payment, a welcome email with login details goes to the parent email, and a mentor reaches out.",
   },
   {
     id: "faq-why-young",

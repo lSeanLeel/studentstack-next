@@ -27,10 +27,10 @@ export default function SignupPage() {
               Student login
             </Link>
             <Link
-              href="/register"
+              href="/join"
               className="inline-flex items-center justify-center rounded-2xl border border-slate-200 px-6 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-slate-700 transition hover:border-sky-200 hover:text-sky-700"
             >
-              Register for membership
+              Join our Community
             </Link>
           </div>
         </div>
