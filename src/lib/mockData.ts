@@ -18,28 +18,28 @@ export const MENTORS: Mentor[] = [
   },
   {
     id: 2,
-    name: "Daniel Zhang",
-    university: "MIT",
+    name: "Terry Wang",
+    university: "UC Davis",
     classYear: "'27",
-    major: "Electrical Engineering and CS",
-    bio: "I've always been fascinated by things that move. Whether it's designing combat robots or working on advanced biomechatronics at MIT, I thrive in the lab.",
+    major: "Computer Science",
+    bio: "I'm a CS student at UC Davis with prior experience as a Product Manager at Apple. I help high schoolers turn technical curiosity into real projects.",
     accomplishments: [
-      "Hardware Engineer at Boston Dynamics",
-      "Researcher at MIT Media Lab",
-      "2025 Battlebots World Champion"
+      "Product Manager at Apple",
+      "Shipped consumer product features used by millions",
+      "UC Davis CS peer mentor"
     ],
-    initials: "DZ",
+    initials: "TW",
     status: 'online'
   },
   {
     id: 3,
     name: "Aditya Deshpandhi",
-    university: "Harvard",
+    university: "Berkeley",
     classYear: "'28",
     major: "Premed and Neuroscience",
-    bio: "I'm driven by a desire to understand the human brain and improve lives through medicine. My research at Mass General focuses on neuro-geriatrics.",
+    bio: "I'm driven by a desire to understand the human brain and improve lives through medicine. My research at UCSF focuses on neuro-geriatrics.",
     accomplishments: [
-      "Research Fellow at Mass General Hospital",
+      "Research Fellow at UCSF",
       "Co-author in Journal of Neuroscience",
       "Coca-Cola Scholar"
     ],
@@ -139,13 +139,13 @@ export const MENTORS: Mentor[] = [
   {
     id: 10,
     name: "Nick Pavlosky",
-    university: "Caltech",
+    university: "Columbia",
     classYear: "'28",
     major: "Physics and Machine Learning",
     bio: "I'm driven by a curiosity about the fundamental laws of nature. From studying particle physics at CERN to exploring the potential of AI.",
     accomplishments: [
       "Researcher at CERN (ATLAS Experiment)",
-      "President of Caltech AI Society",
+      "President of Columbia AI Society",
       "IOAA Gold Medalist"
     ],
     initials: "NP",
@@ -154,7 +154,7 @@ export const MENTORS: Mentor[] = [
   {
     id: 11,
     name: "Derek Wang",
-    university: "UC Berkeley",
+    university: "Berkeley",
     classYear: "'28",
     major: "EECS",
     bio: "I love building tools that empower people. My background in AI and software engineering has led me to create applications that help thousands of students.",

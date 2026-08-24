@@ -77,7 +77,7 @@ function StudentDetailModal({ student, onDeselect }: { student: Student | null; 
             studentName={student.name} 
             initials={student.initials}
             defaultSrc={student.photo}
-            className={`absolute inset-0 h-full w-full object-cover transition-transform duration-1000 ${student.name === "Daniel Zhang" ? "scale-[1.15] origin-top-left hover:scale-[1.25]" : "object-[center_15%] scale-[1.05] hover:scale-110"}`}
+            className={`absolute inset-0 h-full w-full object-cover transition-transform duration-1000 object-[center_15%] scale-[1.05] hover:scale-110`}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent md:bg-gradient-to-r" />
         </div>

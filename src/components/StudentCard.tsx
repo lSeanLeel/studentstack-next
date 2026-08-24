@@ -27,7 +27,7 @@ export const StudentCard = React.memo(({
             studentName={student.name}
             initials={student.initials}
             defaultSrc={student.photo}
-            className={`h-full w-full object-cover object-top transition-transform duration-700 ${student.name === "Daniel Zhang" ? "scale-[1.15] origin-top-left group-hover:scale-[1.25]" : "group-hover:scale-110"}`}
+            className={`h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-110`}
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-slate-100 text-xl sm:text-4xl font-black text-slate-300 font-display">
