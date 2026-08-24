@@ -10,10 +10,7 @@ const featuredColleges = [
   { name: "Princeton", color: "#E77500", logo: "/colleges/princeton.png", showName: true },
   { name: "Columbia", color: "#003DA5", logo: "/colleges/columbia.png", showName: true },
   { name: "Stanford", color: "#8C1515", logo: "/colleges/stanford.png", showName: true },
-  { name: "Caltech", color: "#FF6C0C", logo: "/colleges/caltech.png", showName: true },
   { name: "Berkeley", color: "#003262", logo: "/colleges/berkeley.png", showName: true },
-  { name: "Harvard", color: "#A51C30", logo: "/colleges/harvard.png", showName: true },
-  { name: "Yale", color: "#00356B", logo: "/colleges/yale.png", showName: true },
 ] as const;
 
 function preloadCollegeLogos() {
