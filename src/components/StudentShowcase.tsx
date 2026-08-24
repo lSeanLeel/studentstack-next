@@ -25,9 +25,6 @@ export function StudentShowcase() {
               Meet the <span className="text-sky-500">team</span>
             </h2>
           </div>
-          <p className={`max-w-md text-base font-medium leading-relaxed text-slate-500 sm:text-lg ${jakartaSans.className}`}>
-            The college students behind the membership. Tap a profile for campus, major, and background.
-          </p>
         </div>
 
         <div className="grid grid-cols-4 gap-2 sm:gap-4 md:gap-8">
