@@ -36,8 +36,9 @@ export function TestimonialSection() {
             </div>
             <p className={`max-w-2xl text-xl font-medium leading-[1.35] tracking-tight text-slate-100 sm:text-3xl ${jakartaSans.className}`}>
               <span className={`${fredokaHeadline.className} mr-1 text-3xl text-sky-300 sm:text-5xl`}>&ldquo;</span>
-              Parents found our free AI notes and admissions masterminds first. Then they asked how to get their kid
-              inside the same loop. That is still how most families land here.
+              I founded StudentStack because I saw the disparity between students who use AI for school and those who
+              don&apos;t. As college students, we&apos;re native to AI and we hear and use new tech every day, using
+              this information to help build StudentStack, and bridge this gap.
               <span className={`${fredokaHeadline.className} ml-1 text-3xl text-sky-300 sm:text-5xl`}>&rdquo;</span>
             </p>
           </div>
