@@ -8,8 +8,10 @@ import { fredokaHeadline, jakartaSans, institutionalSerif } from "@/app/fonts";
 import { INTENDED_MAJORS, STUDENT_GRADES, type IntendedMajor, type StudentGrade } from "@/lib/portal/certifications";
 import {
   JOIN_SESSION_KEY,
+  isValidEmail,
+  joinApplicationSchema,
   mentorReachOutCopy,
-  studentDisplayName,
+  studentFirstNameOnly,
   type JoinApplication,
 } from "@/lib/join/types";
 
@@ -38,13 +40,27 @@ const fieldClass =
 const labelClass = "mb-1.5 block text-[10px] font-black uppercase tracking-[0.14em] text-slate-500";
 const errorClass = "mt-1 text-xs font-medium text-rose-600";
 
+const EMAIL_RULE = {
+  required: "Email is required.",
+  pattern: {
+    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    message: "Enter a valid email.",
+  },
+} as const;
+
 function loadApplication(): JoinApplication | null {
   if (typeof window === "undefined") return null;
   try {
     const raw = sessionStorage.getItem(JOIN_SESSION_KEY);
     if (!raw) return null;
-    return JSON.parse(raw) as JoinApplication;
+    const parsed = joinApplicationSchema.safeParse(JSON.parse(raw));
+    if (!parsed.success) {
+      sessionStorage.removeItem(JOIN_SESSION_KEY);
+      return null;
+    }
+    return parsed.data;
   } catch {
+    sessionStorage.removeItem(JOIN_SESSION_KEY);
     return null;
   }
 }
@@ -54,20 +70,26 @@ function saveApplication(app: JoinApplication) {
 }
 
 export function JoinFlow({ initialStep = "application" }: { initialStep?: Step }) {
-  const [step, setStep] = useState<Step>(initialStep);
+  const [step, setStep] = useState<Step>("application");
   const [application, setApplication] = useState<JoinApplication | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const stored = loadApplication();
-    if (stored) {
-      setApplication(stored);
-      if (initialStep === "payment" || initialStep === "mentor") setStep(initialStep);
+    if (!stored) {
+      setStep("application");
+      return;
+    }
+    setApplication(stored);
+    if (initialStep === "payment" || initialStep === "mentor") {
+      setStep(initialStep);
     }
   }, [initialStep]);
 
   const appForm = useForm<ApplicationForm>({
+    mode: "onBlur",
+    reValidateMode: "onChange",
     defaultValues: {
       parentFullName: "",
       parentEmail: "",
@@ -83,6 +105,7 @@ export function JoinFlow({ initialStep = "application" }: { initialStep?: Step }
   });
 
   const payForm = useForm<PaymentForm>({
+    mode: "onBlur",
     defaultValues: { password: "", confirmPassword: "" },
   });
 
@@ -93,7 +116,7 @@ export function JoinFlow({ initialStep = "application" }: { initialStep?: Step }
       parentEmail: application.parentEmail,
       parentPhone: application.parentPhone || "",
       studentFirstName: application.studentFirstName,
-      studentLastName: application.studentLastName,
+      studentLastName: application.studentLastName || "",
       studentEmail: application.studentEmail,
       studentGrade: application.studentGrade,
       studentSchool: application.studentSchool || "",
@@ -107,26 +130,56 @@ export function JoinFlow({ initialStep = "application" }: { initialStep?: Step }
     [application]
   );
 
-  const onApplication = appForm.handleSubmit((data) => {
-    setError(null);
-    if (data.parentEmail.trim().toLowerCase() === data.studentEmail.trim().toLowerCase()) {
-      setError("Student email (login) must differ from parent email.");
+  const goToPayment = () => {
+    if (!application || !isValidEmail(application.studentEmail)) {
+      setError("Enter a valid student email. That email is their portal username.");
+      setStep("application");
       return;
     }
+    setError(null);
+    setStep("payment");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const onApplication = appForm.handleSubmit((data) => {
+    setError(null);
+    const parentEmail = data.parentEmail.trim().toLowerCase();
+    const studentEmail = data.studentEmail.trim().toLowerCase();
+
+    if (!isValidEmail(parentEmail)) {
+      appForm.setError("parentEmail", { message: "Enter a valid parent email." });
+      return;
+    }
+    if (!isValidEmail(studentEmail)) {
+      appForm.setError("studentEmail", { message: "Enter a valid student email. This is their username." });
+      return;
+    }
+    if (parentEmail === studentEmail) {
+      setError("Student email (username) must be different from the parent billing email.");
+      return;
+    }
+
     const payload: JoinApplication = {
       parentFullName: data.parentFullName.trim(),
-      parentEmail: data.parentEmail.trim().toLowerCase(),
+      parentEmail,
       parentPhone: data.parentPhone.trim() || undefined,
       studentFirstName: data.studentFirstName.trim(),
-      studentLastName: data.studentLastName.trim(),
-      studentEmail: data.studentEmail.trim().toLowerCase(),
+      studentLastName: data.studentLastName.trim() || undefined,
+      studentEmail,
       studentGrade: data.studentGrade as StudentGrade,
       studentSchool: data.studentSchool.trim() || undefined,
       intendedMajor: (data.intendedMajor || undefined) as IntendedMajor | undefined,
       backgroundNote: data.backgroundNote.trim() || undefined,
     };
-    saveApplication(payload);
-    setApplication(payload);
+
+    const checked = joinApplicationSchema.safeParse(payload);
+    if (!checked.success) {
+      setError(checked.error.issues[0]?.message ?? "Check the highlighted fields.");
+      return;
+    }
+
+    saveApplication(checked.data);
+    setApplication(checked.data);
     setStep("mentor");
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
@@ -134,6 +187,11 @@ export function JoinFlow({ initialStep = "application" }: { initialStep?: Step }
   const onPayment = payForm.handleSubmit(async (data) => {
     if (!application) {
       setError("Complete the application first.");
+      setStep("application");
+      return;
+    }
+    if (!isValidEmail(application.studentEmail)) {
+      setError("Enter a valid student email. That email is their portal username.");
       setStep("application");
       return;
     }
@@ -151,7 +209,11 @@ export function JoinFlow({ initialStep = "application" }: { initialStep?: Step }
       });
       const json = (await res.json().catch(() => ({}))) as { url?: string; error?: string };
       if (!res.ok || !json.url) {
-        setError(json.error ?? `Could not start payment (${res.status}).`);
+        const msg = json.error ?? `Could not start payment (${res.status}).`;
+        setError(msg);
+        if (/student email/i.test(msg)) {
+          setStep("application");
+        }
         return;
       }
       window.location.href = json.url;
@@ -163,25 +225,33 @@ export function JoinFlow({ initialStep = "application" }: { initialStep?: Step }
   });
 
   const stepIndex = step === "application" ? 0 : step === "mentor" ? 1 : 2;
+  const firstName = application ? studentFirstNameOnly(application) : "";
 
   return (
     <div className={`${jakartaSans.className}`}>
       <ol className="mb-8 flex items-center justify-center gap-2 sm:gap-3" aria-label="Join steps">
-        {["Application", "Mentor", "Payment"].map((label, i) => (
-          <li key={label} className="flex items-center gap-2 sm:gap-3">
-            <span
-              className={`inline-flex h-7 min-w-7 items-center justify-center rounded-full px-2 text-[10px] font-black uppercase tracking-[0.12em] ${
-                i <= stepIndex ? "bg-slate-900 text-white" : "bg-slate-100 text-slate-400"
-              }`}
-            >
-              {i + 1}
-            </span>
-            <span className={`hidden text-[10px] font-black uppercase tracking-[0.14em] sm:inline ${i <= stepIndex ? "text-slate-800" : "text-slate-400"}`}>
-              {label}
-            </span>
-            {i < 2 ? <span className="hidden h-px w-6 bg-slate-200 sm:block" aria-hidden /> : null}
-          </li>
-        ))}
+        {(["Application", "Mentor", "Payment"] as const).map((label, i) => {
+          const active = i === stepIndex;
+          const done = i < stepIndex;
+          return (
+            <li key={label} className="flex items-center gap-2 sm:gap-3">
+              <span
+                className={`inline-flex h-7 min-w-7 items-center justify-center rounded-full px-2 text-[10px] font-black uppercase tracking-[0.12em] ${
+                  active || done ? "bg-slate-900 text-white" : "bg-slate-100 text-slate-400"
+                }`}
+                aria-current={active ? "step" : undefined}
+              >
+                {i + 1}
+              </span>
+              {active ? (
+                <span className="text-[10px] font-black uppercase tracking-[0.14em] text-slate-800">
+                  {label}
+                </span>
+              ) : null}
+              {i < 2 ? <span className="h-px w-5 bg-slate-200 sm:w-6" aria-hidden /> : null}
+            </li>
+          );
+        })}
       </ol>
 
       <AnimatePresence mode="wait">
@@ -200,21 +270,29 @@ export function JoinFlow({ initialStep = "application" }: { initialStep?: Step }
                 Join our Community
               </h1>
               <p className={`ss-institutional mt-2 text-sm leading-relaxed text-slate-600 sm:text-base ${institutionalSerif.className}`}>
-                Private membership for high schoolers, built by college students. Tell us about your student, then create
-                their login and complete checkout.
+                Private membership for high schoolers, built by college students. Tell us about your student&apos;s
+                background and we will match them with the mentor who fits best.
               </p>
             </div>
 
             <div>
               <label className={labelClass} htmlFor="join-parent-name">Parent full name</label>
-              <input id="join-parent-name" className={fieldClass} {...appForm.register("parentFullName", { required: "Required." })} />
+              <input id="join-parent-name" className={fieldClass} {...appForm.register("parentFullName", { required: "Parent name is required." })} />
               {appForm.formState.errors.parentFullName ? <p className={errorClass}>{appForm.formState.errors.parentFullName.message}</p> : null}
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label className={labelClass} htmlFor="join-parent-email">Parent email</label>
-                <input id="join-parent-email" type="email" className={fieldClass} {...appForm.register("parentEmail", { required: "Required." })} />
+                <input
+                  id="join-parent-email"
+                  type="email"
+                  inputMode="email"
+                  autoComplete="email"
+                  className={fieldClass}
+                  placeholder="parent@email.com"
+                  {...appForm.register("parentEmail", EMAIL_RULE)}
+                />
                 {appForm.formState.errors.parentEmail ? <p className={errorClass}>{appForm.formState.errors.parentEmail.message}</p> : null}
               </div>
               <div>
@@ -228,27 +306,49 @@ export function JoinFlow({ initialStep = "application" }: { initialStep?: Step }
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label className={labelClass} htmlFor="join-student-first">Student first name</label>
-                <input id="join-student-first" className={fieldClass} {...appForm.register("studentFirstName", { required: "Required." })} />
+                <input
+                  id="join-student-first"
+                  className={fieldClass}
+                  placeholder="Jordan"
+                  {...appForm.register("studentFirstName", { required: "Student first name is required." })}
+                />
                 {appForm.formState.errors.studentFirstName ? <p className={errorClass}>{appForm.formState.errors.studentFirstName.message}</p> : null}
               </div>
               <div>
-                <label className={labelClass} htmlFor="join-student-last">Student last name</label>
-                <input id="join-student-last" className={fieldClass} {...appForm.register("studentLastName", { required: "Required." })} />
-                {appForm.formState.errors.studentLastName ? <p className={errorClass}>{appForm.formState.errors.studentLastName.message}</p> : null}
+                <label className={labelClass} htmlFor="join-student-last">
+                  Student last name <span className="normal-case tracking-normal opacity-70">(optional)</span>
+                </label>
+                <input id="join-student-last" className={fieldClass} {...appForm.register("studentLastName")} />
               </div>
             </div>
 
             <div>
-              <label className={labelClass} htmlFor="join-student-email">Student email (portal username)</label>
-              <input id="join-student-email" type="email" className={fieldClass} {...appForm.register("studentEmail", { required: "Required." })} />
-              <p className="mt-1.5 text-xs font-medium text-slate-500">This becomes their StudentStack login.</p>
+              <label className={labelClass} htmlFor="join-student-email">Student email (username)</label>
+              <input
+                id="join-student-email"
+                type="email"
+                inputMode="email"
+                autoComplete="off"
+                className={fieldClass}
+                placeholder="student@email.com"
+                {...appForm.register("studentEmail", {
+                  required: "Student email is required.",
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: "Enter a valid student email. This is their username.",
+                  },
+                })}
+              />
+              <p className="mt-1.5 text-xs font-medium text-slate-500">
+                Must be a real email address. This is their StudentStack username.
+              </p>
               {appForm.formState.errors.studentEmail ? <p className={errorClass}>{appForm.formState.errors.studentEmail.message}</p> : null}
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label className={labelClass} htmlFor="join-grade">Student grade</label>
-                <select id="join-grade" className={fieldClass} {...appForm.register("studentGrade", { required: "Select grade." })}>
+                <select id="join-grade" className={fieldClass} {...appForm.register("studentGrade", { required: "Select a grade." })}>
                   <option value="">Select grade</option>
                   {STUDENT_GRADES.map((g) => (
                     <option key={g} value={g}>{g}</option>
@@ -333,11 +433,7 @@ export function JoinFlow({ initialStep = "application" }: { initialStep?: Step }
               </button>
               <button
                 type="button"
-                onClick={() => {
-                  setError(null);
-                  setStep("payment");
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                }}
+                onClick={goToPayment}
                 className="inline-flex flex-1 items-center justify-center gap-2 rounded-2xl bg-slate-900 px-6 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-slate-800"
               >
                 Continue to payment
@@ -362,8 +458,9 @@ export function JoinFlow({ initialStep = "application" }: { initialStep?: Step }
                 Create login and pay
               </h1>
               <p className={`ss-institutional mt-2 text-sm leading-relaxed text-slate-600 ${institutionalSerif.className}`}>
-                Set {studentDisplayName(application)}&apos;s portal password, then complete secure checkout. After payment,
-                we email credentials to {application.parentEmail}.
+                Set {firstName}&apos;s portal password, then complete secure checkout. After payment, we email login
+                details to {application.parentEmail}, and {firstName}&apos;s mentor emails them at{" "}
+                {application.studentEmail}.
               </p>
             </div>
 
@@ -433,6 +530,7 @@ export function JoinSuccessPanel({
   studentName?: string;
   parentEmail?: string;
 }) {
+  const first = studentName?.trim().split(/\s+/)[0];
   return (
     <div className={`text-center ${jakartaSans.className}`}>
       <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-[1.25rem] bg-emerald-50 text-emerald-600">
@@ -440,10 +538,10 @@ export function JoinSuccessPanel({
       </div>
       <p className="text-[10px] font-black uppercase tracking-[0.22em] text-emerald-600">Payment confirmed</p>
       <h1 className={`mt-2 text-2xl font-semibold tracking-[-0.03em] text-slate-900 sm:text-3xl ${fredokaHeadline.className}`}>
-        {studentName ? `${studentName} is in` : "Welcome to the community"}
+        {first ? `${first} is in` : "Welcome to the community"}
       </h1>
       <p className={`ss-institutional mx-auto mt-4 max-w-md text-sm leading-relaxed text-slate-600 sm:text-base ${institutionalSerif.className}`}>
-        Portal access is active. A mentor matched to your student&apos;s background will reach out next.
+        Portal access is active. {first ? `${first}'s` : "Your student's"} matched mentor will email them next.
         {parentEmail ? (
           <>
             {" "}

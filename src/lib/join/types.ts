@@ -6,7 +6,7 @@ export const joinApplicationSchema = z.object({
   parentEmail: z.string().trim().email("Enter a valid parent email.").max(254),
   parentPhone: z.string().trim().max(30).optional(),
   studentFirstName: z.string().trim().min(1, "Student first name is required.").max(60),
-  studentLastName: z.string().trim().min(1, "Student last name is required.").max(60),
+  studentLastName: z.string().trim().max(60).optional(),
   studentEmail: z.string().trim().email("Enter a valid student email.").max(254),
   studentGrade: z.enum(STUDENT_GRADES),
   studentSchool: z.string().trim().max(120).optional(),
@@ -16,15 +16,26 @@ export const joinApplicationSchema = z.object({
 
 export type JoinApplication = z.infer<typeof joinApplicationSchema>;
 
-export const JOIN_SESSION_KEY = "ss_join_application_v1";
+export const JOIN_SESSION_KEY = "ss_join_application_v2";
 
-export function studentDisplayName(app: Pick<JoinApplication, "studentFirstName" | "studentLastName">) {
-  return `${app.studentFirstName} ${app.studentLastName}`.trim();
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export function isValidEmail(value: string) {
+  return emailPattern.test(value.trim());
 }
 
-/** Mentor-match copy tailored to grade / intended path (no em dash). */
+/** Prefer first name for parent-facing copy. */
+export function studentFirstNameOnly(app: Pick<JoinApplication, "studentFirstName">) {
+  return app.studentFirstName.trim();
+}
+
+export function studentDisplayName(app: Pick<JoinApplication, "studentFirstName" | "studentLastName">) {
+  return [app.studentFirstName, app.studentLastName].filter(Boolean).join(" ").trim();
+}
+
+/** Mentor-match copy: matched mentor emails the student. Built around first name. */
 export function mentorReachOutCopy(app: JoinApplication) {
-  const name = studentDisplayName(app);
+  const first = studentFirstNameOnly(app);
   const major = app.intendedMajor && app.intendedMajor !== "Undecided" ? app.intendedMajor : null;
   const grade = app.studentGrade;
 
@@ -42,10 +53,10 @@ export function mentorReachOutCopy(app: JoinApplication) {
   }
 
   return {
-    headline: `A mentor will reach out for ${name}`,
-    body: `After enrollment, a StudentStack mentor matched to ${name}'s ${grade} background${
+    headline: `${first}'s mentor will email them`,
+    body: `After enrollment, we match ${first} with a StudentStack mentor for their ${grade} background${
       major ? ` and interest in ${major}` : ""
-    } will follow up. That conversation is tailored to ${focus}.`,
-    aside: "You complete payment next. Mentorship outreach starts after your membership is confirmed.",
+    }. That mentor emails ${first} directly at ${app.studentEmail}. The note is tailored to ${focus}.`,
+    aside: "You finish payment next. The mentor email goes out after membership is confirmed.",
   };
 }

@@ -14,17 +14,15 @@ export function StudentShowcase() {
   return (
     <section id="mentors" className="overflow-hidden bg-transparent py-16 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-10 flex flex-col justify-between gap-5 sm:mb-16 sm:gap-8 md:mb-20 md:flex-row md:items-end">
-          <div>
-            <p className={`text-[11px] font-medium leading-snug tracking-wide text-slate-500 sm:text-xs ${jakartaSans.className}`}>
-              The <span className="font-bold text-sky-600">Student</span>s behind StudentStack
-            </p>
-            <h2
-              className={`mt-2 text-4xl font-semibold leading-[0.95] tracking-[-0.03em] text-slate-900 sm:text-6xl lg:text-7xl ${fredokaHeadline.className}`}
-            >
-              Meet the <span className="text-sky-500">team</span>
-            </h2>
-          </div>
+        <div className="mb-10 sm:mb-16 md:mb-20">
+          <p className={`text-[11px] font-medium leading-snug tracking-wide text-slate-500 sm:text-xs ${jakartaSans.className}`}>
+            The <span className="font-bold text-sky-600">Student</span>s behind StudentStack
+          </p>
+          <h2
+            className={`mt-2 text-4xl font-semibold leading-[0.95] tracking-[-0.03em] text-slate-900 sm:text-6xl lg:text-7xl ${fredokaHeadline.className}`}
+          >
+            Meet the <span className="text-sky-500">team</span>
+          </h2>
         </div>
 
         <div className="grid grid-cols-4 gap-2 sm:gap-4 md:gap-8">
