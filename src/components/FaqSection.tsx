@@ -10,7 +10,11 @@ type FaqItem = { id?: string; q: string; a: ReactNode };
 const FAQ_ITEMS: FaqItem[] = [
   {
     q: "What is StudentStack?",
-    a: "A private membership for high school students, built by college students. We began with free AI literacy for school and parent admissions masterminds. Membership is how families put their student inside that work.",
+    a: "A private membership for high school students, built by college students. Our main angle is AI for school: literacy and judgment so students use AI to learn harder, not to skip the work. High school advice and resources ride alongside that.",
+  },
+  {
+    q: 'What does "AI for school" mean here?',
+    a: "Prompts, workflows, and habits for classes, studying, writing, and planning that keep the student in charge. We teach how college students actually use AI without outsourcing thinking or integrity.",
   },
   {
     q: "Who runs this?",
@@ -18,11 +22,11 @@ const FAQ_ITEMS: FaqItem[] = [
   },
   {
     q: "How is this different from tutors or admissions counselors?",
-    a: "We are still in the classrooms and admissions cycles that shape what high schoolers need now. That is closer to the signal than last year's tutoring or counseling playbook.",
+    a: "We are still in the classrooms and admissions cycles that shape what high schoolers need now. The core product is AI literacy for school, with high school guidance from peers ahead of your student, not a recycled counseling playbook.",
   },
   {
     q: "What do members get?",
-    a: "Gated access run by our student team. What lives inside is for members. We stay light on public catalogs on purpose.",
+    a: "A gated student portal: AI toolkit and certifications, plus opportunity vault and high school resources. Inside, progress feels gamified so literacy and advice reinforce each other. We stay light on public catalogs on purpose.",
   },
   {
     q: "How do I join?",
@@ -73,7 +77,7 @@ export function FaqSection() {
           id="faq-heading" initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className={`text-[2rem] font-semibold tracking-[-0.035em] text-slate-900 sm:text-4xl ${fredokaHeadline.className}`}
         >
-          Questions <span className="text-sky-500">parents</span> ask
+          Questions <span className="text-sky-500">parents</span> ask us
         </motion.h2>
         <div className="mt-8 rounded-[1.75rem] border border-slate-100 bg-[#f8fafc] px-5 sm:px-7">
           {mounted

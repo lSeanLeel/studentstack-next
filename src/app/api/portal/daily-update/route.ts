@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { getPortalAccess } from "@/lib/portal/entitlements";
+import { hasDemoPortalSession } from "@/lib/portal/session";
 import {
   buildFallbackPortalUpdate,
   formatPortalDateKey,
@@ -24,23 +25,44 @@ function cacheKey(userId: string, dateKey: string) {
 
 const memoryCache = new Map<string, PortalDailyUpdate>();
 
+async function resolvePortalUserId(): Promise<{ userId: string } | { error: NextResponse }> {
+  if (await hasDemoPortalSession()) {
+    return { userId: "demo-test" };
+  }
+
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || "";
+  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+  if (!url || !anon) {
+    return { error: NextResponse.json({ error: "Unauthorized" }, { status: 401 }) };
+  }
+
+  try {
+    const supabase = await createSupabaseServerClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      return { error: NextResponse.json({ error: "Unauthorized" }, { status: 401 }) };
+    }
+
+    const { canAccessPortal } = await getPortalAccess(user.id);
+    if (!canAccessPortal) {
+      return { error: NextResponse.json({ error: "Elite access required" }, { status: 403 }) };
+    }
+
+    return { userId: user.id };
+  } catch {
+    return { error: NextResponse.json({ error: "Unauthorized" }, { status: 401 }) };
+  }
+}
+
 export async function GET() {
-  const supabase = await createSupabaseServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  const { canAccessPortal } = await getPortalAccess(user.id);
-  if (!canAccessPortal) {
-    return NextResponse.json({ error: "Elite access required" }, { status: 403 });
-  }
+  const auth = await resolvePortalUserId();
+  if ("error" in auth) return auth.error;
 
   const dateKey = formatPortalDateKey();
-  const cached = memoryCache.get(cacheKey(user.id, dateKey));
+  const cached = memoryCache.get(cacheKey(auth.userId, dateKey));
   return NextResponse.json({
     update: cached ?? buildFallbackPortalUpdate(dateKey),
     cached: Boolean(cached),
@@ -48,23 +70,12 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const supabase = await createSupabaseServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  const { canAccessPortal } = await getPortalAccess(user.id);
-  if (!canAccessPortal) {
-    return NextResponse.json({ error: "Elite access required" }, { status: 403 });
-  }
+  const auth = await resolvePortalUserId();
+  if ("error" in auth) return auth.error;
 
   const body = (await request.json().catch(() => ({}))) as Body;
   const dateKey = formatPortalDateKey();
-  const key = cacheKey(user.id, dateKey);
+  const key = cacheKey(auth.userId, dateKey);
   const existing = memoryCache.get(key);
 
   if (!body.refresh && existing) {
@@ -74,7 +85,7 @@ export async function POST(request: Request) {
   const studentPrompt =
     typeof body.prompt === "string" && body.prompt.trim()
       ? body.prompt.trim().slice(0, 600)
-      : "Give me today's Elite portal briefing focused on college applications, AI toolkit practice, vault deadlines, and certification progress.";
+      : "Give me today's StudentStack portal briefing focused on AI for school, high school advice, vault deadlines, and certification progress.";
 
   const apiKey = process.env.ANTHROPIC_API_KEY?.trim();
   if (!apiKey) {
@@ -83,7 +94,7 @@ export async function POST(request: Request) {
     return NextResponse.json({
       update: fallback,
       cached: false,
-      warning: "AI key not configured. Showing curated Elite briefing.",
+      warning: "AI key not configured. Showing curated member briefing.",
     });
   }
 
@@ -100,9 +111,9 @@ export async function POST(request: Request) {
         max_tokens: 1200,
         temperature: 0.4,
         system: [
-          "You write daily updates for StudentStack Elite, a paid high-school student portal.",
+          "You write daily updates for StudentStack, a private high-school membership portal.",
           "Return ONLY valid JSON with keys: headline, briefing, toolkitTip, vaultHighlight, certificationNudge, applicationMoves (array of 3 short strings).",
-          "Tone: practical, college-admissions aware, student-led. No em dashes. No pricing talk.",
+          "Tone: practical, AI-for-school literacy first, high school advice second. No em dashes. No pricing talk.",
           "Certifications available: SS-AIS (AI Safety & Academic Integrity) and SS-ACR (AI for College Readiness).",
           "Vault covers summer programs, research, and competitive deadlines.",
         ].join(" "),

@@ -137,9 +137,9 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
-          className={`${jakartaSans.className} mx-auto mt-4 max-w-lg text-[0.95rem] font-semibold leading-snug text-slate-600 sm:mt-5 sm:text-lg`}
+          className={`${jakartaSans.className} mx-auto mt-4 max-w-xl text-[0.95rem] font-semibold leading-snug text-slate-600 sm:mt-5 sm:text-lg`}
         >
-          Private membership for high schoolers. Built by college students who still sit in the classrooms that matter.
+          AI for school, taught the right way. Private membership for high schoolers, built by college students who still sit in the classrooms that matter.
         </motion.p>
 
         <motion.div
@@ -160,7 +160,7 @@ export function HeroSection() {
             href="#faq"
             className={`${jakartaSans.className} text-[12px] font-bold text-slate-500 underline decoration-sky-300/80 underline-offset-[0.18em] transition-colors hover:text-sky-700 sm:text-[13px]`}
           >
-            Questions parents ask
+            Questions parents ask us
           </a>
         </motion.div>
       </div>

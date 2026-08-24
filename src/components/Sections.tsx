@@ -64,7 +64,7 @@ export function Footer() {
               <BrandWordmark />
             </Link>
             <p className={`mt-4 max-w-md text-sm font-medium text-slate-500 ${jakartaSans.className}`}>
-              Private membership for high schoolers. Built by college students.
+              AI for school, taught by college students. Private membership for high schoolers.
             </p>
           </div>
           <div>
