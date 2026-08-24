@@ -2,7 +2,7 @@ import { promises as fs } from "fs";
 import path from "path";
 
 export type InquiryRecord = {
-  source: "contact" | "membership-register";
+  source: "contact" | "membership-register" | "portal-message-team";
   name: string;
   email: string;
   message: string;

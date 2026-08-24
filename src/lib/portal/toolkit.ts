@@ -25,8 +25,8 @@ export type ToolkitCategory = {
 };
 
 /**
- * Elite AI Toolkit — tools we use and how we use them.
- * Designed to stay current via the portal AI daily desk.
+ * AI Toolkit — tools we use and how we use them for school.
+ * Presented as a team-maintained surface for monthly members (see toolkit-maintenance).
  */
 export const ELITE_TOOLKIT_CATEGORIES: ToolkitCategory[] = [
   {
