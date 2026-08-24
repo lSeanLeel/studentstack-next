@@ -157,10 +157,10 @@ export function HeroSection() {
             <ArrowRight className="h-4 w-4" aria-hidden />
           </a>
           <a
-            href="#membership"
+            href="#faq"
             className={`${jakartaSans.className} text-[12px] font-bold text-slate-500 underline decoration-sky-300/80 underline-offset-[0.18em] transition-colors hover:text-sky-700 sm:text-[13px]`}
           >
-            Why families join
+            Questions parents ask
           </a>
         </motion.div>
       </div>
