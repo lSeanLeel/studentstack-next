@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { fredokaHeadline, jakartaSans, institutionalSerif } from "@/app/fonts";
+import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { BrandWordmark } from "@/components/BrandWordmark";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 
@@ -75,10 +75,6 @@ export function LoginForm() {
           <h1 className={`text-2xl font-semibold tracking-[-0.03em] text-slate-900 ${fredokaHeadline.className}`}>
             Student login
           </h1>
-          <p className={`ss-institutional mt-2 text-[0.95rem] leading-relaxed text-slate-600 ${institutionalSerif.className}`}>
-            Members sign in to the portal for AI-for-school literacy and high school resources. Parents join from the
-            home page.
-          </p>
 
           <form onSubmit={onSubmit} className="mt-6 space-y-4" noValidate>
             <div>

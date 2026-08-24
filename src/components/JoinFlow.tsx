@@ -270,8 +270,8 @@ export function JoinFlow({ initialStep = "application" }: { initialStep?: Step }
                 Join our Community
               </h1>
               <p className={`ss-institutional mt-2 text-sm leading-relaxed text-slate-600 sm:text-base ${institutionalSerif.className}`}>
-                Private membership for high schoolers, built by college students. Tell us about your student&apos;s
-                background and we will match them with the mentor who fits best.
+                Private membership for high schoolers, built by college students. We help your student with modern,
+                practical advice for school and what comes next.
               </p>
             </div>
 
@@ -384,7 +384,7 @@ export function JoinFlow({ initialStep = "application" }: { initialStep?: Step }
                 id="join-note"
                 rows={3}
                 className={`${fieldClass} min-h-[5.5rem] resize-y`}
-                placeholder="Interests, courses, or what you want them focused on…"
+                placeholder="Courses, extracurriculars, sports, summer programs, research interests…"
                 {...appForm.register("backgroundNote")}
               />
             </div>
