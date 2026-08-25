@@ -38,7 +38,7 @@ export function TestimonialSection() {
               <span className={`${fredokaHeadline.className} mr-1 text-3xl text-sky-300 sm:text-5xl`}>&ldquo;</span>
               I founded StudentStack because I saw the disparity between students who use AI for school and those who
               don&apos;t. As college students, we&apos;re native to AI and we hear and use new tech every day, using
-              this information to help build StudentStack, and bridge this gap.
+              this information to help build StudentStack and bridge this gap.
               <span className={`${fredokaHeadline.className} ml-1 text-3xl text-sky-300 sm:text-5xl`}>&rdquo;</span>
             </p>
           </div>

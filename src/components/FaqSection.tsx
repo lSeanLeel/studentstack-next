@@ -10,15 +10,7 @@ type FaqItem = { id?: string; q: string; a: ReactNode };
 const FAQ_ITEMS: FaqItem[] = [
   {
     q: "What is StudentStack?",
-    a: "A private membership for high school students, built by college students. Our main angle is AI for school: literacy and judgment so students use AI to learn harder, not to skip the work. High school advice and resources ride alongside that.",
-  },
-  {
-    q: 'What does "AI for school" mean here?',
-    a: "Prompts, workflows, and habits for classes, studying, writing, and planning that keep the student in charge. We teach how college students actually use AI without outsourcing thinking or integrity.",
-  },
-  {
-    q: "Who runs this?",
-    a: "Current college students. Sean Lee (UCLA '28, CS + Statistics) started the team. Campuses parents already recognize.",
+    a: "We are a group of current college students committed to providing modern guidance that students actually need. Today, new AI tools and workflows drop every day, and we believe younger students are best prepared learning from those who are still in school. We update our student portal every day for our members to stay ahead for school.",
   },
   {
     q: "How is this different from tutors or admissions counselors?",
@@ -26,7 +18,7 @@ const FAQ_ITEMS: FaqItem[] = [
   },
   {
     q: "What do members get?",
-    a: "A gated student portal: AI toolkit and certifications, plus opportunity vault and high school resources. Inside, progress feels gamified so literacy and advice reinforce each other. We stay light on public catalogs on purpose.",
+    a: "A gated student portal: AI toolkit and certifications, plus opportunity vault and high school resources. We stay light on public catalogs on purpose.",
   },
   {
     q: "How do I join?",
