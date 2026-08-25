@@ -1,14 +1,14 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import Link from "next/link";
-import { ArrowRight, CalendarDays, Sparkles } from "lucide-react";
+import { ArrowRight, CalendarDays } from "lucide-react";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
+import { PortalMessageTeam } from "@/components/portal/PortalMessageTeam";
 import {
   ELITE_TOOLKIT_CATEGORIES,
   type ToolkitCategoryId,
 } from "@/lib/portal/toolkit";
-import type { ToolkitChangeNote, ToolkitDailyTip } from "@/lib/portal/toolkit-maintenance";
+import type { ToolkitDailyTip } from "@/lib/portal/toolkit-maintenance";
 
 const ALL = "all" as const;
 type FilterId = typeof ALL | ToolkitCategoryId;
@@ -16,11 +16,13 @@ type FilterId = typeof ALL | ToolkitCategoryId;
 export function PortalToolkitView({
   dateLabel,
   tip,
-  changelog,
+  displayName,
+  email,
 }: {
   dateLabel: string;
   tip: ToolkitDailyTip;
-  changelog: ToolkitChangeNote[];
+  displayName: string;
+  email: string;
 }) {
   const [filter, setFilter] = useState<FilterId>(ALL);
 
@@ -63,9 +65,8 @@ export function PortalToolkitView({
               {tip.title}
             </h2>
           </div>
-          <span className="inline-flex items-center gap-1.5 rounded-2xl bg-white/10 px-3 py-2 text-[10px] font-black uppercase tracking-[0.12em]">
-            <Sparkles className="h-3.5 w-3.5 text-sky-300" aria-hidden />
-            Live maintenance
+          <span className="rounded-2xl bg-white/10 px-3 py-2 text-[10px] font-black uppercase tracking-[0.12em]">
+            Updated today
           </span>
         </div>
         <p className={`mt-3 max-w-3xl text-sm font-medium leading-relaxed text-slate-300 sm:text-[0.95rem] ${jakartaSans.className}`}>
@@ -82,7 +83,7 @@ export function PortalToolkitView({
         ) : null}
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[1fr_17rem]">
+      <section className="grid gap-6 lg:grid-cols-[1fr_minmax(17rem,20rem)] lg:items-start">
         <div>
           <div className="flex flex-wrap gap-2">
             <FilterChip active={filter === ALL} onClick={() => setFilter(ALL)} label="All" />
@@ -159,33 +160,8 @@ export function PortalToolkitView({
           </div>
         </div>
 
-        <aside className="h-fit rounded-[1.75rem] border border-slate-200 bg-white p-5 lg:sticky lg:top-6">
-          <p className={`text-[10px] font-black uppercase tracking-[0.18em] text-slate-500 ${jakartaSans.className}`}>
-            Recent updates
-          </p>
-          <h3 className={`mt-1 text-lg font-semibold text-slate-900 ${fredokaHeadline.className}`}>
-            What we changed
-          </h3>
-          <ul className="mt-4 space-y-4">
-            {changelog.map((note) => (
-              <li key={note.id} className="border-b border-slate-100 pb-4 last:border-0 last:pb-0">
-                <p className={`text-[10px] font-black uppercase tracking-[0.14em] text-sky-600 ${jakartaSans.className}`}>
-                  {note.dateKey}
-                </p>
-                <p className={`mt-1 text-sm font-semibold text-slate-900 ${jakartaSans.className}`}>{note.title}</p>
-                <p className={`mt-1 text-xs font-medium leading-relaxed text-slate-500 ${jakartaSans.className}`}>
-                  {note.detail}
-                </p>
-              </li>
-            ))}
-          </ul>
-          <Link
-            href="/portal/message"
-            className={`mt-5 inline-flex items-center gap-1.5 text-xs font-bold text-sky-700 hover:text-sky-900 ${jakartaSans.className}`}
-          >
-            Suggest a toolkit update
-            <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-          </Link>
+        <aside className="lg:sticky lg:top-6">
+          <PortalMessageTeam defaultName={displayName} defaultEmail={email} compact />
         </aside>
       </section>
     </div>

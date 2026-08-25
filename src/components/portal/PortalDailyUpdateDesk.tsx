@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import { Loader2, RefreshCw, Sparkles } from "lucide-react";
+import { Loader2, RefreshCw } from "lucide-react";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { buildFallbackPortalUpdate, type PortalDailyUpdate } from "@/lib/portal/ai-updates";
 
@@ -89,9 +89,6 @@ export function PortalDailyUpdateDesk() {
             {update.dateKey}
             {cached ? " · cached for today" : " · fresh"}
           </p>
-        </div>
-        <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-sky-600 shadow-sm">
-          <Sparkles className="h-5 w-5" aria-hidden />
         </div>
       </div>
 

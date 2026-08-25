@@ -19,7 +19,6 @@ export default async function PortalHomePage() {
       email={member.email}
       dateLabel={meta.dateLabel}
       tip={meta.tip}
-      latestChange={meta.latest}
     />
   );
 }

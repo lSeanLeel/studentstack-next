@@ -3,10 +3,10 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "motion/react";
-import { ArrowRight, Award, BookOpen, Sparkles, Wrench } from "lucide-react";
+import { ArrowRight, Award, BookOpen, Wrench } from "lucide-react";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { PortalMessageTeam } from "@/components/portal/PortalMessageTeam";
-import type { ToolkitChangeNote, ToolkitDailyTip } from "@/lib/portal/toolkit-maintenance";
+import type { ToolkitDailyTip } from "@/lib/portal/toolkit-maintenance";
 
 const modules = [
   {
@@ -37,13 +37,11 @@ export function PortalHomeDashboard({
   email,
   dateLabel,
   tip,
-  latestChange,
 }: {
   displayName: string;
   email: string;
   dateLabel: string;
   tip: ToolkitDailyTip;
-  latestChange: ToolkitChangeNote;
 }) {
   return (
     <div className="space-y-8">
@@ -74,16 +72,12 @@ export function PortalHomeDashboard({
               {tip.title}
             </h2>
           </div>
-          <span className="inline-flex items-center gap-1.5 rounded-2xl bg-white px-3 py-2 text-[10px] font-black uppercase tracking-[0.12em] text-sky-700 shadow-sm">
-            <Sparkles className="h-3.5 w-3.5" aria-hidden />
+          <span className="rounded-2xl bg-white px-3 py-2 text-[10px] font-black uppercase tracking-[0.12em] text-sky-700 shadow-sm">
             Team maintained
           </span>
         </div>
         <p className={`mt-3 max-w-3xl text-sm font-medium leading-relaxed text-slate-600 sm:text-[0.95rem] ${jakartaSans.className}`}>
           {tip.body}
-        </p>
-        <p className={`mt-3 text-xs font-semibold text-slate-500 ${jakartaSans.className}`}>
-          Latest update · {latestChange.dateKey}: {latestChange.title}
         </p>
         <Link
           href="/portal/toolkit"
