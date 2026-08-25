@@ -18,7 +18,7 @@ const FAQ_ITEMS: FaqItem[] = [
   },
   {
     q: "What do members get?",
-    a: "A gated student portal: AI toolkit and certifications, plus opportunity vault and high school resources. We stay light on public catalogs on purpose.",
+    a: "A gated student portal: daily AI toolkit, member resources, organization-issued pathways (SS-AIS and SS-ACR), and direct access to our college team. We stay light on public catalogs on purpose.",
   },
   {
     q: "How do I join?",
