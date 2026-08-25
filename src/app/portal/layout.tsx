@@ -3,16 +3,9 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { BrandWordmark } from "@/components/BrandWordmark";
 import { jakartaSans } from "@/app/fonts";
+import { PortalNav } from "@/components/portal/PortalNav";
 import { PortalSignOutButton } from "@/components/portal/PortalSignOutButton";
 import { getPortalMember } from "@/lib/portal/session";
-
-const nav = [
-  { href: "/portal", label: "Home" },
-  { href: "/portal/toolkit", label: "AI Toolkit" },
-  { href: "/portal/resources", label: "Resources" },
-  { href: "/portal/certifications", label: "Certifications" },
-  { href: "/portal/message", label: "Message team" },
-] as const;
 
 export default async function PortalLayout({ children }: { children: React.ReactNode }) {
   const member = await getPortalMember();
@@ -23,46 +16,57 @@ export default async function PortalLayout({ children }: { children: React.React
 
   return (
     <div
-      className={`min-h-screen bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,#bae6fd_0%,transparent_55%),linear-gradient(180deg,#f0f9ff_0%,#f8fafc_45%,#ecfeff_100%)] ${jakartaSans.className}`}
+      className={`min-h-screen bg-[#eef8ff] ${jakartaSans.className}`}
+      style={{
+        backgroundImage:
+          "radial-gradient(ellipse 90% 60% at 50% -15%, rgba(125,211,252,0.45), transparent 55%), radial-gradient(ellipse 50% 40% at 100% 0%, rgba(167,243,208,0.35), transparent 45%), linear-gradient(180deg, #e0f2fe 0%, #f8fafc 35%, #f0fdf4 100%)",
+      }}
     >
-      <header className="border-b border-sky-100/80 bg-white/90 backdrop-blur-xl">
-        <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6">
-          <div className="flex items-center gap-6">
-            <Link href="/portal" aria-label="Portal home">
+      <header className="sticky top-0 z-40 border-b-2 border-sky-100/80 bg-white/95 shadow-[0_4px_0_0_rgba(14,165,233,0.08)] backdrop-blur-xl">
+        <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3.5 sm:px-6">
+          <div className="flex items-center gap-4 sm:gap-6">
+            <Link href="/portal" aria-label="Portal home" className="shrink-0">
               <BrandWordmark compact />
             </Link>
-            <nav className="hidden items-center gap-1 lg:flex">
-              {nav.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="rounded-xl px-3 py-2 text-[11px] font-black uppercase tracking-[0.12em] text-slate-600 transition hover:bg-sky-50 hover:text-sky-700"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
+            <PortalNav />
           </div>
-          <div className="flex items-center gap-3">
-            <span className="hidden max-w-[12rem] truncate text-xs font-medium text-slate-500 md:inline">
-              {member.email}
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className="hidden text-right sm:block">
+              <p className={`text-[10px] font-black uppercase tracking-[0.12em] text-sky-600 ${jakartaSans.className}`}>
+                Member
+              </p>
+              <p className={`max-w-[10rem] truncate text-xs font-semibold text-slate-700 ${jakartaSans.className}`}>
+                {member.displayName}
+              </p>
+            </div>
+            <span
+              className={`hidden rounded-2xl bg-emerald-50 px-2.5 py-1.5 text-[10px] font-black uppercase tracking-[0.1em] text-emerald-700 ring-1 ring-emerald-200 md:inline ${jakartaSans.className}`}
+            >
+              Active
             </span>
             <PortalSignOutButton />
           </div>
         </div>
-        <nav className="flex gap-1 overflow-x-auto border-t border-slate-100 px-4 py-2 lg:hidden">
-          {nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="shrink-0 rounded-xl px-3 py-2 text-[10px] font-black uppercase tracking-[0.12em] text-slate-600 hover:bg-sky-50 hover:text-sky-700"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        <div className="border-t border-sky-50 px-4 py-2.5 lg:hidden">
+          <PortalNav mobile />
+        </div>
       </header>
+
       <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-10">{children}</main>
+
+      <footer className="border-t-2 border-sky-100 bg-white/80 py-6">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 sm:px-6">
+          <p className={`text-xs font-medium text-slate-500 ${jakartaSans.className}`}>
+            StudentStack member portal · Built by college students
+          </p>
+          <Link
+            href="/"
+            className={`text-xs font-bold text-sky-700 hover:text-sky-900 ${jakartaSans.className}`}
+          >
+            studentstack.info
+          </Link>
+        </div>
+      </footer>
     </div>
   );
 }

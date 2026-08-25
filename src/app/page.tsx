@@ -15,6 +15,11 @@ const TestimonialSection = dynamic(
   { loading: sectionLoading }
 );
 
+const PortalPreviewSection = dynamic(
+  () => import("@/components/PortalPreviewSection").then((m) => ({ default: m.PortalPreviewSection })),
+  { loading: sectionLoading }
+);
+
 const FaqSection = dynamic(
   () => import("@/components/FaqSection").then((m) => ({ default: m.FaqSection })),
   { loading: sectionLoading }
@@ -48,6 +53,7 @@ export default function LandingPage() {
           <Navbar onHomeLogoClick={replayIntro} />
           <HeroSection />
           <TestimonialSection />
+          <PortalPreviewSection />
           <FaqSection />
           <WriteUsSection />
           <Footer />
