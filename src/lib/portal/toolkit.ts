@@ -4,8 +4,7 @@ export type ToolkitCategoryId =
   | "planning"
   | "studying"
   | "writing"
-  | "research"
-  | "applications";
+  | "research";
 
 export type ToolkitTool = {
   id: string;
