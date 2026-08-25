@@ -178,29 +178,4 @@ export const ELITE_TOOLKIT_CATEGORIES: ToolkitCategory[] = [
       },
     ],
   },
-  {
-    id: "applications",
-    label: "College applications",
-    summary: "Organize storytelling and process docs without outsourcing your voice.",
-    tools: [
-      {
-        id: "apps-claude",
-        name: "Activity blurb editor",
-        product: "Claude",
-        blurb: "Tighten Common App activity lines while keeping your facts.",
-        howWeUse:
-          "Paste your draft. Ask for compression and specificity feedback. You rewrite.",
-        useCase: "Activities list",
-      },
-      {
-        id: "apps-docs",
-        name: "Essay process folder",
-        product: "Google Docs + Claude",
-        blurb: "Keep outline → draft → revise versions for counselors.",
-        howWeUse:
-          "Never paste a full final essay ask for a rewrite. Use AI for structure questions only.",
-        useCase: "Personal statement process",
-      },
-    ],
-  },
 ];

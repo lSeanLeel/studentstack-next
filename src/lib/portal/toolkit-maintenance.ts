@@ -59,13 +59,6 @@ export const TOOLKIT_DAILY_TIPS: ToolkitDailyTip[] = [
     categoryId: "research",
     toolId: "research-perplexity",
   },
-  {
-    id: "tip-activities",
-    title: "Tighten activity blurbs without inventing facts",
-    body: "Paste your draft Common App lines, ask for compression feedback, rewrite yourself. Applications section maintained for current admissions cycles.",
-    categoryId: "applications",
-    toolId: "apps-claude",
-  },
 ];
 
 export const TOOLKIT_CHANGELOG: ToolkitChangeNote[] = [
@@ -96,8 +89,8 @@ export const TOOLKIT_CHANGELOG: ToolkitChangeNote[] = [
   {
     id: "ch-5",
     dateKey: "2026-08-20",
-    title: "Applications activity blurbs",
-    detail: "Common App activity compression tips updated for current reader expectations.",
+    title: "Planning buffers refreshed",
+    detail: "Week block planner notes updated for realistic homework load and Sunday setup.",
   },
 ];
 
