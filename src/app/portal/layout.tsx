@@ -3,34 +3,35 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { BrandWordmark } from "@/components/BrandWordmark";
 import { jakartaSans } from "@/app/fonts";
-import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { PortalSignOutButton } from "@/components/portal/PortalSignOutButton";
+import { getPortalMember } from "@/lib/portal/session";
 
 const nav = [
   { href: "/portal", label: "Home" },
   { href: "/portal/toolkit", label: "AI Toolkit" },
   { href: "/portal/resources", label: "Resources" },
+  { href: "/portal/certifications", label: "Certifications" },
+  { href: "/portal/message", label: "Message team" },
 ] as const;
 
 export default async function PortalLayout({ children }: { children: React.ReactNode }) {
-  const supabase = await createSupabaseServerClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const member = await getPortalMember();
 
-  if (!user) {
+  if (!member) {
     redirect("/login?next=/portal");
   }
 
   return (
-    <div className={`min-h-screen bg-[#f8fafc] ${jakartaSans.className}`}>
+    <div
+      className={`min-h-screen bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,#bae6fd_0%,transparent_55%),linear-gradient(180deg,#f0f9ff_0%,#f8fafc_45%,#ecfeff_100%)] ${jakartaSans.className}`}
+    >
       <header className="border-b border-sky-100/80 bg-white/90 backdrop-blur-xl">
         <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-6">
           <div className="flex items-center gap-6">
             <Link href="/portal" aria-label="Portal home">
               <BrandWordmark compact />
             </Link>
-            <nav className="hidden items-center gap-1 sm:flex">
+            <nav className="hidden items-center gap-1 lg:flex">
               {nav.map((item) => (
                 <Link
                   key={item.href}
@@ -43,11 +44,13 @@ export default async function PortalLayout({ children }: { children: React.React
             </nav>
           </div>
           <div className="flex items-center gap-3">
-            <span className="hidden text-xs font-medium text-slate-500 md:inline">{user.email}</span>
+            <span className="hidden max-w-[12rem] truncate text-xs font-medium text-slate-500 md:inline">
+              {member.email}
+            </span>
             <PortalSignOutButton />
           </div>
         </div>
-        <nav className="flex gap-1 overflow-x-auto border-t border-slate-100 px-4 py-2 sm:hidden">
+        <nav className="flex gap-1 overflow-x-auto border-t border-slate-100 px-4 py-2 lg:hidden">
           {nav.map((item) => (
             <Link
               key={item.href}

@@ -9,10 +9,13 @@
 - Use **Lucide React** (or other curated SVG icon libraries) or intentional **CSS shapes** only.
 
 ## Product & Content Boundaries
-- **StudentStack is a 100% free weekly AI education newsletter** for parents of high schoolers.
-- Do **not** implement or reference: paid tiers, “StudentStack Elite,” subscription pricing, checkout flows, or “24/7” / concierge paid peer support.
-- The “college student team” presentation is a **branding layer**; keep “Meet the Team” style mockups for optics, but do not add paid upsells in code or copy.
+- **Primary product:** Private membership for high schoolers, built by college students. Do not use the name Elite on the marketing site.
+- Landing speaks to **parents**. Thesis: college students are closer to school and AI than old-school tutors or admissions counselors.
+- Origin story (imply, sprinkle): free AI literacy notes / newsletters → parent college admissions masterminds → private membership access for the community. Discovery optic: parents find the work via posts and parent newsletters.
+- Membership is **gated access**. Stay ambiguous on public deliverables. Do not catalog courses, certs, or a feature grid. Clear enough to join; light on detail.
+- Do not say "solution." Do not use em dashes. Do not lead with pricing. Do not say "membership desk" or lead with "student organization with a desk."
+- CTA is **Join our Community** → `/join` (application → mentor reach-out → payment with parent-created student password → welcome email).
+- Student login is for members after the parent path.
 
 ## Engineering defaults
-- App code and `package.json` live in `studentthisisfinal-main/` (Vite + React + Express + Tailwind).
-- Do not introduce unrelated frameworks or large refactors unless explicitly requested.
+- App is Next.js under `src/`. Portal lives at `/portal`. Stripe checkout/webhook under `src/app/api/stripe/`. Root `app/` re-exports routes so they resolve.

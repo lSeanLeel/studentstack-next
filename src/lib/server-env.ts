@@ -38,14 +38,14 @@ export function getBeehiivPublicationId(): string | undefined {
   return id || undefined;
 }
 
-/** Operator portal username (default: test). */
+/** Operator portal username (default: admin). */
 export function getOperatorUsername(): string {
-  return process.env.OPERATOR_USERNAME?.trim() || process.env.ADMIN_USERNAME?.trim() || "test";
+  return process.env.OPERATOR_USERNAME?.trim() || process.env.ADMIN_USERNAME?.trim() || "admin";
 }
 
-/** Operator portal password (default: Sean1234!). */
+/** Operator portal password (default: admin). */
 export function getAdminPassword(): string {
-  return process.env.ADMIN_PASSWORD?.trim() || process.env.OPERATOR_PASSWORD?.trim() || "Sean1234!";
+  return process.env.ADMIN_PASSWORD?.trim() || process.env.OPERATOR_PASSWORD?.trim() || "admin";
 }
 
 export function getEnvStatus() {

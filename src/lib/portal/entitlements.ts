@@ -82,3 +82,21 @@ export async function getEliteAccessForUser(
 export function isEliteActive(access: EliteAccess) {
   return access.tier === "elite" && access.status === "active";
 }
+
+/** Convenience for API routes that only have a user id. */
+export async function getPortalAccess(userId: string): Promise<{
+  canAccessPortal: boolean;
+  access: EliteAccess;
+}> {
+  const supabase = getServiceSupabase();
+  const { data: userData } = await supabase.auth.admin.getUserById(userId);
+  const user = userData?.user;
+  if (!user) {
+    return {
+      canAccessPortal: false,
+      access: { tier: "free", status: "inactive", parentEmail: null, studentName: null },
+    };
+  }
+  const access = await getEliteAccessForUser(supabase, user);
+  return { canAccessPortal: isEliteActive(access), access };
+}

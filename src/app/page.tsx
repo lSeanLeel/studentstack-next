@@ -10,18 +10,8 @@ import { ContactProvider } from "@/components/contact-context";
 
 const sectionLoading = () => <div className="h-96" aria-hidden />;
 
-const AiAdvantageSection = dynamic(
-  () => import("@/components/AiAdvantageSection").then((m) => ({ default: m.AiAdvantageSection })),
-  { loading: sectionLoading }
-);
-
-const PhilosophySection = dynamic(
-  () => import("@/components/PhilosophySection").then((m) => ({ default: m.PhilosophySection })),
-  { loading: sectionLoading }
-);
-
-const ReachOutSection = dynamic(
-  () => import("@/components/ReachOutSection").then((m) => ({ default: m.ReachOutSection })),
+const TestimonialSection = dynamic(
+  () => import("@/components/Sections").then((m) => ({ default: m.TestimonialSection })),
   { loading: sectionLoading }
 );
 
@@ -30,8 +20,8 @@ const FaqSection = dynamic(
   { loading: sectionLoading }
 );
 
-const FinalCTA = dynamic(
-  () => import("@/components/Sections").then((m) => ({ default: m.FinalCTA })),
+const WriteUsSection = dynamic(
+  () => import("@/components/WriteUsSection").then((m) => ({ default: m.WriteUsSection })),
   { loading: sectionLoading }
 );
 
@@ -57,11 +47,9 @@ export default function LandingPage() {
           {showIntro && <IntroAnimation key={introSession} onComplete={handleIntroComplete} />}
           <Navbar onHomeLogoClick={replayIntro} />
           <HeroSection />
-          <AiAdvantageSection />
-          <PhilosophySection />
-          <ReachOutSection />
+          <TestimonialSection />
           <FaqSection />
-          <FinalCTA />
+          <WriteUsSection />
           <Footer />
         </main>
       </ContactProvider>

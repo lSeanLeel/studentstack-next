@@ -18,7 +18,7 @@ import {
   Wand2,
 } from "lucide-react";
 import { extractSubtitleFromMarkdown, extractTitleFromMarkdown } from "@/lib/markdown-to-html";
-import { FOCUS_PILLARS, NEWSLETTER_ANGLE, buildAngleSeed, type FocusPillarId } from "@/lib/newsletter/angle";
+import { FOCUS_PILLARS, NEWSLETTER_ANGLE, buildAngleSeed, pillarForDate, type FocusPillarId } from "@/lib/newsletter/angle";
 import {
   DESIGN_PRESETS,
   SAMPLE_DAILY_MARKDOWN,
@@ -217,6 +217,57 @@ export function OperatorStudio() {
     setStep("edit");
   }
 
+  function loadTodayAutoBrief() {
+    const date = todayLabel();
+    const pillar = pillarForDate();
+    setIssueDate(date);
+    setFocusPillar(pillar);
+    setSeedText(buildAngleSeed(pillar, date));
+    setDesign(createDefaultDesign(FOCUS_PILLARS.find((p) => p.id === pillar)?.label ?? "Organization"));
+    setGenerateStatus({
+      kind: "success",
+      message: `Auto brief ready for ${FOCUS_PILLARS.find((p) => p.id === pillar)?.label}. Paste any fresh links, then Generate draft.`,
+    });
+  }
+
+  async function handleAutoGenerateToday() {
+    const date = todayLabel();
+    const pillar = pillarForDate();
+    const seed = buildAngleSeed(pillar, date);
+    setIssueDate(date);
+    setFocusPillar(pillar);
+    setSeedText(seed);
+    setDesign(createDefaultDesign(FOCUS_PILLARS.find((p) => p.id === pillar)?.label ?? "Organization"));
+    setGenerateStatus({ kind: "loading", message: "Running today’s automated draft…" });
+    try {
+      const res = await fetch("/api/admin/generate-newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          seedText: seed,
+          focusPillar: pillar,
+          issueDate: date,
+        }),
+      });
+      const data = (await res.json()) as { markdown?: string; error?: string };
+      if (!res.ok) {
+        setGenerateStatus({ kind: "error", message: data.error ?? "Generation failed." });
+        return;
+      }
+      const nextMarkdown = data.markdown ?? "";
+      setMarkdown(nextMarkdown);
+      setTitle(extractTitleFromMarkdown(nextMarkdown));
+      setSubtitle(extractSubtitleFromMarkdown(nextMarkdown));
+      setGenerateStatus({
+        kind: "success",
+        message: "Automated draft ready. Tailor the Parent note, then design and export.",
+      });
+      setStep("edit");
+    } catch {
+      setGenerateStatus({ kind: "error", message: "Network error while generating." });
+    }
+  }
+
   async function handleCopyHtml() {
     if (!html) return;
     try {
@@ -288,7 +339,7 @@ export function OperatorStudio() {
           </div>
           <h1 className="text-3xl font-black text-white">Newsletter studio</h1>
           <p className="mt-3 text-sm font-medium text-slate-400">
-            Sign in to draft today’s StudentStack Daily on AI for student organization.
+            Sign in to draft today&apos;s StudentStack Daily membership email. Default login: admin / admin.
           </p>
           <form onSubmit={handleLogin} className="mt-6 space-y-4">
             <label className="block">
@@ -301,7 +352,7 @@ export function OperatorStudio() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
-                placeholder="test"
+                placeholder="admin"
                 className="w-full rounded-2xl border-2 border-slate-700 bg-slate-950 px-4 py-3 font-semibold text-white outline-none transition focus:border-sky-500"
               />
             </label>
@@ -315,7 +366,7 @@ export function OperatorStudio() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                placeholder="••••••••"
+                placeholder="admin"
                 className="w-full rounded-2xl border-2 border-slate-700 bg-slate-950 px-4 py-3 font-semibold text-white outline-none transition focus:border-sky-500"
               />
             </label>
@@ -391,8 +442,8 @@ export function OperatorStudio() {
               <h2 className="text-xl font-black text-white">1. Today’s brief</h2>
             </div>
             <p className="mb-5 text-sm font-medium text-slate-400">
-              Pick the organizing pillar, paste research notes, generate a draft for free daily parents (community +
-              Instagram discovery). Soft Elite inquiry only. Never a portal upsell.
+              Automated path: load today’s rotated pillar brief, generate a draft, tailor the parent note, design, then
+              push a Beehiiv draft. Soft Elite close is optional. Certifications stay on the site, not in the daily lead.
             </p>
 
             <label className="mb-4 block">
@@ -451,6 +502,19 @@ export function OperatorStudio() {
             <div className="mt-4 flex flex-wrap gap-3">
               <button
                 type="button"
+                onClick={() => void handleAutoGenerateToday()}
+                disabled={generateStatus.kind === "loading"}
+                className="inline-flex items-center gap-2 rounded-2xl bg-sky-500 px-6 py-3 text-sm font-black uppercase tracking-widest text-white shadow-[0_8px_0_0_#0369a1] transition hover:-translate-y-0.5 hover:bg-sky-400 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {generateStatus.kind === "loading" ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <Sparkles className="h-4 w-4" />
+                )}
+                Auto-draft today
+              </button>
+              <button
+                type="button"
                 onClick={() => void handleGenerate()}
                 disabled={!seedText.trim() || generateStatus.kind === "loading"}
                 className="inline-flex items-center gap-2 rounded-2xl bg-violet-500 px-6 py-3 text-sm font-black uppercase tracking-widest text-white shadow-[0_8px_0_0_#6d28d9] transition hover:-translate-y-0.5 hover:bg-violet-400 disabled:cursor-not-allowed disabled:opacity-50"
@@ -464,10 +528,17 @@ export function OperatorStudio() {
               </button>
               <button
                 type="button"
-                onClick={() => setSeedText(buildAngleSeed(focusPillar, issueDate))}
+                onClick={loadTodayAutoBrief}
                 className="inline-flex items-center gap-2 rounded-2xl border border-slate-600 px-5 py-3 text-xs font-black uppercase tracking-widest text-slate-300 hover:border-slate-400"
               >
                 <Wand2 className="h-4 w-4" />
+                Load today&apos;s brief
+              </button>
+              <button
+                type="button"
+                onClick={() => setSeedText(buildAngleSeed(focusPillar, issueDate))}
+                className="inline-flex items-center gap-2 rounded-2xl border border-slate-600 px-5 py-3 text-xs font-black uppercase tracking-widest text-slate-300 hover:border-slate-400"
+              >
                 Reset seed to angle
               </button>
               <button

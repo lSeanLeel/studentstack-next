@@ -94,7 +94,7 @@ export function createDefaultDesign(pillarLabel = "Organization"): NewsletterDes
     brandName: "StudentStack Daily",
     pillarLabel,
     footerNote:
-      "You're receiving StudentStack because you joined the free daily, AI for student organization for parents of high schoolers. Reply anytime. Elite is by inquiry only.",
+      "You're receiving StudentStack Daily as a member. AI for student organization for parents of high schoolers. Reply anytime.",
   };
 }
 

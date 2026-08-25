@@ -9,7 +9,9 @@ export type ToolkitCategoryId =
 export type ToolkitTool = {
   id: string;
   name: string;
+  product: string;
   blurb: string;
+  howWeUse: string;
   useCase: string;
   href?: string;
 };
@@ -22,8 +24,8 @@ export type ToolkitCategory = {
 };
 
 /**
- * Elite AI toolkit lanes for school. Seed content for the portal;
- * later these rows can be regenerated / updated autonomously.
+ * AI Toolkit — tools we use and how we use them for school.
+ * Presented as a team-maintained surface for monthly members (see toolkit-maintenance).
  */
 export const ELITE_TOOLKIT_CATEGORIES: ToolkitCategory[] = [
   {
@@ -32,16 +34,22 @@ export const ELITE_TOOLKIT_CATEGORIES: ToolkitCategory[] = [
     summary: "Keep classes, deadlines, and files from turning into chaos.",
     tools: [
       {
-        id: "org-inbox-zero-week",
-        name: "Weekly inbox reset",
-        blurb: "A prompt stack to clear school email and flag what actually needs a reply.",
-        useCase: "Sunday reset before a heavy week",
+        id: "org-notion-ai",
+        name: "Class OS in Notion",
+        product: "Notion AI",
+        blurb: "One workspace per semester: classes, deadlines, and reading links.",
+        howWeUse:
+          "Ask Notion AI to turn a syllabus PDF into a database of assignments with due dates, then review every row yourself before trusting it.",
+        useCase: "New semester setup",
       },
       {
-        id: "org-folder-map",
-        name: "Drive / folder map",
-        blurb: "Name conventions and a one-page map so every class has a home.",
-        useCase: "New semester setup",
+        id: "org-gemini-gems",
+        name: "Syllabus Gem",
+        product: "Gemini Gems",
+        blurb: "A persistent Gem loaded with your syllabi for quick deadline questions.",
+        howWeUse:
+          "Upload syllabi once, then ask only factual calendar questions. Never let it invent school policies.",
+        useCase: "Week-of deadline checks",
       },
     ],
   },
@@ -51,15 +59,21 @@ export const ELITE_TOOLKIT_CATEGORIES: ToolkitCategory[] = [
     summary: "Capture in class, then turn notes into something you can study from.",
     tools: [
       {
-        id: "notes-lecture-compress",
+        id: "notes-claude",
         name: "Lecture compressor",
+        product: "Claude",
         blurb: "Turn messy notes into key claims, examples, and open questions.",
+        howWeUse:
+          "Paste your own notes only. Ask for claims vs examples vs questions. Rewrite the summary in your voice before studying.",
         useCase: "After a dense STEM or history lecture",
       },
       {
-        id: "notes-active-recall",
+        id: "notes-chatgpt",
         name: "Active-recall cards",
-        blurb: "Generate question/answer pairs from your notes without inventing facts.",
+        product: "ChatGPT",
+        blurb: "Question/answer pairs from your materials without inventing facts.",
+        howWeUse:
+          "Feed your notes or textbook excerpts. Reject any card that cites something you did not provide.",
         useCase: "Night-before review",
       },
     ],
@@ -70,15 +84,21 @@ export const ELITE_TOOLKIT_CATEGORIES: ToolkitCategory[] = [
     summary: "Build a week that fits real homework load, not a fantasy schedule.",
     tools: [
       {
-        id: "plan-week-block",
+        id: "plan-claude-projects",
         name: "Week block planner",
+        product: "Claude Projects",
         blurb: "Translate syllabus deadlines into time blocks with buffers.",
+        howWeUse:
+          "Keep a Project with your calendar constraints. Ask for a draft week, then cut anything unrealistic.",
         useCase: "Sunday planning session",
       },
       {
-        id: "plan-priority-triage",
+        id: "plan-perplexity",
         name: "Priority triage",
-        blurb: "Sort tasks by urgency, effort, and grade impact.",
+        product: "Perplexity",
+        blurb: "Quick research on assignment rubrics and exam formats when docs are unclear.",
+        howWeUse:
+          "Search school or course pages with citations on. Use it to clarify scope, not to do the work.",
         useCase: "When everything feels due at once",
       },
     ],
@@ -89,15 +109,21 @@ export const ELITE_TOOLKIT_CATEGORIES: ToolkitCategory[] = [
     summary: "Practice that matches how tests actually feel.",
     tools: [
       {
-        id: "study-practice-set",
+        id: "study-chatgpt",
         name: "Practice-set builder",
-        blurb: "Create quiz-style questions from your materials, then check weak spots.",
+        product: "ChatGPT",
+        blurb: "Quiz-style questions from your materials, then check weak spots.",
+        howWeUse:
+          "Upload or paste unit notes. Answer without looking, then ask for feedback on reasoning.",
         useCase: "Unit exam prep",
       },
       {
-        id: "study-explain-aloud",
+        id: "study-claude",
         name: "Explain-it-back coach",
+        product: "Claude",
         blurb: "Force a clear verbal explanation, then highlight gaps.",
+        howWeUse:
+          "You explain first. The model only probes gaps. You fill those gaps from class materials.",
         useCase: "Concept-heavy classes",
       },
     ],
@@ -108,15 +134,21 @@ export const ELITE_TOOLKIT_CATEGORIES: ToolkitCategory[] = [
     summary: "Clarity and structure help, without handing the essay to a model.",
     tools: [
       {
-        id: "write-outline-pressure",
+        id: "write-claude",
         name: "Outline under pressure",
+        product: "Claude",
         blurb: "Thesis, evidence map, and paragraph jobs before drafting.",
+        howWeUse:
+          "Brainstorm structure only. You draft every sentence. Ask for critique of clarity, not a rewrite.",
         useCase: "Timed essays and take-homes",
       },
       {
-        id: "write-voice-pass",
+        id: "write-grammarly",
         name: "Voice + clarity pass",
-        blurb: "Flag vague claims and generic phrasing while keeping your wording.",
+        product: "Grammarly / native editor",
+        blurb: "Flag vague claims while keeping your wording.",
+        howWeUse:
+          "Accept grammar fixes carefully. Reject tone rewrites that erase your voice.",
         useCase: "Application essays and papers",
       },
     ],
@@ -127,15 +159,21 @@ export const ELITE_TOOLKIT_CATEGORIES: ToolkitCategory[] = [
     summary: "Find sources faster, then sanity-check what you cite.",
     tools: [
       {
-        id: "research-source-scout",
+        id: "research-perplexity",
         name: "Source scout",
-        blurb: "Search angles, keywords, and what “good enough” evidence looks like.",
+        product: "Perplexity",
+        blurb: "Search angles and what good-enough evidence looks like.",
+        howWeUse:
+          "Collect 3–5 cited sources, open each yourself, then build your claim map in a research log.",
         useCase: "Papers and projects",
       },
       {
-        id: "research-claim-check",
+        id: "research-gemini",
         name: "Claim check",
+        product: "Gemini",
         blurb: "Separate fact, opinion, and missing citation before you submit.",
+        howWeUse:
+          "Paste your draft claims. Require a citation check against your own source list.",
         useCase: "Final polish",
       },
     ],

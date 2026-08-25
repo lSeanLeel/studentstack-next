@@ -15,8 +15,13 @@ export function PortalSignOutButton() {
       onClick={async () => {
         setBusy(true);
         try {
-          const supabase = createSupabaseBrowserClient();
-          await supabase.auth.signOut();
+          await fetch("/api/portal/demo-logout", { method: "POST" });
+          try {
+            const supabase = createSupabaseBrowserClient();
+            await supabase.auth.signOut();
+          } catch {
+            // Supabase may be unset in demo/preview environments.
+          }
           router.replace("/login");
           router.refresh();
         } finally {
