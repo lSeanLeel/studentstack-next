@@ -85,6 +85,12 @@ export const CREDIBILITY_STACK: CredibilityPartner[] = [
     detail: "Digital badges students attach to applications and counselor packets.",
   },
   {
+    id: "public-courses",
+    name: "Curated public courses",
+    role: "IBM · Code.org · Microsoft · Google · Helsinki",
+    detail: "Free org courses mapped into member pathways — clear order, not random Googling.",
+  },
+  {
     id: "campus-team",
     name: "College student operators",
     role: "UCLA · Princeton · Columbia · Berkeley · Stanford",
