@@ -1,10 +1,16 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { getPortalMember } from "@/lib/portal/session";
-import { ELITE_RESOURCE_COLLECTIONS } from "@/lib/portal/resources";
+import { ELITE_RESOURCE_COLLECTIONS, resourceSelectivityLabel } from "@/lib/portal/resources";
 import { EliteGate } from "@/components/portal/EliteGate";
 import { PortalEyebrow, PortalLead, PortalPageTitle } from "@/components/portal/portal-ui";
+
+const selectivityTone = {
+  open: "border-emerald-200 bg-emerald-50 text-emerald-800",
+  selective: "border-amber-200 bg-amber-50 text-amber-900",
+  "highly selective": "border-rose-200 bg-rose-50 text-rose-800",
+} as const;
 
 export default async function PortalResourcesPage() {
   const member = await getPortalMember();
@@ -17,8 +23,8 @@ export default async function PortalResourcesPage() {
         <PortalEyebrow>Member-only</PortalEyebrow>
         <PortalPageTitle className="mt-1">Resources</PortalPageTitle>
         <PortalLead>
-          High school advice and shortlists from college students ahead of your student. Pair with the AI Toolkit when
-          you plan your week.
+          Summer programs, competitions, and deadlines from college students who went through this recently. Facts first
+          — no click-to-find-out-the-deadline cards.
         </PortalLead>
         <Link
           href="/portal/vault"
@@ -42,15 +48,50 @@ export default async function PortalResourcesPage() {
                   key={item.id}
                   className="rounded-[1.5rem] border-2 border-slate-200 bg-white p-5 shadow-[0_8px_0_0_rgba(15,23,42,0.04)] transition hover:border-emerald-200"
                 >
-                  <p className={`text-lg font-semibold text-slate-900 ${fredokaHeadline.className}`}>{item.title}</p>
-                  <p className={`mt-1.5 text-sm font-medium leading-relaxed text-slate-600 ${jakartaSans.className}`}>
-                    {item.blurb}
-                  </p>
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div className="min-w-0 flex-1">
+                      <p className={`text-lg font-semibold text-slate-900 ${fredokaHeadline.className}`}>{item.title}</p>
+                      <p className={`mt-1.5 text-sm font-medium leading-relaxed text-slate-600 ${jakartaSans.className}`}>
+                        {item.blurb}
+                      </p>
+                    </div>
+                    <span
+                      className={`shrink-0 rounded-xl border px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.1em] ${selectivityTone[item.selectivity]} ${jakartaSans.className}`}
+                    >
+                      {resourceSelectivityLabel(item.selectivity)}
+                    </span>
+                  </div>
+
+                  <dl className={`mt-4 grid gap-2 text-sm sm:grid-cols-3 ${jakartaSans.className}`}>
+                    <div className="rounded-xl bg-slate-50 px-3 py-2">
+                      <dt className="text-[10px] font-black uppercase tracking-[0.1em] text-slate-400">Deadline</dt>
+                      <dd className="mt-0.5 font-bold text-slate-800">{item.deadline}</dd>
+                    </div>
+                    <div className="rounded-xl bg-slate-50 px-3 py-2">
+                      <dt className="text-[10px] font-black uppercase tracking-[0.1em] text-slate-400">Cost</dt>
+                      <dd className="mt-0.5 font-bold text-slate-800">{item.cost}</dd>
+                    </div>
+                    <div className="rounded-xl bg-slate-50 px-3 py-2">
+                      <dt className="text-[10px] font-black uppercase tracking-[0.1em] text-slate-400">Apply</dt>
+                      <dd className="mt-0.5">
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 font-bold text-sky-700 hover:text-sky-900"
+                        >
+                          Official site
+                          <ExternalLink className="h-3 w-3" aria-hidden />
+                        </a>
+                      </dd>
+                    </div>
+                  </dl>
+
                   <div className="mt-3 flex flex-wrap gap-2">
                     {item.tags.map((tag) => (
                       <span
                         key={tag}
-                        className={`rounded-xl border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-emerald-800 ${jakartaSans.className}`}
+                        className={`rounded-xl border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-emerald-800 ${jakartaSans.className}`}
                       >
                         {tag}
                       </span>

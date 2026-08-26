@@ -28,7 +28,7 @@ export const ELITE_VAULT_COLLECTIONS: VaultCollection[] = [
       {
         id: "sum-research-immersion",
         title: "University research immersion tracks",
-        blurb: "Residential and commuter research programs that reward writing and curiosity, not just brand chasing.",
+        blurb: "Residential research programs where you write a paper and get a mentor letter — tough to get in, free if you do.",
         category: "summer",
         deadline: "Rolling · peak Jan–Mar",
         fit: ["research", "rising juniors", "rising seniors"],

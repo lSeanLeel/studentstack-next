@@ -41,7 +41,7 @@ export const MEMBER_PATHWAYS: MemberPathway[] = [
     subtitle: "Organization-issued credential (SS-ACR)",
     partnerLabel: "StudentStack credential",
     partnerDetail:
-      "Shows admissions a disciplined workflow for research, planning, and application writing without outsourcing voice.",
+      "Shows colleges a disciplined workflow for research, planning, and application writing — without outsourcing your voice.",
     accent: "amber",
     href: "/portal/certifications#ai-college-readiness",
     progress: 0,
@@ -86,9 +86,9 @@ export const CREDIBILITY_STACK: CredibilityPartner[] = [
   },
   {
     id: "public-courses",
-    name: "Curated public courses",
-    role: "IBM · Code.org · Microsoft · Google · Helsinki",
-    detail: "Free org courses mapped into member pathways — clear order, not random Googling.",
+    name: "Optional public supplements",
+    role: "IBM · Code.org · Google",
+    detail: "Free org courses listed as extra reading — member modules and credentials are the core product.",
   },
   {
     id: "campus-team",
