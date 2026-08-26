@@ -143,7 +143,7 @@ export function HeroSection() {
         </motion.p>
 
         <motion.div
-          id="hero-cta"
+          id="apply"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.62, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
