@@ -8,13 +8,6 @@ export type ToolkitDailyTip = {
   toolId: string;
 };
 
-export type ToolkitChangeNote = {
-  id: string;
-  dateKey: string;
-  title: string;
-  detail: string;
-};
-
 /** Rotating daily tips so the toolkit feels team-maintained for monthly members. */
 export const TOOLKIT_DAILY_TIPS: ToolkitDailyTip[] = [
   {
@@ -61,39 +54,6 @@ export const TOOLKIT_DAILY_TIPS: ToolkitDailyTip[] = [
   },
 ];
 
-export const TOOLKIT_CHANGELOG: ToolkitChangeNote[] = [
-  {
-    id: "ch-1",
-    dateKey: "2026-08-24",
-    title: "Organization workflows refreshed",
-    detail: "Syllabus Gem and Class OS notes updated for late-summer schedule swaps and new-semester setup.",
-  },
-  {
-    id: "ch-2",
-    dateKey: "2026-08-23",
-    title: "Writing integrity pass",
-    detail: "Outline and voice guidance rewritten so AI stays a critic, not a ghostwriter.",
-  },
-  {
-    id: "ch-3",
-    dateKey: "2026-08-22",
-    title: "Studying for unit exams",
-    detail: "Practice-set and explain-it-back workflows aligned to how we prep for midterms.",
-  },
-  {
-    id: "ch-4",
-    dateKey: "2026-08-21",
-    title: "Research citation checks",
-    detail: "Source scout and claim-check steps clarified for paper season.",
-  },
-  {
-    id: "ch-5",
-    dateKey: "2026-08-20",
-    title: "Planning buffers refreshed",
-    detail: "Week block planner notes updated for realistic homework load and Sunday setup.",
-  },
-];
-
 export function formatToolkitDateLabel(date = new Date()) {
   return date.toLocaleDateString("en-US", {
     weekday: "long",
@@ -116,12 +76,10 @@ export function getToolkitMaintenanceMeta(date = new Date()) {
   const tip = getToolkitDailyTip(date);
   const category = ELITE_TOOLKIT_CATEGORIES.find((c) => c.id === tip.categoryId);
   const tool = category?.tools.find((t) => t.id === tip.toolId);
-  const latest = TOOLKIT_CHANGELOG[0];
   return {
     tip,
     category,
     tool,
-    latest,
     dateLabel: formatToolkitDateLabel(date),
     dateKey: formatPortalDateKey(date),
     maintainedBy: "StudentStack college team",

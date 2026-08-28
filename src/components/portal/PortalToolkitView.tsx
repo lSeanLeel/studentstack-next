@@ -1,14 +1,12 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import Link from "next/link";
-import { ArrowRight, CalendarDays, Sparkles } from "lucide-react";
+import { ArrowRight, CalendarDays, Check, ChevronDown, Copy } from "lucide-react";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
-import {
-  ELITE_TOOLKIT_CATEGORIES,
-  type ToolkitCategoryId,
-} from "@/lib/portal/toolkit";
-import type { ToolkitChangeNote, ToolkitDailyTip } from "@/lib/portal/toolkit-maintenance";
+import { PortalMessageTeam } from "@/components/portal/PortalMessageTeam";
+import { PortalBadge, PortalEyebrow, PortalLead, PortalPageTitle, PortalPanel } from "@/components/portal/portal-ui";
+import { ELITE_TOOLKIT_CATEGORIES, type ToolkitCategoryId } from "@/lib/portal/toolkit";
+import type { ToolkitDailyTip } from "@/lib/portal/toolkit-maintenance";
 
 const ALL = "all" as const;
 type FilterId = typeof ALL | ToolkitCategoryId;
@@ -16,13 +14,16 @@ type FilterId = typeof ALL | ToolkitCategoryId;
 export function PortalToolkitView({
   dateLabel,
   tip,
-  changelog,
+  displayName,
+  email,
 }: {
   dateLabel: string;
   tip: ToolkitDailyTip;
-  changelog: ToolkitChangeNote[];
+  displayName: string;
+  email: string;
 }) {
   const [filter, setFilter] = useState<FilterId>(ALL);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const categories = useMemo(() => {
     if (filter === ALL) return ELITE_TOOLKIT_CATEGORIES;
@@ -32,124 +33,176 @@ export function PortalToolkitView({
   const tipCategory = ELITE_TOOLKIT_CATEGORIES.find((c) => c.id === tip.categoryId);
   const tipTool = tipCategory?.tools.find((t) => t.id === tip.toolId);
 
+  async function copyPrompt(toolId: string, text: string) {
+    await navigator.clipboard.writeText(text);
+    setCopiedId(toolId);
+    window.setTimeout(() => setCopiedId(null), 2000);
+  }
+
   return (
     <div className="space-y-8">
       <header>
         <div className="flex flex-wrap items-center gap-2">
-          <p className={`text-[10px] font-black uppercase tracking-[0.2em] text-sky-600 ${jakartaSans.className}`}>
-            Maintained daily
-          </p>
-          <span className="inline-flex items-center gap-1.5 rounded-xl bg-sky-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-sky-700">
-            <CalendarDays className="h-3 w-3" aria-hidden />
-            {dateLabel}
-          </span>
+          <PortalEyebrow>Updated weekly</PortalEyebrow>
+          <PortalBadge accent="sky">
+            <span className="inline-flex items-center gap-1.5">
+              <CalendarDays className="h-3 w-3" aria-hidden />
+              {dateLabel}
+            </span>
+          </PortalBadge>
         </div>
-        <h1 className={`mt-2 text-3xl font-semibold tracking-[-0.03em] text-slate-900 sm:text-4xl ${fredokaHeadline.className}`}>
-          AI Toolkit
-        </h1>
-        <p className={`mt-2 max-w-2xl text-sm font-medium leading-relaxed text-slate-600 sm:text-base ${jakartaSans.className}`}>
-          How college students on StudentStack use AI for school. We review and refresh these workflows so monthly
-          members always see current practice, not a static PDF.
-        </p>
+        <PortalPageTitle className="mt-2">AI Toolkit</PortalPageTitle>
+        <PortalLead>
+          Step-by-step workflows and copy-paste prompts we actually use in college. Not generic tips — real sequences
+          you can run today.
+        </PortalLead>
       </header>
 
-      <section className="overflow-hidden rounded-[2rem] border-2 border-slate-800 bg-slate-900 px-6 py-7 text-white sm:px-8">
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <div>
-            <p className={`text-[10px] font-black uppercase tracking-[0.2em] text-sky-200 ${jakartaSans.className}`}>
-              Today from the team
-            </p>
-            <h2 className={`mt-2 text-2xl font-semibold tracking-[-0.02em] sm:text-3xl ${fredokaHeadline.className}`}>
-              {tip.title}
-            </h2>
-          </div>
-          <span className="inline-flex items-center gap-1.5 rounded-2xl bg-white/10 px-3 py-2 text-[10px] font-black uppercase tracking-[0.12em]">
-            <Sparkles className="h-3.5 w-3.5 text-sky-300" aria-hidden />
-            Live maintenance
-          </span>
-        </div>
-        <p className={`mt-3 max-w-3xl text-sm font-medium leading-relaxed text-slate-300 sm:text-[0.95rem] ${jakartaSans.className}`}>
+      <PortalPanel className="!py-5 sm:!px-6">
+        <PortalEyebrow>Today&apos;s pick</PortalEyebrow>
+        <h2 className={`mt-1 text-xl font-semibold tracking-[-0.02em] sm:text-2xl ${fredokaHeadline.className}`}>
+          {tip.title}
+        </h2>
+        <p className={`mt-2 max-w-3xl text-sm font-medium leading-relaxed text-slate-600 ${jakartaSans.className}`}>
           {tip.body}
         </p>
         {tipTool && tipCategory ? (
           <a
             href={`#${tip.categoryId}`}
-            className={`mt-5 inline-flex items-center gap-2 text-sm font-bold text-sky-200 hover:text-white ${jakartaSans.className}`}
+            className={`mt-3 inline-flex items-center gap-2 text-sm font-bold text-sky-700 hover:text-sky-900 ${jakartaSans.className}`}
           >
             Jump to {tipTool.name}
             <ArrowRight className="h-4 w-4" aria-hidden />
           </a>
         ) : null}
-      </section>
+      </PortalPanel>
 
-      <section className="grid gap-6 lg:grid-cols-[1fr_17rem]">
+      <section className="grid gap-6 lg:grid-cols-[1fr_minmax(18rem,22rem)] lg:items-start">
         <div>
-          <div className="flex flex-wrap gap-2">
-            <FilterChip active={filter === ALL} onClick={() => setFilter(ALL)} label="All" />
-            {ELITE_TOOLKIT_CATEGORIES.map((c) => (
-              <FilterChip
-                key={c.id}
-                active={filter === c.id}
-                onClick={() => setFilter(c.id)}
-                label={c.label}
-              />
-            ))}
+          <label className={`block text-[10px] font-black uppercase tracking-[0.14em] text-slate-500 ${jakartaSans.className}`}>
+            Filter by category
+          </label>
+          <div className="relative mt-2 max-w-xs">
+            <select
+              value={filter}
+              onChange={(e) => setFilter(e.target.value as FilterId)}
+              className={`w-full appearance-none rounded-2xl border-2 border-slate-200 bg-white py-2.5 pl-4 pr-10 text-sm font-bold text-slate-800 shadow-[0_4px_0_0_rgba(15,23,42,0.05)] focus:border-sky-300 focus:outline-none ${jakartaSans.className}`}
+            >
+              <option value={ALL}>All categories</option>
+              {ELITE_TOOLKIT_CATEGORIES.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.label}
+                </option>
+              ))}
+            </select>
+            <ChevronDown
+              className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
+              aria-hidden
+            />
           </div>
 
           <div className="mt-6 space-y-10">
             {categories.map((category) => (
-              <section key={category.id} id={category.id} className="scroll-mt-28">
-                <div className="flex flex-wrap items-end justify-between gap-2">
-                  <div>
-                    <h2 className={`text-2xl font-semibold tracking-[-0.02em] text-slate-900 ${fredokaHeadline.className}`}>
-                      {category.label}
-                    </h2>
-                    <p className={`mt-1 text-sm font-medium text-slate-600 ${jakartaSans.className}`}>
-                      {category.summary}
-                    </p>
-                  </div>
-                  <p className={`text-[10px] font-black uppercase tracking-[0.14em] text-slate-400 ${jakartaSans.className}`}>
-                    Team reviewed
-                  </p>
-                </div>
-                <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+              <section key={category.id} id={category.id} className="scroll-mt-32">
+                <h2 className={`text-2xl font-semibold tracking-[-0.02em] text-slate-900 ${fredokaHeadline.className}`}>
+                  {category.label}
+                </h2>
+                <p className={`mt-1 text-sm font-medium text-slate-600 ${jakartaSans.className}`}>{category.summary}</p>
+                <ul className="mt-4 space-y-4">
                   {category.tools.map((tool) => {
                     const featured = tool.id === tip.toolId;
                     return (
                       <li
                         key={tool.id}
-                        className={`rounded-[1.5rem] border-2 bg-white p-5 transition hover:-translate-y-0.5 ${
+                        className={`rounded-[1.5rem] border-2 bg-white p-5 ${
                           featured
-                            ? "border-sky-300 shadow-[0_12px_0_0_rgba(14,165,233,0.12)]"
-                            : "border-slate-100 shadow-[0_8px_0_0_rgba(15,23,42,0.04)] hover:border-sky-200"
+                            ? "border-sky-300 shadow-[0_10px_0_0_rgba(14,165,233,0.1)]"
+                            : "border-slate-200 shadow-[0_8px_0_0_rgba(15,23,42,0.04)]"
                         }`}
                       >
-                        {featured ? (
-                          <p className={`text-[10px] font-black uppercase tracking-[0.14em] text-sky-600 ${jakartaSans.className}`}>
-                            Featured today
+                        <div className="flex flex-wrap items-start justify-between gap-2">
+                          <div>
+                            <p
+                              className={`text-[10px] font-black uppercase tracking-[0.14em] ${featured ? "text-sky-600" : "text-slate-400"} ${jakartaSans.className}`}
+                            >
+                              {featured ? "Featured today" : tool.product}
+                            </p>
+                            <p className={`mt-1 text-lg font-semibold text-slate-900 ${fredokaHeadline.className}`}>
+                              {tool.name}
+                            </p>
+                          </div>
+                          <p className="text-[11px] font-black uppercase tracking-[0.12em] text-[#ff6a00]">
+                            {tool.useCase}
                           </p>
-                        ) : (
-                          <p className={`text-[10px] font-black uppercase tracking-[0.14em] text-sky-600 ${jakartaSans.className}`}>
-                            {tool.product}
-                          </p>
-                        )}
-                        <p className={`mt-1 text-lg font-semibold text-slate-900 ${fredokaHeadline.className}`}>
-                          {tool.name}
-                        </p>
-                        {!featured ? null : (
-                          <p className={`mt-1 text-[10px] font-black uppercase tracking-[0.14em] text-slate-400 ${jakartaSans.className}`}>
-                            {tool.product}
-                          </p>
-                        )}
-                        <p className={`mt-1.5 text-sm font-medium leading-relaxed text-slate-600 ${jakartaSans.className}`}>
+                        </div>
+                        <p className={`mt-2 text-sm font-medium leading-relaxed text-slate-600 ${jakartaSans.className}`}>
                           {tool.blurb}
                         </p>
-                        <p className={`mt-3 text-sm font-semibold leading-relaxed text-slate-800 ${jakartaSans.className}`}>
-                          How we use it: {tool.howWeUse}
-                        </p>
-                        <p className="mt-3 text-[11px] font-black uppercase tracking-[0.14em] text-[#ff6a00]">
-                          Best for · {tool.useCase}
-                        </p>
+
+                        <div className="mt-4">
+                          <p className={`text-[10px] font-black uppercase tracking-[0.12em] text-slate-500 ${jakartaSans.className}`}>
+                            How we use it
+                          </p>
+                          <p className={`mt-1 text-sm font-semibold leading-relaxed text-slate-800 ${jakartaSans.className}`}>
+                            {tool.howWeUse}
+                          </p>
+                        </div>
+
+                        <div className="mt-4">
+                          <p className={`text-[10px] font-black uppercase tracking-[0.12em] text-slate-500 ${jakartaSans.className}`}>
+                            Step-by-step
+                          </p>
+                          <ol className={`mt-2 space-y-2 ${jakartaSans.className}`}>
+                            {tool.workflow.map((step, i) => (
+                              <li key={i} className="flex gap-2 text-sm font-medium text-slate-700">
+                                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-sky-100 text-[10px] font-black text-sky-700">
+                                  {i + 1}
+                                </span>
+                                {step}
+                              </li>
+                            ))}
+                          </ol>
+                        </div>
+
+                        {tool.prompts.length > 0 ? (
+                          <div className="mt-4 space-y-2">
+                            <p className={`text-[10px] font-black uppercase tracking-[0.12em] text-slate-500 ${jakartaSans.className}`}>
+                              Copy-paste prompts
+                            </p>
+                            {tool.prompts.map((prompt) => {
+                              const copyKey = `${tool.id}-${prompt.label}`;
+                              return (
+                                <div key={copyKey} className="rounded-2xl bg-slate-50 p-3">
+                                  <div className="flex items-start justify-between gap-2">
+                                    <p className={`text-xs font-bold text-slate-700 ${jakartaSans.className}`}>
+                                      {prompt.label}
+                                    </p>
+                                    <button
+                                      type="button"
+                                      onClick={() => copyPrompt(copyKey, prompt.text)}
+                                      className={`inline-flex shrink-0 items-center gap-1 rounded-lg bg-white px-2 py-1 text-[10px] font-black uppercase tracking-[0.08em] text-slate-600 ring-1 ring-slate-200 hover:text-sky-700 ${jakartaSans.className}`}
+                                    >
+                                      {copiedId === copyKey ? (
+                                        <>
+                                          <Check className="h-3 w-3" aria-hidden />
+                                          Copied
+                                        </>
+                                      ) : (
+                                        <>
+                                          <Copy className="h-3 w-3" aria-hidden />
+                                          Copy
+                                        </>
+                                      )}
+                                    </button>
+                                  </div>
+                                  <p className={`mt-2 whitespace-pre-wrap text-xs font-medium leading-relaxed text-slate-600 ${jakartaSans.className}`}>
+                                    {prompt.text}
+                                  </p>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        ) : null}
                       </li>
                     );
                   })}
@@ -159,59 +212,10 @@ export function PortalToolkitView({
           </div>
         </div>
 
-        <aside className="h-fit rounded-[1.75rem] border border-slate-200 bg-white p-5 lg:sticky lg:top-6">
-          <p className={`text-[10px] font-black uppercase tracking-[0.18em] text-slate-500 ${jakartaSans.className}`}>
-            Recent updates
-          </p>
-          <h3 className={`mt-1 text-lg font-semibold text-slate-900 ${fredokaHeadline.className}`}>
-            What we changed
-          </h3>
-          <ul className="mt-4 space-y-4">
-            {changelog.map((note) => (
-              <li key={note.id} className="border-b border-slate-100 pb-4 last:border-0 last:pb-0">
-                <p className={`text-[10px] font-black uppercase tracking-[0.14em] text-sky-600 ${jakartaSans.className}`}>
-                  {note.dateKey}
-                </p>
-                <p className={`mt-1 text-sm font-semibold text-slate-900 ${jakartaSans.className}`}>{note.title}</p>
-                <p className={`mt-1 text-xs font-medium leading-relaxed text-slate-500 ${jakartaSans.className}`}>
-                  {note.detail}
-                </p>
-              </li>
-            ))}
-          </ul>
-          <Link
-            href="/portal/message"
-            className={`mt-5 inline-flex items-center gap-1.5 text-xs font-bold text-sky-700 hover:text-sky-900 ${jakartaSans.className}`}
-          >
-            Suggest a toolkit update
-            <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-          </Link>
+        <aside className="lg:sticky lg:top-24">
+          <PortalMessageTeam defaultName={displayName} defaultEmail={email} compact />
         </aside>
       </section>
     </div>
-  );
-}
-
-function FilterChip({
-  label,
-  active,
-  onClick,
-}: {
-  label: string;
-  active: boolean;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={`rounded-2xl px-3 py-2 text-[10px] font-black uppercase tracking-[0.12em] transition ${
-        active
-          ? "bg-slate-900 text-white"
-          : "border border-slate-200 bg-white text-slate-600 hover:border-sky-200 hover:text-sky-700"
-      }`}
-    >
-      {label}
-    </button>
   );
 }
