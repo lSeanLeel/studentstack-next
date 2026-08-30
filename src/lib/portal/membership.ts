@@ -121,11 +121,12 @@ export const PARENT_PORTAL_SUMMARY = {
   pillars: [
     {
       title: "AI Toolkit",
-      detail: "Step-by-step workflows updated by college students.",
+      detail:
+        "The AI tools and systems we actually use to organize, plan, and study more efficiently.",
     },
     {
       title: "Ask the team",
-      detail: "Real replies from students still in school — not chatbot tips.",
+      detail: "The questions you can't ask AI — answered by students still in school.",
     },
     {
       title: "Resources",

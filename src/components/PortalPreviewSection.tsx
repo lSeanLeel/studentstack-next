@@ -106,7 +106,7 @@ export function PortalPreviewSection() {
                       AI Toolkit · self-paced
                     </p>
                     <p className={`mt-2 text-sm font-semibold text-slate-900 ${fredokaHeadline.className}`}>
-                      Syllabus → calendar workflow with copy-paste prompts
+                      Tools we use to organize, plan, and study
                     </p>
                   </div>
                   <div className="rounded-2xl border-2 border-emerald-200 bg-emerald-50/80 p-4">
@@ -115,7 +115,7 @@ export function PortalPreviewSection() {
                       Message the team
                     </p>
                     <p className={`mt-2 text-sm font-semibold text-slate-900 ${fredokaHeadline.className}`}>
-                      College students reply — not a chatbot
+                      Questions you can't ask AI — students reply
                     </p>
                   </div>
                   <div className="rounded-2xl border-2 border-amber-200 bg-amber-50/80 p-4">

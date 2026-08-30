@@ -4,7 +4,6 @@ import React from "react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
-import { BrandWordmark } from "./BrandWordmark";
 import { useContact } from "./contact-context";
 
 export function TestimonialSection() {
@@ -52,21 +51,9 @@ export function Footer() {
   const { openContact } = useContact();
 
   return (
-    <footer className="border-t border-slate-100 bg-white/80 pt-24 pb-12 backdrop-blur-sm">
+    <footer className="border-t border-slate-100 bg-white/80 pt-16 pb-12 backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-20 grid grid-cols-1 gap-12 md:grid-cols-3">
-          <div className="md:col-span-2">
-            <Link
-              href="/"
-              className="inline-flex items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 focus-visible:ring-offset-2"
-              aria-label="StudentStack home"
-            >
-              <BrandWordmark />
-            </Link>
-            <p className={`mt-4 max-w-md text-sm font-medium text-slate-500 ${jakartaSans.className}`}>
-              AI for school, taught by college students. Private membership for high schoolers.
-            </p>
-          </div>
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:items-start">
           <div>
             <h4 className="mb-6 text-sm font-bold uppercase tracking-widest text-slate-900">Legal</h4>
             <ul className="space-y-4 text-sm font-medium text-slate-500">
@@ -81,8 +68,8 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        <div className="border-t border-slate-100 pt-8">
-          <p className="text-sm font-medium text-slate-400">&copy; {new Date().getFullYear()} StudentStack. All rights reserved.</p>
+        <div className="mt-12 border-t border-slate-100 pt-8">
+          <p className="text-sm font-medium text-slate-400">&copy; {new Date().getFullYear()} All rights reserved.</p>
         </div>
       </div>
     </footer>
