@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Lock, Sparkles } from "lucide-react";
+import { Lock } from "lucide-react";
 import { BrandWordmark } from "@/components/BrandWordmark";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { PORTAL_PREVIEW_SNAPSHOT } from "@/lib/portal/portal-preview";
@@ -74,22 +74,15 @@ export function PortalPreviewMock() {
 
             {/* Featured tip */}
             <div className="rounded-2xl bg-white p-3 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04] sm:p-3.5">
-              <div className="flex items-start justify-between gap-2">
-                <div className="min-w-0">
-                  <p className={`text-[9px] font-semibold text-sky-600 ${jakartaSans.className}`}>
-                    This week · {PORTAL_PREVIEW_SNAPSHOT.dateLabel}
-                  </p>
-                  <p className={`mt-0.5 text-[11px] font-semibold text-slate-900 sm:text-xs ${fredokaHeadline.className}`}>
-                    {PORTAL_PREVIEW_SNAPSHOT.tipTitle}
-                  </p>
-                  <p className={`mt-1 line-clamp-2 text-[9px] font-medium leading-relaxed text-slate-500 sm:text-[10px] ${jakartaSans.className}`}>
-                    {PORTAL_PREVIEW_SNAPSHOT.tipBody}
-                  </p>
-                </div>
-                <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-sky-500/10 text-sky-600 ring-1 ring-sky-500/20">
-                  <Sparkles className="h-3.5 w-3.5" aria-hidden />
-                </span>
-              </div>
+              <p className={`text-[9px] font-semibold text-sky-600 ${jakartaSans.className}`}>
+                This week · {PORTAL_PREVIEW_SNAPSHOT.dateLabel}
+              </p>
+              <p className={`mt-0.5 text-[11px] font-semibold text-slate-900 sm:text-xs ${fredokaHeadline.className}`}>
+                {PORTAL_PREVIEW_SNAPSHOT.tipTitle}
+              </p>
+              <p className={`mt-1 line-clamp-2 text-[9px] font-medium leading-relaxed text-slate-500 sm:text-[10px] ${jakartaSans.className}`}>
+                {PORTAL_PREVIEW_SNAPSHOT.tipBody}
+              </p>
             </div>
 
             {/* Message teaser */}

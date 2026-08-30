@@ -37,11 +37,15 @@ export function PortalPreviewSection() {
             className={`text-[clamp(2rem,5vw,3.25rem)] font-semibold leading-[1.08] tracking-[-0.035em] text-slate-900 ${fredokaHeadline.className}`}
           >
             The ultimate membership for your{" "}
-            <span className="relative inline-block text-sky-500">
-              <span className="relative z-10">high schooler</span>
+            <span className="relative inline-block whitespace-nowrap px-0.5">
+              <span className="relative z-10 text-sky-500">high schooler</span>
               <span
-                className="pointer-events-none absolute -inset-x-2 -bottom-1 z-0 h-[0.35em] rounded-full bg-sky-200/70"
                 aria-hidden
+                className="pointer-events-none absolute -inset-x-1.5 bottom-[0.05em] z-0 h-[0.5em] -skew-x-6 rounded-[100%] bg-gradient-to-r from-sky-300/95 via-sky-200 to-emerald-200/85"
+              />
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -inset-x-2 bottom-0 z-0 h-[0.55em] -skew-x-6 rounded-[100%] bg-sky-400/25 blur-[5px]"
               />
             </span>
           </motion.h2>
@@ -55,9 +59,9 @@ export function PortalPreviewSection() {
                 initial={{ opacity: 0, y: 14 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.06 * i }}
-                whileHover={{ y: -3 }}
-                className={`rounded-3xl p-4 transition duration-300 sm:p-5 ${pillarCardClasses(pillar.accent)}`}
+                whileHover={{ scale: 1.025, y: -4 }}
+                transition={{ delay: 0.06 * i, type: "spring", stiffness: 420, damping: 28 }}
+                className={`cursor-default rounded-3xl p-4 transition-[box-shadow,background-color,border-color] duration-300 sm:p-5 ${pillarCardClasses(pillar.accent)}`}
               >
                 <p className={`text-lg font-semibold sm:text-xl ${pillarTitleClasses(pillar.accent)} ${fredokaHeadline.className}`}>
                   {pillar.title}
