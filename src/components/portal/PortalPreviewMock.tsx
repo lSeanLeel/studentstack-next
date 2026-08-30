@@ -72,27 +72,6 @@ export function PortalPreviewMock() {
               </p>
             </div>
 
-            {/* Quick actions grid */}
-            <div className="grid grid-cols-2 gap-2">
-              {[
-                { label: "AI Toolkit", tint: "from-sky-500/10 to-white" },
-                { label: "Ask the team", tint: "from-emerald-500/10 to-white" },
-                { label: "Resources", tint: "from-violet-500/10 to-white" },
-                { label: "Guides", tint: "from-amber-500/10 to-white" },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className={`rounded-xl bg-gradient-to-br ${item.tint} p-2.5 ring-1 ring-black/[0.04]`}
-                >
-                  <p className={`text-[10px] font-semibold text-slate-900 sm:text-[11px] ${fredokaHeadline.className}`}>
-                    {item.label}
-                  </p>
-                  <div className="mt-2 h-1.5 w-3/4 rounded-full bg-black/[0.06]" />
-                  <div className="mt-1 h-1.5 w-1/2 rounded-full bg-black/[0.04]" />
-                </div>
-              ))}
-            </div>
-
             {/* Featured tip */}
             <div className="rounded-2xl bg-white p-3 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04] sm:p-3.5">
               <div className="flex items-start justify-between gap-2">

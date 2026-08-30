@@ -41,7 +41,7 @@ export const PORTAL_PREVIEW_PILLARS: PortalPillar[] = [
   },
 ];
 
-export const PORTAL_PREVIEW_HEADLINE = "The student portal, at a glance";
+export const PORTAL_PREVIEW_HEADLINE = "The ultimate membership for your high schooler";
 
 /** Abstract landing mock content — not tied to demo login. */
 export const PORTAL_PREVIEW_SNAPSHOT = {
