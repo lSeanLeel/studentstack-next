@@ -30,6 +30,53 @@ function preloadCollegeLogos() {
 
 const flip = { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const };
 
+const schoolUseCases = [
+  { verb: "write", color: "#0ea5e9" },
+  { verb: "study", color: "#10b981" },
+  { verb: "take notes", color: "#8b5cf6" },
+  { verb: "organize", color: "#f59e0b" },
+  { verb: "research", color: "#f97316" },
+] as const;
+
+const useCaseFlip = { duration: 0.42, ease: [0.22, 1, 0.36, 1] as const };
+
+function SchoolUseCaseLine() {
+  const [idx, setIdx] = useState(0);
+
+  React.useEffect(() => {
+    const t = setInterval(() => setIdx((i) => (i + 1) % schoolUseCases.length), 2800);
+    return () => clearInterval(t);
+  }, []);
+
+  const cur = schoolUseCases[idx];
+
+  return (
+    <p
+      className={`${jakartaSans.className} text-[0.95rem] font-semibold leading-snug text-slate-600 sm:text-base`}
+      aria-live="polite"
+    >
+      Learn how top students are using AI tools and systems to{" "}
+      <span className="relative inline-flex h-[1.35em] min-w-[5.25rem] translate-y-[0.06em] items-center justify-center overflow-hidden align-middle sm:min-w-[5.75rem]">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.span
+            key={cur.verb}
+            initial={{ opacity: 0, y: 14, filter: "blur(4px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            exit={{ opacity: 0, y: -14, filter: "blur(4px)" }}
+            transition={useCaseFlip}
+            className="absolute whitespace-nowrap font-bold"
+            style={{ color: cur.color }}
+          >
+            {cur.verb}
+          </motion.span>
+        </AnimatePresence>
+      </span>{" "}
+      better
+      <span className="sr-only"> — currently showing: {cur.verb}</span>
+    </p>
+  );
+}
+
 function CollegeHeadline() {
   const [idx, setIdx] = useState(0);
   const [ready, setReady] = useState(false);
@@ -137,16 +184,14 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
-          className="mx-auto mt-4 max-w-lg space-y-1.5 text-center sm:mt-5"
+          className="mx-auto mt-4 max-w-2xl space-y-1.5 text-center sm:mt-5"
         >
           <p
             className={`${fredokaHeadline.className} text-[clamp(1.05rem,2.4vw+0.4rem,1.5rem)] font-semibold leading-snug tracking-[-0.02em] text-slate-900`}
           >
-            The AI advantage for <span className="text-sky-600">high schoolers</span>.
+            The AI advantage for <span className="text-sky-600">high schoolers</span>
           </p>
-          <p className={`${jakartaSans.className} text-[0.95rem] font-semibold leading-snug text-slate-600 sm:text-base`}>
-            Learn AI for school across classes, labs, and writing.
-          </p>
+          <SchoolUseCaseLine />
         </motion.div>
 
         <motion.div
