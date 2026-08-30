@@ -139,7 +139,7 @@ export function HeroSection() {
           transition={{ delay: 0.5, duration: 0.5 }}
           className={`${jakartaSans.className} mx-auto mt-4 max-w-xl text-[0.95rem] font-semibold leading-snug text-slate-600 sm:mt-5 sm:text-lg`}
         >
-          Private membership for high schoolers learning to use AI responsibly in real schoolwork. Workflows, resources, and guidance from students still in class.
+          AI for school, built for high schoolers. Responsible use in the classes, labs, and writing you actually have.
         </motion.p>
 
         <motion.div
