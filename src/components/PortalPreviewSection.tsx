@@ -36,7 +36,7 @@ export function PortalPreviewSection() {
             viewport={{ once: true }}
             className={`text-[clamp(2rem,5vw,3.25rem)] font-semibold leading-[1.08] tracking-[-0.035em] text-slate-900 ${fredokaHeadline.className}`}
           >
-            The ultimate membership for your{" "}
+            The ultimate platform for your{" "}
             <span className="relative inline-block whitespace-nowrap px-0.5">
               <span className="relative z-10 text-sky-500">high schooler</span>
               <span

@@ -101,7 +101,7 @@ export function PortalPreviewMock() {
             <div className="flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-2 shadow-sm ring-1 ring-black/[0.06] backdrop-blur-sm">
               <Lock className="h-3.5 w-3.5 text-sky-600" aria-hidden />
               <span className={`text-[10px] font-semibold text-slate-600 ${jakartaSans.className}`}>
-                Unlocks with membership
+                Unlocks on the platform
               </span>
             </div>
           </div>

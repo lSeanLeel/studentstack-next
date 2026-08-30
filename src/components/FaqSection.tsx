@@ -10,7 +10,7 @@ type FaqItem = { id?: string; q: string; a: ReactNode };
 const FAQ_ITEMS: FaqItem[] = [
   {
     q: "What is StudentStack?",
-    a: "A private membership for high schoolers learning AI literacy for school — how to use tools responsibly in classes, labs, and writing. Built and updated by college students who are still in the classrooms that matter.",
+    a: "A private platform where high schoolers learn AI for school — how to use tools responsibly in classes, labs, and writing. Built and updated by college students who are still in the classrooms that matter.",
   },
   {
     q: "How is this different from tutors or admissions counselors?",
