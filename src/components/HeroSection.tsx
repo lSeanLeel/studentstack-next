@@ -33,18 +33,18 @@ const flip = { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const };
 const schoolUseCases = [
   { verb: "write", color: "#0ea5e9" },
   { verb: "study", color: "#10b981" },
-  { verb: "take notes", color: "#8b5cf6" },
   { verb: "organize", color: "#f59e0b" },
   { verb: "research", color: "#f97316" },
+  { verb: "take notes", color: "#8b5cf6" },
 ] as const;
 
-const useCaseFlip = { duration: 0.42, ease: [0.22, 1, 0.36, 1] as const };
+const useCaseFlip = { duration: 0.38, ease: [0.22, 1, 0.36, 1] as const };
 
 function SchoolUseCaseLine() {
   const [idx, setIdx] = useState(0);
 
   React.useEffect(() => {
-    const t = setInterval(() => setIdx((i) => (i + 1) % schoolUseCases.length), 2800);
+    const t = setInterval(() => setIdx((i) => (i + 1) % schoolUseCases.length), 3000);
     return () => clearInterval(t);
   }, []);
 
@@ -52,19 +52,20 @@ function SchoolUseCaseLine() {
 
   return (
     <p
-      className={`${jakartaSans.className} text-[0.95rem] font-semibold leading-snug text-slate-600 sm:text-base`}
+      className={`${fredokaHeadline.className} text-[clamp(1rem,2.4vw+0.35rem,1.45rem)] font-semibold leading-[1.45] tracking-[-0.02em] text-slate-700`}
       aria-live="polite"
     >
-      Learn how top students are using AI tools and systems to{" "}
-      <span className="relative inline-flex h-[1.35em] min-w-[5.25rem] translate-y-[0.06em] items-center justify-center overflow-hidden align-middle sm:min-w-[5.75rem]">
+      Learn how{" "}
+      <span className="text-sky-600">high schoolers</span> use AI tools and systems to{" "}
+      <span className="relative mx-0.5 inline-grid h-[1.45em] w-[6.85rem] shrink-0 translate-y-[0.08em] overflow-hidden rounded-xl bg-white/70 px-2 align-middle shadow-[inset_0_0_0_1px_rgba(14,165,233,0.12)] sm:w-[7.1rem]">
         <AnimatePresence mode="wait" initial={false}>
           <motion.span
             key={cur.verb}
-            initial={{ opacity: 0, y: 14, filter: "blur(4px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            exit={{ opacity: 0, y: -14, filter: "blur(4px)" }}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
             transition={useCaseFlip}
-            className="absolute whitespace-nowrap font-bold"
+            className="col-start-1 row-start-1 self-center justify-self-center whitespace-nowrap text-[0.92em] font-bold"
             style={{ color: cur.color }}
           >
             {cur.verb}
@@ -72,7 +73,7 @@ function SchoolUseCaseLine() {
         </AnimatePresence>
       </span>{" "}
       better
-      <span className="sr-only"> — currently showing: {cur.verb}</span>
+      <span className="sr-only"> — {cur.verb}</span>
     </p>
   );
 }
@@ -184,13 +185,8 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
-          className="mx-auto mt-4 max-w-2xl space-y-1.5 text-center sm:mt-5"
+          className="mx-auto mt-4 max-w-2xl text-center sm:mt-5"
         >
-          <p
-            className={`${fredokaHeadline.className} text-[clamp(1.05rem,2.4vw+0.4rem,1.5rem)] font-semibold leading-snug tracking-[-0.02em] text-slate-900`}
-          >
-            The AI advantage for <span className="text-sky-600">high schoolers</span>
-          </p>
           <SchoolUseCaseLine />
         </motion.div>
 
