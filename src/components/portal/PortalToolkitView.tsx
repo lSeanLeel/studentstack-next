@@ -53,8 +53,8 @@ export function PortalToolkitView({
         </div>
         <PortalPageTitle className="mt-2">AI Toolkit</PortalPageTitle>
         <PortalLead>
-          Step-by-step workflows and copy-paste prompts we actually use in college. Not generic tips — real sequences
-          you can run today.
+          Step-by-step workflows and copy-paste prompts for school. Open a category when you need it — no course to
+          finish first.
         </PortalLead>
       </header>
 

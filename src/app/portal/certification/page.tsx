@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-/** Legacy stub → Elite certifications modules. */
+/** Legacy stub → member guides. */
 export default function PortalCertificationRedirect() {
-  redirect("/portal/certifications");
+  redirect("/portal/guides");
 }

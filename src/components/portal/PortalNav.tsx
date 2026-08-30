@@ -8,7 +8,7 @@ const nav = [
   { href: "/portal", label: "Home", match: (p: string) => p === "/portal" },
   { href: "/portal/toolkit", label: "Toolkit", match: (p: string) => p.startsWith("/portal/toolkit") },
   { href: "/portal/resources", label: "Resources", match: (p: string) => p.startsWith("/portal/resources") || p.startsWith("/portal/vault") },
-  { href: "/portal/certifications", label: "Pathways", match: (p: string) => p.startsWith("/portal/certification") },
+  { href: "/portal/guides", label: "Guides", match: (p: string) => p.startsWith("/portal/guide") || p.startsWith("/portal/certification") },
   { href: "/portal/message", label: "Team", match: (p: string) => p.startsWith("/portal/message") },
 ] as const;
 
