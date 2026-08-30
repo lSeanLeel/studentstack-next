@@ -16,10 +16,10 @@ export type VaultCollection = {
 };
 
 /**
- * Super Opportunity & Admissions Vault — seed board for Elite portal.
+ * Super Opportunity & Admissions Vault — member portal seed board.
  * Designed to be refreshed via the portal AI desk.
  */
-export const ELITE_VAULT_COLLECTIONS: VaultCollection[] = [
+export const MEMBER_VAULT_COLLECTIONS: VaultCollection[] = [
   {
     id: "summer-programs",
     label: "Summer programs",

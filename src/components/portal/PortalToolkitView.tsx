@@ -5,7 +5,7 @@ import { ArrowRight, CalendarDays, Check, ChevronDown, Copy } from "lucide-react
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { PortalMessageTeam } from "@/components/portal/PortalMessageTeam";
 import { PortalBadge, PortalEyebrow, PortalLead, PortalPageTitle, PortalPanel } from "@/components/portal/portal-ui";
-import { ELITE_TOOLKIT_CATEGORIES, type ToolkitCategoryId } from "@/lib/portal/toolkit";
+import { MEMBER_TOOLKIT_CATEGORIES, type ToolkitCategoryId } from "@/lib/portal/toolkit";
 import type { ToolkitDailyTip } from "@/lib/portal/toolkit-maintenance";
 
 const ALL = "all" as const;
@@ -26,11 +26,11 @@ export function PortalToolkitView({
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const categories = useMemo(() => {
-    if (filter === ALL) return ELITE_TOOLKIT_CATEGORIES;
-    return ELITE_TOOLKIT_CATEGORIES.filter((c) => c.id === filter);
+    if (filter === ALL) return MEMBER_TOOLKIT_CATEGORIES;
+    return MEMBER_TOOLKIT_CATEGORIES.filter((c) => c.id === filter);
   }, [filter]);
 
-  const tipCategory = ELITE_TOOLKIT_CATEGORIES.find((c) => c.id === tip.categoryId);
+  const tipCategory = MEMBER_TOOLKIT_CATEGORIES.find((c) => c.id === tip.categoryId);
   const tipTool = tipCategory?.tools.find((t) => t.id === tip.toolId);
 
   async function copyPrompt(toolId: string, text: string) {
@@ -89,7 +89,7 @@ export function PortalToolkitView({
               className={`w-full appearance-none rounded-2xl border-2 border-slate-200 bg-white py-2.5 pl-4 pr-10 text-sm font-bold text-slate-800 shadow-[0_4px_0_0_rgba(15,23,42,0.05)] focus:border-sky-300 focus:outline-none ${jakartaSans.className}`}
             >
               <option value={ALL}>All categories</option>
-              {ELITE_TOOLKIT_CATEGORIES.map((c) => (
+              {MEMBER_TOOLKIT_CATEGORIES.map((c) => (
                 <option key={c.id} value={c.id}>
                   {c.label}
                 </option>

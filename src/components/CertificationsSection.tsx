@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "motion/react";
 import { ArrowRight, BadgeCheck, FileCheck2, GraduationCap } from "lucide-react";
 import { fredokaHeadline, jakartaSans, institutionalSerif } from "@/app/fonts";
-import { ELITE_CERT_MODULES } from "@/lib/portal/certifications";
+import { MEMBER_CERT_MODULES } from "@/lib/portal/certifications";
 
 /**
  * Organization-issued AI certifications — lead with college application attach value.
@@ -39,13 +39,13 @@ export function CertificationsSection() {
           <p
             className={`ss-institutional mt-4 max-w-2xl text-[1.05rem] font-normal leading-[1.7] text-slate-300 sm:text-lg ${institutionalSerif.className}`}
           >
-            StudentStack issues digital AI credentials inside Elite. Members already list them on Common App activities,
-            counselor notes, and portfolios as proof of responsible, college-ready AI use.
+            StudentStack issues digital AI credentials for members. Students list them on Common App activities,
+            counselor notes, and portfolios as proof of responsible, school-ready AI use.
           </p>
         </motion.div>
 
         <div className="mt-10 space-y-6 sm:mt-12">
-          {ELITE_CERT_MODULES.map((cert, index) => (
+          {MEMBER_CERT_MODULES.map((cert, index) => (
             <motion.article
               key={cert.id}
               initial={{ opacity: 0, y: 18 }}
@@ -109,10 +109,10 @@ export function CertificationsSection() {
                     ))}
                   </ul>
                   <a
-                    href="#apply-elite"
+                    href="/join"
                     className={`mt-8 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-4 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-slate-900 transition hover:-translate-y-0.5 hover:bg-sky-100 ${jakartaSans.className}`}
                   >
-                    Apply for Elite
+                    Join membership
                     <ArrowRight className="h-4 w-4" aria-hidden />
                   </a>
                 </div>

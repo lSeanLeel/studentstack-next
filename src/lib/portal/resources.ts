@@ -9,7 +9,7 @@ export type ResourceItem = {
   deadline: string;
   cost: string;
   selectivity: ResourceSelectivity;
-  exclusivity: "elite";
+  exclusivity: "member";
 };
 
 export type ResourceCollection = {
@@ -32,7 +32,7 @@ export function resourceSelectivityLabel(s: ResourceSelectivity) {
 /**
  * Member resources — summer programs and opportunities with upfront facts.
  */
-export const ELITE_RESOURCE_COLLECTIONS: ResourceCollection[] = [
+export const MEMBER_RESOURCE_COLLECTIONS: ResourceCollection[] = [
   {
     id: "summer-programs",
     label: "Summer programs",
@@ -47,7 +47,7 @@ export const ELITE_RESOURCE_COLLECTIONS: ResourceCollection[] = [
         deadline: "Jan 15 typical",
         cost: "Free (travel stipend varies)",
         selectivity: "highly selective",
-        exclusivity: "elite",
+        exclusivity: "member",
       },
       {
         id: "summer-stem-immersive",
@@ -58,7 +58,7 @@ export const ELITE_RESOURCE_COLLECTIONS: ResourceCollection[] = [
         deadline: "Feb 7 typical",
         cost: "Free + stipend",
         selectivity: "highly selective",
-        exclusivity: "elite",
+        exclusivity: "member",
       },
       {
         id: "summer-local-high-signal",
@@ -69,7 +69,7 @@ export const ELITE_RESOURCE_COLLECTIONS: ResourceCollection[] = [
         deadline: "Rolling · register by May",
         cost: "$50–200/credit typical",
         selectivity: "open",
-        exclusivity: "elite",
+        exclusivity: "member",
       },
     ],
   },
@@ -87,7 +87,7 @@ export const ELITE_RESOURCE_COLLECTIONS: ResourceCollection[] = [
         deadline: "Dec–Jan by region",
         cost: "$10/entry (fee waivers available)",
         selectivity: "selective",
-        exclusivity: "elite",
+        exclusivity: "member",
       },
       {
         id: "opp-cs-build",
@@ -98,7 +98,7 @@ export const ELITE_RESOURCE_COLLECTIONS: ResourceCollection[] = [
         deadline: "Nov 1 typical",
         cost: "Free",
         selectivity: "selective",
-        exclusivity: "elite",
+        exclusivity: "member",
       },
       {
         id: "opp-service-leadership",
@@ -109,7 +109,7 @@ export const ELITE_RESOURCE_COLLECTIONS: ResourceCollection[] = [
         deadline: "Jan 16 typical",
         cost: "Free + paid internship",
         selectivity: "highly selective",
-        exclusivity: "elite",
+        exclusivity: "member",
       },
     ],
   },

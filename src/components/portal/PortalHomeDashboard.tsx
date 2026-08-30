@@ -49,7 +49,7 @@ export function PortalHomeDashboard({
             Hey {displayName}
           </p>
           <p className={`truncate text-sm font-medium text-slate-300 ${jakartaSans.className}`}>
-            Active member · toolkit, courses, and resources unlocked
+            Active member · AI toolkit and resources unlocked
           </p>
         </div>
         <Link

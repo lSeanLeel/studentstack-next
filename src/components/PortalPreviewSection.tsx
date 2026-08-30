@@ -31,7 +31,7 @@ export function PortalPreviewSection() {
             viewport={{ once: true }}
             className={`mt-3 text-[2rem] font-semibold tracking-[-0.035em] text-slate-900 sm:text-4xl ${fredokaHeadline.className}`}
           >
-            What your student gets access to
+            Private membership for AI literacy at school
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -39,8 +39,8 @@ export function PortalPreviewSection() {
             viewport={{ once: true }}
             className={`mt-4 text-sm font-medium leading-relaxed text-slate-600 sm:text-base ${jakartaSans.className}`}
           >
-            A gated portal built by college students: daily AI toolkit, member resources, and organization-issued
-            pathways students can work toward.
+            A gated student portal built by college students: weekly AI toolkit with real workflows, member resources,
+            and optional SS-AIS / SS-ACR credentials.
           </motion.p>
         </div>
 
@@ -88,9 +88,9 @@ export function PortalPreviewSection() {
                     <p className={`text-[9px] font-black uppercase tracking-[0.14em] text-sky-200 ${jakartaSans.className}`}>
                       Member access
                     </p>
-                    <p className={`mt-1 text-lg font-semibold ${fredokaHeadline.className}`}>AI toolkit + pathways</p>
+                    <p className={`mt-1 text-lg font-semibold ${fredokaHeadline.className}`}>AI literacy for school</p>
                     <p className={`mt-1 text-xs font-medium text-slate-300 ${jakartaSans.className}`}>
-                      Updated daily by our college team
+                      Toolkit updated weekly by our college team
                     </p>
                   </div>
                   <div className="rounded-2xl border-2 border-sky-200 bg-white p-4">

@@ -2,8 +2,8 @@ import Link from "next/link";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { getPortalMember } from "@/lib/portal/session";
-import { ELITE_RESOURCE_COLLECTIONS, resourceSelectivityLabel } from "@/lib/portal/resources";
-import { EliteGate } from "@/components/portal/EliteGate";
+import { MEMBER_RESOURCE_COLLECTIONS, resourceSelectivityLabel } from "@/lib/portal/resources";
+import { MemberGate } from "@/components/portal/MemberGate";
 import { PortalEyebrow, PortalLead, PortalPageTitle } from "@/components/portal/portal-ui";
 
 const selectivityTone = {
@@ -15,7 +15,7 @@ const selectivityTone = {
 export default async function PortalResourcesPage() {
   const member = await getPortalMember();
   if (!member) return null;
-  if (!member.elite) return <EliteGate />;
+  if (!member.isMember) return <MemberGate />;
 
   return (
     <div className="space-y-10">
@@ -36,7 +36,7 @@ export default async function PortalResourcesPage() {
       </header>
 
       <div className="space-y-10">
-        {ELITE_RESOURCE_COLLECTIONS.map((collection) => (
+        {MEMBER_RESOURCE_COLLECTIONS.map((collection) => (
           <section key={collection.id}>
             <h2 className={`text-2xl font-semibold tracking-[-0.02em] text-slate-900 ${fredokaHeadline.className}`}>
               {collection.label}

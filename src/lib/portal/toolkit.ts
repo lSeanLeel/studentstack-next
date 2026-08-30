@@ -34,7 +34,7 @@ export type ToolkitCategory = {
  * AI Toolkit — tools we use and how we use them for school.
  * Each entry includes step-by-step workflow and copy-paste prompts.
  */
-export const ELITE_TOOLKIT_CATEGORIES: ToolkitCategory[] = [
+export const MEMBER_TOOLKIT_CATEGORIES: ToolkitCategory[] = [
   {
     id: "organization",
     label: "Organization",

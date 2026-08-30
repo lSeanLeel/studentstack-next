@@ -17,7 +17,7 @@ const bodySchema = z.object({
 
 export async function POST(req: Request) {
   const member = await getPortalMember();
-  if (!member || !member.elite) {
+  if (!member || !member.isMember) {
     return NextResponse.json({ error: "Sign in to message the team." }, { status: 401 });
   }
 

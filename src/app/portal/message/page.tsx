@@ -1,12 +1,12 @@
 import { getPortalMember } from "@/lib/portal/session";
-import { EliteGate } from "@/components/portal/EliteGate";
+import { MemberGate } from "@/components/portal/MemberGate";
 import { PortalMessageTeam } from "@/components/portal/PortalMessageTeam";
 import { PortalEyebrow, PortalLead, PortalPageTitle } from "@/components/portal/portal-ui";
 
 export default async function PortalMessagePage() {
   const member = await getPortalMember();
   if (!member) return null;
-  if (!member.elite) return <EliteGate />;
+  if (!member.isMember) return <MemberGate />;
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">

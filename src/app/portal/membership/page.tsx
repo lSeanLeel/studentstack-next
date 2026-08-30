@@ -7,7 +7,7 @@ export default async function PortalMembershipPage() {
   const member = await getPortalMember();
   if (!member) return null;
 
-  const active = member.elite;
+  const active = member.isMember;
   const access = member.access;
 
   return (

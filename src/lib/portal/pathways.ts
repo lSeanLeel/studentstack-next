@@ -85,12 +85,6 @@ export const CREDIBILITY_STACK: CredibilityPartner[] = [
     detail: "Digital badges students attach to applications and counselor packets.",
   },
   {
-    id: "public-courses",
-    name: "Optional public supplements",
-    role: "IBM · Code.org · Google",
-    detail: "Free org courses listed as extra reading — member modules and credentials are the core product.",
-  },
-  {
     id: "campus-team",
     name: "College student operators",
     role: "UCLA · Princeton · Columbia · Berkeley · Stanford",
@@ -98,7 +92,7 @@ export const CREDIBILITY_STACK: CredibilityPartner[] = [
   },
   {
     id: "daily-toolkit",
-    name: "Daily toolkit updates",
+    name: "Weekly toolkit updates",
     role: "Member-only",
     detail: "Workflows reviewed weekly so AI advice stays current, not last year's playbook.",
   },

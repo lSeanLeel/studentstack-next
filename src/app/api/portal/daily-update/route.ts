@@ -48,7 +48,7 @@ async function resolvePortalUserId(): Promise<{ userId: string } | { error: Next
 
     const { canAccessPortal } = await getPortalAccess(user.id);
     if (!canAccessPortal) {
-      return { error: NextResponse.json({ error: "Elite access required" }, { status: 403 }) };
+      return { error: NextResponse.json({ error: "Membership required" }, { status: 403 }) };
     }
 
     return { userId: user.id };

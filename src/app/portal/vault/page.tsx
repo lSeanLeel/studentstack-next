@@ -1,12 +1,12 @@
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { getPortalMember } from "@/lib/portal/session";
-import { ELITE_VAULT_COLLECTIONS } from "@/lib/portal/vault";
-import { EliteGate } from "@/components/portal/EliteGate";
+import { MEMBER_VAULT_COLLECTIONS } from "@/lib/portal/vault";
+import { MemberGate } from "@/components/portal/MemberGate";
 
 export default async function PortalVaultPage() {
   const member = await getPortalMember();
   if (!member) return null;
-  if (!member.elite) return <EliteGate />;
+  if (!member.isMember) return <MemberGate />;
 
   return (
     <div className="space-y-8">
@@ -23,7 +23,7 @@ export default async function PortalVaultPage() {
       </header>
 
       <div className="space-y-10">
-        {ELITE_VAULT_COLLECTIONS.map((collection) => (
+        {MEMBER_VAULT_COLLECTIONS.map((collection) => (
           <section key={collection.id} id={collection.id} className="scroll-mt-24">
             <h2 className={`text-2xl font-semibold tracking-[-0.02em] text-slate-900 ${fredokaHeadline.className}`}>
               {collection.label}

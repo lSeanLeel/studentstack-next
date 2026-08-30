@@ -39,7 +39,7 @@ export type CertModule = {
   priceLabel: string;
 };
 
-export const ELITE_CERT_MODULES: CertModule[] = [
+export const MEMBER_CERT_MODULES: CertModule[] = [
   {
     id: "ai-safety-integrity",
     code: "SS-AIS",
@@ -76,7 +76,7 @@ export const ELITE_CERT_MODULES: CertModule[] = [
       "Counselor / teacher recommendation talking point",
       "Portfolio or LinkedIn student profile",
     ],
-    priceLabel: "Included with Elite",
+    priceLabel: "Included with membership",
   },
   {
     id: "ai-college-readiness",
@@ -84,7 +84,7 @@ export const ELITE_CERT_MODULES: CertModule[] = [
     title: "AI for College Readiness",
     tagline: "Organizing, research, and application workflows that stay student-owned.",
     collegeHook:
-      "Elite students use this module to show admissions a disciplined AI workflow for research, planning, and application writing, without outsourcing their voice.",
+      "Members use this module to show colleges a disciplined AI workflow for research, planning, and application writing, without outsourcing their voice.",
     overview:
       "A proficiency badge for students who use AI to stay organized for college-bound work: research logs, activity storytelling, and essay process documentation that proves authorship.",
     modules: [
@@ -114,6 +114,6 @@ export const ELITE_CERT_MODULES: CertModule[] = [
       "Interview talking points",
       "Demonstration of mature AI use for college work",
     ],
-    priceLabel: "Included with Elite",
+    priceLabel: "Included with membership",
   },
 ];

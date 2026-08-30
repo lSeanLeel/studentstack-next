@@ -1,4 +1,4 @@
-import { ELITE_TOOLKIT_CATEGORIES, type ToolkitCategoryId } from "@/lib/portal/toolkit";
+import { MEMBER_TOOLKIT_CATEGORIES, type ToolkitCategoryId } from "@/lib/portal/toolkit";
 
 export type ToolkitDailyTip = {
   id: string;
@@ -74,7 +74,7 @@ export function getToolkitDailyTip(date = new Date()) {
 
 export function getToolkitMaintenanceMeta(date = new Date()) {
   const tip = getToolkitDailyTip(date);
-  const category = ELITE_TOOLKIT_CATEGORIES.find((c) => c.id === tip.categoryId);
+  const category = MEMBER_TOOLKIT_CATEGORIES.find((c) => c.id === tip.categoryId);
   const tool = category?.tools.find((t) => t.id === tip.toolId);
   return {
     tip,

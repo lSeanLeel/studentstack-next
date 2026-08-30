@@ -12,7 +12,8 @@ export type PortalMember = {
   email: string;
   displayName: string;
   access: EliteAccess;
-  elite: boolean;
+  /** Active paid membership (internal tier may still be stored as "elite" in Supabase). */
+  isMember: boolean;
 };
 
 export async function hasDemoPortalSession() {
@@ -32,7 +33,7 @@ export async function getPortalMember(): Promise<PortalMember | null> {
         parentEmail: null,
         studentName: "Test",
       },
-      elite: true,
+      isMember: true,
     };
   }
 
@@ -59,7 +60,7 @@ export async function getPortalMember(): Promise<PortalMember | null> {
       email: user.email || "",
       displayName,
       access,
-      elite: isEliteActive(access),
+      isMember: isEliteActive(access),
     };
   } catch {
     return null;

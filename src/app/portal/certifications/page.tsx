@@ -2,15 +2,15 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { getPortalMember } from "@/lib/portal/session";
-import { ELITE_CERT_MODULES } from "@/lib/portal/certifications";
+import { MEMBER_CERT_MODULES } from "@/lib/portal/certifications";
 import { MEMBER_PATHWAYS } from "@/lib/portal/pathways";
-import { EliteGate } from "@/components/portal/EliteGate";
+import { MemberGate } from "@/components/portal/MemberGate";
 import { PortalBadge, PortalEyebrow, PortalLead, PortalPageTitle, PortalProgressBar } from "@/components/portal/portal-ui";
 
 export default async function PortalCertificationsPage() {
   const member = await getPortalMember();
   if (!member) return null;
-  if (!member.elite) return <EliteGate />;
+  if (!member.isMember) return <MemberGate />;
 
   return (
     <div className="space-y-10">
@@ -18,8 +18,8 @@ export default async function PortalCertificationsPage() {
         <PortalEyebrow>Organization-issued</PortalEyebrow>
         <PortalPageTitle className="mt-1">Member pathways</PortalPageTitle>
         <PortalLead>
-          Credentials and fluency tracks your student can work toward and attach to applications. Issued by StudentStack,
-          maintained by our college team.
+          Optional credentials and fluency tracks you can work toward. Issued by StudentStack, maintained by our college
+          team.
         </PortalLead>
       </header>
 
@@ -47,7 +47,7 @@ export default async function PortalCertificationsPage() {
       </ul>
 
       <div className="space-y-8">
-        {ELITE_CERT_MODULES.map((cert) => (
+        {MEMBER_CERT_MODULES.map((cert) => (
           <article
             key={cert.id}
             id={cert.id}

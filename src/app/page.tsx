@@ -15,11 +15,6 @@ const TestimonialSection = dynamic(
   { loading: sectionLoading }
 );
 
-const CurriculumPreviewSection = dynamic(
-  () => import("@/components/CurriculumPreviewSection").then((m) => ({ default: m.CurriculumPreviewSection })),
-  { loading: sectionLoading }
-);
-
 const PortalPreviewSection = dynamic(
   () => import("@/components/PortalPreviewSection").then((m) => ({ default: m.PortalPreviewSection })),
   { loading: sectionLoading }
@@ -58,7 +53,6 @@ export default function LandingPage() {
           <Navbar onHomeLogoClick={replayIntro} />
           <HeroSection />
           <TestimonialSection />
-          <CurriculumPreviewSection />
           <PortalPreviewSection />
           <FaqSection />
           <WriteUsSection />
