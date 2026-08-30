@@ -142,18 +142,10 @@ export function HeroSection() {
           <p
             className={`${fredokaHeadline.className} text-[clamp(1.05rem,2.4vw+0.4rem,1.5rem)] font-semibold leading-snug tracking-[-0.02em] text-slate-900`}
           >
-            The AI advantage for{" "}
-            <span className="relative inline-block text-sky-600">
-              high schoolers
-              <span
-                aria-hidden
-                className="pointer-events-none absolute -inset-x-1 bottom-[0.06em] -z-10 h-[0.38em] -skew-x-3 rounded-[100%] bg-sky-200/80"
-              />
-            </span>
-            .
+            The AI advantage for <span className="text-sky-600">high schoolers</span>.
           </p>
           <p className={`${jakartaSans.className} text-[0.95rem] font-semibold leading-snug text-slate-600 sm:text-base`}>
-            AI for school. Classes, labs, and writing.
+            Learn AI for school across classes, labs, and writing.
           </p>
         </motion.div>
 
