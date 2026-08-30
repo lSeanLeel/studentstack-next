@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X, CheckCircle2 } from "lucide-react";
+import { X } from "lucide-react";
 import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { students, Student } from "../lib/students";
 import { StudentCard } from "./StudentCard";
@@ -98,23 +98,9 @@ function StudentDetailModal({ student, onDeselect }: { student: Student | null; 
             <h2 className="text-4xl sm:text-6xl font-bold text-white mb-4 font-display leading-tight">{student.name}</h2>
             <p className="text-lg text-sky-400 font-bold uppercase tracking-[0.3em] mb-10">{student.major}</p>
             
-            <div className="space-y-12">
-              <div>
-                <h4 className="text-[11px] font-bold text-slate-500 uppercase tracking-[0.4em] mb-6">About</h4>
-                <p className="text-slate-300 text-lg leading-relaxed font-medium">{student.bio}</p>
-              </div>
-
-              <div>
-                <h4 className="text-[11px] font-bold text-slate-500 uppercase tracking-[0.4em] mb-6">Key Accomplishments</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {student.accomplishments.map((acc, i) => (
-                    <div key={i} className="flex items-start gap-4 p-5 rounded-2xl bg-white/5 border border-white/5 hover:border-sky-500/30 transition-all">
-                      <CheckCircle2 className="h-5 w-5 text-sky-500 mt-0.5" />
-                      <span className="text-sm text-slate-300 font-medium leading-snug">{acc}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+            <div>
+              <h4 className="text-[11px] font-bold text-slate-500 uppercase tracking-[0.4em] mb-6">About</h4>
+              <p className="text-slate-300 text-lg leading-relaxed font-medium">{student.bio}</p>
             </div>
           </div>
         </div>
