@@ -94,8 +94,8 @@ export const MEMBERSHIP_INCLUDES: MembershipInclude[] = [
   },
   {
     id: "team",
-    title: "College team inbox",
-    detail: "Message students at UCLA, Princeton, Columbia, and peers who maintain the portal.",
+    title: "Ask the team",
+    detail: "The questions you can't ask AI — answered by students still in school.",
     href: "/portal/message",
   },
   {
@@ -112,29 +112,3 @@ export const MEMBERSHIP_INCLUDES: MembershipInclude[] = [
     optional: true,
   },
 ];
-
-/** Short lines for landing / parent preview. */
-export const PARENT_PORTAL_SUMMARY = {
-  headline: "A student portal, not a course catalog",
-  subhead:
-    "Members get a living AI toolkit, a direct line to our college team, and optional self-paced guides. No promised video library — we ship workflows you use the week you need them.",
-  pillars: [
-    {
-      title: "AI Toolkit",
-      detail:
-        "The AI tools and systems we actually use to organize, plan, and study more efficiently.",
-    },
-    {
-      title: "Ask the team",
-      detail: "The questions you can't ask AI — answered by students still in school.",
-    },
-    {
-      title: "Resources",
-      detail: "Opportunities and deadlines with facts upfront.",
-    },
-    {
-      title: "Guides (optional)",
-      detail: "Checklists for integrity and applications — earn an org badge if you finish.",
-    },
-  ],
-};
