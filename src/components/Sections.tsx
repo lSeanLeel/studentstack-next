@@ -36,10 +36,16 @@ export function TestimonialSection() {
             <p className={`max-w-2xl text-xl font-medium leading-[1.35] tracking-tight text-slate-100 sm:text-3xl ${jakartaSans.className}`}>
               <span className={`${fredokaHeadline.className} mr-1 text-3xl text-sky-300 sm:text-5xl`}>&ldquo;</span>
               I founded StudentStack because I noticed the disparity between students who use AI for school and those who
-              don&apos;t. As college students, we&apos;re native to AI — we hear about and use new tools every day, and we
-              use that insight to build StudentStack and bridge the gap.
+              don&apos;t. As college students, we&apos;re native to AI. We hear about and use new tools every day, and we use
+              that insight to build StudentStack and bridge the gap.
               <span className={`${fredokaHeadline.className} ml-1 text-3xl text-sky-300 sm:text-5xl`}>&rdquo;</span>
             </p>
+            <Link
+              href="/team"
+              className={`inline-flex items-center gap-2 rounded-2xl bg-white/10 px-5 py-2.5 text-sm font-bold text-sky-200 ring-1 ring-white/15 transition hover:bg-white/15 hover:text-white ${jakartaSans.className}`}
+            >
+              Meet the team
+            </Link>
           </div>
         </motion.div>
       </div>
