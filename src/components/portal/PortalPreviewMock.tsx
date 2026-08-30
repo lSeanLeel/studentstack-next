@@ -62,7 +62,7 @@ export function PortalPreviewMock() {
             {/* Hero card */}
             <div className="rounded-2xl bg-white p-3 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04] sm:p-3.5">
               <p className={`text-[9px] font-semibold tracking-wide text-sky-600 ${jakartaSans.className}`}>
-                Membership home
+                Platform home
               </p>
               <p className={`mt-0.5 text-sm font-semibold tracking-[-0.02em] text-slate-900 sm:text-base ${fredokaHeadline.className}`}>
                 AI literacy for school
