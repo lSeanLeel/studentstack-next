@@ -2,6 +2,7 @@ import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { getPortalMember } from "@/lib/portal/session";
 import { MEMBER_VAULT_COLLECTIONS } from "@/lib/portal/vault";
 import { MemberGate } from "@/components/portal/MemberGate";
+import { PortalBadge, PortalEyebrow, PortalLead, PortalPageTitle, portalCard } from "@/components/portal/portal-ui";
 
 export default async function PortalVaultPage() {
   const member = await getPortalMember();
@@ -11,15 +12,11 @@ export default async function PortalVaultPage() {
   return (
     <div className="space-y-8">
       <header>
-        <p className={`text-[10px] font-black uppercase tracking-[0.2em] text-[#ff6a00] ${jakartaSans.className}`}>
-          Opportunities
-        </p>
-        <h1 className={`mt-1 text-3xl font-semibold tracking-[-0.03em] text-slate-900 sm:text-4xl ${fredokaHeadline.className}`}>
-          Admissions Vault
-        </h1>
-        <p className={`mt-2 max-w-2xl text-sm font-medium leading-relaxed text-slate-600 sm:text-base ${jakartaSans.className}`}>
+        <PortalEyebrow className="text-orange-600">Opportunities</PortalEyebrow>
+        <PortalPageTitle className="mt-1">Admissions Vault</PortalPageTitle>
+        <PortalLead>
           Summer programs, research, and competitive deadlines. Use Resources for advice, then shortlist here.
-        </p>
+        </PortalLead>
       </header>
 
       <div className="space-y-10">
@@ -28,35 +25,27 @@ export default async function PortalVaultPage() {
             <h2 className={`text-2xl font-semibold tracking-[-0.02em] text-slate-900 ${fredokaHeadline.className}`}>
               {collection.label}
             </h2>
-            <p className={`mt-1 text-sm font-medium text-slate-600 ${jakartaSans.className}`}>{collection.summary}</p>
+            <p className={`mt-1 text-sm font-medium text-slate-500 ${jakartaSans.className}`}>{collection.summary}</p>
             <ul className="mt-4 space-y-3">
               {collection.items.map((item) => (
-                <li
-                  key={item.id}
-                  className="rounded-[1.5rem] border-2 border-slate-100 bg-white p-5 transition hover:border-orange-200"
-                >
+                <li key={item.id} className={`${portalCard} p-5 transition duration-300 hover:ring-orange-200/50`}>
                   <div className="flex flex-wrap items-start justify-between gap-2">
                     <p className={`text-lg font-semibold text-slate-900 ${fredokaHeadline.className}`}>{item.title}</p>
-                    <span className="rounded-xl bg-sky-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-sky-700">
-                      {item.selectivity.replace("-", " ")}
-                    </span>
+                    <PortalBadge accent="sky">{item.selectivity.replace("-", " ")}</PortalBadge>
                   </div>
-                  <p className={`mt-1.5 text-sm font-medium leading-relaxed text-slate-600 ${jakartaSans.className}`}>
+                  <p className={`mt-1.5 text-sm font-medium leading-relaxed text-slate-500 ${jakartaSans.className}`}>
                     {item.blurb}
                   </p>
                   {item.deadline ? (
-                    <p className="mt-3 text-[11px] font-black uppercase tracking-[0.14em] text-[#ff6a00]">
+                    <p className={`mt-3 text-xs font-semibold text-orange-600 ${jakartaSans.className}`}>
                       Timeline · {item.deadline}
                     </p>
                   ) : null}
                   <div className="mt-3 flex flex-wrap gap-2">
                     {item.fit.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-xl bg-slate-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-slate-600"
-                      >
+                      <PortalBadge key={tag} accent="slate">
                         {tag}
-                      </span>
+                      </PortalBadge>
                     ))}
                   </div>
                 </li>

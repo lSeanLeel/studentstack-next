@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { jakartaSans } from "@/app/fonts";
 import { createSupabaseBrowserClient } from "@/lib/supabase/browser";
 
 export function PortalSignOutButton() {
@@ -28,7 +29,7 @@ export function PortalSignOutButton() {
           setBusy(false);
         }
       }}
-      className="rounded-2xl border border-slate-200 bg-white px-3 py-2 text-[10px] font-black uppercase tracking-[0.12em] text-slate-700 transition hover:border-sky-200 hover:text-sky-700 disabled:opacity-60"
+      className={`rounded-full px-3.5 py-1.5 text-[13px] font-semibold text-slate-600 transition hover:bg-black/[0.04] hover:text-slate-900 disabled:opacity-50 ${jakartaSans.className}`}
     >
       {busy ? "…" : "Sign out"}
     </button>

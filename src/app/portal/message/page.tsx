@@ -14,7 +14,7 @@ export default async function PortalMessagePage() {
         <PortalEyebrow>Direct line</PortalEyebrow>
         <PortalPageTitle className="mt-1">Message the team</PortalPageTitle>
         <PortalLead>
-          College students who maintain the toolkit and resources. Ask anything about AI for school or what to do next.
+          Ask anything about AI for school, the toolkit, or what to do next. Real students read member messages.
         </PortalLead>
       </header>
       <PortalMessageTeam defaultName={member.displayName} defaultEmail={member.email} />

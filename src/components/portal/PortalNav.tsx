@@ -16,17 +16,23 @@ export function PortalNav({ mobile = false }: { mobile?: boolean }) {
   const pathname = usePathname() || "/portal";
 
   return (
-    <nav className={mobile ? "flex gap-1.5 overflow-x-auto pb-0.5" : "hidden items-center gap-1 lg:flex"}>
+    <nav
+      className={
+        mobile
+          ? "flex gap-1 overflow-x-auto pb-0.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          : "hidden items-center gap-0.5 rounded-full bg-black/[0.04] p-1 lg:flex"
+      }
+    >
       {nav.map((item) => {
         const active = item.match(pathname);
         return (
           <Link
             key={item.href}
             href={item.href}
-            className={`shrink-0 rounded-2xl px-3.5 py-2 text-[11px] font-black uppercase tracking-[0.1em] transition ${jakartaSans.className} ${
+            className={`shrink-0 rounded-full px-3.5 py-1.5 text-[13px] font-semibold transition ${jakartaSans.className} ${
               active
-                ? "bg-slate-900 text-white shadow-[0_6px_0_0_rgba(15,23,42,0.25)]"
-                : "text-slate-600 hover:bg-sky-50 hover:text-sky-800"
+                ? "bg-white text-slate-900 shadow-sm ring-1 ring-black/[0.06]"
+                : "text-slate-500 hover:text-slate-800"
             }`}
           >
             {item.label}

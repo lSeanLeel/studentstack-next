@@ -43,27 +43,25 @@ export const PORTAL_PREVIEW_PILLARS: PortalPillar[] = [
 
 export const PORTAL_PREVIEW_HEADLINE = "The student portal, at a glance";
 
-/** Static snapshot matching demo login (test / test). */
-export const PORTAL_PREVIEW_DEMO = {
-  displayName: "Test",
+/** Abstract landing mock content — not tied to demo login. */
+export const PORTAL_PREVIEW_SNAPSHOT = {
   tipTitle: "Syllabus pass before you trust the calendar",
-  tipBody:
-    "Upload the real PDF, ask AI only for deadline extraction, then verify every date yourself.",
+  tipBody: "Upload the real PDF, ask AI only for deadline extraction, then verify every date yourself.",
   dateLabel: "This week",
 };
 
 const pillarSurface: Record<PortalPillar["accent"], string> = {
-  sky: "border-sky-200/80 bg-gradient-to-br from-sky-50 to-white shadow-[0_10px_0_0_rgba(14,165,233,0.12)]",
-  emerald: "border-emerald-200/80 bg-gradient-to-br from-emerald-50 to-white shadow-[0_10px_0_0_rgba(16,185,129,0.1)]",
-  amber: "border-amber-200/80 bg-gradient-to-br from-amber-50 to-white shadow-[0_10px_0_0_rgba(245,158,11,0.1)]",
-  violet: "border-violet-200/80 bg-gradient-to-br from-violet-50 to-white shadow-[0_10px_0_0_rgba(139,92,246,0.1)]",
+  sky: "bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04]",
+  emerald: "bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04]",
+  amber: "bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04]",
+  violet: "bg-white shadow-[0_1px_2px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.06)] ring-1 ring-black/[0.04]",
 };
 
 const pillarIcon: Record<PortalPillar["accent"], string> = {
-  sky: "bg-sky-100 text-sky-700 ring-sky-200",
-  emerald: "bg-emerald-100 text-emerald-700 ring-emerald-200",
-  amber: "bg-amber-100 text-amber-800 ring-amber-200",
-  violet: "bg-violet-100 text-violet-700 ring-violet-200",
+  sky: "bg-sky-500/10 text-sky-700 ring-sky-500/20",
+  emerald: "bg-emerald-500/10 text-emerald-700 ring-emerald-500/20",
+  amber: "bg-amber-500/10 text-amber-800 ring-amber-500/20",
+  violet: "bg-violet-500/10 text-violet-700 ring-violet-500/20",
 };
 
 export function pillarCardClasses(accent: PortalPillar["accent"]) {

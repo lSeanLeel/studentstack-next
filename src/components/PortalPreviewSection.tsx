@@ -62,11 +62,11 @@ export function PortalPreviewSection() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.06 * i }}
                   whileHover={{ y: -3 }}
-                  className={`rounded-[1.5rem] border-2 p-4 transition sm:p-5 ${pillarCardClasses(pillar.accent)}`}
+                  className={`rounded-3xl p-4 transition duration-300 hover:shadow-[0_2px_4px_rgba(0,0,0,0.04),0_12px_32px_rgba(0,0,0,0.08)] sm:p-5 ${pillarCardClasses(pillar.accent)}`}
                 >
                   <div className="flex gap-3">
                     <span
-                      className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl ring-2 ${pillarIconClasses(pillar.accent)}`}
+                      className={`inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl ring-1 ${pillarIconClasses(pillar.accent)}`}
                     >
                       <Icon className="h-5 w-5" aria-hidden />
                     </span>
@@ -82,7 +82,6 @@ export function PortalPreviewSection() {
             })}
           </ul>
 
-          {/* Portal mock — matches /portal for test user */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -91,12 +90,6 @@ export function PortalPreviewSection() {
             className="lg:sticky lg:top-24"
           >
             <PortalPreviewMock />
-            <p className={`mt-3 text-center text-xs font-medium text-slate-500 ${jakartaSans.className}`}>
-              Preview matches the logged-in home · try{" "}
-              <Link href="/login" className="font-bold text-sky-700 hover:text-sky-900">
-                student login
-              </Link>
-            </p>
           </motion.div>
         </div>
 
