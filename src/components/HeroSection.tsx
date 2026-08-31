@@ -30,54 +30,6 @@ function preloadCollegeLogos() {
 
 const flip = { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const };
 
-const schoolUseCases = [
-  { verb: "write", color: "#0ea5e9" },
-  { verb: "study", color: "#10b981" },
-  { verb: "organize", color: "#f59e0b" },
-  { verb: "research", color: "#f97316" },
-  { verb: "take notes", color: "#8b5cf6" },
-] as const;
-
-const useCaseFlip = { duration: 0.38, ease: [0.22, 1, 0.36, 1] as const };
-
-function SchoolUseCaseLine() {
-  const [idx, setIdx] = useState(0);
-
-  React.useEffect(() => {
-    const t = setInterval(() => setIdx((i) => (i + 1) % schoolUseCases.length), 3000);
-    return () => clearInterval(t);
-  }, []);
-
-  const cur = schoolUseCases[idx];
-
-  return (
-    <p
-      className={`${fredokaHeadline.className} text-[clamp(1rem,2.4vw+0.35rem,1.45rem)] font-semibold leading-[1.45] tracking-[-0.02em] text-slate-700`}
-      aria-live="polite"
-    >
-      Learn how{" "}
-      <span className="text-sky-600">high schoolers</span> use AI tools and systems to{" "}
-      <span className="relative mx-0.5 inline-grid h-[1.45em] w-[6.85rem] shrink-0 translate-y-[0.08em] overflow-hidden rounded-xl bg-white/70 px-2 align-middle shadow-[inset_0_0_0_1px_rgba(14,165,233,0.12)] sm:w-[7.1rem]">
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.span
-            key={cur.verb}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={useCaseFlip}
-            className="col-start-1 row-start-1 self-center justify-self-center whitespace-nowrap text-[0.92em] font-bold"
-            style={{ color: cur.color }}
-          >
-            {cur.verb}
-          </motion.span>
-        </AnimatePresence>
-      </span>{" "}
-      better
-      <span className="sr-only"> — {cur.verb}</span>
-    </p>
-  );
-}
-
 function CollegeHeadline() {
   const [idx, setIdx] = useState(0);
   const [ready, setReady] = useState(false);
