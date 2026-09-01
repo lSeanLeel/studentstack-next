@@ -133,14 +133,14 @@ export function HeroSection() {
           <CollegeHeadline />
         </motion.p>
 
-        <motion.div
+        <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
-          className="mx-auto mt-4 max-w-2xl text-center sm:mt-5"
+          className={`${jakartaSans.className} mx-auto mt-4 max-w-xl text-[0.95rem] font-medium leading-relaxed text-slate-600 sm:mt-5 sm:text-lg`}
         >
-          <SchoolUseCaseLine />
-        </motion.div>
+          The platform where high schoolers learn AI for school from students who were just in their classrooms.
+        </motion.p>
 
         <motion.div
           id="apply"
