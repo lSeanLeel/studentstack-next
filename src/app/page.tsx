@@ -20,11 +20,6 @@ const ParentReachSection = dynamic(
   { loading: sectionLoading, ssr: false }
 );
 
-const PartnerEcosystemSection = dynamic(
-  () => import("@/components/PartnerEcosystemSection").then((m) => ({ default: m.PartnerEcosystemSection })),
-  { loading: sectionLoading, ssr: false }
-);
-
 const TestimonialSection = dynamic(
   () => import("@/components/Sections").then((m) => ({ default: m.TestimonialSection })),
   { loading: sectionLoading, ssr: false }
@@ -69,7 +64,6 @@ export default function LandingPage() {
           <HeroSection />
           <AiForSchoolSection />
           <ParentReachSection />
-          <PartnerEcosystemSection />
           <TestimonialSection />
           <PortalPreviewSection />
           <FaqSection />

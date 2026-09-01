@@ -1,4 +1,3 @@
-import type { LucideIcon } from "lucide-react";
 import { BookOpen, FlaskConical, PenLine, ShieldCheck } from "lucide-react";
 
 /** Parent-facing clarity — what “AI for school” means at StudentStack. */
@@ -40,71 +39,52 @@ export const AI_FOR_SCHOOL_CLARITY = {
   ],
 };
 
-export const PARENT_REACH_SIGNALS = [
+export const PARENT_ORIGIN_TIMELINE = [
+  {
+    id: "notes",
+    era: "The start",
+    title: "Free AI literacy notes",
+    detail:
+      "We started with short explainers — what changed in AI tools, what it meant for homework, and how to talk about it at the dinner table.",
+  },
   {
     id: "masterminds",
-    stat: "Parent masterminds",
-    detail: "Live sessions on AI in school and admissions — where families first found us.",
+    era: "Parents found us",
+    title: "College admissions masterminds",
+    detail:
+      "Live sessions where families asked real questions about AI in school and admissions. That room is where StudentStack first took shape.",
   },
   {
     id: "briefings",
-    stat: "AI literacy briefings",
-    detail: "Plain-language updates for parents on what changed in AI tools this week.",
+    era: "Staying current",
+    title: "Weekly parent briefings",
+    detail:
+      "Plain-language updates on new tools, syllabus policies, and what other families were navigating — written by students still in class.",
   },
   {
-    id: "k12",
-    stat: "K-12 family network",
-    detail: "Families across grades navigating the same question: how should my student use AI?",
+    id: "network",
+    era: "Word spread",
+    title: "Parent newsletters & posts",
+    detail:
+      "Families shared our notes in group chats and parent newsletters. Discovery stayed organic — useful context, not ads.",
   },
   {
-    id: "campuses",
-    stat: "Campus-led team",
-    detail: "Maintained by students from UCLA, Princeton, Stanford, Columbia, and Berkeley.",
+    id: "community",
+    era: "Today",
+    title: "Private community for families",
+    detail:
+      "Parents apply; students get gated access to our AI-for-school program — toolkit, guides, and direct access to our college team.",
   },
 ] as const;
 
-export type PartnerCategory = {
-  id: string;
-  title: string;
-  detail: string;
-  examples: string;
-  icon: LucideIcon;
-  accent: "sky" | "violet" | "amber";
-};
-
-/** Partner ecosystem — tools & courses integrated into member curriculum. */
-export const PARTNER_CATEGORIES: PartnerCategory[] = [
-  {
-    id: "notetaking",
-    title: "AI notetaking",
-    detail: "Lecture capture and study notes — vetted workflows, not app store roulette.",
-    examples: "Leading AI notetaking & capture tools",
-    icon: PenLine,
-    accent: "sky",
-  },
-  {
-    id: "study",
-    title: "AI study tools",
-    detail: "Flashcards, practice, and planning — integrated where they fit real homework nights.",
-    examples: "AI study guides & practice platforms",
-    icon: BookOpen,
-    accent: "violet",
-  },
-  {
-    id: "courses",
-    title: "AI literacy courses",
-    detail: "Structured coursework from providers we partner with — woven into member guides.",
-    examples: "Partner course providers",
-    icon: FlaskConical,
-    accent: "amber",
-  },
-];
-
-export const PARTNER_INTEGRATION_STEPS = [
-  { step: "01", title: "Vet with founders", body: "We work directly with AI tool and course founders — not affiliate lists." },
-  { step: "02", title: "Build school workflows", body: "Each partner gets step-by-step guides for classes, labs, and writing." },
-  { step: "03", title: "Ship inside membership", body: "Members access the full stack — tools, coursework, and our team — in one place." },
-] as const;
+export const PARENT_ORIGIN_STORY = {
+  eyebrow: "How we got here",
+  headline: "From parent rooms to a student program",
+  subhead:
+    "StudentStack did not start as a product pitch. It grew out of parents asking the same question: how should my student use AI for school?",
+  closing:
+    "We still publish for parents. Members get the full program inside the portal.",
+} as const;
 
 export const SCHOOL_USE_AREAS = [
   { id: "writing", title: "Writing", detail: "Outlines, revision, integrity", icon: PenLine },
