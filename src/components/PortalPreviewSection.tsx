@@ -36,18 +36,7 @@ export function PortalPreviewSection() {
             viewport={{ once: true }}
             className={`text-[clamp(2rem,5vw,3.25rem)] font-semibold leading-[1.08] tracking-[-0.035em] text-slate-900 ${fredokaHeadline.className}`}
           >
-            The ultimate platform for your{" "}
-            <span className="relative inline-block whitespace-nowrap px-0.5">
-              <span className="relative z-10 text-sky-500">high schooler</span>
-              <span
-                aria-hidden
-                className="pointer-events-none absolute -inset-x-1.5 bottom-[0.05em] z-0 h-[0.5em] -skew-x-6 rounded-[100%] bg-gradient-to-r from-sky-300/95 via-sky-200 to-emerald-200/85"
-              />
-              <span
-                aria-hidden
-                className="pointer-events-none absolute -inset-x-2 bottom-0 z-0 h-[0.55em] -skew-x-6 rounded-[100%] bg-sky-400/25 blur-[5px]"
-              />
-            </span>
+            AI literacy for school, in one place
           </motion.h2>
         </div>
 

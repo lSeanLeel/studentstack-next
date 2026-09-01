@@ -10,15 +10,15 @@ type FaqItem = { id?: string; q: string; a: ReactNode };
 const FAQ_ITEMS: FaqItem[] = [
   {
     q: "What is StudentStack?",
-    a: "A private platform where high schoolers learn AI for school — how to use tools responsibly in classes, labs, and writing. Built and updated by college students who are still in the classrooms that matter.",
+    a: "AI literacy for school — how to use tools responsibly in classes, labs, and writing. We integrate vetted AI tools and coursework from founders we work with directly, maintained by students still in the classrooms that matter.",
   },
   {
     q: "How is this different from tutors or admissions counselors?",
-    a: "We focus on AI for school, not generic college consulting. Our college team maintains the toolkit and answers questions from experience, not a recycled playbook.",
+    a: "We focus on AI for school, not generic college consulting. Our team vets partner tools, builds school-specific workflows, and answers questions from experience — not a recycled playbook.",
   },
   {
     q: "What do members get?",
-    a: "A gated student portal: a weekly AI toolkit with step-by-step workflows, a college team you can message, member resources, and optional self-paced guides (checklists — not video courses).",
+    a: "A gated student program: weekly AI toolkit with partner-integrated workflows, direct access to our college team, member resources, and optional guides plus partner AI literacy coursework.",
   },
   {
     q: "How do I join?",

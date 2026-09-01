@@ -10,25 +10,25 @@ export const PORTAL_PREVIEW_PILLARS: PortalPillar[] = [
   {
     id: "toolkit",
     title: "AI Toolkit",
-    detail: "The AI tools and systems we actually use to organize, plan, and study more efficiently.",
+    detail: "Weekly workflows across partner tools — notetaking, study, and planning built for real school nights.",
     accent: "sky",
   },
   {
     id: "team",
     title: "Ask the team",
-    detail: "The questions you can't ask AI — answered by students still in school.",
+    detail: "Policy questions, tool picks, and judgment calls — answered by students still in class.",
     accent: "emerald",
   },
   {
     id: "resources",
     title: "Resources",
-    detail: "Opportunities and deadlines with facts upfront.",
+    detail: "Opportunities, deadlines, and school context — facts first.",
     accent: "violet",
   },
   {
     id: "guides",
-    title: "Guides (optional)",
-    detail: "Self-paced checklists for integrity and applications.",
+    title: "Guides & coursework",
+    detail: "Self-paced checklists plus partner AI literacy courses woven into the program.",
     accent: "amber",
   },
 ];

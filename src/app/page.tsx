@@ -10,6 +10,21 @@ import { ContactProvider } from "@/components/contact-context";
 
 const sectionLoading = () => <div className="h-96" aria-hidden />;
 
+const AiForSchoolSection = dynamic(
+  () => import("@/components/AiForSchoolSection").then((m) => ({ default: m.AiForSchoolSection })),
+  { loading: sectionLoading }
+);
+
+const ParentReachSection = dynamic(
+  () => import("@/components/ParentReachSection").then((m) => ({ default: m.ParentReachSection })),
+  { loading: sectionLoading }
+);
+
+const PartnerEcosystemSection = dynamic(
+  () => import("@/components/PartnerEcosystemSection").then((m) => ({ default: m.PartnerEcosystemSection })),
+  { loading: sectionLoading }
+);
+
 const TestimonialSection = dynamic(
   () => import("@/components/Sections").then((m) => ({ default: m.TestimonialSection })),
   { loading: sectionLoading }
@@ -52,6 +67,9 @@ export default function LandingPage() {
           {showIntro && <IntroAnimation key={introSession} onComplete={handleIntroComplete} />}
           <Navbar onHomeLogoClick={replayIntro} />
           <HeroSection />
+          <AiForSchoolSection />
+          <ParentReachSection />
+          <PartnerEcosystemSection />
           <TestimonialSection />
           <PortalPreviewSection />
           <FaqSection />
