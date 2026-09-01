@@ -10,46 +10,44 @@ import { ContactProvider } from "@/components/contact-context";
 
 const sectionLoading = () => <div className="h-96" aria-hidden />;
 
-const clientOnly = { loading: sectionLoading, ssr: false } as const;
-
 const AiForSchoolSection = dynamic(
   () => import("@/components/AiForSchoolSection").then((m) => ({ default: m.AiForSchoolSection })),
-  clientOnly
+  { loading: sectionLoading, ssr: false }
 );
 
 const ParentReachSection = dynamic(
   () => import("@/components/ParentReachSection").then((m) => ({ default: m.ParentReachSection })),
-  clientOnly
+  { loading: sectionLoading, ssr: false }
 );
 
 const PartnerEcosystemSection = dynamic(
   () => import("@/components/PartnerEcosystemSection").then((m) => ({ default: m.PartnerEcosystemSection })),
-  clientOnly
+  { loading: sectionLoading, ssr: false }
 );
 
 const TestimonialSection = dynamic(
   () => import("@/components/Sections").then((m) => ({ default: m.TestimonialSection })),
-  clientOnly
+  { loading: sectionLoading, ssr: false }
 );
 
 const PortalPreviewSection = dynamic(
   () => import("@/components/PortalPreviewSection").then((m) => ({ default: m.PortalPreviewSection })),
-  clientOnly
+  { loading: sectionLoading, ssr: false }
 );
 
 const FaqSection = dynamic(
   () => import("@/components/FaqSection").then((m) => ({ default: m.FaqSection })),
-  clientOnly
+  { loading: sectionLoading, ssr: false }
 );
 
 const WriteUsSection = dynamic(
   () => import("@/components/WriteUsSection").then((m) => ({ default: m.WriteUsSection })),
-  clientOnly
+  { loading: sectionLoading, ssr: false }
 );
 
 const Footer = dynamic(
   () => import("@/components/Sections").then((m) => ({ default: m.Footer })),
-  clientOnly
+  { loading: sectionLoading, ssr: false }
 );
 
 export default function LandingPage() {
