@@ -95,15 +95,10 @@ export function AiForSchoolSection() {
           <button
             type="button"
             onClick={openJoin}
-            className={`group inline-flex flex-col items-center gap-1 rounded-[1.75rem] bg-slate-900 px-8 py-4 text-center shadow-[0_14px_0_0_rgba(15,23,42,0.2)] transition hover:-translate-y-0.5 hover:bg-slate-800 sm:flex-row sm:gap-2 sm:px-10 sm:py-4 ${jakartaSans.className}`}
+            className={`group inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-8 py-4 text-xs font-black uppercase tracking-[0.14em] text-white shadow-[0_14px_0_0_rgba(15,23,42,0.2)] transition hover:-translate-y-0.5 hover:bg-slate-800 ${jakartaSans.className}`}
           >
-            <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.14em] text-white">
-              {AI_FOR_SCHOOL_CLARITY.cta.primary}
-              <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
-            </span>
-            <span className="text-[11px] font-semibold text-sky-200 sm:text-xs">
-              ({AI_FOR_SCHOOL_CLARITY.cta.secondary})
-            </span>
+            {AI_FOR_SCHOOL_CLARITY.cta.primary}
+            <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
           </button>
         </motion.div>
       </div>
