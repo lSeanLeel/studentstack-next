@@ -2,9 +2,14 @@ import { BookOpen, FlaskConical, PenLine, ShieldCheck } from "lucide-react";
 
 /** Parent-facing clarity — what “AI for school” means at StudentStack. */
 export const AI_FOR_SCHOOL_CLARITY = {
-  headline: "What we mean by AI for school",
+  headlineLead: "What we mean by",
+  headlineEmphasis: "AI for school",
   subhead:
-    "Not another chatbot tutorial. Literacy is knowing when AI helps in real schoolwork — and when it crosses the line.",
+    "Not another chatbot tutorial. Literacy is knowing when AI helps in real schoolwork, and when it crosses the line.",
+  cta: {
+    primary: "Learn the AI Advantage",
+    secondary: "and sign up my student",
+  },
   contrasts: [
     {
       id: "is",

@@ -7,6 +7,7 @@ import { IntroAnimation } from "@/components/IntroAnimation";
 import { HeroSection } from "@/components/HeroSection";
 import { OnboardingProvider } from "@/components/onboarding-context";
 import { ContactProvider } from "@/components/contact-context";
+import { JoinProvider } from "@/components/join-context";
 
 const sectionLoading = () => <div className="h-96" aria-hidden />;
 
@@ -58,18 +59,20 @@ export default function LandingPage() {
   return (
     <OnboardingProvider>
       <ContactProvider>
-        <main className="min-h-screen bg-transparent selection:bg-sky-100 selection:text-sky-900">
-          {showIntro && <IntroAnimation key={introSession} onComplete={handleIntroComplete} />}
-          <Navbar onHomeLogoClick={replayIntro} />
-          <HeroSection />
-          <AiForSchoolSection />
-          <ParentReachSection />
-          <TestimonialSection />
-          <PortalPreviewSection />
-          <FaqSection />
-          <WriteUsSection />
-          <Footer />
-        </main>
+        <JoinProvider>
+          <main className="min-h-screen bg-transparent selection:bg-sky-100 selection:text-sky-900">
+            {showIntro && <IntroAnimation key={introSession} onComplete={handleIntroComplete} />}
+            <Navbar onHomeLogoClick={replayIntro} />
+            <HeroSection />
+            <AiForSchoolSection />
+            <ParentReachSection />
+            <TestimonialSection />
+            <PortalPreviewSection />
+            <FaqSection />
+            <WriteUsSection />
+            <Footer />
+          </main>
+        </JoinProvider>
       </ContactProvider>
     </OnboardingProvider>
   );
