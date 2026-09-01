@@ -1,54 +1,51 @@
 "use client";
 
-import React, { useEffect, useState, type ReactNode } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { ChevronDown } from "lucide-react";
 import { jakartaSans, fredokaHeadline } from "@/app/fonts";
-
-type FaqItem = { id?: string; q: string; a: ReactNode };
-
-const FAQ_ITEMS: FaqItem[] = [
-  {
-    q: "What is StudentStack?",
-    a: "AI literacy for school — how to use tools responsibly in classes, labs, and writing. We integrate vetted AI tools and coursework from founders we work with directly, maintained by students still in the classrooms that matter.",
-  },
-  {
-    q: "How is this different from tutors or admissions counselors?",
-    a: "We focus on AI for school, not generic college consulting. Our team vets partner tools, builds school-specific workflows, and answers questions from experience — not a recycled playbook.",
-  },
-  {
-    q: "What do members get?",
-    a: "A gated student program: weekly AI toolkit with partner-integrated workflows, direct access to our college team, member resources, and optional guides plus partner AI literacy coursework.",
-  },
-  {
-    q: "How do I join?",
-    a: "Parents complete a short application, review mentorship matching, create a portal password, and finish checkout. A welcome email with login details goes to the parent email. A mentor reaches out after.",
-  },
-];
+import { LANDING_FAQ_ITEMS } from "@/lib/landing/faq";
 
 function FaqAccordionItem({
-  item, index, openIndex, setOpenIndex, baseId,
+  item,
+  index,
+  openIndex,
+  setOpenIndex,
+  baseId,
 }: {
-  item: FaqItem; index: number; openIndex: number | null;
-  setOpenIndex: (i: number | null) => void; baseId: string;
+  item: (typeof LANDING_FAQ_ITEMS)[number];
+  index: number;
+  openIndex: number | null;
+  setOpenIndex: (i: number | null) => void;
+  baseId: string;
 }) {
   const open = openIndex === index;
-  const panelId = `${baseId}-panel-${item.id ?? index}`;
-  const buttonId = `${baseId}-button-${item.id ?? index}`;
+  const panelId = `${baseId}-panel-${item.id}`;
+  const buttonId = `${baseId}-button-${item.id}`;
 
   return (
     <div className="border-b border-slate-100 last:border-b-0">
       <h3>
         <button
-          type="button" id={buttonId} aria-expanded={open} aria-controls={panelId}
+          type="button"
+          id={buttonId}
+          aria-expanded={open}
+          aria-controls={panelId}
           onClick={() => setOpenIndex(open ? null : index)}
           className={`flex w-full items-center justify-between gap-4 py-5 text-left text-base font-semibold tracking-[-0.02em] text-slate-900 sm:text-lg ${fredokaHeadline.className}`}
         >
           {item.q}
-          <ChevronDown className={`h-5 w-5 shrink-0 text-slate-400 transition-transform ${open ? "rotate-180" : ""}`} aria-hidden />
+          <ChevronDown
+            className={`h-5 w-5 shrink-0 text-slate-400 transition-transform ${open ? "rotate-180" : ""}`}
+            aria-hidden
+          />
         </button>
       </h3>
-      <div id={panelId} role="region" aria-labelledby={buttonId} hidden={!open}
+      <div
+        id={panelId}
+        role="region"
+        aria-labelledby={buttonId}
+        hidden={!open}
         className={`pb-5 text-sm font-medium leading-relaxed text-slate-600 sm:text-[0.95rem] ${jakartaSans.className}`}
       >
         {open ? item.a : null}
@@ -63,18 +60,32 @@ export function FaqSection() {
   useEffect(() => setMounted(true), []);
 
   return (
-    <section id="faq" className="relative overflow-hidden border-t border-slate-100 bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24" aria-labelledby="faq-heading">
+    <section
+      id="faq"
+      className="relative overflow-hidden border-t border-slate-100 bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
+      aria-labelledby="faq-heading"
+    >
       <div className="relative mx-auto w-full max-w-3xl lg:max-w-5xl xl:max-w-6xl">
         <motion.h2
-          id="faq-heading" initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          id="faq-heading"
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className={`text-[2rem] font-semibold tracking-[-0.035em] text-slate-900 sm:text-4xl ${fredokaHeadline.className}`}
         >
           Questions <span className="text-sky-500">parents</span> ask us
         </motion.h2>
         <div className="mt-8 rounded-[1.75rem] border border-slate-100 bg-[#f8fafc] px-5 sm:px-7">
           {mounted
-            ? FAQ_ITEMS.map((item, index) => (
-                <FaqAccordionItem key={item.id ?? item.q} item={item} index={index} openIndex={openIndex} setOpenIndex={setOpenIndex} baseId="faq" />
+            ? LANDING_FAQ_ITEMS.map((item, index) => (
+                <FaqAccordionItem
+                  key={item.id}
+                  item={item}
+                  index={index}
+                  openIndex={openIndex}
+                  setOpenIndex={setOpenIndex}
+                  baseId="faq"
+                />
               ))
             : null}
         </div>

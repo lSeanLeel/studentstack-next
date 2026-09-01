@@ -66,6 +66,10 @@ export function ParentReachSection() {
                       <p
                         className={`text-[10px] font-black uppercase tracking-[0.2em] text-sky-600 ${jakartaSans.className}`}
                       >
+                        <time dateTime={milestone.dateTime}>{milestone.date}</time>
+                        <span className="mx-2 text-sky-300" aria-hidden>
+                          ·
+                        </span>
                         {milestone.era}
                       </p>
                       <h3 className={`mt-2 text-xl font-semibold tracking-[-0.03em] text-slate-900 sm:text-2xl ${fredokaHeadline.className}`}>

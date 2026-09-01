@@ -47,13 +47,17 @@ export const AI_FOR_SCHOOL_CLARITY = {
 export const PARENT_ORIGIN_TIMELINE = [
   {
     id: "notes",
+    date: "March 12, 2025",
+    dateTime: "2025-03-12",
     era: "The start",
     title: "Free AI literacy notes",
     detail:
-      "We started with short explainers — what changed in AI tools, what it meant for homework, and how to talk about it at the dinner table.",
+      "We started posting short explainers: what changed in AI tools, what it meant for homework, and how to talk about it at the dinner table.",
   },
   {
     id: "masterminds",
+    date: "April 19, 2025",
+    dateTime: "2025-04-19",
     era: "Parents found us",
     title: "College admissions masterminds",
     detail:
@@ -61,24 +65,39 @@ export const PARENT_ORIGIN_TIMELINE = [
   },
   {
     id: "briefings",
+    date: "May 28, 2025",
+    dateTime: "2025-05-28",
     era: "Staying current",
     title: "Weekly parent briefings",
     detail:
-      "Plain-language updates on new tools, syllabus policies, and what other families were navigating — written by students still in class.",
+      "Plain-language updates on new tools, syllabus policies, and what other families were navigating, written by students still in class.",
+  },
+  {
+    id: "instagram",
+    date: "October 7, 2025",
+    dateTime: "2025-10-07",
+    era: "Word spread",
+    title: "20,000 followers on Instagram",
+    detail:
+      "Parents started sharing our clips in group chats and parent newsletters. Discovery stayed organic: useful context, not ads.",
   },
   {
     id: "network",
-    era: "Word spread",
-    title: "Parent newsletters & posts",
+    date: "January 14, 2026",
+    dateTime: "2026-01-14",
+    era: "Community opens",
+    title: "Private membership for families",
     detail:
-      "Families shared our notes in group chats and parent newsletters. Discovery stayed organic — useful context, not ads.",
+      "Parents could apply and students got gated access to our AI-for-school program: toolkit, guides, and direct access to our college team.",
   },
   {
     id: "community",
+    date: "September 2026",
+    dateTime: "2026-09-01",
     era: "Today",
-    title: "Private community for families",
+    title: "Still updating every week",
     detail:
-      "Parents apply; students get gated access to our AI-for-school program — toolkit, guides, and direct access to our college team.",
+      "New tools, new syllabus rules, new workflows. We publish for parents and ship the full program inside the member portal.",
   },
 ] as const;
 
