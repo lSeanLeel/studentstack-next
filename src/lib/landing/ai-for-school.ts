@@ -1,23 +1,4 @@
-/** Parent-facing — how students use AI for school, lightly FOMO-framed. */
-export const AI_FOR_SCHOOL_CLARITY = {
-  eyebrow: "For parents",
-  headlineLead: "Learn how students are using AI to",
-  headlineEmphasis: "streamline school",
-  subhead:
-    "We teach step-by-step workflows for the use cases high schoolers actually face: planning, studying, writing, and research. Practical systems, not one-off prompts.",
-  fomoLine: "Most families are still guessing. Members get the playbook.",
-  useCases: [
-    "Weekly planning from a real syllabus",
-    "Studying without restarting notes every night",
-    "Outlining essays within the rules",
-    "Research with sources worth citing",
-  ],
-  teachLine: "Inside the portal: weekly toolkit, guides, and our college team when they get stuck.",
-  cta: {
-    primary: "Learn the AI Advantage",
-  },
-} as const;
-
+/** Landing timeline milestones (parent origin story). */
 export const PARENT_ORIGIN_TIMELINE = [
   {
     id: "notes",
