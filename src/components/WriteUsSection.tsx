@@ -8,7 +8,6 @@ import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { ContactForm } from "@/components/ContactForm";
 import {
   FEATURED_PROGRAMS,
-  FEATURED_PROGRAMS_INTRO,
   type FeaturedDeadline,
   type FeaturedProgram,
 } from "@/lib/landing/featured-programs";
@@ -154,19 +153,14 @@ export function WriteUsSection() {
           transition={{ duration: 0.4 }}
           className="mx-auto max-w-2xl text-center"
         >
-          <p className={`text-[10px] font-black uppercase tracking-[0.22em] text-sky-600 ${jakartaSans.className}`}>
-            {FEATURED_PROGRAMS_INTRO.eyebrow}
-          </p>
           <h2
             id="write-us-heading"
-            className={`mt-3 text-[1.85rem] font-semibold leading-[1.08] tracking-[-0.035em] text-slate-900 sm:text-4xl ${fredokaHeadline.className}`}
+            className={`text-[2.15rem] font-semibold leading-[1.05] tracking-[-0.04em] text-slate-900 sm:text-5xl ${fredokaHeadline.className}`}
           >
-            {FEATURED_PROGRAMS_INTRO.headline}
+            Write us
           </h2>
-          <p
-            className={`mx-auto mt-4 max-w-xl text-sm font-medium leading-relaxed text-slate-600 sm:text-base ${jakartaSans.className}`}
-          >
-            {FEATURED_PROGRAMS_INTRO.subhead}
+          <p className={`mt-3 text-sm font-semibold tracking-[-0.01em] text-slate-500 sm:text-base ${jakartaSans.className}`}>
+            Families and partners
           </p>
         </motion.div>
 
@@ -203,17 +197,6 @@ export function WriteUsSection() {
           >
             <div className="relative overflow-hidden rounded-[2rem] border-2 border-slate-800 bg-slate-900 px-5 py-8 shadow-[0_28px_60px_-40px_rgba(15,23,42,0.7)] sm:rounded-[2.5rem] sm:px-7 sm:py-9">
               <div className="pointer-events-none absolute -right-16 top-0 h-40 w-40 rounded-full bg-sky-500/20 blur-3xl" />
-              <p className={`text-[10px] font-black uppercase tracking-[0.2em] text-sky-300 ${jakartaSans.className}`}>
-                Write us
-              </p>
-              <h3
-                className={`mt-2 text-xl font-semibold tracking-[-0.03em] text-white sm:text-2xl ${fredokaHeadline.className}`}
-              >
-                Families and partners
-              </h3>
-              <p className={`mt-3 mb-6 text-sm font-medium leading-relaxed text-slate-300 ${jakartaSans.className}`}>
-                {FEATURED_PROGRAMS_INTRO.partnershipCta} Parents can also write about membership fit anytime.
-              </p>
               <div className="relative z-10 rounded-[1.5rem] bg-white p-4 sm:p-5">
                 <ContactForm />
               </div>

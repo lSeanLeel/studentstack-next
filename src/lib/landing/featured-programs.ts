@@ -26,15 +26,6 @@ export type FeaturedProgram = {
   tags: string[];
 };
 
-export const FEATURED_PROGRAMS_INTRO = {
-  eyebrow: "Parent network",
-  headline: "Programs we share with families",
-  subhead:
-    "Parents in our community keep asking what else is worth a look beyond AI for school. When a program is credible and time-sensitive, we feature it here.",
-  partnershipCta:
-    "Run a student program and want to reach our parent network? Write us about a partnership feature.",
-} as const;
-
 export const FEATURED_PROGRAMS: FeaturedProgram[] = [
   {
     id: "iyrc-medicine-summer-2026",
