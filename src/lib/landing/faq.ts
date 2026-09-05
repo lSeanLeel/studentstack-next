@@ -52,4 +52,9 @@ export const LANDING_FAQ_ITEMS: LandingFaqItem[] = [
     q: "Can we cancel?",
     a: "Yes. Membership is month to month. Cancel anytime from your account settings or by emailing us. Your student keeps access through the end of the paid period.",
   },
+  {
+    id: "featured-programs",
+    q: "Why do you feature other programs?",
+    a: "Parents in our network ask what else is worth a look beyond AI for school. When a program is credible and time-sensitive, we share it. Featured programs are independent: apply on their site. StudentStack membership stays focused on AI literacy for school.",
+  },
 ];

@@ -11,10 +11,6 @@ import { JoinProvider } from "@/components/join-context";
 
 const sectionLoading = () => <div className="h-96" aria-hidden />;
 
-const AiForSchoolSection = dynamic(
-  () => import("@/components/AiForSchoolSection").then((m) => ({ default: m.AiForSchoolSection })),
-  { loading: sectionLoading, ssr: false }
-);
 
 const ParentReachSection = dynamic(
   () => import("@/components/ParentReachSection").then((m) => ({ default: m.ParentReachSection })),
@@ -64,7 +60,6 @@ export default function LandingPage() {
             {showIntro && <IntroAnimation key={introSession} onComplete={handleIntroComplete} />}
             <Navbar onHomeLogoClick={replayIntro} />
             <HeroSection />
-            <AiForSchoolSection />
             <ParentReachSection />
             <TestimonialSection />
             <PortalPreviewSection />
