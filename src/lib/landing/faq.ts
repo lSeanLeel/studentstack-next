@@ -15,7 +15,7 @@ export const LANDING_FAQ_ITEMS: LandingFaqItem[] = [
   {
     id: "who-for",
     q: "Who is this for?",
-    a: "K-12 families, especially parents of high schoolers navigating new AI policies. Students get gated portal access after a parent applies and completes checkout.",
+    a: "Parents of high school students. Membership is built for 9th through 12th graders who need practical AI for school, and for the parents guiding them. Students get gated portal access after a parent applies and completes checkout.",
   },
   {
     id: "ai-for-school",
