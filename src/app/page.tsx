@@ -11,12 +11,6 @@ import { JoinProvider } from "@/components/join-context";
 
 const sectionLoading = () => <div className="h-96" aria-hidden />;
 
-
-const ParentReachSection = dynamic(
-  () => import("@/components/ParentReachSection").then((m) => ({ default: m.ParentReachSection })),
-  { loading: sectionLoading, ssr: false }
-);
-
 const TestimonialSection = dynamic(
   () => import("@/components/Sections").then((m) => ({ default: m.TestimonialSection })),
   { loading: sectionLoading, ssr: false }
@@ -60,7 +54,6 @@ export default function LandingPage() {
             {showIntro && <IntroAnimation key={introSession} onComplete={handleIntroComplete} />}
             <Navbar onHomeLogoClick={replayIntro} />
             <HeroSection />
-            <ParentReachSection />
             <TestimonialSection />
             <PortalPreviewSection />
             <FaqSection />
