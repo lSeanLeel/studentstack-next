@@ -15,7 +15,7 @@ export const LANDING_FAQ_ITEMS: LandingFaqItem[] = [
   {
     id: "who-for",
     q: "Who is this for?",
-    a: "K-12 families, especially parents of high schoolers navigating new AI policies. Students get gated portal access after a parent applies and completes checkout.",
+    a: "Parents of high school students. Membership is built for 9th through 12th graders who need practical AI for school, and for the parents guiding them. Students get gated portal access after a parent applies and completes checkout.",
   },
   {
     id: "ai-for-school",
@@ -31,16 +31,6 @@ export const LANDING_FAQ_ITEMS: LandingFaqItem[] = [
     id: "members-get",
     q: "What do members get?",
     a: "A gated student portal: weekly AI toolkit, school-specific workflows, member resources, optional guides, and direct access to our college team for policy and tool questions.",
-  },
-  {
-    id: "different",
-    q: "How is this different from tutors or admissions counselors?",
-    a: "We focus on AI for school, not generic college consulting. Our team builds workflows from real class experience and answers from the tools and policies students face now, not a recycled playbook.",
-  },
-  {
-    id: "school-rules",
-    q: "Is this allowed at my student's school?",
-    a: "Policies vary by teacher and district. We help students read the rules, use AI within them, and ask before they submit. We do not encourage bypassing school or honor-code policies.",
   },
   {
     id: "join",

@@ -159,13 +159,13 @@ export function ContactForm({
             aria-pressed={audience === "enterprise"}
           >
             <Building2 className="h-4 w-4 shrink-0" aria-hidden />
-            <span className="text-xs font-black uppercase tracking-[0.08em]">Enterprise</span>
+            <span className="text-xs font-black uppercase tracking-[0.08em]">Partnerships</span>
           </button>
         </div>
         <p className={`mt-2 text-left text-xs font-medium leading-relaxed text-slate-500 ${fredokaHeadline.className}`}>
           {audience === "student"
-            ? "Parents and students: questions about the daily, credentials, or your high schooler."
-            : "Schools, districts, and organizations: partnerships, workshops, and licensing."}
+            ? "Parents and students: membership fit, the portal, or your high schooler."
+            : "Programs, schools, and education orgs: feature with our parent network, workshops, or collaboration."}
         </p>
       </div>
 
