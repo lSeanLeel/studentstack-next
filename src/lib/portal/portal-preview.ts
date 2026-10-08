@@ -5,7 +5,7 @@ export type PortalPillar = {
   accent: "sky" | "emerald" | "amber" | "violet";
 };
 
-/** Landing #member-portal — four blocks, no long subhead. */
+/** Landing #origin-story portal mock — four blocks, no long subhead. */
 export const PORTAL_PREVIEW_PILLARS: PortalPillar[] = [
   {
     id: "toolkit",
