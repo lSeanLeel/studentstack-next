@@ -2,381 +2,265 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { motion } from "motion/react";
+import { Loader2 } from "lucide-react";
+import { institutionalSerif, jakartaSans } from "@/app/fonts";
 import {
-  ArrowRight,
-  BookOpenCheck,
-  CalendarCheck,
-  CheckCircle2,
-  Compass,
-  FileSearch,
-  Hammer,
-  Loader2,
-  Mail,
-  PenLine,
-  ShieldCheck,
-} from "lucide-react";
-import { fredokaHeadline, jakartaSans } from "@/app/fonts";
-import {
-  ADVANTAGES,
   APPLY_STEPS,
   COHORT,
+  CURRICULUM,
+  DISTINCTIVES,
+  FOUNDER,
+  HERO,
   MONTHLY_CYCLE,
   NEWSLETTER,
   PARTNERS,
-  SKILLS,
+  TEAM_SCHOOLS,
   THESIS,
 } from "@/lib/program";
 
-const reveal = {
-  initial: { opacity: 0, y: 18 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-60px" },
-  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
-};
+const serif = institutionalSerif.className;
+const sans = jakartaSans.className;
 
-function Eyebrow({ children, tone = "sky" }: { children: React.ReactNode; tone?: "sky" | "light" }) {
+export const buttonPrimary = `${sans} inline-flex items-center justify-center rounded-md bg-ink px-6 py-3.5 text-[0.95rem] font-semibold text-white transition-colors hover:bg-[#1d3359] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2`;
+
+/** Two-column section: heading on the left, content on the right (stacks on mobile). */
+function Section({
+  id,
+  title,
+  intro,
+  children,
+  tone = "white",
+}: {
+  id: string;
+  title: string;
+  intro?: string;
+  children: React.ReactNode;
+  tone?: "white" | "wash";
+}) {
   return (
-    <p
-      className={`${jakartaSans.className} text-[11px] font-black uppercase tracking-[0.22em] ${
-        tone === "light" ? "text-sky-300" : "text-sky-600"
-      }`}
-    >
-      {children}
-    </p>
+    <section id={id} className={`scroll-mt-20 border-t border-rule ${tone === "wash" ? "bg-wash" : "bg-white"}`}>
+      <div className="mx-auto grid max-w-6xl gap-8 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[17rem_1fr] lg:gap-16">
+        <div>
+          <h2 className={`${serif} text-[1.9rem] font-semibold leading-[1.15] tracking-[-0.01em] text-ink sm:text-[2.2rem]`}>{title}</h2>
+          {intro ? <p className={`${sans} mt-3 max-w-xs text-[0.95rem] leading-relaxed text-muted`}>{intro}</p> : null}
+        </div>
+        <div className="min-w-0">{children}</div>
+      </div>
+    </section>
   );
 }
 
-function H2({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
+/* Hero ---------------------------------------------------------------- */
+
+export function ProgramHero() {
   return (
-    <h2
-      className={`${fredokaHeadline.className} mt-3 text-[2.1rem] font-semibold leading-[1.02] tracking-[-0.035em] sm:text-5xl ${
-        light ? "text-white" : "text-slate-900"
-      }`}
-    >
-      {children}
-    </h2>
+    <section className="bg-white pt-24 sm:pt-28">
+      <div className="mx-auto grid max-w-6xl gap-10 px-5 pb-14 pt-8 sm:px-8 sm:pb-20 sm:pt-14 lg:grid-cols-[1fr_22rem] lg:gap-16">
+        <div>
+          <h1 className={`${serif} max-w-[16ch] text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.02em] text-ink sm:text-[3.6rem] lg:text-[4.1rem]`}>
+            {HERO.headline}
+          </h1>
+          <p className={`${sans} mt-6 max-w-[60ch] text-[1.05rem] leading-[1.7] text-body sm:text-lg`}>{HERO.lede}</p>
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+            <Link href="/apply" className={buttonPrimary}>
+              Apply for {COHORT.monthLabel.split(" ")[0]}
+            </Link>
+            <a href="#newsletter" className={`${sans} text-[0.95rem] font-semibold text-accent underline decoration-accent/30 underline-offset-4 hover:decoration-accent`}>
+              Or read our free newsletter first
+            </a>
+          </div>
+        </div>
+
+        <aside aria-label="Admissions" className="self-start rounded-md border border-rule bg-wash">
+          <div className="border-b border-rule px-6 py-5">
+            <p className={`${sans} text-sm font-semibold text-accent`}>Now accepting applications</p>
+            <p className={`${serif} mt-1 text-2xl font-semibold text-ink`}>{COHORT.monthLabel} cohort</p>
+          </div>
+          <dl className={`${sans} divide-y divide-rule px-6 text-[0.95rem]`}>
+            {[
+              ["Enrollment", `${COHORT.seats} families`],
+              ["Students", COHORT.grades],
+              ["Format", COHORT.format],
+              ["Admission", "By application"],
+            ].map(([k, v]) => (
+              <div key={k} className="flex justify-between gap-4 py-3">
+                <dt className="text-muted">{k}</dt>
+                <dd className="text-right font-semibold text-ink">{v}</dd>
+              </div>
+            ))}
+          </dl>
+          <div className="px-6 pb-6 pt-2">
+            <Link href="/apply" className={`${buttonPrimary} w-full`}>
+              Start an application
+            </Link>
+          </div>
+        </aside>
+      </div>
+
+      <div className="border-t border-rule">
+        <div className="mx-auto flex max-w-6xl flex-col gap-5 px-5 py-8 sm:px-8 md:flex-row md:items-center md:justify-between">
+          <p className={`${sans} text-sm text-muted`}>Our team studies at</p>
+          <ul className="flex flex-wrap items-center gap-x-8 gap-y-4">
+            {TEAM_SCHOOLS.map((s) => (
+              <li key={s.name} className={`${sans} flex items-center gap-2 text-[0.95rem] font-semibold text-body`}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={s.logo} alt={s.wordmark ? s.name : ""} className="h-6 w-auto opacity-80 grayscale" />
+                {s.wordmark ? null : s.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
   );
 }
 
-/* ------------------------------------------------------------------ */
-/* Thesis                                                              */
-/* ------------------------------------------------------------------ */
+/* Why ----------------------------------------------------------------- */
 
 export function ThesisSection() {
   return (
-    <section id="thesis" className="scroll-mt-24 px-4 pb-20 sm:px-6 sm:pb-28">
-      <motion.div
-        {...reveal}
-        className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.5rem] bg-slate-900 px-6 py-14 text-white sm:rounded-[3.5rem] sm:px-14 sm:py-20"
-      >
-        <div className="pointer-events-none absolute -right-28 -top-28 h-80 w-80 rounded-full bg-sky-500/20 blur-3xl" aria-hidden />
-        <div className="pointer-events-none absolute -bottom-24 -left-20 h-64 w-64 rounded-full bg-emerald-400/10 blur-3xl" aria-hidden />
-
-        <div className="relative grid gap-10 lg:grid-cols-[1.25fr_1fr] lg:gap-16">
-          <div>
-            <Eyebrow tone="light">Our thesis</Eyebrow>
-            <p className={`${fredokaHeadline.className} mt-4 text-[2rem] font-semibold leading-[1.05] tracking-[-0.03em] sm:text-[3.25rem]`}>
-              {THESIS.claim}
-            </p>
-          </div>
-          <div className={`${jakartaSans.className} flex flex-col justify-end gap-5 text-[0.98rem] font-medium leading-relaxed text-slate-300 sm:text-lg`}>
-            <p>{THESIS.support}</p>
-            <p className="border-l-2 border-sky-400 pl-4 text-white">{THESIS.who}</p>
-          </div>
-        </div>
-      </motion.div>
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/* What students learn                                                 */
-/* ------------------------------------------------------------------ */
-
-const SKILL_ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
-  organize: CalendarCheck,
-  research: FileSearch,
-  study: BookOpenCheck,
-  write: PenLine,
-  build: Hammer,
-  integrity: ShieldCheck,
-};
-
-export function ProgramSection() {
-  return (
-    <section id="program" className="scroll-mt-24 px-4 pb-20 sm:px-6 sm:pb-28">
-      <div className="mx-auto max-w-6xl">
-        <motion.div {...reveal} className="max-w-2xl">
-          <Eyebrow>The program</Eyebrow>
-          <H2>
-            What top students do with AI, <span className="text-sky-500">taught step by step.</span>
-          </H2>
-          <p className={`${jakartaSans.className} mt-4 text-base font-medium leading-relaxed text-slate-600 sm:text-lg`}>
-            Every month your student gets a new playbook of real use cases, tied to the assignments high schoolers
-            actually have.
-          </p>
-        </motion.div>
-
-        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 sm:gap-4">
-          {SKILLS.map((s, i) => {
-            const Icon = SKILL_ICONS[s.id] ?? Compass;
-            const isIntegrity = s.id === "integrity";
-            return (
-              <motion.div
-                key={s.id}
-                {...reveal}
-                transition={{ ...reveal.transition, delay: i * 0.05 }}
-                className={`rounded-[1.75rem] border p-5 sm:p-6 ${
-                  isIntegrity ? "border-emerald-200 bg-emerald-50/80" : "border-slate-200/80 bg-white/90"
-                }`}
-              >
-                <div className="flex items-center gap-3">
-                  <div
-                    className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl ${
-                      isIntegrity ? "bg-emerald-500 text-white" : "bg-sky-100 text-sky-600"
-                    }`}
-                  >
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <h3 className={`${fredokaHeadline.className} text-xl font-semibold tracking-[-0.02em] text-slate-900`}>
-                    {s.title}
-                  </h3>
-                </div>
-                <p className={`${jakartaSans.className} mt-3 text-sm font-medium leading-relaxed text-slate-600 sm:text-[0.95rem]`}>
-                  {s.line}
-                </p>
-              </motion.div>
-            );
-          })}
-        </div>
+    <Section id="about" title={THESIS.heading} tone="wash">
+      <div className={`${serif} max-w-[64ch] space-y-5 text-[1.15rem] leading-[1.75] text-ink sm:text-[1.25rem]`}>
+        {THESIS.paragraphs.map((p) => (
+          <p key={p.slice(0, 20)}>{p}</p>
+        ))}
       </div>
-    </section>
+      <dl className="mt-12 grid gap-x-10 gap-y-8 border-t border-rule pt-10 sm:grid-cols-2">
+        {DISTINCTIVES.map((d) => (
+          <div key={d.title}>
+            <dt className={`${sans} text-base font-semibold text-ink`}>{d.title}</dt>
+            <dd className={`${sans} mt-1.5 text-[0.95rem] leading-relaxed text-body`}>{d.body}</dd>
+          </div>
+        ))}
+      </dl>
+    </Section>
   );
 }
 
-/* ------------------------------------------------------------------ */
-/* How the team runs each month                                        */
-/* ------------------------------------------------------------------ */
+/* Curriculum ---------------------------------------------------------- */
+
+export function CurriculumSection() {
+  return (
+    <Section id="program" title="What students learn" intro="Each month's lessons cover these areas, adjusted for the student's grade.">
+      <dl className="divide-y divide-rule border-y border-rule">
+        {CURRICULUM.map((c) => (
+          <div key={c.topic} className="grid gap-1 py-5 sm:grid-cols-[12rem_1fr] sm:gap-8">
+            <dt className={`${sans} text-base font-semibold text-ink`}>{c.topic}</dt>
+            <dd className={`${sans} text-[0.98rem] leading-relaxed text-body`}>{c.detail}</dd>
+          </div>
+        ))}
+      </dl>
+    </Section>
+  );
+}
+
+/* Monthly cycle ------------------------------------------------------- */
 
 export function MonthlyCycleSection() {
   return (
-    <section id="monthly" className="scroll-mt-24 border-y border-slate-100 bg-white px-4 py-20 sm:px-6 sm:py-28">
-      <div className="mx-auto max-w-6xl">
-        <motion.div {...reveal} className="max-w-2xl">
-          <Eyebrow>How we run each month</Eyebrow>
-          <H2>
-            AI changes every month. <span className="text-sky-500">So does the program.</span>
-          </H2>
-          <p className={`${jakartaSans.className} mt-4 text-base font-medium leading-relaxed text-slate-600 sm:text-lg`}>
-            A course recorded last year is already out of date. Our team works on a monthly cycle so your student
-            always learns what works right now.
-          </p>
-        </motion.div>
-
-        <ol className="relative mt-12 grid gap-4 md:grid-cols-4 md:gap-5">
-          <div
-            className="pointer-events-none absolute left-0 right-[24%] top-[1.4rem] hidden h-[2px] bg-gradient-to-r from-sky-200 via-sky-300 to-emerald-300 md:block"
-            aria-hidden
-          />
-          {MONTHLY_CYCLE.map((step, i) => (
-            <motion.li
-              key={step.title}
-              {...reveal}
-              transition={{ ...reveal.transition, delay: i * 0.08 }}
-              className="relative flex gap-4 md:block"
-            >
-              <div
-                className={`${fredokaHeadline.className} relative z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-white text-lg font-semibold text-white shadow-[0_6px_0_0_rgba(15,23,42,0.08)] ${
-                  i === MONTHLY_CYCLE.length - 1 ? "bg-emerald-500" : "bg-sky-500"
-                }`}
-              >
-                {i + 1}
-              </div>
-              <div className="md:mt-5">
-                <p className={`${jakartaSans.className} text-[11px] font-black uppercase tracking-[0.18em] text-slate-400`}>
-                  {step.week}
-                </p>
-                <h3 className={`${fredokaHeadline.className} mt-1 text-2xl font-semibold tracking-[-0.02em] text-slate-900`}>
-                  {step.title}
-                </h3>
-                <p className={`${jakartaSans.className} mt-2 text-sm font-medium leading-relaxed text-slate-600`}>
-                  {step.body}
-                </p>
-              </div>
-            </motion.li>
-          ))}
-        </ol>
-      </div>
-    </section>
+    <Section
+      id="monthly"
+      title="How the lessons stay current"
+      intro="Our team works on a four-week cycle, so what students learn reflects the tools and policies in place that month."
+      tone="wash"
+    >
+      <ol className="grid gap-px overflow-hidden rounded-md border border-rule bg-rule sm:grid-cols-2">
+        {MONTHLY_CYCLE.map((s) => (
+          <li key={s.title} className="bg-white p-6">
+            <p className={`${sans} text-sm text-muted`}>{s.week}</p>
+            <h3 className={`${serif} mt-1 text-xl font-semibold text-ink`}>{s.title}</h3>
+            <p className={`${sans} mt-2 text-[0.95rem] leading-relaxed text-body`}>{s.body}</p>
+          </li>
+        ))}
+      </ol>
+    </Section>
   );
 }
 
-/* ------------------------------------------------------------------ */
-/* Why us (defensible advantages)                                      */
-/* ------------------------------------------------------------------ */
+/* Founder ------------------------------------------------------------- */
 
-export function AdvantageSection() {
+export function FounderSection() {
   return (
-    <section id="why-us" className="scroll-mt-24 px-4 py-20 sm:px-6 sm:py-28">
-      <div className="mx-auto max-w-6xl">
-        <motion.div {...reveal} className="max-w-2xl">
-          <Eyebrow>Why StudentStack</Eyebrow>
-          <H2>
-            Hard to copy, <span className="text-sky-500">because of who builds it.</span>
-          </H2>
-        </motion.div>
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
-          {ADVANTAGES.map((a, i) => (
-            <motion.div
-              key={a.title}
-              {...reveal}
-              transition={{ ...reveal.transition, delay: i * 0.06 }}
-              className="flex gap-4 rounded-[1.75rem] border border-slate-200/80 bg-white/90 p-6 sm:p-7"
-            >
-              <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-sky-500" aria-hidden />
-              <div>
-                <h3 className={`${fredokaHeadline.className} text-xl font-semibold tracking-[-0.02em] text-slate-900 sm:text-2xl`}>
-                  {a.title}
-                </h3>
-                <p className={`${jakartaSans.className} mt-2 text-sm font-medium leading-relaxed text-slate-600 sm:text-[0.95rem]`}>
-                  {a.body}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+    <section className="border-t border-rule bg-white">
+      <figure className="mx-auto max-w-3xl px-5 py-16 sm:px-8 sm:py-24">
+        <blockquote className={`${serif} text-[1.5rem] leading-[1.5] text-ink sm:text-[1.85rem]`}>
+          <p>&ldquo;{FOUNDER.quote}&rdquo;</p>
+        </blockquote>
+        <figcaption className={`${sans} mt-6 text-[0.95rem] text-body`}>
+          <span className="font-semibold text-ink">{FOUNDER.name}</span>
+          <span className="block text-muted sm:inline sm:before:mx-2 sm:before:content-['/']">{FOUNDER.title}</span>
+        </figcaption>
+      </figure>
     </section>
   );
 }
 
-/* ------------------------------------------------------------------ */
-/* Educational partners                                                */
-/* ------------------------------------------------------------------ */
+/* Partners ------------------------------------------------------------ */
 
 export function PartnersSection() {
   const anyNamed = PARTNERS.some((p) => p.name);
   return (
-    <section id="partners" className="scroll-mt-24 border-y border-slate-100 bg-white px-4 py-20 sm:px-6 sm:py-28">
-      <div className="mx-auto max-w-6xl">
-        <motion.div {...reveal} className="max-w-2xl">
-          <Eyebrow>Educational partners</Eyebrow>
-          <H2>
-            Partners chosen for <span className="text-sky-500">what they give your student.</span>
-          </H2>
-          <p className={`${jakartaSans.className} mt-4 text-base font-medium leading-relaxed text-slate-600 sm:text-lg`}>
-            We don&apos;t collect logos. Each partner fills a specific gap in a student&apos;s month, from tool access to
-            credentials that show up on applications.
-          </p>
-        </motion.div>
-
-        <div className="mt-10 grid gap-4 sm:grid-cols-2">
-          {PARTNERS.map((p, i) => (
-            <motion.div
-              key={p.role}
-              {...reveal}
-              transition={{ ...reveal.transition, delay: i * 0.06 }}
-              className="flex flex-col rounded-[1.75rem] border border-slate-200/80 bg-[#f8fafc] p-6 sm:p-7"
-            >
-              <div className="flex items-center justify-between gap-3">
-                <p className={`${jakartaSans.className} text-[11px] font-black uppercase tracking-[0.18em] text-sky-600`}>
-                  {p.role}
-                </p>
-                {p.logo ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={p.logo} alt={p.name ?? ""} className="h-7 w-auto object-contain" />
-                ) : null}
-              </div>
-              {p.name ? (
-                <h3 className={`${fredokaHeadline.className} mt-2 text-xl font-semibold text-slate-900`}>{p.name}</h3>
+    <Section
+      id="partners"
+      title="Educational partners"
+      intro="We work with organizations that add something specific to a student's month."
+      tone="wash"
+    >
+      <dl className="grid gap-px overflow-hidden rounded-md border border-rule bg-rule sm:grid-cols-2">
+        {PARTNERS.map((p) => (
+          <div key={p.role} className="bg-white p-6">
+            <dt className={`${sans} flex items-center justify-between gap-3 text-base font-semibold text-ink`}>
+              {p.name ?? p.role}
+              {p.logo ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={p.logo} alt="" className="h-6 w-auto" />
               ) : null}
-              <p className={`${jakartaSans.className} mt-2 text-sm font-medium leading-relaxed text-slate-700 sm:text-[0.95rem]`}>
-                {p.benefit}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-        {!anyNamed ? (
-          <p className={`${jakartaSans.className} mt-6 text-sm font-semibold text-slate-500`}>
-            Partner details for the {COHORT.name} are shared with accepted families.
-          </p>
-        ) : null}
-      </div>
-    </section>
+            </dt>
+            {p.name ? <p className={`${sans} text-sm text-muted`}>{p.role}</p> : null}
+            <dd className={`${sans} mt-2 text-[0.95rem] leading-relaxed text-body`}>{p.benefit}</dd>
+          </div>
+        ))}
+      </dl>
+      {!anyNamed ? (
+        <p className={`${sans} mt-5 text-sm text-muted`}>
+          Partners for the {COHORT.monthLabel} cohort are shared with admitted families.
+        </p>
+      ) : null}
+    </Section>
   );
 }
 
-/* ------------------------------------------------------------------ */
-/* Limited cohort + how to join                                        */
-/* ------------------------------------------------------------------ */
+/* Admissions ---------------------------------------------------------- */
 
-export function CohortSection() {
+export function AdmissionsSection() {
   return (
-    <section id="cohort" className="scroll-mt-24 px-4 py-20 sm:px-6 sm:py-28">
-      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
-        <motion.div
-          {...reveal}
-          className="relative self-start overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-sky-500 to-sky-600 p-8 text-white sm:p-10"
-        >
-          <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-white/15 blur-2xl" aria-hidden />
-          <Eyebrow tone="light">
-            <span className="text-sky-100">Limited cohort</span>
-          </Eyebrow>
-          <p className={`${fredokaHeadline.className} mt-4 text-[5.5rem] font-semibold leading-none tracking-[-0.05em] sm:text-[7rem]`}>
-            {COHORT.seats}
-          </p>
-          <p className={`${fredokaHeadline.className} text-2xl font-semibold tracking-[-0.02em]`}>families per month</p>
-          <p className={`${jakartaSans.className} mt-5 max-w-sm text-sm font-medium leading-relaxed text-sky-50 sm:text-base`}>
-            We keep cohorts small so our team can personally review every family. When the month is full, new
-            applicants are considered for the next one.
-          </p>
-          <p className={`${jakartaSans.className} mt-6 inline-flex rounded-full bg-white/15 px-4 py-2 text-xs font-black uppercase tracking-[0.16em]`}>
-            {COHORT.name} · {COHORT.startLabel.replace("Starts ", "starts ")}
-          </p>
-        </motion.div>
-
-        <motion.div {...reveal}>
-          <Eyebrow>How to join</Eyebrow>
-          <H2>
-            Admission is <span className="text-sky-500">by application.</span>
-          </H2>
-          <ol className="mt-8 space-y-5">
-            {APPLY_STEPS.map((s, i) => (
-              <li key={s.title} className="flex gap-4">
-                <span
-                  className={`${fredokaHeadline.className} flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-900 text-base font-semibold text-white`}
-                >
-                  {i + 1}
-                </span>
-                <div>
-                  <h3 className={`${fredokaHeadline.className} text-xl font-semibold tracking-[-0.02em] text-slate-900`}>
-                    {s.title}
-                  </h3>
-                  <p className={`${jakartaSans.className} mt-1 text-sm font-medium leading-relaxed text-slate-600 sm:text-[0.95rem]`}>
-                    {s.body}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ol>
-          <Link
-            href="/apply"
-            className={`${jakartaSans.className} mt-8 inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-6 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-slate-800`}
-          >
-            Start your application
-            <ArrowRight className="h-4 w-4" aria-hidden />
-          </Link>
-          <p className={`${jakartaSans.className} mt-3 text-xs font-semibold text-slate-500`}>{COHORT.reviewNote}</p>
-        </motion.div>
+    <Section
+      id="admissions"
+      title="Admissions"
+      intro={`Each monthly cohort is limited to ${COHORT.seats} families so we can review every application personally.`}
+    >
+      <ol className="border-t border-rule">
+        {APPLY_STEPS.map((s, i) => (
+          <li key={s.title} className="grid grid-cols-[2.5rem_1fr] gap-4 border-b border-rule py-6">
+            <span className={`${serif} text-2xl font-semibold leading-none text-accent`}>{i + 1}</span>
+            <div>
+              <h3 className={`${sans} text-base font-semibold text-ink`}>{s.title}</h3>
+              <p className={`${sans} mt-1.5 max-w-[60ch] text-[0.98rem] leading-relaxed text-body`}>{s.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+        <Link href="/apply" className={buttonPrimary}>
+          Start an application
+        </Link>
+        <p className={`${sans} text-sm text-muted`}>{COHORT.reviewNote}</p>
       </div>
-    </section>
+    </Section>
   );
 }
 
-/* ------------------------------------------------------------------ */
-/* Newsletter (beehiiv)                                                */
-/* ------------------------------------------------------------------ */
+/* Newsletter ---------------------------------------------------------- */
 
 export function NewsletterSection() {
   const [email, setEmail] = useState("");
@@ -394,103 +278,84 @@ export function NewsletterSection() {
         body: JSON.stringify({ parentEmail: email, intent: "newsletter" }),
       });
       const data = (await res.json().catch(() => ({}))) as { error?: string };
-      if (!res.ok) throw new Error(data.error ?? "Could not subscribe.");
+      if (!res.ok) throw new Error(data.error ?? "Subscription failed. Try again in a moment.");
       setState("done");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Could not subscribe.");
+      setError(err instanceof Error ? err.message : "Subscription failed. Try again in a moment.");
       setState("error");
     }
   }
 
   return (
-    <section id="newsletter" className="scroll-mt-24 px-4 pb-20 sm:px-6 sm:pb-28">
-      <motion.div
-        {...reveal}
-        className="mx-auto grid max-w-6xl items-center gap-8 rounded-[2.5rem] border border-amber-200/80 bg-gradient-to-br from-amber-50 to-white p-8 sm:p-12 lg:grid-cols-2"
-      >
-        <div>
-          <Eyebrow>Free newsletter</Eyebrow>
-          <H2>
-            Join {NEWSLETTER.readerCountLabel} parents <span className="text-sky-500">staying ahead of AI.</span>
-          </H2>
-          <p className={`${jakartaSans.className} mt-4 text-base font-medium leading-relaxed text-slate-600`}>
-            What's new in AI, what it means for high schoolers, and one thing to try at home. Written by
-            our college team. Free.
-          </p>
-        </div>
-
-        {NEWSLETTER.beehiivUrl ? (
-          <a
-            href={NEWSLETTER.beehiivUrl}
-            target="_blank"
-            rel="noreferrer"
-            className={`${jakartaSans.className} inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-900 px-6 py-4 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-slate-800`}
-          >
-            <Mail className="h-4 w-4" aria-hidden />
-            Subscribe free
-          </a>
-        ) : state === "done" ? (
-          <div className={`${jakartaSans.className} flex items-center gap-3 rounded-2xl bg-emerald-50 p-5 text-sm font-bold text-emerald-800`}>
-            <CheckCircle2 className="h-5 w-5 shrink-0" aria-hidden />
-            You&apos;re in. Look for our next issue in your inbox.
-          </div>
-        ) : (
-          <form onSubmit={onSubmit} className="flex w-full flex-col gap-3 sm:flex-row">
-            <label htmlFor="newsletter-email" className="sr-only">
-              Parent email
-            </label>
-            <input
-              id="newsletter-email"
-              type="email"
-              required
-              autoComplete="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Parent email"
-              className={`${jakartaSans.className} min-w-0 flex-1 rounded-2xl border-2 border-slate-200 bg-white px-4 py-3.5 text-base font-semibold text-slate-900 outline-none transition focus:border-sky-400`}
-            />
-            <button
-              type="submit"
-              disabled={state === "loading"}
-              className={`${jakartaSans.className} inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-900 px-6 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-white transition hover:bg-slate-800 disabled:opacity-60`}
-            >
-              {state === "loading" ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden /> : null}
-              Subscribe free
-            </button>
-            {state === "error" ? (
-              <p role="alert" className={`${jakartaSans.className} text-sm font-semibold text-rose-600 sm:basis-full`}>
-                {error}
-              </p>
-            ) : null}
-          </form>
-        )}
-      </motion.div>
-    </section>
+    <Section
+      id="newsletter"
+      title="The StudentStack newsletter"
+      intro={`Free, and read by more than ${NEWSLETTER.readerCountLabel} parents.`}
+      tone="wash"
+    >
+      <p className={`${sans} max-w-[60ch] text-[1.02rem] leading-relaxed text-body`}>
+        Our team writes about new AI tools, what they mean for high school students, and one thing to try at home.
+        It&apos;s a good place to start if you&apos;d like to know us before applying.
+      </p>
+      {NEWSLETTER.beehiivUrl ? (
+        <a href={NEWSLETTER.beehiivUrl} target="_blank" rel="noreferrer" className={`${buttonPrimary} mt-6`}>
+          Subscribe
+        </a>
+      ) : state === "done" ? (
+        <p role="status" className={`${sans} mt-6 font-semibold text-ink`}>
+          Subscribed. The next issue will arrive at {email}.
+        </p>
+      ) : (
+        <form onSubmit={onSubmit} className="mt-6 flex max-w-xl flex-col gap-3 sm:flex-row">
+          <label htmlFor="newsletter-email" className="sr-only">
+            Email address
+          </label>
+          <input
+            id="newsletter-email"
+            type="email"
+            required
+            autoComplete="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email address"
+            className={`${sans} min-w-0 flex-1 rounded-md border border-rule bg-white px-4 py-3 text-base text-ink outline-none placeholder:text-muted focus:border-accent focus:ring-1 focus:ring-accent`}
+          />
+          <button type="submit" disabled={state === "loading"} className={`${buttonPrimary} gap-2 disabled:opacity-60`}>
+            {state === "loading" ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden /> : null}
+            Subscribe
+          </button>
+        </form>
+      )}
+      {state === "error" ? (
+        <p role="alert" className={`${sans} mt-3 text-sm font-semibold text-[#B42318]`}>
+          {error}
+        </p>
+      ) : null}
+    </Section>
   );
 }
 
-/* ------------------------------------------------------------------ */
-/* Final call to action                                                */
-/* ------------------------------------------------------------------ */
+/* Closing ------------------------------------------------------------- */
 
 export function FinalCtaSection() {
   return (
-    <section className="px-4 pb-24 sm:px-6">
-      <motion.div {...reveal} className="mx-auto max-w-3xl text-center">
-        <h2 className={`${fredokaHeadline.className} text-[2.25rem] font-semibold leading-[1.02] tracking-[-0.035em] text-slate-900 sm:text-6xl`}>
-          Give your student the <span className="text-sky-500">head start</span> top students already have.
-        </h2>
-        <p className={`${jakartaSans.className} mx-auto mt-5 max-w-xl text-base font-medium text-slate-600 sm:text-lg`}>
-          Applications for the {COHORT.name} take about two minutes. We reply to every family personally.
-        </p>
+    <section className="border-t border-rule bg-ink">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-14 sm:px-8 md:flex-row md:items-center md:justify-between">
+        <div>
+          <h2 className={`${serif} text-[1.9rem] font-semibold leading-tight text-white sm:text-[2.2rem]`}>
+            Applications for the {COHORT.monthLabel} cohort are open.
+          </h2>
+          <p className={`${sans} mt-2 text-[0.98rem] text-[#C5CFDD]`}>
+            The application takes about five minutes. We reply to every family.
+          </p>
+        </div>
         <Link
           href="/apply"
-          className={`${jakartaSans.className} mt-8 inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-8 py-4 text-xs font-black uppercase tracking-[0.14em] text-white shadow-[0_14px_28px_-18px_rgba(15,23,42,0.5)] transition hover:-translate-y-0.5 hover:bg-slate-800 sm:text-sm`}
+          className={`${sans} inline-flex shrink-0 items-center justify-center rounded-md bg-white px-6 py-3.5 text-[0.95rem] font-semibold text-ink transition-colors hover:bg-wash`}
         >
-          Apply now
-          <ArrowRight className="h-4 w-4" aria-hidden />
+          Start an application
         </Link>
-      </motion.div>
+      </div>
     </section>
   );
 }
