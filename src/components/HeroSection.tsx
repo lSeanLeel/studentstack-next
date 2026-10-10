@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { jakartaSans, fredokaHeadline } from "@/app/fonts";
+import { COHORT, NEWSLETTER } from "@/lib/program";
 
 const featuredColleges = [
   { name: "UCLA", color: "#2774AE", logo: "/colleges/ucla.png", showName: false },
@@ -105,6 +106,20 @@ export function HeroSection() {
       <HeroBg />
 
       <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-5.5rem)] w-full max-w-[80rem] -translate-y-12 flex-col items-center justify-center text-center sm:min-h-[calc(100dvh-6.5rem)] sm:-translate-y-16">
+        <motion.a
+          href="#cohort"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className={`${jakartaSans.className} mb-6 inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-sky-200 bg-white/90 px-4 py-2 text-[10px] font-black uppercase tracking-[0.1em] sm:text-xs sm:tracking-[0.16em] text-slate-700 shadow-sm transition hover:border-sky-300 sm:text-xs`}
+        >
+          <span className="relative flex h-2 w-2" aria-hidden>
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+          </span>
+          Applications open · {COHORT.name}
+        </motion.a>
+
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -139,7 +154,7 @@ export function HeroSection() {
           transition={{ delay: 0.5, duration: 0.5 }}
           className={`${jakartaSans.className} mx-auto mt-4 max-w-xl text-[0.95rem] font-semibold leading-snug text-slate-600 sm:mt-5 sm:text-lg`}
         >
-          AI for school, taught the right way. Private membership for high schoolers, built by college students who still sit in the classrooms that matter.
+          A monthly AI program for high schoolers, run by college students at the schools your student is aiming for. Limited seats each month, by application.
         </motion.p>
 
         <motion.div
@@ -150,17 +165,17 @@ export function HeroSection() {
           className="mt-6 flex w-full max-w-xl flex-col items-center gap-3 sm:mt-7"
         >
           <a
-            href="/join"
+            href="/apply"
             className={`${jakartaSans.className} inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-2xl bg-slate-900 px-6 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-white shadow-[0_14px_28px_-18px_rgba(15,23,42,0.5)] transition hover:-translate-y-0.5 hover:bg-slate-800`}
           >
-            Join our Community
+            Apply for {COHORT.name.replace(" cohort", "")}
             <ArrowRight className="h-4 w-4" aria-hidden />
           </a>
           <a
-            href="#faq"
+            href="#newsletter"
             className={`${jakartaSans.className} text-[12px] font-bold text-slate-500 underline decoration-sky-300/80 underline-offset-[0.18em] transition-colors hover:text-sky-700 sm:text-[13px]`}
           >
-            Questions parents ask us
+            Not ready? Join {NEWSLETTER.readerCountLabel} parents on our free newsletter
           </a>
         </motion.div>
       </div>

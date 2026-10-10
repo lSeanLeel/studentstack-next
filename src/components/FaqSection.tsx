@@ -4,27 +4,11 @@ import React, { useEffect, useState, type ReactNode } from "react";
 import { motion } from "motion/react";
 import { ChevronDown } from "lucide-react";
 import { jakartaSans, fredokaHeadline } from "@/app/fonts";
+import { FAQ } from "@/lib/program";
 
 type FaqItem = { id?: string; q: string; a: ReactNode };
 
-const FAQ_ITEMS: FaqItem[] = [
-  {
-    q: "What is StudentStack?",
-    a: "We are a group of current college students committed to providing modern guidance that students actually need. Today, new AI tools and workflows drop every day, and we believe younger students are best prepared learning from those who are still in school. We update our student portal every day for our members to stay ahead for school.",
-  },
-  {
-    q: "How is this different from tutors or admissions counselors?",
-    a: "We are still in the classrooms and admissions cycles that shape what high schoolers need now. The core product is AI literacy for school, with high school guidance from peers ahead of your student, not a recycled counseling playbook.",
-  },
-  {
-    q: "What do members get?",
-    a: "A gated student portal: daily AI toolkit, member resources, organization-issued pathways (SS-AIS and SS-ACR), and direct access to our college team. We stay light on public catalogs on purpose.",
-  },
-  {
-    q: "How do I join?",
-    a: "Parents complete a short application, review mentorship matching, create a portal password, and finish checkout. A welcome email with login details goes to the parent email. A mentor reaches out after.",
-  },
-];
+const FAQ_ITEMS: FaqItem[] = FAQ.map((f) => ({ q: f.q, a: f.a }));
 
 function FaqAccordionItem({
   item, index, openIndex, setOpenIndex, baseId,

@@ -7,6 +7,16 @@ import { IntroAnimation } from "@/components/IntroAnimation";
 import { HeroSection } from "@/components/HeroSection";
 import { OnboardingProvider } from "@/components/onboarding-context";
 import { ContactProvider } from "@/components/contact-context";
+import {
+  AdvantageSection,
+  CohortSection,
+  FinalCtaSection,
+  MonthlyCycleSection,
+  NewsletterSection,
+  PartnersSection,
+  ProgramSection,
+  ThesisSection,
+} from "@/components/program/ProgramSections";
 
 const sectionLoading = () => <div className="h-96" aria-hidden />;
 
@@ -15,23 +25,8 @@ const TestimonialSection = dynamic(
   { loading: sectionLoading }
 );
 
-const CurriculumPreviewSection = dynamic(
-  () => import("@/components/CurriculumPreviewSection").then((m) => ({ default: m.CurriculumPreviewSection })),
-  { loading: sectionLoading }
-);
-
-const PortalPreviewSection = dynamic(
-  () => import("@/components/PortalPreviewSection").then((m) => ({ default: m.PortalPreviewSection })),
-  { loading: sectionLoading }
-);
-
 const FaqSection = dynamic(
   () => import("@/components/FaqSection").then((m) => ({ default: m.FaqSection })),
-  { loading: sectionLoading }
-);
-
-const WriteUsSection = dynamic(
-  () => import("@/components/WriteUsSection").then((m) => ({ default: m.WriteUsSection })),
   { loading: sectionLoading }
 );
 
@@ -56,12 +51,25 @@ export default function LandingPage() {
         <main className="min-h-screen bg-transparent selection:bg-sky-100 selection:text-sky-900">
           {showIntro && <IntroAnimation key={introSession} onComplete={handleIntroComplete} />}
           <Navbar onHomeLogoClick={replayIntro} />
+          {/* 1. Hook: who we are + cohort open */}
           <HeroSection />
+          {/* 2. Why: the thesis */}
+          <ThesisSection />
+          {/* 3. What: the program */}
+          <ProgramSection />
+          {/* 4. How it stays current */}
+          <MonthlyCycleSection />
+          {/* 5. Why us + founder */}
+          <AdvantageSection />
           <TestimonialSection />
-          <CurriculumPreviewSection />
-          <PortalPreviewSection />
+          {/* 6. Partners */}
+          <PartnersSection />
+          {/* 7. Scarcity + application flow */}
+          <CohortSection />
+          {/* 8. Not ready yet: newsletter */}
+          <NewsletterSection />
           <FaqSection />
-          <WriteUsSection />
+          <FinalCtaSection />
           <Footer />
         </main>
       </ContactProvider>
