@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Loader2 } from "lucide-react";
 import { institutionalSerif, jakartaSans } from "@/app/fonts";
+import { HeroHeadline } from "./HeroHeadline";
 import {
   APPLY_STEPS,
   COHORT,
@@ -57,10 +58,8 @@ export function ProgramHero() {
     <section className="bg-white pt-24 sm:pt-28">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 pb-14 pt-8 sm:px-8 sm:pb-20 sm:pt-14 lg:grid-cols-[1fr_22rem] lg:gap-16">
         <div>
-          <h1 className={`${serif} max-w-[16ch] text-[2.6rem] font-semibold leading-[1.06] tracking-[-0.02em] text-ink sm:text-[3.6rem] lg:text-[4.1rem]`}>
-            {HERO.headline}
-          </h1>
-          <p className={`${sans} mt-6 max-w-[60ch] text-[1.05rem] leading-[1.7] text-body sm:text-lg`}>{HERO.lede}</p>
+          <HeroHeadline />
+          <p className={`${sans} mt-4 max-w-[60ch] text-[1.05rem] leading-[1.7] text-body sm:text-lg`}>{HERO.lede}</p>
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
             <Link href="/apply" className={buttonPrimary}>
               Apply for {COHORT.monthLabel.split(" ")[0]}

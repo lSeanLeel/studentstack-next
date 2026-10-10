@@ -33,9 +33,19 @@ export const TEAM_SCHOOLS: { name: string; logo: string; wordmark?: boolean }[] 
 ];
 
 export const HERO = {
-  headline: "Learn to use AI for school the way top college students do.",
-  lede: "StudentStack is a small monthly program for high school students. Our team of undergraduates at UCLA, Berkeley, Stanford, Princeton and Columbia writes each month's lessons on using AI to plan, research and study, within the rules schools set.",
+  /** Headline reads: `${lead} ${USE_CASES[i].phrase}.` */
+  lead: "Learn how top students and university researchers use AI to",
+  lede: "Each month, our team of undergraduates at UCLA, Berkeley, Stanford, Princeton and Columbia teaches the AI methods that matter most in high school coursework, and how to use them within the rules schools set.",
 };
+
+/** Rotating headline phrases. `example` shows under the headline when a phrase is selected. */
+export const USE_CASES = [
+  { id: "organize", phrase: "stay organized", example: "Turn five syllabi, a practice schedule and every deadline into one weekly plan." },
+  { id: "research", phrase: "research faster", example: "Find credible sources on a topic, check them, and keep citations in order." },
+  { id: "study", phrase: "study smarter", example: "Build practice tests and flashcards from their own class notes before an exam." },
+  { id: "write", phrase: "improve their writing", example: "Get detailed feedback on a draft they wrote, without AI writing any of it." },
+  { id: "build", phrase: "build real projects", example: "Plan and start independent work that belongs on a college application." },
+] as const;
 
 export const THESIS = {
   heading: "Why this program exists",
