@@ -8,7 +8,6 @@ import {
   AdmissionsSection,
   CurriculumSection,
   FinalCtaSection,
-  FounderSection,
   MonthlyCycleSection,
   NewsletterSection,
   PartnersSection,
@@ -27,7 +26,6 @@ export default function LandingPage() {
           <ThesisSection />
           <CurriculumSection />
           <MonthlyCycleSection />
-          <FounderSection />
           <PartnersSection />
           <AdmissionsSection />
           <NewsletterSection />

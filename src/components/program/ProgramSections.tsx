@@ -97,13 +97,12 @@ export function ProgramHero() {
       </div>
 
       <div className="border-t border-rule">
-        <div className="mx-auto flex max-w-6xl flex-col gap-5 px-5 py-8 sm:px-8 md:flex-row md:items-center md:justify-between">
-          <p className={`${sans} text-sm text-muted`}>Our team studies at</p>
-          <ul className="flex flex-wrap items-center gap-x-8 gap-y-4">
+        <div className="mx-auto max-w-6xl px-5 py-8 sm:px-8">
+          <ul aria-label="Universities our team attends" className="flex flex-wrap items-center justify-center gap-x-10 gap-y-5">
             {TEAM_SCHOOLS.map((s) => (
-              <li key={s.name} className={`${sans} flex items-center gap-2 text-[0.95rem] font-semibold text-body`}>
+              <li key={s.name} className={`${sans} flex items-center gap-2 text-[1rem] font-bold`} style={{ color: s.color }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={s.logo} alt={s.wordmark ? s.name : ""} className="h-6 w-auto opacity-80 grayscale" />
+                <img src={s.logo} alt={s.wordmark ? s.name : ""} className="h-7 w-auto" />
                 {s.wordmark ? null : s.name}
               </li>
             ))}
@@ -124,6 +123,10 @@ export function ThesisSection() {
           <p key={p.slice(0, 20)}>{p}</p>
         ))}
       </div>
+      <p className={`${sans} mt-6 text-[0.95rem] text-body`}>
+        <span className="font-semibold text-ink">{FOUNDER.name}</span>
+        <span className="block text-muted sm:ml-2 sm:inline">{FOUNDER.title}</span>
+      </p>
       <dl className="mt-12 grid gap-x-10 gap-y-8 border-t border-rule pt-10 sm:grid-cols-2">
         {DISTINCTIVES.map((d) => (
           <div key={d.title}>

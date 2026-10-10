@@ -54,9 +54,11 @@ export function HeroHeadline() {
   return (
     <div>
       <h1
-        className={`${institutionalSerif.className} text-[2.2rem] font-semibold leading-[1.1] tracking-[-0.02em] text-ink sm:text-[3rem] lg:text-[3.35rem]`}
+        className={`${institutionalSerif.className} text-[2.2rem] font-medium leading-[1.1] tracking-[-0.02em] text-ink sm:text-[3rem] lg:text-[3.35rem] [&_strong]:font-bold`}
       >
-        <span className="block max-w-[22ch]">{HERO.lead}</span>
+        <span className="block max-w-[24ch]">
+          {HERO.before} <strong className="font-bold">{HERO.emphasis}</strong> {HERO.after}
+        </span>
         <span
           ref={wrapRef}
           className="relative inline-block"

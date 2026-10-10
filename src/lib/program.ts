@@ -24,35 +24,39 @@ export const CONTACT_EMAIL = "advising@studentstack.info";
 
 /** Schools the team attends. Logos live in /public/colleges. */
 /** `wordmark: true` means the logo already spells the name, so the text label is hidden. */
-export const TEAM_SCHOOLS: { name: string; logo: string; wordmark?: boolean }[] = [
-  { name: "UCLA", logo: "/colleges/ucla.png", wordmark: true },
-  { name: "UC Berkeley", logo: "/colleges/berkeley.png" },
-  { name: "Stanford", logo: "/colleges/stanford.png" },
-  { name: "Princeton", logo: "/colleges/princeton.png" },
-  { name: "Columbia", logo: "/colleges/columbia.png" },
+export const TEAM_SCHOOLS: { name: string; logo: string; color: string; wordmark?: boolean }[] = [
+  { name: "UCLA", logo: "/colleges/ucla.png", color: "#2774AE", wordmark: true },
+  { name: "UC Berkeley", logo: "/colleges/berkeley.png", color: "#003262" },
+  { name: "Stanford", logo: "/colleges/stanford.png", color: "#8C1515" },
+  { name: "Princeton", logo: "/colleges/princeton.png", color: "#E77500" },
+  { name: "Columbia", logo: "/colleges/columbia.png", color: "#003DA5" },
 ];
 
 export const HERO = {
-  /** Headline reads: `${lead} ${USE_CASES[i].phrase}` */
-  lead: "Learn from top college students how they use AI to",
+  /** Headline reads: `${before} **${emphasis}** ${after} ${USE_CASES[i].phrase}` */
+  before: "Learn from top students",
+  emphasis: "maximizing AI",
+  after: "to stay ahead in school and",
   lede: "Our team of undergraduates at UCLA, Berkeley, Stanford, Princeton and Columbia rewrites the lessons every month, so your student learns the methods that work now, within the rules schools set.",
 };
 
 /** Rotating headline phrases. `example` shows under the headline for the current phrase. */
 export const USE_CASES = [
-  { id: "organize", phrase: "plan their week", example: "Turn five syllabi, a practice schedule and every deadline into one weekly plan." },
-  { id: "research", phrase: "research a topic", example: "Find credible sources, check whether they hold up, and keep citations in order." },
-  { id: "study", phrase: "study for exams", example: "Build practice tests and flashcards from their own class notes." },
-  { id: "write", phrase: "get feedback on essays", example: "Get detailed comments on a draft they wrote, without AI writing any of it." },
-  { id: "build", phrase: "start real projects", example: "Plan and launch independent work that belongs on a college application." },
+  { id: "organize", phrase: "stay better organized", example: "Turn five syllabi, a practice schedule and every deadline into one weekly plan." },
+  { id: "study", phrase: "build better study habits", example: "Make practice tests and flashcards from their own class notes before an exam." },
+  { id: "research", phrase: "do better research", example: "Find credible sources, check whether they hold up, and keep citations in order." },
+  { id: "write", phrase: "improve their writing", example: "Get detailed comments on a draft they wrote, without AI writing any of it." },
+  { id: "build", phrase: "start stronger projects", example: "Plan and launch independent work that belongs on a college application." },
 ] as const;
 
 export const THESIS = {
   heading: "Why this program exists",
+  /** Written in the founder's voice and signed with FOUNDER below. */
   paragraphs: [
-    "Over the past two years, the strongest students we know have started using AI in their schoolwork. They use it to plan their week, find and check sources, quiz themselves from their own notes, and get feedback on drafts they wrote.",
-    "Most high school students haven't been shown how to do any of this. Some avoid AI entirely. Others use it in ways that break school rules and teach them very little.",
-    "The people who picked up these habits most recently are current college students at competitive schools. That is who writes this program.",
+    "I'm Sean Lee, a computer science and statistics student at UCLA. Over the past two years, I've watched the strongest students around me use AI to plan their weeks, research faster and study from their own notes, while the thinking and the writing stay their own.",
+    "Most high school students haven't been shown how to do this. Some avoid AI entirely. Others use it in ways that break school rules and teach them very little. The gap between those students grows every semester.",
+    "College students are well placed to close it. We learned these habits recently, under the same pressure your student is under now, and we still use them every week. We remember what high school coursework asks for, and we know which shortcuts backfire.",
+    "StudentStack is how our team passes that on, one month at a time.",
   ],
 };
 
