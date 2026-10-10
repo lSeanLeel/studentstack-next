@@ -7,6 +7,26 @@ import { fredokaHeadline, jakartaSans } from "@/app/fonts";
 import { BrandWordmark } from "./BrandWordmark";
 import { useContact } from "./contact-context";
 
+/** Falls back to initials when the photo can't load (the current file in /public is corrupted). */
+function FounderPhoto() {
+  const ref = React.useRef<HTMLImageElement>(null);
+  const [failed, setFailed] = React.useState(false);
+  React.useEffect(() => {
+    const img = ref.current;
+    if (img && img.complete && img.naturalWidth === 0) setFailed(true);
+  }, []);
+  return (
+    <div className="mb-4 flex h-24 w-24 items-center justify-center overflow-hidden rounded-[1.75rem] border-2 border-white/20 bg-sky-500 text-3xl font-black text-white shadow-[0_16px_0_0_rgba(0,0,0,0.25)]">
+      {failed ? (
+        "SL"
+      ) : (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img ref={ref} src="/sean-lee.jpg" alt="Sean Lee" onError={() => setFailed(true)} className="h-full w-full object-cover object-top" />
+      )}
+    </div>
+  );
+}
+
 export function TestimonialSection() {
   return (
     <section id="about" className="relative overflow-hidden bg-transparent pt-6 pb-20 sm:pt-8 sm:pb-28">
@@ -23,10 +43,7 @@ export function TestimonialSection() {
 
           <div className="relative z-10 flex flex-col items-center gap-8 text-center">
             <div className="flex flex-col items-center">
-              <div className="mb-4 h-24 w-24 overflow-hidden rounded-[1.75rem] border-2 border-white/20 shadow-[0_16px_0_0_rgba(0,0,0,0.25)]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/sean-lee.jpg" alt="Sean Lee" className="h-full w-full object-cover object-top" />
-              </div>
+              <FounderPhoto />
               <p className={`text-sm font-black uppercase tracking-[0.22em] text-sky-200 ${jakartaSans.className}`}>
                 Sean Lee
               </p>
@@ -64,12 +81,15 @@ export function Footer() {
               <BrandWordmark />
             </Link>
             <p className={`mt-4 max-w-md text-sm font-medium text-slate-500 ${jakartaSans.className}`}>
-              AI for school, taught by college students. Private membership for high schoolers.
+              A monthly AI program for high schoolers, run by college students. Admission by application.
             </p>
           </div>
           <div>
-            <h4 className="mb-6 text-sm font-bold uppercase tracking-widest text-slate-900">Legal</h4>
+            <h4 className="mb-6 text-sm font-bold uppercase tracking-widest text-slate-900">StudentStack</h4>
             <ul className="space-y-4 text-sm font-medium text-slate-500">
+              <li><Link href="/apply" className="transition-colors hover:text-sky-500">Apply</Link></li>
+              <li><a href="/#newsletter" className="transition-colors hover:text-sky-500">Free newsletter</a></li>
+              <li><Link href="/team" className="transition-colors hover:text-sky-500">Team</Link></li>
               <li><a href="/privacy" className="transition-colors hover:text-sky-500">Privacy Policy</a></li>
               <li><a href="/terms" className="transition-colors hover:text-sky-700">Terms of Service</a></li>
               <li>
@@ -77,7 +97,6 @@ export function Footer() {
                   Contact Us
                 </button>
               </li>
-              <li><Link href="/login" className="transition-colors hover:text-sky-500">Student login</Link></li>
             </ul>
           </div>
         </div>

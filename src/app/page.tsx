@@ -1,68 +1,37 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
-import dynamic from "next/dynamic";
+import React from "react";
 import { Navbar } from "@/components/Navbar";
-import { IntroAnimation } from "@/components/IntroAnimation";
-import { HeroSection } from "@/components/HeroSection";
 import { OnboardingProvider } from "@/components/onboarding-context";
 import { ContactProvider } from "@/components/contact-context";
-
-const sectionLoading = () => <div className="h-96" aria-hidden />;
-
-const TestimonialSection = dynamic(
-  () => import("@/components/Sections").then((m) => ({ default: m.TestimonialSection })),
-  { loading: sectionLoading }
-);
-
-const CurriculumPreviewSection = dynamic(
-  () => import("@/components/CurriculumPreviewSection").then((m) => ({ default: m.CurriculumPreviewSection })),
-  { loading: sectionLoading }
-);
-
-const PortalPreviewSection = dynamic(
-  () => import("@/components/PortalPreviewSection").then((m) => ({ default: m.PortalPreviewSection })),
-  { loading: sectionLoading }
-);
-
-const FaqSection = dynamic(
-  () => import("@/components/FaqSection").then((m) => ({ default: m.FaqSection })),
-  { loading: sectionLoading }
-);
-
-const WriteUsSection = dynamic(
-  () => import("@/components/WriteUsSection").then((m) => ({ default: m.WriteUsSection })),
-  { loading: sectionLoading }
-);
-
-const Footer = dynamic(
-  () => import("@/components/Sections").then((m) => ({ default: m.Footer })),
-  { loading: sectionLoading }
-);
+import {
+  AdmissionsSection,
+  CurriculumSection,
+  FinalCtaSection,
+  MonthlyCycleSection,
+  NewsletterSection,
+  PartnersSection,
+  ProgramHero,
+  ThesisSection,
+} from "@/components/program/ProgramSections";
+import { ProgramFaq, ProgramFooter } from "@/components/program/ProgramFooterFaq";
 
 export default function LandingPage() {
-  const [showIntro, setShowIntro] = useState(true);
-  const [introSession, setIntroSession] = useState(0);
-  const handleIntroComplete = useCallback(() => setShowIntro(false), []);
-  const replayIntro = useCallback(() => {
-    setIntroSession((n) => n + 1);
-    setShowIntro(true);
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <OnboardingProvider>
       <ContactProvider>
-        <main className="min-h-screen bg-transparent selection:bg-sky-100 selection:text-sky-900">
-          {showIntro && <IntroAnimation key={introSession} onComplete={handleIntroComplete} />}
-          <Navbar onHomeLogoClick={replayIntro} />
-          <HeroSection />
-          <TestimonialSection />
-          <CurriculumPreviewSection />
-          <PortalPreviewSection />
-          <FaqSection />
-          <WriteUsSection />
-          <Footer />
+        <main className="min-h-screen bg-white text-ink selection:bg-[#D6E4F2]">
+          <Navbar />
+          <ProgramHero />
+          <ThesisSection />
+          <CurriculumSection />
+          <MonthlyCycleSection />
+          <PartnersSection />
+          <AdmissionsSection />
+          <NewsletterSection />
+          <ProgramFaq />
+          <FinalCtaSection />
+          <ProgramFooter />
         </main>
       </ContactProvider>
     </OnboardingProvider>
