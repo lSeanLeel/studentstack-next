@@ -33,18 +33,18 @@ export const TEAM_SCHOOLS: { name: string; logo: string; wordmark?: boolean }[] 
 ];
 
 export const HERO = {
-  /** Headline reads: `${lead} ${USE_CASES[i].phrase}.` */
-  lead: "Learn how top students and university researchers use AI to",
-  lede: "Each month, our team of undergraduates at UCLA, Berkeley, Stanford, Princeton and Columbia teaches the AI methods that matter most in high school coursework, and how to use them within the rules schools set.",
+  /** Headline reads: `${lead} ${USE_CASES[i].phrase}` */
+  lead: "Learn from top college students how they use AI to",
+  lede: "Our team of undergraduates at UCLA, Berkeley, Stanford, Princeton and Columbia rewrites the lessons every month, so your student learns the methods that work now, within the rules schools set.",
 };
 
-/** Rotating headline phrases. `example` shows under the headline when a phrase is selected. */
+/** Rotating headline phrases. `example` shows under the headline for the current phrase. */
 export const USE_CASES = [
-  { id: "organize", phrase: "stay organized", example: "Turn five syllabi, a practice schedule and every deadline into one weekly plan." },
-  { id: "research", phrase: "research faster", example: "Find credible sources on a topic, check them, and keep citations in order." },
-  { id: "study", phrase: "study smarter", example: "Build practice tests and flashcards from their own class notes before an exam." },
-  { id: "write", phrase: "improve their writing", example: "Get detailed feedback on a draft they wrote, without AI writing any of it." },
-  { id: "build", phrase: "build real projects", example: "Plan and start independent work that belongs on a college application." },
+  { id: "organize", phrase: "plan their week", example: "Turn five syllabi, a practice schedule and every deadline into one weekly plan." },
+  { id: "research", phrase: "research a topic", example: "Find credible sources, check whether they hold up, and keep citations in order." },
+  { id: "study", phrase: "study for exams", example: "Build practice tests and flashcards from their own class notes." },
+  { id: "write", phrase: "get feedback on essays", example: "Get detailed comments on a draft they wrote, without AI writing any of it." },
+  { id: "build", phrase: "start real projects", example: "Plan and launch independent work that belongs on a college application." },
 ] as const;
 
 export const THESIS = {
