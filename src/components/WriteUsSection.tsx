@@ -21,10 +21,14 @@ export function WriteUsSection() {
           >
             <h2
               id="write-us-heading"
-              className={`mb-6 text-center text-xl font-semibold tracking-[-0.03em] text-white sm:text-2xl ${fredokaHeadline.className}`}
+              className={`text-center text-xl font-semibold tracking-[-0.03em] text-white sm:text-2xl ${fredokaHeadline.className}`}
             >
-              Write us
+              Tell us about your student
             </h2>
+            <p className={`mx-auto mb-6 mt-3 max-w-sm text-center text-sm font-medium leading-relaxed text-slate-300 ${jakartaSans.className}`}>
+              Questions about AI, school, or whether StudentStack is a fit? Our college team reads every message and
+              replies by email.
+            </p>
             <ParentInquiryForm dark />
           </motion.div>
         </div>

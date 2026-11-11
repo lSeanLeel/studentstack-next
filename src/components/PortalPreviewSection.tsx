@@ -39,8 +39,8 @@ export function PortalPreviewSection() {
             viewport={{ once: true }}
             className={`mt-4 text-sm font-medium leading-relaxed text-slate-600 sm:text-base ${jakartaSans.className}`}
           >
-            A gated portal built by college students: daily AI toolkit, member resources, and organization-issued
-            pathways students can work toward.
+            A members-only portal our college team refreshes every month: the latest AI tools and workflows for school,
+            student-tested advice, and pathways your student can work toward.
           </motion.p>
         </div>
 
@@ -127,10 +127,10 @@ export function PortalPreviewSection() {
 
         <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <Link
-            href="/join"
+            href="/#write-us"
             className={`inline-flex items-center justify-center gap-2 rounded-2xl bg-slate-900 px-6 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-white shadow-[0_12px_0_0_rgba(15,23,42,0.2)] transition hover:-translate-y-0.5 hover:bg-slate-800 ${jakartaSans.className}`}
           >
-            Join our Community
+            Ask about membership
             <ArrowRight className="h-4 w-4" aria-hidden />
           </Link>
           <Link

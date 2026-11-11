@@ -89,10 +89,10 @@ export function CurriculumPreviewSection() {
 
         <div className="mt-8 flex justify-center">
           <Link
-            href="/join"
+            href="/#write-us"
             className={`inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-6 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-white shadow-[0_12px_0_0_rgba(15,23,42,0.15)] transition hover:-translate-y-0.5 hover:bg-slate-800 ${jakartaSans.className}`}
           >
-            Apply for Elite
+            Ask about membership
             <ArrowRight className="h-4 w-4" aria-hidden />
           </Link>
         </div>

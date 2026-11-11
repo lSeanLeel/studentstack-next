@@ -10,7 +10,7 @@ type FaqItem = { id?: string; q: string; a: ReactNode };
 const FAQ_ITEMS: FaqItem[] = [
   {
     q: "What is StudentStack?",
-    a: "We are a group of current college students committed to providing modern guidance that students actually need. Today, new AI tools and workflows drop every day, and we believe younger students are best prepared learning from those who are still in school. We update our student portal every day for our members to stay ahead for school.",
+    a: "We are a team of current college students who keep high schoolers updated month to month. New AI tools and workflows drop constantly, so we show students what actually works for school right now, along with practical, relatable advice from people who were just where they are.",
   },
   {
     q: "How is this different from tutors or admissions counselors?",
@@ -18,11 +18,11 @@ const FAQ_ITEMS: FaqItem[] = [
   },
   {
     q: "What do members get?",
-    a: "A gated student portal: daily AI toolkit, member resources, organization-issued pathways (SS-AIS and SS-ACR), and direct access to our college team. We stay light on public catalogs on purpose.",
+    a: "A members-only student portal with an AI toolkit we update every month, student-tested resources, organization-issued pathways (SS-AIS and SS-ACR), and direct access to our college team.",
   },
   {
-    q: "How do I join?",
-    a: "Parents complete a short application, review mentorship matching, create a portal password, and finish checkout. A welcome email with login details goes to the parent email. A mentor reaches out after.",
+    q: "How do we get started?",
+    a: "Send us a note through the form below with a little about your student: grade, school, and what you hope they get out of it. Someone from our college team will reply by email to answer your questions and walk you through membership.",
   },
 ];
 

@@ -139,21 +139,21 @@ export function HeroSection() {
           transition={{ delay: 0.5, duration: 0.5 }}
           className={`${jakartaSans.className} mx-auto mt-4 max-w-xl text-[0.95rem] font-semibold leading-snug text-slate-600 sm:mt-5 sm:text-lg`}
         >
-          AI for school, taught the right way. Private membership for high schoolers, built by college students who still sit in the classrooms that matter.
+          We&apos;re a team of college students who keep high schoolers up to date every month: how to actually use AI for school, plus real, relatable advice from students who were just in their shoes.
         </motion.p>
 
         <motion.div
-          id="apply"
+          id="get-started"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.62, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="mt-6 flex w-full max-w-xl flex-col items-center gap-3 sm:mt-7"
         >
           <a
-            href="/join"
+            href="#write-us"
             className={`${jakartaSans.className} inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-2xl bg-slate-900 px-6 py-3.5 text-xs font-black uppercase tracking-[0.14em] text-white shadow-[0_14px_28px_-18px_rgba(15,23,42,0.5)] transition hover:-translate-y-0.5 hover:bg-slate-800`}
           >
-            Join our Community
+            Talk to our team
             <ArrowRight className="h-4 w-4" aria-hidden />
           </a>
           <a

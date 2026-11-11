@@ -31,7 +31,7 @@ export function ParentInquiryForm({ dark = false }: { dark?: boolean }) {
     setError(null);
     try {
       const message = [
-        "WRITE US INQUIRY",
+        "FAMILY INQUIRY",
         `Student: ${data.studentName.trim()}`,
         "",
         data.inquiry.trim(),
@@ -75,7 +75,7 @@ export function ParentInquiryForm({ dark = false }: { dark?: boolean }) {
         className={`rounded-[1.5rem] border p-5 text-center ${dark ? "border-emerald-500/30 bg-emerald-900/30" : "border-emerald-200 bg-emerald-50/60"} ${jakartaSans.className}`}
       >
         <CheckCircle2 className={`mx-auto mb-2 h-6 w-6 ${dark ? "text-emerald-400" : "text-emerald-600"}`} aria-hidden />
-        <p className={`text-sm font-semibold ${dark ? "text-white" : "text-slate-900"}`}>Message sent.</p>
+        <p className={`text-sm font-semibold ${dark ? "text-white" : "text-slate-900"}`}>Thanks, we got it. Someone from our team will reply by email.</p>
       </motion.div>
     );
   }
@@ -85,7 +85,7 @@ export function ParentInquiryForm({ dark = false }: { dark?: boolean }) {
       <input
         type="text"
         className={fieldClass}
-        placeholder="Your name"
+        placeholder="Parent name"
         autoComplete="name"
         {...register("parentName", { required: "Name is required." })}
       />
@@ -106,7 +106,7 @@ export function ParentInquiryForm({ dark = false }: { dark?: boolean }) {
       <input
         type="text"
         className={fieldClass}
-        placeholder="Student name"
+        placeholder="Student name and grade"
         autoComplete="off"
         {...register("studentName", { required: "Student name is required." })}
       />
@@ -115,7 +115,7 @@ export function ParentInquiryForm({ dark = false }: { dark?: boolean }) {
       <textarea
         rows={4}
         className={`${fieldClass} min-h-[6rem] resize-y`}
-        placeholder="Your inquiry"
+        placeholder="What would you like to know?"
         {...register("inquiry", {
           required: "Message is required.",
           minLength: { value: 10, message: "Tell us a bit more." },
@@ -142,7 +142,7 @@ export function ParentInquiryForm({ dark = false }: { dark?: boolean }) {
             : "bg-slate-900 text-white shadow-[0_14px_28px_-18px_rgba(15,23,42,0.5)] hover:bg-slate-800"
         }`}
       >
-        {busy ? "Sending…" : "Send"}
+        {busy ? "Sending…" : "Send inquiry"}
         {!busy ? <ArrowRight className="h-4 w-4" aria-hidden /> : null}
       </button>
     </form>
